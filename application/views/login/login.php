@@ -64,9 +64,9 @@ License: For each use you must have a valid license purchased only from above li
                 </a>
                         <!--end::Title-->
                         <!--begin::Link-->
-                        <div class="text-gray-400 fw-bold fs-4">New Here?
+                        <div class="text-gray-400 fw-bold fs-4">New Here
                             <a href="<?php echo base_url(); ?>../../demo8/dist/authentication/layouts/basic/sign-up.html"
-                                class="link-primary fw-bolder">Create an Account</a>
+                                class="link-primary fw-bolder">Create an Account?</a>
                         </div>
                         <!--end::Link-->
                     </div>
