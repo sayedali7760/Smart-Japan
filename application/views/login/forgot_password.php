@@ -7,7 +7,7 @@
 <link href="<?php echo base_url(); ?>assets/css/spinner.css" rel="stylesheet">
 
 
-<title>Benchmark | Recruitment</title>
+<title>Smart-Japan</title>
 <style>
     input[type='text']::placeholder {
         text-align: left;
