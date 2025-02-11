@@ -201,4 +201,15 @@ class Login extends CI_Controller
     {
         $this->load->view('login/signup');
     }
+
+    public function register()
+    {
+        $fname = $this->input->post('firstname');
+        $lname = $this->input->post('lastname');
+        $email = $this->input->post('username');
+        $password = md5($this->input->post('password'));
+        $uname = $fname.' '.$lname;
+
+        $user_data = array('email');
+    }
 }
