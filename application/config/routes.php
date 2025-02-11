@@ -59,6 +59,8 @@ $route['home/dashboard'] = 'dashboard_controller';
 $route['login/forgot-password'] = 'Login/forgot_password_check';
 $route['update-forgot-password?(:any)'] = 'Login/change_password_user';
 $route['forgot-password/update-password'] = 'Login/update_password';
+$route['signup'] = 'Login/signup';
+$route['register'] = 'Login/register';
 
 // user management
 $route['user-management/user-add'] = 'settings/User_management/user_add';
