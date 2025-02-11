@@ -1,0 +1,11 @@
+.htaccess
+application/config/database.php
+/assets/
+/captcha/
+/pdf/
+/report_pdf/
+/system/
+/third_party/
+/uploads/
+/vendor/
+

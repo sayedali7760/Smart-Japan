@@ -1,19 +1,24 @@
+# Enable URL rewriting
 RewriteEngine On
+
+# Exclude 'assets' folder from rewrites
 RewriteCond %{REQUEST_URI} !assets
+
+# Exclude specific files and directories from rewrites
 RewriteCond $1 !^(index\.php|uploads|images|captcha|css|js|template|robots\.txt)
+
+# Only rewrite if the requested filename is not a valid file or directory
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite all other requests to /Smart-Japan/index.php
 RewriteRule ^(.*)$ /Smart-Japan/index.php/$1 [L]
 
-# 7 Days
-#<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
-#Header set Cache-Control "max-age=604800, public"
-#</FilesMatch>
-
-php_value memory_limit 51200M
-
-
-#order deny, allow
+# Allow access from all IPs and localhost
 Allow from all
 Allow from localhost
 
+# Static file caching (uncomment if needed)
+# <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+# Header set Cache-Control "max-age=604800, public"
+# </FilesMatch>
