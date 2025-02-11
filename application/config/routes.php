@@ -104,6 +104,8 @@ $route['client/change_status'] = 'settings/Client/change_status';
 $route['client-crm/show-product'] = 'settings/Client_crm/show_product';
 $route['client-crm/view-product'] = 'settings/Client_crm/view_product';
 
+$route['transaction/deposit'] = 'Transaction/view_deposit';
+
 
 $route['default_controller'] = 'Login';
 $route['404_override'] = 'Login/error';
