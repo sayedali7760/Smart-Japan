@@ -1,17 +1,9 @@
 <!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: Metronic - Bootstrap 5 HTML, VueJS, React, Angular & Laravel Admin Dashboard Theme
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
+
+
 <html lang="en">
 <!--begin::Head-->
+
 
 <head>
     <title><?php echo APP_TITLE;?></title>
@@ -40,6 +32,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--end::Head-->
 <!--begin::Body-->
 
+
 <body id="kt_body" class="bg-body">
     <!--begin::Main-->
     <!--begin::Root-->
@@ -56,6 +49,7 @@ License: For each use you must have a valid license purchased only from above li
                 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                     <!--begin::Form-->
 
+
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
@@ -64,14 +58,40 @@ License: For each use you must have a valid license purchased only from above li
                 </a>
                         <!--end::Title-->
                         <!--begin::Link-->
-                        <div class="text-gray-400 fw-bold fs-4">New Here?
-                            <a href="<?php echo base_url(); ?>signup"
-                                class="link-primary fw-bolder">Create an Account</a>
+                        <div class="text-gray-400 fw-bold fs-4">Already have an account??
+                            <a href="<?php echo base_url(); ?>login"
+                                class="link-primary fw-bolder">Log in?</a>
                         </div>
                         <!--end::Link-->
                     </div>
-                    <!--begin::Heading-->
-                    <!--begin::Input group-->
+                    
+                    <div class="fv-row mb-10">
+                        <label class="form-label fs-6 fw-bolder text-dark">Firstname</label>
+                        <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
+                            onPaste="return false" placeholder="Enter Firstname" id="firstname" name="firstname" value="<?php if (isset($_COOKIE["ecomm_firstname"])) {
+                                                                            echo $_COOKIE["green_username"];
+                                                                        } ?>">
+                    </div>
+
+
+                    <div class="fv-row mb-10">
+                        <label class="form-label fs-6 fw-bolder text-dark">Lastname</label>
+                        <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
+                            onPaste="return false" placeholder="Enter Lastname" id="lastname" name="lastname" value="<?php if (isset($_COOKIE["ecomm_lastname"])) {
+                                                                            echo $_COOKIE["green_username"];
+                                                                        } ?>">
+                    </div>
+
+
+                    <div class="fv-row mb-10">
+                        <label class="form-label fs-6 fw-bolder text-dark">Phone No</label>
+                        <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
+                            onPaste="return false" placeholder="Enter Phno" id="phno" name="phno" value="<?php if (isset($_COOKIE["ecomm_phno"])) {
+                                                                            echo $_COOKIE["green_username"];
+                                                                        } ?>">
+                    </div>
+
+
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
                         <label class="form-label fs-6 fw-bolder text-dark">Email</label>
@@ -79,10 +99,12 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Input-->
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
                             onPaste="return false" placeholder="Enter Username" id="username" name="username" value="<?php if (isset($_COOKIE["ecomm_username"])) {
-																																																					echo $_COOKIE["green_username"];
-																																																				} ?>">
+                                                                                                                                                                                                                    echo $_COOKIE["green_username"];
+                                                                                                                                                                                                                } ?>">
                         <!--end::Input-->
                     </div>
+
+
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
@@ -98,30 +120,22 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Input-->
                         <input type="password" onPaste="return false" autocomplete="off" placeholder="Enter Password"
                             id="password" class="form-control form-control-lg form-control-solid" name="password" value="<?php if (isset($_COOKIE["ecomm_password"])) {
-																																																						echo $_COOKIE["green_password"];
-																																																					} ?>">
+                                                                                                                                                                                                                        echo $_COOKIE["green_password"];
+                                                                                                                                                                                                                    } ?>">
                         <!--end::Input-->
                     </div>
 
-                    <div class="fv-row mb-10">
-                        <div class="d-flex flex-stack mb-2">
-                            <label class="form-label fw-bolder text-dark fs-6 mb-0">Organization</label>
-                        </div>
-                        <select class="form-select mb-5" data-control="select2"
-                                                data-placeholder="Select an option" 
-                                                name="position" id="position">
-                                                <option value="1" selected>Client</option>
-                                                <option value="2">Administration</option>
-                                            </select>
-                    </div>
+
+                    
                     
                     <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
                         <!--begin::Submit button-->
 
+
                         <a href="javascript:void(0);" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5"
-                            title="Login"><i class="icon-unlock2"></i> Login</a>
+                            title="Login"><i class="icon-unlock2"></i> Sign up</a>
                         <!--end::Submit button-->
                         <!--begin::Separator-->
                         <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
@@ -133,9 +147,11 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Google link-->
                         <!--begin::Google link-->
 
+
                         <!--end::Google link-->
                     </div>
                     <!--end::Actions-->
+
 
                     <!--end::Form-->
                 </div>
@@ -165,10 +181,13 @@ License: For each use you must have a valid license purchased only from above li
     <script type="text/javascript">
     function submit() {
         var baseurl = '<?php echo base_url(); ?>';
-        var ops_url = baseurl + 'login/login';
+        var ops_url = baseurl + 'register';
         var username = $('#username').val();
         var password = $('#password').val();
-        var position = $('#position').val();
+        var firstname = $('#firstname').val();
+        var lastname = $('#lastname').val();
+
+
         if (username == '') {
             Swal.fire({
                 title: 'Login failed',
@@ -185,6 +204,7 @@ License: For each use you must have a valid license purchased only from above li
             });
             return false;
         }
+
 
         $.ajax({
             type: "POST",
@@ -226,8 +246,10 @@ License: For each use you must have a valid license purchased only from above li
             }
         });
 
+
     }
     </script>
+
 
     <script type="text/javascript">
     function send_verification() {
@@ -268,8 +290,10 @@ License: For each use you must have a valid license purchased only from above li
                         },
                         function(isConfirm) {
 
+
                             if (isConfirm) {
                                 window.location.reload(true);
+
 
                             } else {
                                 window.location.reload(true);
@@ -281,9 +305,11 @@ License: For each use you must have a valid license purchased only from above li
             }
         });
 
+
     }
     </script>
 </body>
+
 
 </html>
 <?php ?>
