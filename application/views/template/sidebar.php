@@ -90,7 +90,7 @@
 
                     <div class="menu-item">
                         <a class="menu-link <?php if($subtitle == 'Withdrawals'){ echo "active";}?>"
-                            href="<?php echo base_url(); ?>organization/organization-show">
+                            href="<?php echo base_url(); ?>transaction/withdraw">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
@@ -100,7 +100,7 @@
 
                     <div class="menu-item">
                         <a class="menu-link <?php if($subtitle == 'Internal Transfers'){ echo "active";}?>"
-                            href="<?php echo base_url(); ?>organization/organization-show">
+                            href="<?php echo base_url(); ?>transaction/internal-transfer">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
@@ -110,7 +110,7 @@
 
                     <div class="menu-item">
                         <a class="menu-link <?php if($subtitle == 'Pending Payments'){ echo "active";}?>"
-                            href="<?php echo base_url(); ?>organization/organization-show">
+                            href="<?php echo base_url(); ?>transaction/pending-payments">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>

@@ -7,3 +7,4 @@ ERROR - 2025-02-11 13:19:28 --> Unable to connect to the database
 ERROR - 2025-02-11 15:02:23 --> Query error: Table 'smart_japan.transactions' doesn't exist - Invalid query: SELECT *
 FROM `transactions`
 ORDER BY `transaction_id` DESC
+

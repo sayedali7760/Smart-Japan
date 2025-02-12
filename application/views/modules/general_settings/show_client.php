@@ -180,7 +180,7 @@ function change_status(id, is_active) {
     else if (is_active == 0) {
         status = 1;
     }
-    var ops_url = baseurl + 'user-management/change_status/';
+    var ops_url = baseurl + 'client/change_status/';
     $.ajax({
         type: "POST",
         cache: false,

@@ -47,7 +47,7 @@ class Client_model extends CI_Model
 
     public function change_status($data, $client_id)
     {
-        $this->db->update('clients', $data, 'client_id=' . $client_id . '');
+        $this->db->update('client_details', $data, 'id=' . $client_id . '');
         return true;
     }
 }
