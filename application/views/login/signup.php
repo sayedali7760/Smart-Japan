@@ -186,9 +186,9 @@
         var password = $('#password').val();
         var firstname = $('#firstname').val();
         var lastname = $('#lastname').val();
+        var phno = $('#phno').val();
 
-
-        if (username == '') {
+        if (firstname == '') {
             Swal.fire({
                 title: 'Login failed',
                 text: 'Username is required',
@@ -196,7 +196,7 @@
             });
             return false;
         }
-        if (password == '') {
+        if (username == '') {
             Swal.fire({
                 title: 'Login failed',
                 text: 'Password is required',
@@ -212,27 +212,25 @@
             async: true,
             url: ops_url,
             data: {
-                "username": username,
+                "email": username,
                 "password": password,
-                "position": position
+                "fname": firstname,
+                "lname": lastname,
+                "phno": phno,
             },
             success: function(result) {
                 var data = $.parseJSON(result);
                 if (data.status == 1) {
-                    location.reload();
-                }
-                if (data.status == 0) {
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Login Failed',
-                        text: 'Invalid credentials. Please contact the administrator.'
+                        icon: 'success',
+                        title: 'Account created successfully.'
                     });
                 }
-                if (data.status == 2) {
+                else{
                     Swal.fire({
                         icon: 'error',
-                        title: 'Login Failed',
-                        text: 'Your account is temporarily blocked. Please contact the administrator.'
+                        title: 'Error',
+                        text: 'Error while creating.'
                     });
                 }
             },
