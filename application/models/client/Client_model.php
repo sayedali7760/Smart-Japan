@@ -4,7 +4,7 @@ class Client_model extends CI_MODEL
 {
     public function __construct()
     {
-        parent::construct();
+        parent::__construct();
     }
 
     public function add_client($data)

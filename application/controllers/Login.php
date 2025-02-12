@@ -7,6 +7,7 @@ class Login extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('client/Client_model','CModel');
     }
     public function index()
     {
@@ -204,12 +205,20 @@ class Login extends CI_Controller
 
     public function register()
     {
-        $fname = $this->input->post('firstname');
-        $lname = $this->input->post('lastname');
-        $email = $this->input->post('username');
+        $fname = $this->input->post('fname');
+        $lname = $this->input->post('lname');
+        $email = $this->input->post('email');
         $password = md5($this->input->post('password'));
         $uname = $fname.' '.$lname;
+        $phno = $this->input->post('phno');
 
-        $user_data = array('email');
+        $user_data = array('email'=>$email,'fname'=>$fname,'lname'=>$lname,'username'=>$uname,'phno'=>$phno,'file'=>'abc.jpg','discount'=>'10','password'=>$password);
+        if($this->CModel->add_client($user_data)){
+            echo json_encode(array('status' => 1));
+            return;
+        }else{
+            echo json_encode(array('status' => 0));
+            return;
+        }
     }
 }
