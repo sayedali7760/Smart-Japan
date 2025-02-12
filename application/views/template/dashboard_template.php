@@ -29,7 +29,7 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/media/footer.png" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -293,7 +293,7 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="header-brand">
                         <!--begin::Logo-->
                         <a href="<?php echo base_url(); ?>home">
-                            <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/logo-1-dark.svg"
+                            <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/smart-logo.png"
                                 class="h-25px h-lg-25px" />
                         </a>
                         <!--end::Logo-->

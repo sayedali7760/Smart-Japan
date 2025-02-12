@@ -26,11 +26,11 @@ class Client extends CI_Controller
    
     public function change_status()
     {
-        $client_id = $this->input->post('client_id');
+        $client_id = $this->input->post('id');
         $status = $this->input->post('status');
         $data = array('is_active' => $status);
         if ($this->CModel->change_status($data, $client_id)) {
-            echo json_encode(array('status' => 1, 'view' => $this->load->view('modules/clients/show_client', $data, TRUE)));
+            echo json_encode(array('status' => 1));
             return;
         } else {
             return false;

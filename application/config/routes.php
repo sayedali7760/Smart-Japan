@@ -105,6 +105,9 @@ $route['client-crm/show-product'] = 'settings/Client_crm/show_product';
 $route['client-crm/view-product'] = 'settings/Client_crm/view_product';
 
 $route['transaction/deposit'] = 'Transaction/view_deposit';
+$route['transaction/withdraw'] = 'Transaction/view_withdrawal';
+$route['transaction/internal-transfer'] = 'Transaction/internal_transactions';
+$route['transaction/pending-payments'] = 'Transaction/pending_transactions';
 
 
 $route['default_controller'] = 'Login';

@@ -17,15 +17,6 @@ class Dashboard_controller extends CI_Controller
 
         $data['title'] = 'Home';
         $data['subtitle'] = 'Dashboard';
-
-        // $data['dashboard_details'] = $this->MDashboard->get_dashboard_count($inst_ids);
-
-
-        // $data['total_resumes'] = $this->db->select('*')
-        //     ->from('resumes')
-        //     ->where('verify_status', 1)
-        //     ->get()
-        //     ->num_rows();
         $type = $this->session->userdata['type'];
         if ($type == 1) {
             $data['template'] = 'dashboard';
