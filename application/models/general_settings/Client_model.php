@@ -22,14 +22,14 @@ class Client_model extends CI_Model
 
     public function insert($data)
     {
-        if ($this->db->insert('client_details', $data)) {
+        if ($this->db->insert('clients', $data)) {
             return TRUE;
         }
     }
 
     public function get_details()
     {
-        $this->db->from('client_details');
+        $this->db->from('clients');
         $this->db->order_by('id', "desc");
         $query = $this->db->get()->result();
         return $query;

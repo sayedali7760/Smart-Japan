@@ -5,8 +5,8 @@
         <div id="kt_content_container" class="container-xxl">
 
             <?php
-                echo form_open_multipart('settings/add_user', array('id' => 'user_save', 'role' => 'form','class' => 'form d-flex flex-column flex-lg-row'));
-                ?>
+            echo form_open_multipart('settings/add_user', array('id' => 'user_save', 'role' => 'form', 'class' => 'form d-flex flex-column flex-lg-row'));
+            ?>
 
 
             <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
@@ -60,17 +60,17 @@
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Role</label>
                                             <select class="form-select mb-5" data-control="select2"
-                                                data-placeholder="Select an option" 
+                                                data-placeholder="Select an option"
                                                 name="position" id="position">
                                                 <option value=""></option>
                                                 <?php
-                                            if (isset($user_role) && !empty($user_role)) {
-                                                foreach ($user_role as $pos) {
+                                                if (isset($user_role) && !empty($user_role)) {
+                                                    foreach ($user_role as $pos) {
 
-                                                    echo '<option value ="' . $pos->role_id . '">' . $pos->description . '</option>';
+                                                        echo '<option value ="' . $pos->role_id . '">' . $pos->description . '</option>';
+                                                    }
                                                 }
-                                            }
-                                            ?>
+                                                ?>
                                             </select>
                                         </div>
 
@@ -120,8 +120,17 @@
                                         <div class="fv-row w-100 flex-md-root">
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-end">
 
+                                        <a href="<?php echo base_url(); ?>home" id="kt_ecommerce_add_product_cancel"
+                                            class="btn btn-light me-5">Cancel</a>
+
+                                        <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes"
+                                            onclick="submit_data()">Save Changes</a>
+
+                                    </div>
                                 </div>
+
 
                             </div>
 
@@ -130,171 +139,163 @@
 
                 </div>
 
-                <div class="d-flex justify-content-end">
 
-                    <a href="<?php echo base_url();?>home" id="kt_ecommerce_add_product_cancel"
-                        class="btn btn-light me-5">Cancel</a>
-
-                    <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes"
-                        onclick="submit_data()">Save Changes</a>
-
-                </div>
             </div>
             <?php echo form_close(); ?>
         </div>
     </div>
 </div>
 <script>
-function submit_data() {
-    $("#loader").show();
-    var ops_url = baseurl + 'user-management/save-user';
-    var fname = $('#fname').val();
-    var lname = $('#lname').val();
-    var position = $('#position').val();
-    var username = $('#username').val();
-    var password = $('#password').val();
-    var email = $('#email').val();
-    var confirm_password = $('#con_password').val();
+    function submit_data() {
+        $("#loader").show();
+        var ops_url = baseurl + 'user-management/save-user';
+        var fname = $('#fname').val();
+        var lname = $('#lname').val();
+        var position = $('#position').val();
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var email = $('#email').val();
+        var confirm_password = $('#con_password').val();
 
-    if (fname == "") {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Firstname is required.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (lname == "") {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Lastname is required.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (email == "") {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Email is required.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (fname.length < 3) {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Enter at least three characters for Name.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (position == '') {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Role is required.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (username == '') {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Username is required.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (username.length < 5) {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Enter at least five characters for Username.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (password == '') {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Password is required.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (password.length < 3) {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Enter at least three characters for Password.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (confirm_password == '') {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Confirm Password is required.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-    if (password != confirm_password) {
-        Swal.fire({
-            icon: 'info',
-            title: '',
-            text: 'Password and Confirm Password must be the same.'
-        });
-        $("#loader").hide();
-        return false;
-    }
-
-    var form = $("#user_save");
-    var formData = new FormData(form[0]);
-
-    $.ajax({
-        type: "POST",
-        cache: false,
-        async: true,
-        url: ops_url,
-        processData: false,
-        contentType: false,
-        data: formData,
-        success: function(result) {
-            $("#loader").hide();
-            var data = $.parseJSON(result);
-            if (data.status == 1) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'User created.'
-                });
-                $('#user_save').trigger("reset");
-            } else if (data.status == 0) {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'Info',
-                    text: 'Username already exists.'
-                });
-            } else {
-                $('#faculty_loader').removeClass('sk-loading');
-            }
-        },
-        error: function(xhr, status, error) {
-            $("#loader").hide();
+        if (fname == "") {
             Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'An error occurred while processing your request.'
+                icon: 'info',
+                title: '',
+                text: 'Firstname is required.'
             });
+            $("#loader").hide();
+            return false;
         }
-    });
-}
+        if (lname == "") {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Lastname is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (email == "") {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Email is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (fname.length < 3) {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Enter at least three characters for Name.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (position == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Role is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (username == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Username is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (username.length < 5) {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Enter at least five characters for Username.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (password == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Password is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (password.length < 3) {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Enter at least three characters for Password.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (confirm_password == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Confirm Password is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (password != confirm_password) {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Password and Confirm Password must be the same.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+
+        var form = $("#user_save");
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: true,
+            url: ops_url,
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function(result) {
+                $("#loader").hide();
+                var data = $.parseJSON(result);
+                if (data.status == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'User created.'
+                    });
+                    $('#user_save').trigger("reset");
+                } else if (data.status == 0) {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Info',
+                        text: 'Username already exists.'
+                    });
+                } else {
+                    $('#faculty_loader').removeClass('sk-loading');
+                }
+            },
+            error: function(xhr, status, error) {
+                $("#loader").hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while processing your request.'
+                });
+            }
+        });
+    }
 </script>

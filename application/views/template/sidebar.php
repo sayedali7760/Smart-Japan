@@ -312,7 +312,7 @@
             </div>
             <?php }else{?>
                 <div data-kt-menu-trigger="click"
-                class="menu-item menu-accordion <?php if($title == 'Authentication'){ echo "hover show";}?>">
+                class="menu-item menu-accordion <?php if($title == 'Client'){ echo "hover show";}?>">
                 <span class="menu-link">
                     <span class="menu-icon">
                         <!--begin::Svg Icon | path: icons/duotune/technology/teh004.svg-->
@@ -334,8 +334,8 @@
                 </span>
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                     <div class="menu-item">
-                        <a class="menu-link <?php if($subtitle == 'Add User'){ echo "active";}?>"
-                            href="<?php echo base_url(); ?>user-management/user-add">
+                        <a class="menu-link <?php if($subtitle == 'My Profile'){ echo "active";}?>"
+                            href="<?php echo base_url(); ?>client/my-profile">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>

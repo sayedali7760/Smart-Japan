@@ -13,12 +13,22 @@
  */
 class Client_crm_model extends CI_Model
 {
-
-
     public function __construct()
     {
         parent::__construct();
     }
 
-    
+    public function get_details($id)
+    {
+        $this->db->from('client_details');
+        $this->db->where('id', $id);
+        $query = $this->db->get()->row_array();
+        return $query;
+    }
+
+    public function update_password($id, $data)
+    {
+        $this->db->update('client_details', $data, 'id=' . $id . '');
+        return true;
+    }
 }

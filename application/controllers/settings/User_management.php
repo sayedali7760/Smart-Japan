@@ -10,7 +10,7 @@ class User_management extends CI_Controller
         if (!isset($this->session->userdata['ecomm_login'])) {
             redirect('login');
         }
-        if($this->session->userdata['type'] != 1){
+        if ($this->session->userdata['type'] != 1) {
             redirect('error');
         }
         $this->load->model('general_settings/Usermanagement_model', 'UMModel');
@@ -39,11 +39,9 @@ class User_management extends CI_Controller
 
     public function save_client()
     {
-        $fname = $this->input->post('fname');
-        $lname = $this->input->post('lname');
+        $name = $this->input->post('name');
         $email = $this->input->post('email');
         $discount = $this->input->post('discount');
-        $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
 
         $uploadPath = 'uploads';
@@ -52,9 +50,13 @@ class User_management extends CI_Controller
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
 
+        $uuid_data = random_bytes(16);
+        $uuid_data[6] = chr(ord($uuid_data[6]) & 0x0f | 0x40); // Set version 4
+        $uuid_data[8] = chr(ord($uuid_data[8]) & 0x3f | 0x80); // Set variant
+        $uuid =  vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($uuid_data), 4));
 
-        $data = array('fname' => $fname,'lname' => $lname,'email' => $email,'file' => $avatar,'discount' => $discount, 'username' => $username, 'password' => $password);
-        $qry = $this->db->get_where('client_details', "username like '$username'");
+        $data = array('name' => $name, 'uid' => $uuid, 'email' => $email, 'file' => $avatar, 'password' => $password);
+        $qry = $this->db->get_where('clients', "email like '$email'");
         if ($qry->num_rows() > 0) {
             echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/add_client', $data, TRUE)));
             return;
@@ -75,7 +77,6 @@ class User_management extends CI_Controller
         $data['client_data'] = $this->CModel->get_details();
         $data['template'] = 'modules/general_settings/show_client';
         $this->load->view('template/dashboard_template', $data);
-        
     }
 
     public function edit_client()
@@ -106,7 +107,6 @@ class User_management extends CI_Controller
         $data['user_data'] = $this->UMModel->get_details($data);
         $data['template'] = 'modules/general_settings/show_user';
         $this->load->view('template/dashboard_template', $data);
-        
     }
 
     public function save_user()
@@ -125,7 +125,7 @@ class User_management extends CI_Controller
         $avatar = $filename;
 
 
-        $data = array('fname' => $fname,'lname' => $lname,'email' => $email,'file' => $avatar, 'position' => $position, 'username' => $username, 'password' => $password);
+        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'file' => $avatar, 'position' => $position, 'username' => $username, 'password' => $password);
         $qry = $this->db->get_where('user_details', "username like '$username'");
         if ($qry->num_rows() > 0) {
             echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/add_user', $data, TRUE)));
@@ -191,11 +191,11 @@ class User_management extends CI_Controller
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
 
-        $data = array('fname' => $fname,'lname' => $lname,'email' => $email, 'username' => $username);
+        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'username' => $username);
         if ($not_enrypted_pass  != '') {
             $data['password'] = $password;
         }
-         if($avatar != ''){
+        if ($avatar != '') {
             $data['file'] = $avatar;
         }
         if ($this->UMModel->update_client($data, $user_id)) {
@@ -222,15 +222,14 @@ class User_management extends CI_Controller
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
 
-        $data = array('fname' => $fname,'lname' => $lname,'email' => $email, 'username' => $username);
-        if($position != '')
-        {
+        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'username' => $username);
+        if ($position != '') {
             $data['position'] = $position;
         }
         if ($not_enrypted_pass  != '') {
             $data['password'] = $password;
         }
-         if($avatar != ''){
+        if ($avatar != '') {
             $data['file'] = $avatar;
         }
         if ($this->UMModel->update($data, $user_id)) {
