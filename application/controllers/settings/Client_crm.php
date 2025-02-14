@@ -11,25 +11,27 @@ class Client_crm extends CI_Controller
             redirect('login');
         }
         $this->load->model('general_settings/Client_crm_model', 'CModel');
-        $this->load->model('general_settings/Product_model', 'PModel');
     }
-    public function show_product()
+    public function my_profile()
     {
-    
-        $data['title'] = 'Available Products';
-        $data['subtitle'] = 'Product List available';
-        $data['details_data'] = $this->PModel->get_product_details($data);
-        $data['template'] = 'modules/client_crm/show_product';
+
+        $data['title'] = 'Client';
+        $data['subtitle'] = 'My Profile';
+        $id = $this->session->userdata['id'];
+        $data['user_data'] = $this->CModel->get_details($id);
+        $data['template'] = 'modules/general_settings/my_profile';
         $this->load->view('template/dashboard_template', $data);
-
     }
-    public function view_product()
+    public function update_password()
     {
-        $product_id = $this->input->post('product_id');
-        $product_data = $this->PModel->get_product_details_single($product_id);
-        echo json_encode($product_data);
-        return;
+        $id = $this->session->userdata['id'];
+        $password = md5($this->input->post('password'));
+        $data = array('password' => $password);
+        if ($this->CModel->update_password($id, $data)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
     }
-
-   
 }

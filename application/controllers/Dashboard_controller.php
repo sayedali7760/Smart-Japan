@@ -17,7 +17,7 @@ class Dashboard_controller extends CI_Controller
 
         $data['title'] = 'Home';
         $data['subtitle'] = 'Dashboard';
-        $type = $this->session->userdata['type'];
+        $type = $this->session->userdata['template_type'];
         if ($type == 1) {
             $data['template'] = 'dashboard';
         }
