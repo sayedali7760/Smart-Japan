@@ -10,7 +10,7 @@ class Transaction extends CI_Controller
         if (!isset($this->session->userdata['ecomm_login'])) {
             redirect('login');
         }
-        if($this->session->userdata['type'] != 1){
+        if ($this->session->userdata['template_type'] != 1) {
             redirect('error');
         }
         $this->load->model('Transactions_model', 'TModel');
@@ -48,9 +48,5 @@ class Transaction extends CI_Controller
         $data['details_data'] = $this->TModel->get_details($data);
         $data['template'] = 'modules/transactions/pending_transactions';
         $this->load->view('template/dashboard_template', $data);
-
     }
-    
-
-    
 }

@@ -78,7 +78,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Label-->
                         <!--begin::Input-->
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
-                            onPaste="return false" placeholder="Enter Username" id="username" name="username" value="<?php if (isset($_COOKIE["ecomm_username"])) {
+                             placeholder="Enter Username" id="username" name="username" value="<?php if (isset($_COOKIE["ecomm_username"])) {
 																																																					echo $_COOKIE["green_username"];
 																																																				} ?>">
                         <!--end::Input-->
@@ -96,7 +96,7 @@ License: For each use you must have a valid license purchased only from above li
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Input-->
-                        <input type="password" onPaste="return false" autocomplete="off" placeholder="Enter Password"
+                        <input type="password"  autocomplete="off" placeholder="Enter Password"
                             id="password" class="form-control form-control-lg form-control-solid" name="password" value="<?php if (isset($_COOKIE["ecomm_password"])) {
 																																																						echo $_COOKIE["green_password"];
 																																																					} ?>">

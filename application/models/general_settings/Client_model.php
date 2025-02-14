@@ -22,14 +22,14 @@ class Client_model extends CI_Model
 
     public function insert($data)
     {
-        if ($this->db->insert('client_details', $data)) {
+        if ($this->db->insert('clients', $data)) {
             return TRUE;
         }
     }
 
     public function get_details()
     {
-        $this->db->from('client_details');
+        $this->db->from('clients');
         $this->db->order_by('id', "desc");
         $query = $this->db->get()->result();
         return $query;
@@ -38,7 +38,7 @@ class Client_model extends CI_Model
     public function get_client_details($client_id)
     {
         $query = $this->db->select('C.*')
-            ->from('client_details as C')
+            ->from('clients as C')
             ->where('C.id', $client_id)
             ->get()
             ->row_array();
@@ -47,7 +47,15 @@ class Client_model extends CI_Model
 
     public function change_status($data, $client_id)
     {
-        $this->db->update('client_details', $data, 'id=' . $client_id . '');
+        $this->db->update('clients', $data, 'id=' . $client_id . '');
         return true;
+    }
+
+    public function get_countries()
+    {
+        $this->db->from('country');
+        $this->db->order_by('country_name', "asc");
+        $query = $this->db->get()->result();
+        return $query;
     }
 }
