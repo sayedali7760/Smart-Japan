@@ -10,30 +10,28 @@ class Organization extends CI_Controller
         if (!isset($this->session->userdata['ecomm_login'])) {
             redirect('login');
         }
-        if($this->session->userdata['type'] != 1){
+        if ($this->session->userdata['template_type'] != 1) {
             redirect('error');
         }
         $this->load->model('general_settings/Organization_model', 'OModel');
     }
     public function organization_show()
     {
-    
+
         $data['title'] = 'General';
         $data['subtitle'] = 'Distributors';
         $data['details_data'] = $this->OModel->get_details($data);
         $data['template'] = 'modules/general_settings/organization/show_organization';
         $this->load->view('template/dashboard_template', $data);
-
     }
 
     public function organization_add()
     {
- 
+
         $data['title'] = 'General';
         $data['subtitle'] = 'Add Distributors';
         $data['template'] = 'modules/general_settings/organization/add_organization';
         $this->load->view('template/dashboard_template', $data);
-
     }
     public function organization_save()
     {

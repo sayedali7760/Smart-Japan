@@ -10,20 +10,19 @@ class Product extends CI_Controller
         if (!isset($this->session->userdata['ecomm_login'])) {
             redirect('login');
         }
-        if($this->session->userdata['type'] != 1){
+        if ($this->session->userdata['template_type'] != 1) {
             redirect('error');
         }
         $this->load->model('general_settings/Product_model', 'PModel');
     }
     public function show_product_cat()
     {
-    
+
         $data['title'] = 'Product';
         $data['subtitle'] = 'Category List';
         $data['details_data'] = $this->PModel->get_details($data);
         $data['template'] = 'modules/general_settings/product/show_product_cat';
         $this->load->view('template/dashboard_template', $data);
-
     }
     public function show_product()
     {
@@ -42,12 +41,11 @@ class Product extends CI_Controller
     }
     public function add_product_cat()
     {
- 
+
         $data['title'] = 'Product';
         $data['subtitle'] = 'Add Category';
         $data['template'] = 'modules/general_settings/product/add_product_cat';
         $this->load->view('template/dashboard_template', $data);
-
     }
     public function add_product()
     {
@@ -62,7 +60,7 @@ class Product extends CI_Controller
     {
         $category = $this->input->post('category');
         $description = $this->input->post('description');
-        
+
         $data = array('category' => $category, 'description' => $description);
         $qry = $this->db->get_where('category', "category like '$category'");
         if ($qry->num_rows() > 0) {
@@ -79,7 +77,7 @@ class Product extends CI_Controller
     }
     public function save_product()
     {
-        
+
         $category = $this->input->post('category');
         $name = $this->input->post('name');
         $code = $this->input->post('code');
@@ -96,9 +94,19 @@ class Product extends CI_Controller
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $file = $filename;
 
-        
-        $data = array('name' => $name,'category' => $category, 'code' => $code, 'tax' => $tax, 'distributor' => $distributor, 'purchase_rate' => $pur_rate, 'sales_rate' => $sale_rate, 'offer_percentage' => $offer, 'description' => $description,
-        'image' => $file);
+
+        $data = array(
+            'name' => $name,
+            'category' => $category,
+            'code' => $code,
+            'tax' => $tax,
+            'distributor' => $distributor,
+            'purchase_rate' => $pur_rate,
+            'sales_rate' => $sale_rate,
+            'offer_percentage' => $offer,
+            'description' => $description,
+            'image' => $file
+        );
         $qry = $this->db->get_where('product', ['name' => $name]);
         if ($qry->num_rows() > 0) {
             echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/product/add_product', $data, TRUE)));
@@ -128,7 +136,7 @@ class Product extends CI_Controller
             }
         } else {
             $this->load->view(ERROR_500);
-        } 
+        }
     }
     public function edit_category()
     {
@@ -137,7 +145,7 @@ class Product extends CI_Controller
             $data['category_id'] = $this->input->post('category_id');
             $data['category'] = $this->input->post('category');
             $data['description'] = $this->input->post('description');
-        
+
 
             if ($onload == 1) {
                 $view = $this->load->view('modules/general_settings/product/edit_product_cat', $data, TRUE);
@@ -166,10 +174,20 @@ class Product extends CI_Controller
         $images = '';
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $file = $filename;
-        $data = array('name' => $name,'category' => $category, 'code' => $code, 'tax' => $tax, 'distributor' => $distributor, 'purchase_rate' => $pur_rate, 'sales_rate' => $sale_rate, 'offer_percentage' => $offer, 'description' => $description,
-        'image' => $file);
+        $data = array(
+            'name' => $name,
+            'category' => $category,
+            'code' => $code,
+            'tax' => $tax,
+            'distributor' => $distributor,
+            'purchase_rate' => $pur_rate,
+            'sales_rate' => $sale_rate,
+            'offer_percentage' => $offer,
+            'description' => $description,
+            'image' => $file
+        );
 
-        if($file != ''){
+        if ($file != '') {
             $data['image'] = $file;
         }
         $qry = $this->db->get_where('product', "name like '$name' and product_id!=$product_id");
@@ -185,14 +203,13 @@ class Product extends CI_Controller
                 return false;
             }
         }
-
     }
     public function update_category()
     {
         $category_id = $this->input->post('category_id');
         $category = $this->input->post('category');
         $description = $this->input->post('description');
-       
+
         $data = array('category' => $category, 'description' => $description);
         $qry = $this->db->get_where('category', "category like '$category' and category_id!=$category_id");
         if ($qry->num_rows() > 0) {
@@ -229,7 +246,7 @@ class Product extends CI_Controller
             return;
         } else {
             return false;
-        } 
+        }
     }
     public function fileUpload($uploadPath, $uploadfile = '')
     {

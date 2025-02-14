@@ -101,14 +101,24 @@
                                                 class="form-control make-star mb-5" id=""
                                                 placeholder="Confirm Password">
                                         </div>
+
+
                                         <div class="fv-row w-100 flex-md-root">
-                                            <label class="form-label">Discount</label>
-                                            <input type="text" id="discount" name="discount"
+                                            <label class="form-label">Country</label>
+                                            <select class="form-select" data-placeholder="Select an option" id="kt_ecommerce_edit_order_billing_country" name="country">
+                                                <?php foreach ($countries as $country) { ?>
+                                                    <option value="<?php echo $country->country_code; ?>" data-kt-select2-country="<?php echo base_url(); ?><?php echo $country->flag_image_url; ?>"><?php echo $country->country_name; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="form-label">Phone No</label>
+                                            <input type="text" id="phone" name="phone"
                                                 class="form-control numeric mb-5" id=""
-                                                placeholder="Discount" maxlength="2">
+                                                placeholder="Phone No" maxlength="12">
                                         </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                        </div>
+
                                     </div>
                                     <div class="d-flex flex-wrap gap-5">
 
@@ -150,6 +160,7 @@
         var name = $('#name').val();
         var password = $('#password').val();
         var email = $('#email').val();
+        var phone = $('#phone').val();
         var confirm_password = $('#con_password').val();
 
         if (name == "") {
@@ -166,6 +177,15 @@
                 icon: 'info',
                 title: '',
                 text: 'Email is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (phone == "") {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Phone is required.'
             });
             $("#loader").hide();
             return false;

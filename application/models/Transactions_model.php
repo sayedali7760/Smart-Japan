@@ -21,10 +21,7 @@ class Transactions_model extends CI_Model
     }
     public function get_details()
     {
-        $this->db->from('transactions');
-        $this->db->order_by('transaction_id', "desc");
-        $query = $this->db->get()->result();
-        return $query;
+
+        return true;
     }
-    
 }

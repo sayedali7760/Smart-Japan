@@ -10,7 +10,7 @@ class User_management extends CI_Controller
         if (!isset($this->session->userdata['ecomm_login'])) {
             redirect('login');
         }
-        if ($this->session->userdata['type'] != 1) {
+        if ($this->session->userdata['template_type'] != 1) {
             redirect('error');
         }
         $this->load->model('general_settings/Usermanagement_model', 'UMModel');
@@ -32,6 +32,7 @@ class User_management extends CI_Controller
     {
         $data['title'] = 'Client';
         $data['subtitle'] = 'Add Client';
+        $data['countries'] = $this->CModel->get_countries();
         $data['user_role'] = $this->UMModel->get_user_role();
         $data['template'] = 'modules/general_settings/add_client';
         $this->load->view('template/dashboard_template', $data);
@@ -41,7 +42,8 @@ class User_management extends CI_Controller
     {
         $name = $this->input->post('name');
         $email = $this->input->post('email');
-        $discount = $this->input->post('discount');
+        $phone = $this->input->post('phone');
+        $country = $this->input->post('country');
         $password = md5($this->input->post('password'));
 
         $uploadPath = 'uploads';
@@ -55,7 +57,7 @@ class User_management extends CI_Controller
         $uuid_data[8] = chr(ord($uuid_data[8]) & 0x3f | 0x80); // Set variant
         $uuid =  vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($uuid_data), 4));
 
-        $data = array('name' => $name, 'uid' => $uuid, 'email' => $email, 'file' => $avatar, 'password' => $password);
+        $data = array('name' => $name, 'uid' => $uuid, 'country' => $country, 'phone' => $phone, 'email' => $email, 'file' => $avatar, 'password' => $password);
         $qry = $this->db->get_where('clients', "email like '$email'");
         if ($qry->num_rows() > 0) {
             echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/add_client', $data, TRUE)));
@@ -84,11 +86,13 @@ class User_management extends CI_Controller
         if ($this->input->is_ajax_request() == 1) {
             $onload =  $this->input->post('load');
             $client_id = $this->input->post('client_id');
+
             if ($onload == 1) {
                 $client_data_raw = $this->CModel->get_client_details($client_id);
                 $data['client_id'] = $client_id;
                 $data['client_data'] = $client_data_raw;
-                $data['subtitle'] = 'Update - ' . $client_data_raw['username'];
+                $data['countries'] = $this->CModel->get_countries();
+                $data['subtitle'] = 'Update - ' . $client_data_raw['name'];
                 $resultArray = json_decode(json_encode($data['client_data']), true);
 
                 $view = $this->load->view('modules/general_settings/edit_client', $data, TRUE);
@@ -177,13 +181,13 @@ class User_management extends CI_Controller
     }
     public function update_client()
     {
-        $user_id = $this->input->post('user_id');
-        $fname = $this->input->post('fname');
-        $lname = $this->input->post('lname');
+        $client_id = $this->input->post('client_id');
+        $name = $this->input->post('name');
         $email = $this->input->post('email');
-        $username = $this->input->post('username');
+        $country = $this->input->post('country');
+        $phone = $this->input->post('phone');
         $not_enrypted_pass = $this->input->post('password');
-        $password = md5($not_enrypted_pass);
+
 
         $uploadPath = 'uploads';
         $uploadfile = 'avatar';
@@ -191,18 +195,25 @@ class User_management extends CI_Controller
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
 
-        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'username' => $username);
-        if ($not_enrypted_pass  != '') {
+        $data = array('name' => $name, 'email' => $email, 'country' => $country, 'phone' => $phone);
+        $qry = $this->db->get_where('clients', "email LIKE '$email' AND id != '$client_id'");
+        if ($not_enrypted_pass != '') {
+            $password = md5($not_enrypted_pass);
             $data['password'] = $password;
         }
         if ($avatar != '') {
             $data['file'] = $avatar;
         }
-        if ($this->UMModel->update_client($data, $user_id)) {
-            echo json_encode(array('status' => 1, 'view' => $this->load->view('modules/general_settings/edit_client', $data, TRUE)));
+        if ($qry->num_rows() > 0) {
+            echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/edit_client', $data, TRUE)));
             return;
         } else {
-            return false;
+            if ($this->UMModel->update_client($data, $client_id)) {
+                echo json_encode(array('status' => 1, 'view' => $this->load->view('modules/general_settings/edit_client', $data, TRUE)));
+                return;
+            } else {
+                return false;
+            }
         }
     }
     public function update_user()

@@ -102,6 +102,7 @@
                                 <th class="text-strat min-w-75px">Email</th>
                                 <th class="text-strat min-w-75px">Phone</th>
                                 <th class="text-start min-w-75px">Created</th>
+                                <th class="text-start min-w-75px">Verification</th>
                                 <th class="text-start min-w-75px">Status</th>
                                 <th class="text-start min-w-100px">Action</th>
                             </tr>
@@ -121,8 +122,9 @@
                                     <td class="text-start pe-0"><?php echo $client->email; ?></td>
                                     <td class="text-start pe-0"><?php echo $client->phone; ?></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($client->created)); ?>
+                                    <td class="text-start pe-0"><code>Pending</code></td>
                                     <td class="text-start pe-0">
-                                        <?php if ($client->status == 1) {
+                                        <?php if ($client->is_active == 1) {
                                             $value = 'checked';
                                         } else {
                                             $value = '';
@@ -130,7 +132,7 @@
                                         <div class="form-check form-switch form-check-custom form-check-solid me-10">
                                             <input class="form-check-input h-30px w-50px" type="checkbox"
                                                 <?php echo $value; ?> value=""
-                                                onchange="change_status('<?php echo $client->id; ?>', '<?php echo $client->status; ?>')" />
+                                                onchange="change_status('<?php echo $client->id; ?>', '<?php echo $client->is_active; ?>')" />
                                         </div>
                                     </td>
                                     </td>
