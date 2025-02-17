@@ -48,7 +48,7 @@
 
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2><?php echo $user_data['name']; ?></h2>
+                                    <h2><?php echo $user_data['fname'] . ' ' . $user_data['lname']; ?></h2>
                                 </div>
                             </div>
 
@@ -59,13 +59,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body pt-0">
-                                <div class="d-flex flex-wrap gap-5">
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <h5>Mobile - <?php echo $user_data['phone']; ?></h5>
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <div class="card-body pt-0">
 
@@ -95,42 +89,10 @@
 
                             </div>
 
-                            <div class="card-body pt-0">
-                                <div class="d-flex flex-wrap gap-5">
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <h5>Upload Document</h5>
-                                    </div>
-                                </div>
-                            </div>
 
 
-                            <div class="card-body pt-0">
-
-                                <div class="d-flex flex-wrap gap-5">
 
 
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <label class="required form-label"></label>
-                                        <input type="hidden" name="client_id" id="client_id" value="<?php echo $user_data['id']; ?>">
-                                        <input type="text" id="password" maxlength="15" name="password"
-                                            class="mb-5 form-control make-star" id="" placeholder="Password">
-                                    </div>
-
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <label class="required form-label">Confirm Password</label>
-                                        <input type="text" id="con_password" maxlength="15" name="con_password"
-                                            class="form-control make-star mb-5" id="" placeholder="Confirm Password">
-                                    </div>
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <label class="form-label">&nbsp;</label>
-                                        <div class="d-flex justify-content-end">
-                                            <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="update_data()">Update Password</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
 
                         </div>
                     </div>

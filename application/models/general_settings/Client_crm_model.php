@@ -20,7 +20,7 @@ class Client_crm_model extends CI_Model
 
     public function get_details($id)
     {
-        $this->db->from('client_details');
+        $this->db->from('clients');
         $this->db->where('id', $id);
         $query = $this->db->get()->row_array();
         return $query;
@@ -28,7 +28,7 @@ class Client_crm_model extends CI_Model
 
     public function update_password($id, $data)
     {
-        $this->db->update('client_details', $data, 'id=' . $id . '');
+        $this->db->update('clients', $data, 'id=' . $id . '');
         return true;
     }
 }
