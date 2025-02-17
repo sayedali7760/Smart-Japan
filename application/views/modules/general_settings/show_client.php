@@ -118,7 +118,7 @@
                                 <tr>
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $client->id; ?></td>
-                                    <td class="text-start pe-0"><?php echo $client->name; ?></td>
+                                    <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_client('<?php echo $client->id; ?>')"><?php echo $client->name; ?></a></b></td>
                                     <td class="text-start pe-0"><?php echo $client->email; ?></td>
                                     <td class="text-start pe-0"><?php echo $client->phone; ?></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($client->created)); ?>

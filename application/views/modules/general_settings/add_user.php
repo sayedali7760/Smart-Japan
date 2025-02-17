@@ -95,34 +95,24 @@
                                             <input type="text" class="form-control mb-5" id="email" name="email"
                                                 placeholder="Email" maxlength="50">
                                         </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                            <label class="required form-label">Username</label>
-                                            <input type="text" class="form-control mb-5" id="username" name="username"
-                                                placeholder="Username" maxlength="50">
-                                        </div>
+
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Password</label>
                                             <input type="text" id="password" maxlength="15" name="password"
                                                 class="mb-5 form-control make-star" id="" placeholder="Password">
                                         </div>
 
-
-                                    </div>
-                                    <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Confirm Password</label>
                                             <input type="text" id="con_password" maxlength="15" name="con_password"
                                                 class="form-control make-star mb-5" id=""
                                                 placeholder="Confirm Password">
                                         </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                        </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                        </div>
                                     </div>
+
                                     <div class="d-flex justify-content-end">
 
-                                        <a href="<?php echo base_url(); ?>home" id="kt_ecommerce_add_product_cancel"
+                                        <a href="<?php echo base_url(); ?>user-management/user-show" id="kt_ecommerce_add_product_cancel"
                                             class="btn btn-light me-5">Cancel</a>
 
                                         <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes"
@@ -152,7 +142,6 @@
         var fname = $('#fname').val();
         var lname = $('#lname').val();
         var position = $('#position').val();
-        var username = $('#username').val();
         var password = $('#password').val();
         var email = $('#email').val();
         var confirm_password = $('#con_password').val();
@@ -202,24 +191,7 @@
             $("#loader").hide();
             return false;
         }
-        if (username == '') {
-            Swal.fire({
-                icon: 'info',
-                title: '',
-                text: 'Username is required.'
-            });
-            $("#loader").hide();
-            return false;
-        }
-        if (username.length < 5) {
-            Swal.fire({
-                icon: 'info',
-                title: '',
-                text: 'Enter at least five characters for Username.'
-            });
-            $("#loader").hide();
-            return false;
-        }
+
         if (password == '') {
             Swal.fire({
                 icon: 'info',
@@ -282,7 +254,7 @@
                     Swal.fire({
                         icon: 'info',
                         title: 'Info',
-                        text: 'Username already exists.'
+                        text: 'Email already exists.'
                     });
                 } else {
                     $('#faculty_loader').removeClass('sk-loading');
