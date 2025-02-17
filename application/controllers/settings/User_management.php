@@ -175,7 +175,7 @@ class User_management extends CI_Controller
         $data['subtitle'] = 'My Profile';
         $resultArray = json_decode(json_encode($data['user_data']), true);
         $data['current_user_role'] = $resultArray['position'];
-        $data['template'] = 'modules/general_settings/my_profile';
+        $data['template'] = 'modules/general_settings/user_profile';
         $this->load->view('template/dashboard_template', $data);
     }
     public function update_client()
