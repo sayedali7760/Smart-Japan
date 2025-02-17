@@ -102,6 +102,7 @@ $route['client/client-show'] = 'settings/Client/show_client';
 $route['client/change_status'] = 'settings/Client/change_status';
 $route['client/my-profile'] = 'settings/Client_crm/my_profile';
 $route['client-crm/update-password'] = 'settings/Client_crm/update_password';
+$route['client-crm/upload-doc'] = 'settings/Client_crm/upload_doc';
 
 $route['client-crm/show-product'] = 'settings/Client_crm/show_product';
 $route['client-crm/view-product'] = 'settings/Client_crm/view_product';
