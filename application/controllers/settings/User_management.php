@@ -119,7 +119,6 @@ class User_management extends CI_Controller
         $lname = $this->input->post('lname');
         $email = $this->input->post('email');
         $position = $this->input->post('position');
-        $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
 
         $uploadPath = 'uploads';
@@ -129,8 +128,8 @@ class User_management extends CI_Controller
         $avatar = $filename;
 
 
-        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'file' => $avatar, 'position' => $position, 'username' => $username, 'password' => $password);
-        $qry = $this->db->get_where('user_details', "username like '$username'");
+        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'file' => $avatar, 'position' => $position, 'password' => $password);
+        $qry = $this->db->get_where('user_details', "email like '$email'");
         if ($qry->num_rows() > 0) {
             echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/add_user', $data, TRUE)));
             return;
@@ -152,7 +151,7 @@ class User_management extends CI_Controller
                 $user_data_raw = $this->UMModel->get_user_details($user_id);
                 $data['user_id'] = $user_id;
                 $data['user_data'] = $user_data_raw;
-                $data['subtitle'] = 'Update - ' . $user_data_raw['username'];
+                $data['subtitle'] = 'Update - ' . $user_data_raw['email'];
                 $data['user_role'] = $this->UMModel->get_user_role();
                 $resultArray = json_decode(json_encode($data['user_data']), true);
                 $data['current_user_role'] = $resultArray['position'];
@@ -223,7 +222,6 @@ class User_management extends CI_Controller
         $lname = $this->input->post('lname');
         $email = $this->input->post('email');
         $position = $this->input->post('position');
-        $username = $this->input->post('username');
         $not_enrypted_pass = $this->input->post('password');
         $password = md5($not_enrypted_pass);
 
@@ -233,7 +231,7 @@ class User_management extends CI_Controller
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
 
-        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email, 'username' => $username);
+        $data = array('fname' => $fname, 'lname' => $lname, 'email' => $email);
         if ($position != '') {
             $data['position'] = $position;
         }
