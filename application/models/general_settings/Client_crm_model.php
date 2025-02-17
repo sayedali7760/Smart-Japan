@@ -31,4 +31,11 @@ class Client_crm_model extends CI_Model
         $this->db->update('clients', $data, 'id=' . $id . '');
         return true;
     }
+
+    public function add_client($data)
+    {
+        if ($this->db->insert('clients', $data)) {
+            return true;
+        }
+    }
 }

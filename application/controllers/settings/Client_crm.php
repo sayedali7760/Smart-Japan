@@ -34,4 +34,8 @@ class Client_crm extends CI_Controller
             return false;
         }
     }
+    public function upload_doc()
+    {
+        $id = $this->session->userdata['id'];
+    }
 }
