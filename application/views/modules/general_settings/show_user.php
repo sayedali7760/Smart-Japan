@@ -97,10 +97,12 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-100px">Sl.no</th>
+                                <th class="min-w-100px">Image</th>
                                 <th class="text-strat min-w-75px">Role</th>
                                 <th class="text-start min-w-75px">Firstname</th>
                                 <th class="text-start min-w-75px">Lastname</th>
                                 <th class="text-start min-w-75px">Created</th>
+                                <th class="text-start min-w-75px">Varification</th>
                                 <th class="text-start min-w-75px">Status</th>
                                 <th class="text-start min-w-100px">Action</th>
                             </tr>
@@ -115,10 +117,14 @@
                             foreach ($user_data as $user) { ?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
+                                    <td><a href="javascript:void(0);" class="symbol symbol-35px" onclick="edit_user('<?php echo $user->id; ?>')">
+                                            <img src="<?php echo base_url(); ?>uploads/<?php echo $user->file; ?>" alt="">
+                                        </a></td>
                                     <td class="text-start pe-0"><?php echo $user->description; ?></td>
-                                    <td class="text-start pe-0"><?php echo $user->fname; ?></td>
-                                    <td class="text-start pe-0"><?php echo $user->lname; ?></td>
+                                    <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_user('<?php echo $user->id; ?>')"><?php echo $user->fname; ?></a></b></td>
+                                    <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_user('<?php echo $user->id; ?>')"><?php echo $user->lname; ?></a></b></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($user->created_on)); ?>
+                                    <td class="text-start pe-0"><code style="color:green;">verified</code></td>
                                     <td class="text-start pe-0">
                                         <?php if ($user->is_active == 1) {
                                             $value = 'checked';
