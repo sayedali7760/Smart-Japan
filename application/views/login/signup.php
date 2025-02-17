@@ -6,7 +6,7 @@
 
 
 <head>
-    <title><?php echo APP_TITLE;?></title>
+    <title><?php echo APP_TITLE; ?></title>
     <meta charset="utf-8" />
     <meta name="description"
         content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
@@ -43,7 +43,7 @@
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <!--begin::Logo-->
-               
+
                 <!--end::Logo-->
                 <!--begin::Wrapper-->
                 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
@@ -54,8 +54,8 @@
                     <div class="text-center mb-10">
                         <!--begin::Title-->
                         <a href="<?php echo base_url(); ?>../../demo8/dist/index.html" class="mb-12">
-                    <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/Logo.png" class="h-40px" />
-                </a>
+                            <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/Logo.png" class="h-40px" />
+                        </a>
                         <!--end::Title-->
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">Already have an account??
@@ -64,31 +64,31 @@
                         </div>
                         <!--end::Link-->
                     </div>
-                    
+
                     <div class="fv-row mb-10">
-                        <label class="form-label fs-6 fw-bolder text-dark">Firstname</label>
+                        <label class="form-label fs-6 fw-bolder text-dark">Fullname</label>
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
-                            onPaste="return false" placeholder="Enter Firstname" id="firstname" name="firstname" value="<?php if (isset($_COOKIE["ecomm_firstname"])) {
-                                                                            echo $_COOKIE["green_username"];
-                                                                        } ?>">
+                            onPaste="return false" placeholder="Enter your name" id="name" name="name" value="<?php if (isset($_COOKIE["ecomm_firstname"])) {
+                                                                                                                    echo $_COOKIE["green_username"];
+                                                                                                                } ?>">
                     </div>
 
 
-                    <div class="fv-row mb-10">
+                    <!-- <div class="fv-row mb-10">
                         <label class="form-label fs-6 fw-bolder text-dark">Lastname</label>
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
                             onPaste="return false" placeholder="Enter Lastname" id="lastname" name="lastname" value="<?php if (isset($_COOKIE["ecomm_lastname"])) {
-                                                                            echo $_COOKIE["green_username"];
-                                                                        } ?>">
-                    </div>
+                                                                                                                            echo $_COOKIE["green_username"];
+                                                                                                                        } ?>">
+                    </div> -->
 
 
                     <div class="fv-row mb-10">
                         <label class="form-label fs-6 fw-bolder text-dark">Phone No</label>
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
                             onPaste="return false" placeholder="Enter Phno" id="phno" name="phno" value="<?php if (isset($_COOKIE["ecomm_phno"])) {
-                                                                            echo $_COOKIE["green_username"];
-                                                                        } ?>">
+                                                                                                                echo $_COOKIE["green_username"];
+                                                                                                            } ?>">
                     </div>
 
 
@@ -99,8 +99,8 @@
                         <!--begin::Input-->
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
                             onPaste="return false" placeholder="Enter Username" id="username" name="username" value="<?php if (isset($_COOKIE["ecomm_username"])) {
-                                                                                                                                                                                                                    echo $_COOKIE["green_username"];
-                                                                                                                                                                                                                } ?>">
+                                                                                                                            echo $_COOKIE["green_username"];
+                                                                                                                        } ?>">
                         <!--end::Input-->
                     </div>
 
@@ -120,14 +120,14 @@
                         <!--begin::Input-->
                         <input type="password" onPaste="return false" autocomplete="off" placeholder="Enter Password"
                             id="password" class="form-control form-control-lg form-control-solid" name="password" value="<?php if (isset($_COOKIE["ecomm_password"])) {
-                                                                                                                                                                                                                        echo $_COOKIE["green_password"];
-                                                                                                                                                                                                                    } ?>">
+                                                                                                                                echo $_COOKIE["green_password"];
+                                                                                                                            } ?>">
                         <!--end::Input-->
                     </div>
 
 
-                    
-                    
+
+
                     <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
@@ -159,7 +159,7 @@
             </div>
             <!--end::Content-->
             <!--begin::Footer-->
-            
+
             <!--end::Footer-->
         </div>
         <!--end::Authentication - Sign-in-->
@@ -168,7 +168,7 @@
     <!--end::Main-->
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "assets/";
+        var hostUrl = "assets/";
     </script>
     <!--begin::Global Javascript Bundle(used by all pages)-->
     <script src="<?php echo base_url(); ?>assets/plugins/global/plugins.bundle.js"></script>
@@ -179,132 +179,139 @@
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
     <script type="text/javascript">
-    function submit() {
-        var baseurl = '<?php echo base_url(); ?>';
-        var ops_url = baseurl + 'register';
-        var username = $('#username').val();
-        var password = $('#password').val();
-        var firstname = $('#firstname').val();
-        var lastname = $('#lastname').val();
-        var phno = $('#phno').val();
+        function submit() {
+            var baseurl = '<?php echo base_url(); ?>';
+            var ops_url = baseurl + 'register';
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var name = $('#name').val();
+            var phno = $('#phno').val();
 
-        if (firstname == '') {
-            Swal.fire({
-                title: 'Login failed',
-                text: 'Username is required',
-                icon: 'error'
-            });
-            return false;
-        }
-        if (username == '') {
-            Swal.fire({
-                title: 'Login failed',
-                text: 'Password is required',
-                icon: 'error'
-            });
-            return false;
-        }
+            if (name == '') {
+                Swal.fire({
+                    title: 'Login failed',
+                    text: 'Name is required',
+                    icon: 'error'
+                });
+                return false;
+            }
+            if (username == '') {
+                Swal.fire({
+                    title: 'Login failed',
+                    text: 'Email is required',
+                    icon: 'error'
+                });
+                return false;
+            }
+            if (password == '') {
+                Swal.fire({
+                    title: 'Login failed',
+                    text: 'Password is required',
+                    icon: 'error'
+                });
+                return false;
+            }
 
 
-        $.ajax({
-            type: "POST",
-            cache: false,
-            async: true,
-            url: ops_url,
-            data: {
-                "email": username,
-                "password": password,
-                "fname": firstname,
-                "lname": lastname,
-                "phno": phno,
-            },
-            success: function(result) {
-                var data = $.parseJSON(result);
-                if (data.status == 1) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Account created successfully.'
-                    });
-                }
-                else{
+            $.ajax({
+                type: "POST",
+                cache: false,
+                async: true,
+                url: ops_url,
+                data: {
+                    "email": username,
+                    "password": password,
+                    "name": name,
+                    "phno": phno,
+                },
+                success: function(result) {
+                    var data = $.parseJSON(result);
+                    if (data.status == 1) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Account created successfully.'
+                        }).then(() => {
+                            window.location.href = '<?php echo base_url(); ?>login';
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Error while creating.'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $("#loader").hide();
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Error while creating.'
+                        text: 'Email is already taken.'
                     });
                 }
-            },
-            error: function(xhr, status, error) {
-                $("#loader").hide();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'An error occurred while processing your request.'
-                });
-            }
-        });
+            });
 
 
-    }
+        }
     </script>
 
 
     <script type="text/javascript">
-    function send_verification() {
-        $("#loader").show();
-        var email = $('#forgot_email').val();
-        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if (email == '') {
-            swal('', 'Email-Id Required.', 'info');
-            $("#loader").hide();
-            return false;
-        } else if (!regex.test(email)) {
-            swal('', 'Enter valid Email-id.', 'info');
-            $("#loader").hide();
-            return false;
-        }
-        var baseurl = '<?php echo base_url(); ?>';
-        var ops_url = baseurl + 'login/forgot-password';
-        $.ajax({
-            type: "POST",
-            cache: false,
-            async: true,
-            url: ops_url,
-            data: {
-                "email": email
-            },
-            success: function(result) {
+        function send_verification() {
+            $("#loader").show();
+            var email = $('#forgot_email').val();
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (email == '') {
+                swal('', 'Email-Id Required.', 'info');
                 $("#loader").hide();
-                var data = $.parseJSON(result)
-                if (data.status == 1) {
-                    swal({
-                            title: "Success",
-                            text: "Please check your Email.",
-                            type: "success",
-                            showCancelButton: false,
-                            confirmButtonText: 'OK',
-                            closeOnConfirm: false,
-                            closeOnCancel: false
-                        },
-                        function(isConfirm) {
-
-
-                            if (isConfirm) {
-                                window.location.reload(true);
-
-
-                            } else {
-                                window.location.reload(true);
-                            }
-                        });
-                } else {
-                    swal('', 'Email not registered.', 'error');
-                }
+                return false;
+            } else if (!regex.test(email)) {
+                swal('', 'Enter valid Email-id.', 'info');
+                $("#loader").hide();
+                return false;
             }
-        });
+            var baseurl = '<?php echo base_url(); ?>';
+            var ops_url = baseurl + 'login/forgot-password';
+            $.ajax({
+                type: "POST",
+                cache: false,
+                async: true,
+                url: ops_url,
+                data: {
+                    "email": email
+                },
+                success: function(result) {
+                    $("#loader").hide();
+                    var data = $.parseJSON(result)
+                    if (data.status == 1) {
+                        swal({
+                                title: "Success",
+                                text: "Please check your Email.",
+                                type: "success",
+                                showCancelButton: false,
+                                confirmButtonText: 'OK',
+                                closeOnConfirm: false,
+                                closeOnCancel: false
+                            },
+                            function(isConfirm) {
 
 
-    }
+                                if (isConfirm) {
+                                    window.location.reload(true);
+
+
+                                } else {
+                                    window.location.reload(true);
+                                }
+                            });
+                    } else {
+                        swal('', 'Email not registered.', 'error');
+                    }
+                }
+            });
+
+
+        }
     </script>
 </body>
 

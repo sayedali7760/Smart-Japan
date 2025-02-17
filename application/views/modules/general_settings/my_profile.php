@@ -48,7 +48,7 @@
 
                             <div class="card-header">
                                 <div class="card-title">
-                                    <h2><?php echo $user_data['fname'] . ' ' . $user_data['lname']; ?></h2>
+                                    <h2><?php echo $user_data['name']; ?></h2>
                                 </div>
                             </div>
 
@@ -62,7 +62,7 @@
                             <div class="card-body pt-0">
                                 <div class="d-flex flex-wrap gap-5">
                                     <div class="fv-row w-100 flex-md-root">
-                                        <h5>Mobile - <?php echo $user_data['phno']; ?></h5>
+                                        <h5>Mobile - <?php echo $user_data['phone']; ?></h5>
                                     </div>
                                 </div>
                             </div>
@@ -106,28 +106,37 @@
 
                             <div class="card-body pt-0">
 
-                                <div class="d-flex flex-wrap gap-5">
+                                <div class="row g-3">
 
 
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <label class="required form-label"></label>
+                                    <div class="col-md-4">
+                                        <label class="required form-label">ID</label>
                                         <input type="hidden" name="client_id" id="client_id" value="<?php echo $user_data['id']; ?>">
-                                        <input type="text" id="password" maxlength="15" name="password"
-                                            class="mb-5 form-control make-star" id="" placeholder="Password">
+                                        <input type="file" class="form-control files" name="files_id[]" id="files_id">
+                                        <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                     </div>
 
-                                    <div class="fv-row w-100 flex-md-root">
-                                        <label class="required form-label">Confirm Password</label>
-                                        <input type="text" id="con_password" maxlength="15" name="con_password"
-                                            class="form-control make-star mb-5" id="" placeholder="Confirm Password">
+                                    <div class="col-md-4">
+                                        <label class="required form-label">Passport</label>
+                                        <input type="file" class="form-control files" name="files_pass[]" id="files_pass">
+                                        <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                     </div>
-                                    <div class="fv-row w-100 flex-md-root">
+                                    <div class="col-md-4">
+                                        <label class="required form-label">Bank Statement</label>
+                                        <input type="file" class="form-control files" name="files_bank[]" id="files_bank">
+                                        <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Other doc.</label>
+                                        <input type="file" class="form-control files" name="files_other[]" id="files_other">
+                                        <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
+                                    </div>
+                                    <div class="col-md-8">
                                         <label class="form-label">&nbsp;</label>
                                         <div class="d-flex justify-content-end">
-                                            <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="update_data()">Update Password</a>
+                                            <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="upload_doc()">Upload</a>
                                         </div>
                                     </div>
-
                                 </div>
 
                             </div>
@@ -201,6 +210,83 @@
             contentType: false,
             data: {
                 password: password
+            },
+            success: function(result) {
+                $("#loader").hide();
+                var data = $.parseJSON(result);
+                if (data.status == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Password updated.'
+                    });
+                    $('#password').val('');
+                    $('#con_password').val('');
+                }
+            },
+            error: function(xhr, status, error) {
+                $("#loader").hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while processing your request.'
+                });
+            }
+        });
+    }
+</script>
+
+<script>
+    function upload_doc() {
+        $("#loader").show();
+        var ops_url = baseurl + 'client-crm/upload-doc';
+        var id = $('#files_id').val();
+        var passport = $('#files_pass').val();
+        var bank = $('#files_bank').val();
+        var other = $('#files_other').val();
+        if (id == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'ID is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (passport == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Passport is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (bank == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Bank Statement is required.'
+            });
+            $("#loader").hide();
+            return false;
+        }
+        if (other == '') {
+            other = '';
+        }
+
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: true,
+            url: ops_url,
+            processData: false,
+            contentType: false,
+            data: {
+                id: id,
+                passport: passport,
+                bank: bank,
+                other: other
             },
             success: function(result) {
                 $("#loader").hide();

@@ -7,7 +7,7 @@ class Login extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('general_settings/Client_model', 'CModel');
+        $this->load->model('general_settings/Client_crm_model', 'CModel');
     }
     public function index()
     {
@@ -203,14 +203,17 @@ class Login extends CI_Controller
 
     public function register()
     {
-        $fname = $this->input->post('fname');
-        $lname = $this->input->post('lname');
+        $name = $this->input->post('name');
         $email = $this->input->post('email');
         $password = md5($this->input->post('password'));
-        $uname = $fname . ' ' . $lname;
         $phno = $this->input->post('phno');
 
-        $user_data = array('email' => $email, 'fname' => $fname, 'lname' => $lname, 'username' => $uname, 'phno' => $phno, 'file' => 'abc.jpg', 'discount' => '10', 'password' => $password);
+        $uuid_data = random_bytes(16);
+        $uuid_data[6] = chr(ord($uuid_data[6]) & 0x0f | 0x40); // Set version 4
+        $uuid_data[8] = chr(ord($uuid_data[8]) & 0x3f | 0x80); // Set variant
+        $uuid =  vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($uuid_data), 4));
+
+        $user_data = array('uid' => $uuid, 'name' => $name, 'email' => $email, 'file' => 'abc.jpg', 'brand' =>  'smartfxcfd.com', 'password' => $password, 'phone' => $phno);
         if ($this->CModel->add_client($user_data)) {
             echo json_encode(array('status' => 1));
             return;
