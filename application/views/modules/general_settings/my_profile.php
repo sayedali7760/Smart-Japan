@@ -1,9 +1,9 @@
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <div id="kt_content_container" class="container-xxl">
+    <div id="kt_content_container" class="container-xxl d-flex flex-column flex-lg-row">
 
-        <?php
+        <!-- <php
         echo form_open_multipart('settings/edit_user', array('id' => 'client_update', 'role' => 'form', 'class' => 'form d-flex flex-column flex-lg-row'));
-        ?>
+        ?> -->
 
         <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
             <div class="card card-flush py-4">
@@ -105,10 +105,10 @@
 
 
                             <div class="card-body pt-0">
-
+                                <?php
+                                echo form_open_multipart('document_upload', array('id' => 'document_upload', 'role' => 'form'));
+                                ?>
                                 <div class="row g-3">
-
-
                                     <div class="col-md-4">
                                         <label class="required form-label">ID</label>
                                         <input type="hidden" name="client_id" id="client_id" value="<?php echo $user_data['id']; ?>">
@@ -138,7 +138,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                </form>
                             </div>
 
                         </div>
@@ -146,7 +146,7 @@
                 </div>
             </div>
         </div>
-        <?php echo form_close(); ?>
+        <!-- <php echo form_close(); ?> -->
     </div>
 </div>
 <script>
@@ -240,40 +240,8 @@
     function upload_doc() {
         $("#loader").show();
         var ops_url = baseurl + 'client-crm/upload-doc';
-        var id = $('#files_id').val();
-        var passport = $('#files_pass').val();
-        var bank = $('#files_bank').val();
-        var other = $('#files_other').val();
-        if (id == '') {
-            Swal.fire({
-                icon: 'info',
-                title: '',
-                text: 'ID is required.'
-            });
-            $("#loader").hide();
-            return false;
-        }
-        if (passport == '') {
-            Swal.fire({
-                icon: 'info',
-                title: '',
-                text: 'Passport is required.'
-            });
-            $("#loader").hide();
-            return false;
-        }
-        if (bank == '') {
-            Swal.fire({
-                icon: 'info',
-                title: '',
-                text: 'Bank Statement is required.'
-            });
-            $("#loader").hide();
-            return false;
-        }
-        if (other == '') {
-            other = '';
-        }
+        var form = $("#document_upload");
+        var formData = new FormData(form[0]);
 
         $.ajax({
             type: "POST",
@@ -282,12 +250,7 @@
             url: ops_url,
             processData: false,
             contentType: false,
-            data: {
-                id: id,
-                passport: passport,
-                bank: bank,
-                other: other
-            },
+            data: formData,
             success: function(result) {
                 $("#loader").hide();
                 var data = $.parseJSON(result);
@@ -295,10 +258,14 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: 'Password updated.'
+                        text: 'Documents uploaded.'
                     });
-                    $('#password').val('');
-                    $('#con_password').val('');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed',
+                        text: 'Failed to upload Documents!'
+                    });
                 }
             },
             error: function(xhr, status, error) {
