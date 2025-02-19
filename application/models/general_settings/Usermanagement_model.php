@@ -76,4 +76,9 @@ class Usermanagement_model extends CI_Model
         $this->db->update('user_details', $data, 'id=' . $id . '');
         return true;
     }
+    public function update_user_password($data, $user_id)
+    {
+        $this->db->update('user_details', $data, 'id=' . $user_id . '');
+        return true;
+    }
 }
