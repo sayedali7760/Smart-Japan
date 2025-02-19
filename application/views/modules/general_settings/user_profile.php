@@ -59,7 +59,20 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="card-body pt-0">
+                                <div class="d-flex flex-wrap gap-5">
+                                    <div class="fv-row w-100 flex-md-root">
+                                        <h5>Role - <?php echo $user_data['description']; ?></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="d-flex flex-wrap gap-5">
+                                    <div class="fv-row w-100 flex-md-root">
+                                        <h5>Created On - <?php echo date('d/m/Y', strtotime($user_data['created_on'])); ?></h5>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="card-body pt-0">
 

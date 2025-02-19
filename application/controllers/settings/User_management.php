@@ -81,6 +81,17 @@ class User_management extends CI_Controller
         $this->load->view('template/dashboard_template', $data);
     }
 
+    public function change_user_password()
+    {
+        $user_id = $this->session->userdata('id');
+        $data = array('password' => md5($this->input->post('password')));
+        if ($this->UMModel->update_user_password($data, $user_id)) {
+            echo json_encode(array('status' => 1, 'view' => $this->load->view('modules/general_settings/user_profile', $data, TRUE)));
+            return;
+        } else {
+            return false;
+        }
+    }
     public function edit_client()
     {
         if ($this->input->is_ajax_request() == 1) {

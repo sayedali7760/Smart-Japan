@@ -15,7 +15,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <head>
     <base href="">
-    <title><?php echo APP_TITLE;?></title>
+    <title><?php echo APP_TITLE; ?></title>
     <meta charset="utf-8" />
     <meta name="description"
         content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
@@ -42,7 +42,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
     <link href="<?php echo base_url(); ?>assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/plugins/custom/cookiealert/cookiealert.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url(); ?>assets/plugins/custom/cookiealert/cookiealert.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->
@@ -51,7 +51,7 @@ License: For each use you must have a valid license purchased only from above li
 <body id="kt_body" class="header-tablet-and-mobile-fixed aside-enabled">
     <!--begin::Main-->
     <!--begin::Root-->
-        <div class="d-flex d-lg-block flex-column bg-dark text-light text-center rounded-0 cookiealert py-5">
+    <div class="d-flex d-lg-block flex-column bg-dark text-light text-center rounded-0 cookiealert py-5">
         Here's an example of a cookie alert pop up from the bottom of the screen.
         Click the "Agree" button to accept the cookie.
         <a href="#">Learn more</a>
@@ -59,7 +59,7 @@ License: For each use you must have a valid license purchased only from above li
         <button type="button" class="btn btn-primary d-inline mx-auto ms-lg-5 acceptcookies mt-5 mt-lg-0">
             I agree
         </button>
-        </div>
+    </div>
     <div class="d-flex flex-column flex-root">
         <!--begin::Page-->
         <div class="page d-flex flex-row flex-column-fluid">
@@ -75,7 +75,7 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="aside-user d-flex align-items-sm-center justify-content-center py-5">
                         <!--begin::Symbol-->
                         <div class="symbol symbol-50px">
-                            <img src="<?php echo base_url();?>uploads/<?php echo $this->session->userdata('file');?>"
+                            <img src="<?php echo base_url(); ?>uploads/<?php echo $this->session->userdata('file'); ?>"
                                 alt="" />
                         </div>
                         <!--end::Symbol-->
@@ -86,17 +86,26 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--begin::Info-->
                                 <div class="flex-grow-1 me-2">
                                     <!--begin::Username-->
-                                    <a href="#"
-                                        class="text-white text-hover-primary fs-6 fw-bold"><?php echo $this->session->userdata('fname');?></a>
-                                    <!--end::Username-->
-                                    <!--begin::Description-->
-                                    <span
-                                        class="text-gray-600 fw-bold d-block fs-8 mb-1"><?php echo $this->session->userdata('description');?></span>
-                                    <!--end::Description-->
-                                    <!--begin::Label-->
-                                    <div class="d-flex align-items-center text-success fs-9">
-                                        <span class="bullet bullet-dot bg-success me-1"></span>online
-                                    </div>
+                                    <?php
+                                    if ($this->session->userdata['template_type'] == 1) {
+                                    ?>
+                                        <a href="#"
+                                            class="text-white text-hover-primary fs-6 fw-bold"><?php echo $this->session->userdata('fname'); ?></a>
+                                        <span
+                                            class="text-gray-600 fw-bold d-block fs-8 mb-1"><?php echo $this->session->userdata('description'); ?></span>
+                                        <div class="d-flex align-items-center text-success fs-9">
+                                            <span class="bullet bullet-dot bg-success me-1"></span>online
+                                        </div>
+                                    <?php } else { ?>
+                                        <a href="#"
+                                            class="text-white text-hover-primary fs-6 fw-bold"><?php echo $this->session->userdata('name'); ?></a>
+                                        <span
+                                            class="text-gray-600 fw-bold d-block fs-8 mb-1"></span>
+                                        <div class="d-flex align-items-center text-success fs-9">
+                                            <span class="bullet bullet-dot bg-success me-1"></span>online
+                                        </div>
+                                    <?php } ?>
+
                                     <!--end::Label-->
                                 </div>
                                 <!--end::Info-->
@@ -129,18 +138,18 @@ License: For each use you must have a valid license purchased only from above li
                                                 <!--begin::Avatar-->
                                                 <div class="symbol symbol-50px me-5">
                                                     <img alt="Logo"
-                                                        src="<?php echo base_url();?>uploads/<?php echo $this->session->userdata('file');?>" />
+                                                        src="<?php echo base_url(); ?>uploads/<?php echo $this->session->userdata('file'); ?>" />
                                                 </div>
                                                 <!--end::Avatar-->
                                                 <!--begin::Username-->
                                                 <div class="d-flex flex-column">
                                                     <div class="fw-bolder d-flex align-items-center fs-5">
-                                                        <?php echo $this->session->userdata('fname');?>
+                                                        <?php echo $this->session->userdata('fname'); ?>
                                                         <span
                                                             class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
                                                     </div>
                                                     <a href="#"
-                                                        class="fw-bold text-muted text-hover-primary fs-7"><?php echo $this->session->userdata('email');?></a>
+                                                        class="fw-bold text-muted text-hover-primary fs-7"><?php echo $this->session->userdata('email'); ?></a>
                                                 </div>
                                                 <!--end::Username-->
                                             </div>
@@ -150,11 +159,22 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="separator my-2"></div>
                                         <!--end::Menu separator-->
                                         <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <a href="<?php echo base_url(); ?>user-management/edit-profile"
-                                                class="menu-link px-5">My
-                                                Profile</a>
-                                        </div>
+                                        <?php
+                                        if ($this->session->userdata['template_type'] == 1) {
+                                        ?>
+                                            <div class="menu-item px-5">
+                                                <a href="<?php echo base_url(); ?>user-management/edit-profile"
+                                                    class="menu-link px-5">My
+                                                    Profile</a>
+                                            </div>
+                                        <?php } else { ?>
+                                            <div class="menu-item px-5">
+                                                <a href="<?php echo base_url(); ?>client/my-profile"
+                                                    class="menu-link px-5">My
+                                                    Profile</a>
+                                            </div>
+                                        <?php } ?>
+
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
@@ -268,7 +288,7 @@ License: For each use you must have a valid license purchased only from above li
                             </form>
                             <!--end::Form-->
                             <!--begin::Menu-->
-                            
+
                             <!--end::Menu-->
                         </div>
                         <!--end::Search-->
@@ -281,7 +301,7 @@ License: For each use you must have a valid license purchased only from above li
                 <?php $this->load->view('template/sidebar.php'); ?>
                 <!--end::Aside menu-->
                 <!--begin::Footer-->
-                
+
                 <!--end::Footer-->
             </div>
             <!--end::Aside-->
@@ -364,14 +384,14 @@ License: For each use you must have a valid license purchased only from above li
                             <!--begin::Page title-->
                             <div class="page-title d-flex justify-content-center flex-column me-5">
                                 <!--begin::Title-->
-                                <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0"><?= $title;?></h1>
+                                <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0"><?= $title; ?></h1>
                                 <!--end::Title-->
                                 <!--begin::Breadcrumb-->
                                 <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 pt-1">
                                     <!--begin::Item-->
                                     <li class="breadcrumb-item text-muted">
                                         <a href="../../demo8/dist/index.html"
-                                            class="text-muted text-hover-primary"><?= $title?></a>
+                                            class="text-muted text-hover-primary"><?= $title ?></a>
                                     </li>
                                     <!--end::Item-->
                                     <!--begin::Item-->
@@ -380,7 +400,7 @@ License: For each use you must have a valid license purchased only from above li
                                     </li>
                                     <!--end::Item-->
                                     <!--begin::Item-->
-                                    <li class="breadcrumb-item text-muted"><?= $subtitle;?></li>
+                                    <li class="breadcrumb-item text-muted"><?= $subtitle; ?></li>
                                     <!--end::Item-->
                                     <!--begin::Item-->
                                     <!-- <li class="breadcrumb-item">
@@ -439,14 +459,14 @@ License: For each use you must have a valid license purchased only from above li
                                 <!--end::Action wrapper-->
                                 <!--begin::Action wrapper-->
                                 <div class="d-flex align-items-center">
-                                    
-                                    
+
+
                                 </div>
                                 <!--end::Action wrapper-->
                                 <!--begin::Theme mode-->
                                 <div class="d-flex align-items-center">
                                     <!--begin::Theme mode docs-->
-                                   
+
                                     <!--end::Theme mode docs-->
                                 </div>
                                 <!--end::Theme mode-->
@@ -4052,7 +4072,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Modals-->
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "assets/";
+        var hostUrl = "assets/";
     </script>
     <!--begin::Global Javascript Bundle(used by all pages)-->
     <script src="<?php echo base_url(); ?>assets/plugins/global/plugins.bundle.js"></script>
@@ -4070,8 +4090,8 @@ License: For each use you must have a valid license purchased only from above li
     <script src="<?php echo base_url(); ?>assets/js/custom/apps/chat/chat.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/custom/utilities/modals/users-search.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/custom/utilities/modals/create-app.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/custom/utilities/modals/users-search.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/custom/utilities/modals/create-app.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/custom/utilities/modals/users-search.js"></script>
     <script src="<?php echo base_url(); ?>assets/plugins/custom/cookiealert/cookiealert.bundle.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/custom/apps/ecommerce/sales/save-order.js"></script>
 
@@ -4080,35 +4100,35 @@ License: For each use you must have a valid license purchased only from above li
         window.addEventListener("cookieAlertAccept", function() {
             alert("cookies accepted");
         });
-    $(document).ready(function() {
-        $(document).on("keypress", ".numeric", function(e) {
-            var dec_numbers = /[0-9]|\.+?$/;
-            if (!dec_numbers.test(e.key)) {
-                return false;
-            } else {
-                return true;
-            }
+        $(document).ready(function() {
+            $(document).on("keypress", ".numeric", function(e) {
+                var dec_numbers = /[0-9]|\.+?$/;
+                if (!dec_numbers.test(e.key)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
         });
-    });
-    var baseurl = '<?php echo base_url(); ?>';
+        var baseurl = '<?php echo base_url(); ?>';
 
-    function log_out() {
-        Swal.fire({
-            title: "",
-            text: "Are you sure you want to log out from the application?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes",
-            cancelButtonText: "No",
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            reverseButtons: true // optional, can be used if you want to reverse the order of confirm and cancel buttons
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = baseurl + "/logout";
-            }
-        });
-    }
+        function log_out() {
+            Swal.fire({
+                title: "",
+                text: "Are you sure you want to log out from the application?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                reverseButtons: true // optional, can be used if you want to reverse the order of confirm and cancel buttons
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = baseurl + "/logout";
+                }
+            });
+        }
     </script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->

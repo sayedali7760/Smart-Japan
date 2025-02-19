@@ -75,6 +75,7 @@ $route['user-management/save-client'] = 'settings/User_management/save_client';
 $route['user-management/client-show'] = 'settings/User_management/client_list';
 $route['user-management/edit-client'] = 'settings/User_management/edit_client';
 $route['user-management/update-client'] = 'settings/User_management/update_client';
+$route['user-management/change-password'] = 'settings/User_management/change_user_password';
 
 // organization section
 $route['organization/organization-show'] = 'settings/Organization/organization_show';
