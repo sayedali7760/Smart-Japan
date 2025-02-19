@@ -37,10 +37,11 @@ class Client_crm extends CI_Controller
     public function upload_doc()
     {
         $id = $this->session->userdata['id'];
-        $data['contact_id'] = $id;
+        $data['client_id'] = $id;
         $uploadPath = 'uploads';
 
         $file_id = 'files_id';
+        log_message('info', 'FILES ARRAY: ' . print_r($_FILES, true));
         $filename = $this->fileUpload($uploadPath, $file_id);
         $files_id = $filename;
         log_message('info', 'File ID Upload: ' . $filename);
@@ -76,7 +77,7 @@ class Client_crm extends CI_Controller
             $doc_update = $this->CModel->upload_document_update($data, $id);
             if ($doc_update) {
                 log_message('info', 'Document Update Status: true');
-                echo json_encode(array('status' => 1, 'message' => 'Document updated successfully.', 'view' => $this->load->view('client/client_document', $data, TRUE)));
+                echo json_encode(array('status' => 1, 'message' => 'Document updated successfully.', 'view' => $this->load->view('modules/general_settings/my_profile', $data, TRUE)));
                 return;
             } else {
                 log_message('info', 'Document Update Status: false');
@@ -87,7 +88,7 @@ class Client_crm extends CI_Controller
             $doc_save = $this->CModel->doc_upload($data);
             if ($doc_save) {
                 log_message('info', 'Document Save Status: true');
-                echo json_encode(array('status' => 1, 'message' => 'Document saved successfully.', 'view' => $this->load->view('client/client_document', $data, TRUE)));
+                echo json_encode(array('status' => 1, 'message' => 'Document saved successfully.', 'view' => $this->load->view('modules/general_settings/my_profile', $data, TRUE)));
                 return;
             } else {
                 log_message('info', 'Document Save Status: false');
@@ -100,35 +101,38 @@ class Client_crm extends CI_Controller
 
     public function fileUpload($uploadPath, $uploadfile = '')
     {
-        $uploadData = "";
-        $images = "";
-        if ($uploadfile == '')
-            $uploadfile = 'files';
+        $uploadData = array(); // Store uploaded file names
+
+        if (!isset($_FILES[$uploadfile])) {
+            log_message('error', "File input {$uploadfile} not found in \$_FILES array.");
+            return null;
+        }
 
         $filesCount = count($_FILES[$uploadfile]['name']);
+
         if ($filesCount > 0) {
             $config['upload_path'] = $uploadPath;
             $config['allowed_types'] = 'jpg|jpeg|png|doc|docx|pdf';
             $this->load->library('upload', $config);
+
             for ($i = 0; $i < $filesCount; $i++) {
-                $_FILES['file']['name']     = $_FILES[$uploadfile]['name'][$i];
-                $_FILES['file']['type']     = $_FILES[$uploadfile]['type'][$i];
-                $_FILES['file']['tmp_name'] = $_FILES[$uploadfile]['tmp_name'][$i];
-                $_FILES['file']['error']    = $_FILES[$uploadfile]['error'][$i];
-                $_FILES['file']['size']     = $_FILES[$uploadfile]['size'][$i];
+                if (!empty($_FILES[$uploadfile]['name'][$i])) {
+                    $_FILES['file']['name'] = $_FILES[$uploadfile]['name'][$i];
+                    $_FILES['file']['type'] = $_FILES[$uploadfile]['type'][$i];
+                    $_FILES['file']['tmp_name'] = $_FILES[$uploadfile]['tmp_name'][$i];
+                    $_FILES['file']['error'] = $_FILES[$uploadfile]['error'][$i];
+                    $_FILES['file']['size'] = $_FILES[$uploadfile]['size'][$i];
 
-
-                if ($this->upload->do_upload('file')) {
-
-                    $fileData = $this->upload->data();
-                    //print_r($fileData);
-                    $images .= $fileData['file_name'];
-                } else {
-                    return $images;
+                    if ($this->upload->do_upload('file')) {
+                        $fileData = $this->upload->data();
+                        $uploadData[] = $fileData['file_name'];
+                    } else {
+                        log_message('error', "File upload failed: " . $this->upload->display_errors());
+                    }
                 }
             }
         }
-        $this->session->set_flashdata('uploaded_file', $images);
-        return $images;
+
+        return !empty($uploadData) ? implode(',', $uploadData) : null;
     }
 }

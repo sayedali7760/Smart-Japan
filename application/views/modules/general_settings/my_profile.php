@@ -1,9 +1,9 @@
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-    <div id="kt_content_container" class="container-xxl">
+    <div id="kt_content_container" class="container-xxl d-flex flex-column flex-lg-row">
 
-        <?php
+        <!-- <php
         echo form_open_multipart('settings/edit_user', array('id' => 'client_update', 'role' => 'form', 'class' => 'form d-flex flex-column flex-lg-row'));
-        ?>
+        ?> -->
 
         <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
             <div class="card card-flush py-4">
@@ -146,7 +146,7 @@
                 </div>
             </div>
         </div>
-        <?php echo form_close(); ?>
+        <!-- <php echo form_close(); ?> -->
     </div>
 </div>
 <script>
