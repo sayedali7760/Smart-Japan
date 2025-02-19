@@ -38,4 +38,17 @@ class Client_crm_model extends CI_Model
             return true;
         }
     }
+
+    public function doc_upload($data)
+    {
+        if ($this->db->insert('documents', $data)) {
+            return true;
+        }
+    }
+
+    public function upload_document_update($id, $data)
+    {
+        $this->db->update('documents', $data, 'id=' . $id . '');
+        return true;
+    }
 }
