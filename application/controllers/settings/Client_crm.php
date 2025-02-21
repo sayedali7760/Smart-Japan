@@ -80,6 +80,22 @@ class Client_crm extends CI_Controller
             return false;
         }
     }
+    public function update_thumbnail()
+    {
+        $id = $this->session->userdata['id'];
+        $uploadPath = 'uploads';
+
+        $file_id = 'avatar';
+        $files_id = $this->fileUpload($uploadPath, $file_id);
+        $data['file'] = $files_id;
+        if ($this->CModel->thumbnail_update($data, $id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 0));
+            return;
+        }
+    }
     public function upload_doc()
     {
         $id = $this->session->userdata['id'];

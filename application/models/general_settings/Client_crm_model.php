@@ -38,7 +38,11 @@ class Client_crm_model extends CI_Model
             return true;
         }
     }
-
+    public function thumbnail_update($data, $id)
+    {
+        $this->db->update('clients', $data, 'id=' . $id . '');
+        return true;
+    }
     public function doc_upload($data)
     {
         if ($this->db->insert('documents', $data)) {

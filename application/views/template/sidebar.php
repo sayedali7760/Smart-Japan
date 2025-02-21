@@ -195,7 +195,7 @@
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click"
-                    class="menu-item menu-accordion <?php if ($title == 'Client') {
+                    class="menu-item menu-accordion <?php if ($title == 'MT Accounts') {
                                                         echo "hover show";
                                                     } ?>">
                     <span class="menu-link">
@@ -215,10 +215,10 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Add Client') {
+                            <a class="menu-link <?php if ($subtitle == 'Live Accounts') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>user-management/client-add">
+                                href="<?php echo base_url(); ?>mt-account/live-account">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -229,10 +229,10 @@
                     </div>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Add Client') {
+                            <a class="menu-link <?php if ($subtitle == 'Demo Accounts') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>user-management/client-add">
+                                href="<?php echo base_url(); ?>mt-account/demo-account">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

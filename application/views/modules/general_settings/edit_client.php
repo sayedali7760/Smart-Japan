@@ -114,162 +114,230 @@
                                     Changes</a>
 
                             </div>
+                            <?php if (isset($document_details)) { ?>
+                                <div id="kt_billing_payment_tab_content" class="card-body tab-content">
+                                    <div id="kt_billing_creditcard" class="tab-pane fade show active" role="tabpanel">
+                                        <h3 class="mb-5">Uploaded Documents</h3>
+                                        <div class="row gx-9 gy-6">
 
-                            <div id="kt_billing_payment_tab_content" class="card-body tab-content">
-                                <div id="kt_billing_creditcard" class="tab-pane fade show active" role="tabpanel">
-                                    <h3 class="mb-5">Uploaded Documents</h3>
-                                    <div class="row gx-9 gy-6">
-
-                                        <div class="col-xl-6">
-                                            <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                <div class="d-flex flex-column py-2">
-                                                    <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity
+                                            <div class="col-xl-6">
+                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                                    <div class="d-flex flex-column py-2">
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="d-flex align-items-center py-2">
-                                                    <?php if ($document_details['eid_status'] == 0) { ?>
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                    <div class="d-flex align-items-center py-2">
+                                                        <?php if ($document_details['eid_status'] == 0) { ?>
+                                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } else if ($document_details['eid_status'] == 1) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['eid']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" onclick="update_doc_status(1,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" onclick="update_doc_status(1,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                    <?php } else if ($document_details['eid_status'] == 3) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['eid']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-danger">Rejected</h4>
+                                                        <?php } else if ($document_details['eid_status'] == 1) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['eid']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(1,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(1,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        <?php } else if ($document_details['eid_status'] == 3) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['eid']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-danger">Rejected</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } else if ($document_details['eid_status'] == 2) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['eid']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <div class="alert alert-success d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-success">Verified</h4>
+                                                        <?php } else if ($document_details['eid_status'] == 2) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['eid']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <div class="alert alert-success d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-success">Verified</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } ?>
+                                                        <?php } ?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                <div class="d-flex flex-column py-2">
-                                                    <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Passport
+                                            <div class="col-xl-6">
+                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                                    <div class="d-flex flex-column py-2">
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Passport
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="d-flex align-items-center py-2">
-                                                    <?php if ($document_details['pass_status'] == 0) { ?>
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                    <div class="d-flex align-items-center py-2">
+                                                        <?php if ($document_details['pass_status'] == 0) { ?>
+                                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } else if ($document_details['pass_status'] == 1) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['passport']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" onclick="update_doc_status(2,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" onclick="update_doc_status(2,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                    <?php } else if ($document_details['pass_status'] == 3) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['passport']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-danger">Rejected</h4>
+                                                        <?php } else if ($document_details['pass_status'] == 1) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['passport']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(2,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(2,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        <?php } else if ($document_details['pass_status'] == 3) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['passport']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-danger">Rejected</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } else if ($document_details['pass_status'] == 2) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['passport']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <div class="alert alert-success d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-success">Verified</h4>
+                                                        <?php } else if ($document_details['pass_status'] == 2) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['passport']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <div class="alert alert-success d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-success">Verified</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } ?>
+                                                        <?php } ?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                <div class="d-flex flex-column py-2">
-                                                    <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Bank
+                                            <div class="col-xl-6">
+                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                                    <div class="d-flex flex-column py-2">
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Bank
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="d-flex align-items-center py-2">
-                                                    <?php if ($document_details['bank_status'] == 0) { ?>
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                    <div class="d-flex align-items-center py-2">
+                                                        <?php if ($document_details['bank_status'] == 0) { ?>
+                                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } else if ($document_details['bank_status'] == 1) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['bank']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" onclick="update_doc_status(3,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" onclick="update_doc_status(3,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                    <?php } else if ($document_details['bank_status'] == 3) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['bank']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-danger">Rejected</h4>
+                                                        <?php } else if ($document_details['bank_status'] == 1) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['bank']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(3,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(3,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        <?php } else if ($document_details['bank_status'] == 3) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['bank']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-danger">Rejected</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } else if ($document_details['bank_status'] == 2) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['bank']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <div class="alert alert-success d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-success">Verified</h4>
+                                                        <?php } else if ($document_details['bank_status'] == 2) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['bank']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <div class="alert alert-success d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-success">Verified</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } ?>
+                                                        <?php } ?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                <div class="d-flex flex-column py-2">
-                                                    <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Other
+                                            <div class="col-xl-6">
+                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                                    <div class="d-flex flex-column py-2">
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Other
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="d-flex align-items-center py-2">
-                                                    <?php if ($document_details['others_status'] == 0) { ?>
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                    <div class="d-flex align-items-center py-2">
+                                                        <?php if ($document_details['others_status'] == 0) { ?>
+                                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } else if ($document_details['others_status'] == 1) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['others']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" onclick="update_doc_status(4,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                        <a href="javascript:void(0);" onclick="update_doc_status(4,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                    <?php } else if ($document_details['others_status'] == 3) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['others']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-danger">Rejected</h4>
+                                                        <?php } else if ($document_details['others_status'] == 1) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['others']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(4,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(4,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        <?php } else if ($document_details['others_status'] == 3) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['others']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-danger">Rejected</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } else if ($document_details['others_status'] == 2) { ?>
-                                                        <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['others']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                        <div class="alert alert-success d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-success">Verified</h4>
+                                                        <?php } else if ($document_details['others_status'] == 2) { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['others']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <div class="alert alert-success d-flex align-items-center p-5 mb-4">
+                                                                <div class="d-flex flex-column">
+                                                                    <h4 class="mb-1 text-success">Verified</h4>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    <?php } ?>
+                                                        <?php } ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="d-flex justify-content-end">
+                                    <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="activate_account()">Activate Account</a>
+                                </div>
 
-                            </div>
+                            <?php } else { ?>
+                                <div id="kt_billing_payment_tab_content" class="card-body tab-content">
+                                    <div id="kt_billing_creditcard" class="tab-pane fade show active" role="tabpanel">
+                                        <h3 class="mb-5">Uploaded Documents</h3>
+                                        <div class="row gx-9 gy-6">
 
-                            <div class="d-flex justify-content-end">
-                                <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="activate_account()">Activate Account</a>
-                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                                    <div class="d-flex flex-column py-2">
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center py-2">
+                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                            <div class="d-flex flex-column">
+                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                                    <div class="d-flex flex-column py-2">
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Passport
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center py-2">
+                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                            <div class="d-flex flex-column">
+                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                                    <div class="d-flex flex-column py-2">
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Bank
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center py-2">
+                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                            <div class="d-flex flex-column">
+                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                                    <div class="d-flex flex-column py-2">
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Other
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex align-items-center py-2">
+                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                            <div class="d-flex flex-column">
+                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
-
                     </div>
 
                 </div>
