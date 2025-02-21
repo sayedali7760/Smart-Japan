@@ -29,8 +29,11 @@ class Client_model extends CI_Model
 
     public function get_details()
     {
-        $this->db->from('clients');
-        $this->db->order_by('id', "desc");
+        $this->db->select('c.*, d.account_verify');
+        $this->db->from('clients AS c');
+        $this->db->join('documents AS d', 'd.client_id = c.id', 'left');
+        $this->db->order_by('c.id', "desc");
+
         $query = $this->db->get()->result();
         return $query;
     }
@@ -56,6 +59,13 @@ class Client_model extends CI_Model
         $this->db->from('country');
         $this->db->order_by('country_name', "asc");
         $query = $this->db->get()->result();
+        return $query;
+    }
+    public function get_client_document_details($client_id)
+    {
+        $this->db->from('documents');
+        $this->db->where('client_id', $client_id);
+        $query = $this->db->get()->row_array();
         return $query;
     }
 }

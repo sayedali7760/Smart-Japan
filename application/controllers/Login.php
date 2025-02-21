@@ -34,12 +34,14 @@ class Login extends CI_Controller
                 ->from('clients as C')
                 ->where('C.email', $username)
                 ->where('C.password', $password)
+                ->where('C.is_active', 1)
                 ->get();
         } else {
             $qr = $this->db->select('U.*,R.role_id,R.description')
                 ->from('user_details as U')
                 ->where('U.email', $username)
                 ->where('U.password', $password)
+                ->where('U.is_active', 1)
                 ->join('user_roles as R', 'U.position = R.role_id', 'left')
                 ->get();
         }

@@ -136,60 +136,7 @@
 
                     </div>
                 </div>
-                <div data-kt-menu-trigger="click"
-                    class="menu-item menu-accordion <?php if ($title == 'General') {
-                                                        echo "hover show";
-                                                    } ?>">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path
-                                        d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z"
-                                        fill="currentColor" />
-                                    <path d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-title">General</span>
-                        <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
 
-
-                        <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Add Distributors') {
-                                                    echo "active";
-                                                } ?>"
-                                href="<?php echo base_url(); ?>organization/organization-add">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Add Distributor</span>
-                            </a>
-                        </div>
-
-                        <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Distributors') {
-                                                    echo "active";
-                                                } ?>"
-                                href="<?php echo base_url(); ?>organization/organization-show">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Distributors</span>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
                 <div data-kt-menu-trigger="click"
                     class="menu-item menu-accordion <?php if ($title == 'Client') {
                                                         echo "hover show";
@@ -234,6 +181,65 @@
                                 <span class="menu-title">Client List</span>
                             </a>
                         </div>
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Client Verify') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>client-crm/client-verify">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Client Verify</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div data-kt-menu-trigger="click"
+                    class="menu-item menu-accordion <?php if ($title == 'Client') {
+                                                        echo "hover show";
+                                                    } ?>">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/art/art009.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path opacity="0.3" d="M2.1 10C3 5.6 6.7 2.3 11.2 2L8.8 4.4L11.1 7C9.6 7.3 8.3 8.2 7.6 9.6L4.5 12.4L2.1 10ZM19.3 11.5L16.4 14C15.7 15.5 14.4 16.6 12.7 16.9L15 19.5L12.6 21.9C17.1 21.6 20.8 18.2 21.7 13.9L19.3 11.5Z" fill="currentColor" />
+                                    <path d="M13.8 2.1C18.2 3 21.5 6.7 21.8 11.2L19.4 8.8L16.8 11C16.5 9.4 15.5 8.1 14 7.4L11.4 4.4L13.8 2.1ZM12.3 19.4L9.7 16.4C8.3 15.7 7.3 14.4 7 12.8L4.4 15.1L2 12.7C2.3 17.2 5.7 20.9 10 21.8L12.3 19.4Z" fill="currentColor" />
+                                    <rect opacity="0.3" x="8" y="3" width="8" height="8" rx="4" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">MT Accounts</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Add Client') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>user-management/client-add">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Live Accounts</span>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Add Client') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>user-management/client-add">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Demo Accounts</span>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click"

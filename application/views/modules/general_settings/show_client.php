@@ -122,7 +122,13 @@
                                     <td class="text-start pe-0"><?php echo $client->email; ?></td>
                                     <td class="text-start pe-0"><?php echo $client->phone; ?></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($client->created)); ?>
-                                    <td class="text-start pe-0"><code>Pending</code></td>
+                                    <td class="text-start pe-0">
+                                        <?php if ($client->account_verify == 1) { ?>
+                                            <span class="badge badge-light-success">Verified</span>
+                                        <?php } else { ?>
+                                            <span class="badge badge-light-danger">Not Verified</span>
+                                        <?php } ?>
+                                    </td>
                                     <td class="text-start pe-0">
                                         <?php if ($client->is_active == 1) {
                                             $value = 'checked';

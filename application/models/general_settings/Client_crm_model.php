@@ -46,9 +46,34 @@ class Client_crm_model extends CI_Model
         }
     }
 
-    public function upload_document_update($id, $data)
+    public function upload_document_update($data, $id)
     {
-        $this->db->update('documents', $data, 'id=' . $id . '');
+        $this->db->update('documents', $data, 'client_id=' . $id . '');
         return true;
+    }
+    public function update_document_status($client_id, $data)
+    {
+        $this->db->update('documents', $data, 'client_id=' . $client_id . '');
+        return true;
+    }
+    public function activate_client($client_id, $data)
+    {
+        $this->db->update('documents', $data, 'client_id=' . $client_id . '');
+        return true;
+    }
+
+    public function get_documents_details($id)
+    {
+        $this->db->from('documents');
+        $this->db->where('client_id', $id);
+        $query = $this->db->get()->row_array();
+        return $query;
+    }
+    public function get_notverified_clients()
+    {
+        $this->db->from('clients');
+        $this->db->order_by('id', "desc");
+        $query = $this->db->get()->result();
+        return $query;
     }
 }
