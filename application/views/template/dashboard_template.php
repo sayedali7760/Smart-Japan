@@ -423,7 +423,7 @@ License: For each use you must have a valid license purchased only from above li
                                         By:</span>
                                     <!--end::Label-->
                                     <!--begin::Select-->
-                                    <select class="form-select form-select-sm form-select-solid w-100px w-xxl-125px"
+                                    <select onchange="uder_construction()" class="form-select form-select-sm form-select-solid w-100px w-xxl-125px"
                                         data-control="select2" data-placeholder="Latest" data-hide-search="true">
                                         <option value=""></option>
                                         <option value="1" selected="selected">Latest</option>
@@ -4111,6 +4111,15 @@ License: For each use you must have a valid license purchased only from above li
             });
         });
         var baseurl = '<?php echo base_url(); ?>';
+
+        function uder_construction() {
+            Swal.fire({
+                title: 'Warning',
+                text: 'Not available now.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            })
+        }
 
         function log_out() {
             Swal.fire({

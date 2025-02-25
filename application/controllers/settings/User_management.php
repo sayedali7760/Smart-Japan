@@ -100,6 +100,7 @@ class User_management extends CI_Controller
 
             if ($onload == 1) {
                 $client_data_raw = $this->CModel->get_client_details($client_id);
+                $data['document_details'] = $this->CModel->get_client_document_details($client_id);
                 $data['client_id'] = $client_id;
                 $data['client_data'] = $client_data_raw;
                 $data['countries'] = $this->CModel->get_countries();

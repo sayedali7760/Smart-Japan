@@ -77,6 +77,7 @@ $route['user-management/edit-client'] = 'settings/User_management/edit_client';
 $route['user-management/update-client'] = 'settings/User_management/update_client';
 $route['user-management/change-password'] = 'settings/User_management/change_user_password';
 
+
 // organization section
 $route['organization/organization-show'] = 'settings/Organization/organization_show';
 $route['organization/organization-add'] = 'settings/Organization/organization_add';
@@ -104,9 +105,16 @@ $route['client/change_status'] = 'settings/Client/change_status';
 $route['client/my-profile'] = 'settings/Client_crm/my_profile';
 $route['client-crm/update-password'] = 'settings/Client_crm/update_password';
 $route['client-crm/upload-doc'] = 'settings/Client_crm/upload_doc';
+$route['client-crm/update-thumbnail'] = 'settings/Client_crm/update_thumbnail';
 
 $route['client-crm/show-product'] = 'settings/Client_crm/show_product';
 $route['client-crm/view-product'] = 'settings/Client_crm/view_product';
+$route['client-crm/client-verify'] = 'settings/Client_crm/client_verification';
+$route['client-crm/update-doc-status'] = 'settings/Client_crm/update_doc_status';
+$route['client-crm/activate-client'] = 'settings/Client_crm/activate_client';
+
+$route['mt-account/live-account'] = 'settings/Mt_Accounts/show_live_account';
+$route['mt-account/demo-account'] = 'settings/Mt_Accounts/show_demo_account';
 
 $route['transaction/deposit'] = 'Transaction/view_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
