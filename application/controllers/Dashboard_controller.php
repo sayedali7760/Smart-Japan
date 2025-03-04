@@ -12,6 +12,7 @@ class Dashboard_controller extends CI_Controller
         }
         $this->load->model('Dashboard_model', 'MDashboard');
         $this->load->model('general_settings/Client_crm_model', 'CModel');
+        $this->load->model('general_settings/Mt_model', 'MModel');
     }
     public function index()
     {
@@ -25,6 +26,8 @@ class Dashboard_controller extends CI_Controller
         if ($type == 2) {
             $id = $this->session->userdata['id'];
             $data['client_document_data'] = $this->CModel->get_documents_details($id);
+            $data['mt_demo_accounts'] = $this->MModel->get_mt_demo_account_details($id);
+            $data['mt_live_accounts'] = $this->MModel->get_mt_live_account_details($id);
             $data['template'] = 'dashboard_client';
         }
         $this->load->view('template/dashboard_template', $data);

@@ -1,0 +1,31 @@
+<div class="card-body d-flex flex-column justify-content-center ps-lg-12">
+    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
+                <div class="d-flex flex-column gap-7 gap-lg-10">
+                    <div class="card card-flush py-4" style="background-color: transparent; border: none;">
+                        <div class="card-body pt-0">
+                            <h3 class="text-white fs-2qx fw-bolder mb-7">Hello <?php echo $this->session->userdata('name'); ?>
+                                <br>Install the MT5 platform on your device.
+                            </h3>
+                            <div class="d-flex flex-wrap gap-5">
+                                <div class="fv-row w-100 flex-md-root">
+                                    <select class="form-select mb-5" data-control="select2"
+                                        data-placeholder="Select Currency" name="currency" id="currency">
+                                        <option value="USD">USD</option>
+                                    </select>
+                                </div>
+                                <div class="fv-row w-100 flex-md-root">
+                                    <a href="<?php echo base_url(); ?>home" class="btn btn-danger me-5">Cancel</a>
+                                    <a href="javascript:void(0);" class="btn btn-success" title="Save Changes"
+                                        onclick="submit_data()">Create Live Account</a>
+                                </div>
+                            </div>
+                            <p class="text-white fw-bolder mb-7">Trading platform MT5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

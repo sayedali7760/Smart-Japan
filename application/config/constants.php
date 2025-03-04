@@ -92,15 +92,16 @@ define('ERROR_500', 'template/error-500');
 define('ERROR_500_NEW', 'template/error-500-new');
 define('INVALID_REQUEST_MESSAGE', 'Invalid request. Please try again');
 
-define('BM_GOOGLE_CLIENT_ID', '116197081390-bm9pam7494g1ahhv2e6qc6e43a5p2a4j.apps.googleusercontent.com');
+define('DEMO_IP', '188.240.63.174');
+define('DEMO_PORT', '443');
+define('DEMO_TIMEOUT', '300');
+define('DEMO_LOGIN', '855519');
+define('DEMO_PASSWORD', 'Japan@855519');
 
+define('LIVE_IP', '188.240.63.197');
+define('LIVE_PORT', '443');
+define('LIVE_TIMEOUT', '300');
+define('LIVE_LOGIN', '5517');
+define('LIVE_PASSWORD', 'NtK-KpX0');
 
-define('SUPPORT_EMAIL_TCS', 'dd@mailinator.com');
-define('SUPPORT_EMAIL_NIMSSHJ', 'dd@mailinator.com');
-define('SUPPORT_EMAIL_NIMSALAIN', 'dd@mailinator.com');
-define('SUPPORT_EMAIL_NIMSDXB', 'dd@mailinator.com');
-define('SUPPORT_EMAIL_OXFTVM', 'dd@mailinator.com');
-define('SUPPORT_EMAIL_OXFKLM', 'dd@mailinator.com');
-define('SUPPORT_EMAIL_MODELAUH', 'dd@mailinator.com');
-define('SUPPORT_EMAIL_OXFCLT', 'dd@mailinator.com');
-define('SUPPORT_DEV_TEAM_EMAIL', 'dd@mailinator.com');
+define('ACCOUNT_START', '6315');

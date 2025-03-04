@@ -242,8 +242,9 @@
 
                     </div>
                 </div>
+
                 <div data-kt-menu-trigger="click"
-                    class="menu-item menu-accordion <?php if ($title == 'Product') {
+                    class="menu-item menu-accordion <?php if ($title == 'Mt Groups') {
                                                         echo "hover show";
                                                     } ?>">
                     <span class="menu-link">
@@ -263,54 +264,32 @@
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Product</span>
+                        <span class="menu-title">MT Groups</span>
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Add Category') {
+                            <a class="menu-link <?php if ($subtitle == 'Add Group') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>product/category-add">
+                                href="<?php echo base_url(); ?>mt/group-add">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Add Category</span>
+                                <span class="menu-title">Add Group</span>
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Category List') {
+                            <a class="menu-link <?php if ($subtitle == 'Show Group') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>product/category-show">
+                                href="<?php echo base_url(); ?>mt/group-show">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Category List</span>
+                                <span class="menu-title">Group List</span>
                             </a>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Add Product') {
-                                                    echo "active";
-                                                } ?>" href="<?php echo base_url(); ?>product/add-product">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Add Product</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Product List') {
-                                                    echo "active";
-                                                } ?>" href="<?php echo base_url(); ?>product/product-show">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Product List</span>
-                            </a>
-                        </div>
-
-
                     </div>
                 </div>
 
@@ -391,6 +370,56 @@
                             </a>
                         </div>
 
+                    </div>
+                </div>
+                <div data-kt-menu-trigger="click"
+                    class="menu-item menu-accordion <?php if ($title == 'Transactions') {
+                                                        echo "hover show";
+                                                    } ?>">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/technology/teh004.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none">
+                                    <path opacity="0.3"
+                                        d="M21 18.3V4H20H5C4.4 4 4 4.4 4 5V20C10.9 20 16.7 15.6 19 9.5V18.3C18.4 18.6 18 19.3 18 20C18 21.1 18.9 22 20 22C21.1 22 22 21.1 22 20C22 19.3 21.6 18.6 21 18.3Z"
+                                        fill="currentColor" />
+                                    <path
+                                        d="M22 4C22 2.9 21.1 2 20 2C18.9 2 18 2.9 18 4C18 4.7 18.4 5.29995 18.9 5.69995C18.1 12.6 12.6 18.2 5.70001 18.9C5.30001 18.4 4.7 18 4 18C2.9 18 2 18.9 2 20C2 21.1 2.9 22 4 22C4.8 22 5.39999 21.6 5.79999 20.9C13.8 20.1 20.1 13.7 20.9 5.80005C21.6 5.40005 22 4.8 22 4Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Transactions</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Deposit') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>client/my-profile">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Deposit</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Withdraw') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>client/my-profile">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Withdraw</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             <?php } ?>
