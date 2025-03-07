@@ -17,8 +17,13 @@
                                 </div>
                                 <div class="fv-row w-100 flex-md-root">
                                     <a href="<?php echo base_url(); ?>home" class="btn btn-danger me-5">Cancel</a>
-                                    <a href="javascript:void(0);" class="btn btn-success" title="Save Changes"
-                                        onclick="submit_data()">Create Live Account</a>
+                                    <a id="actual_submit" href="javascript:void(0);" class="btn btn-success" title="Save Changes"
+                                        onclick="create_live_account_in_server()">Create Live Account</a>
+                                    <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-success" data-kt-indicator="on">
+                                        <span class="indicator-label">Submit</span>
+                                        <span class="indicator-progress">Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </a>
                                 </div>
                             </div>
                             <p class="text-white fw-bolder mb-7">Trading platform MT5</p>
@@ -29,3 +34,54 @@
         </div>
     </div>
 </div>
+<script>
+    function create_live_account_in_server() {
+        $('#actual_submit').hide();
+        $('#loader_submit').show();
+        var ops_url = baseurl + 'mt-account/create-live-server';
+        $.ajax({
+            url: ops_url,
+            type: 'POST',
+            data: {
+                'load': 1,
+            },
+            success: function(result) {
+                var data = $.parseJSON(result);
+                if (data.status == 1) {
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Live Account Created, Please check your mail for login details.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                } else if (data.status == 2) {
+                    Swal.fire({
+                        title: 'Failed',
+                        text: 'You can’t able to create more accounts. Three accounts have already been created. Please contact the administrator.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Failed',
+                        text: 'Please Contact Administrator.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                }
+            }
+        });
+    }
+</script>

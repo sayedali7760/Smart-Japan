@@ -118,6 +118,7 @@ $route['mt-account/demo-account'] = 'settings/Mt_Accounts/show_demo_account';
 $route['mt-account/create-live'] = 'settings/Mt_Accounts/create_live_account';
 $route['mt-account/create-demo'] = 'settings/Mt_Accounts/create_demo_account';
 $route['mt-account/create-demo-server'] = 'settings/Mt_Accounts/create_demo_server';
+$route['mt-account/create-live-server'] = 'settings/Mt_Accounts/create_live_server';
 $route['mt/group-add'] = 'settings/Mt_Accounts/add_group';
 $route['mt/group-save'] = 'settings/Mt_Accounts/save_group';
 $route['mt/group-show'] = 'settings/Mt_Accounts/show_group';

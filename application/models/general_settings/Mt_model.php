@@ -81,6 +81,12 @@ class Mt_model extends CI_Model
             return true;
         }
     }
+    public function insert_live($data_user_array)
+    {
+        if ($this->db->insert('accounts', $data_user_array)) {
+            return true;
+        }
+    }
     public function get_currency()
     {
         $this->db->select('c.*');

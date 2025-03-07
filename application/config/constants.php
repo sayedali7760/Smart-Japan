@@ -102,6 +102,6 @@ define('LIVE_IP', '188.240.63.197');
 define('LIVE_PORT', '443');
 define('LIVE_TIMEOUT', '300');
 define('LIVE_LOGIN', '5517');
-define('LIVE_PASSWORD', 'NtK-KpX0');
+define('LIVE_PASSWORD', 'Japan@5517');
 
 define('ACCOUNT_START', '6315');

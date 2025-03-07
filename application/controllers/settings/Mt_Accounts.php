@@ -42,6 +42,93 @@ class Mt_Accounts extends CI_Controller
         echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
         return;
     }
+    public function create_live_server()
+    {
+
+        $client_id = $this->session->userdata('id');
+        $user_details = $this->MModel->get_clientdata($client_id);
+        $fullname = $user_details['name'];
+
+        $query = $this->db->select('*')
+            ->from('accounts')
+            ->where('user_id', $client_id)
+            ->where('server', 'Live')
+            ->get()
+            ->result();
+
+        if (count($query) >= 3) {
+            echo json_encode(array('status' => 2));
+            return;
+        } else {
+            $mtAmount = 10000;
+            $mtLeverage = 400;
+
+            require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
+            try {
+                $instance = new MTWebAPI();
+                $response = $instance->Connect(LIVE_IP, LIVE_PORT, LIVE_TIMEOUT, LIVE_LOGIN, LIVE_PASSWORD);
+                if ($response !== MTRetCode::MT_RET_OK) {
+                    echo "Failed to connect to MetaTrader 5 server. Error code: " . $response;
+                } else {
+                    $new_user = $instance->UserCreate();
+                    $new_user->Email = $user_details['email'];
+                    $new_user->MainPassword = RandString();
+                    $new_user->InvestPassword = RandString();
+                    $new_user->Group = 'SSC\JAPAN\SSC-JAPAN-VIP-USD-B';
+                    $new_user->ZipCode = '';
+                    $new_user->Country = $user_details['country'];
+                    $new_user->State = '';
+                    $new_user->City = '';
+                    $new_user->Address = '';
+                    $new_user->Phone = $user_details['phone'];
+                    $new_user->Name = $fullname;
+                    $new_user->PhonePassword = RandString();
+                    $new_user->Leverage = $mtLeverage;
+
+                    $instance->UserAdd($new_user, $user_server);
+                    $new_user->Login = $user_server->Login;
+                    $result = $instance->TradeBalance($new_user->Login, MTEnDealAction::DEAL_BALANCE, $mtAmount, 'Web Deposit', $ticket);
+
+                    $data_user_array = array(
+                        'login' => $new_user->Login,
+                        'user_id' => $client_id,
+                        'main_password' => $new_user->MainPassword,
+                        'invest_password' => $new_user->InvestPassword,
+                        'phone_password' => $new_user->PhonePassword,
+                        'leverage' => $new_user->Leverage,
+                        'server' => 'Live',
+                        'balance' => $mtAmount,
+                        'name' => 'mt5',
+                        'group' => $new_user->Group,
+                        'info' => $new_user->Login,
+                        'type' => 'live',
+                    );
+
+                    if ($this->MModel->insert_live($data_user_array)) {
+
+                        // $mailto = $user_details['email'];
+                        // $subject = 'MT5 Live Accont Details';
+                        // $mail_data['name'] = $fullname;
+                        // $mail_data['login'] = $new_user->Login;
+                        // $mail_data['main_password'] = $new_user->MainPassword;
+                        // $mail_data['invest_password'] = $new_user->InvestPassword;
+                        // $mail_data['phone_password'] = $new_user->PhonePassword;
+                        // $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $mail_data, true);
+                        // $cc = "";
+                        // send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+
+                        echo json_encode(array('status' => 1));
+                        return;
+                    } else {
+                        echo json_encode(array('status' => 2));
+                        return;
+                    }
+                }
+            } catch (Exception $e) {
+                echo "An error occurred: " . $e->getMessage();
+            }
+        }
+    }
     public function create_demo_server()
     {
         // require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
@@ -74,6 +161,7 @@ class Mt_Accounts extends CI_Controller
         $query = $this->db->select('*')
             ->from('accounts')
             ->where('user_id', $client_id)
+            ->where('server', 'Demo')
             ->get()
             ->result();
 
@@ -128,12 +216,16 @@ class Mt_Accounts extends CI_Controller
 
                     if ($this->MModel->insert_demo($data_user_array)) {
 
-                        // $mailto = $user_details->email_id;
-                        // $subject = 'MT5 Demo Accont Details';
-                        // $data_user_array['name'] = $fullname;
-                        // $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $data_user_array, true);
-                        // $cc = "";
-                        // send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+                        $mailto = $user_details['email'];
+                        $subject = 'MT5 Demo Accont Details';
+                        $mail_data['name'] = $fullname;
+                        $mail_data['login'] = $new_user->Login;
+                        $mail_data['main_password'] = $new_user->MainPassword;
+                        $mail_data['invest_password'] = $new_user->InvestPassword;
+                        $mail_data['phone_password'] = $new_user->PhonePassword;
+                        $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $mail_data, true);
+                        $cc = "";
+                        send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
 
                         echo json_encode(array('status' => 1));
                         return;

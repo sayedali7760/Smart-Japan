@@ -17,8 +17,13 @@
                                 </div>
                                 <div class="fv-row w-100 flex-md-root">
                                     <a href="<?php echo base_url(); ?>home" class="btn btn-danger me-5">Cancel</a>
-                                    <a href="javascript:void(0);" class="btn btn-success" title="Save Changes"
+                                    <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary" title="Save Changes"
                                         onclick="create_demo_account_in_server()">Create Demo Account</a>
+                                    <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                                        <span class="indicator-label">Submit</span>
+                                        <span class="indicator-progress">Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </a>
                                 </div>
                             </div>
                             <p class="text-white fw-bolder mb-7">Trading platform MT5</p>
@@ -31,6 +36,8 @@
 </div>
 <script>
     function create_demo_account_in_server() {
+        $('#actual_submit').hide();
+        $('#loader_submit').show();
         var ops_url = baseurl + 'mt-account/create-demo-server';
         $.ajax({
             url: ops_url,
@@ -45,6 +52,17 @@
                         title: 'Success',
                         text: 'Demo Account Created, Please check your mail for login details.',
                         icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                } else if (data.status == 2) {
+                    Swal.fire({
+                        title: 'Failed',
+                        text: 'You can’t able to create more accounts. Three accounts have already been created. Please contact the administrator.',
+                        icon: 'error',
                         confirmButtonText: 'OK'
                     }).then((result) => {
                         if (result.isConfirmed) {

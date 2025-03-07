@@ -315,9 +315,9 @@
                                         Please use this credentials for your MT5 account in SSC-Smart-FX<br />
 
 
-                                        <br /><br />Login - <br />
-                                        Invest Password - <br />
-                                        Master Password - <br />
+                                        <br /><br />Login - <?php echo $login; ?><br />
+                                        Invest Password - <?php echo $invest_password; ?><br />
+                                        Master Password - <?php echo $main_password; ?><br />
                                         <br /><br />
                                         Please Feel Free to Revert to me on this email ID "support@smartfx.com" If Any
                                         Clarification
@@ -338,7 +338,7 @@
                                         <br />
                                         <br />
                                         Regards,<br />
-                                        SSC-Smart-FX
+                                        SmartFX
                                     </td>
                                 </tr>
 
