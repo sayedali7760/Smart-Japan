@@ -115,11 +115,23 @@ $route['client-crm/activate-client'] = 'settings/Client_crm/activate_client';
 
 $route['mt-account/live-account'] = 'settings/Mt_Accounts/show_live_account';
 $route['mt-account/demo-account'] = 'settings/Mt_Accounts/show_demo_account';
+$route['mt-account/create-live'] = 'settings/Mt_Accounts/create_live_account';
+$route['mt-account/create-demo'] = 'settings/Mt_Accounts/create_demo_account';
+$route['mt-account/create-demo-server'] = 'settings/Mt_Accounts/create_demo_server';
+$route['mt-account/create-live-server'] = 'settings/Mt_Accounts/create_live_server';
+$route['mt/group-add'] = 'settings/Mt_Accounts/add_group';
+$route['mt/group-save'] = 'settings/Mt_Accounts/save_group';
+$route['mt/group-show'] = 'settings/Mt_Accounts/show_group';
+$route['mt/change_group_status'] = 'settings/Mt_Accounts/change_group_status';
+$route['mt/edit-group'] = 'settings/Mt_Accounts/edit_group';
+$route['mt/update-group'] = 'settings/Mt_Accounts/update_group';
 
 $route['transaction/deposit'] = 'Transaction/view_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
 $route['transaction/internal-transfer'] = 'Transaction/internal_transactions';
 $route['transaction/pending-payments'] = 'Transaction/pending_transactions';
+
+$route['test-mail'] = 'settings/MT_Accounts/send_mail';
 
 
 $route['default_controller'] = 'Login';

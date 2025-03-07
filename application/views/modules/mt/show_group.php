@@ -97,11 +97,13 @@
                             <!--begin::Table row-->
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-100px">Sl.no</th>
-                                <th class="text-strat min-w-75px">Category</th>
-                                <th class="text-start min-w-75px">Description</th>
+                                <th class="min-w-100px">Group Id</th>
+                                <th class="text-start min-w-75px">Group Name</th>
+                                <th class="text-strat min-w-75px">Currency</th>
+                                <th class="text-strat min-w-75px">Description</th>
                                 <th class="text-start min-w-75px">Created</th>
                                 <th class="text-start min-w-75px">Status</th>
-                                <th class="text-start min-w-75px">Action</th>
+                                <th class="text-start min-w-100px">Action</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -111,49 +113,52 @@
                             <!--begin::Table row-->
                             <?php
                             $i = 1;
-                            foreach ($details_data as $data) { ?>
-                            <tr>
-                                <td><?php echo $i;?></td>
-                                <td class="text-start pe-0"><?php echo $data->category;; ?></td>
-                                <td class="text-start pe-0"><?php echo $data->description; ?></td>
-                                <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->created_on)); ?></td>
-                                <td class="text-start pe-0">
-                                    <?php if($data->is_active == 1){
-                                        $value ='checked';}
-                                        else{
-                                        $value ='';
-                                        } ?>
-                                    <div class="form-check form-switch form-check-custom form-check-solid me-10">
-                                        <input class="form-check-input h-30px w-50px" type="checkbox"
-                                            <?php echo $value;?> value=""
-                                            onchange="change_status('<?php echo $data->category_id; ?>', '<?php echo $data->is_active; ?>')" />
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0);"
-                                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                        onclick="edit_category('<?php echo $data->category_id; ?>','<?php echo $data->category; ?>','<?php echo $data->description; ?>')">
-                                        <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-                                        <span class="svg-icon svg-icon-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path opacity="0.3"
-                                                    d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
-                                                    fill="currentColor"></path>
-                                                <path
-                                                    d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z"
-                                                    fill="currentColor"></path>
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </a>
+                            foreach ($details_data as $groups) { ?>
+                                <tr>
+                                    <td><?php echo $i; ?></td>
+                                    <td><?php echo $groups->id; ?></td>
+                                    <td class="text-start pe-0"><?php echo $groups->name; ?></td>
+                                    <td class="text-start pe-0"><?php echo $groups->currency; ?></td>
+                                    <td class="text-start pe-0"><?php echo $groups->description; ?></td>
+                                    <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($groups->created_on)); ?>
 
-                                </td>
-                            </tr>
+                                    <td class="text-start pe-0">
+                                        <?php if ($groups->is_active == 1) {
+                                            $value = 'checked';
+                                        } else {
+                                            $value = '';
+                                        } ?>
+                                        <div class="form-check form-switch form-check-custom form-check-solid me-10">
+                                            <input class="form-check-input h-30px w-50px" type="checkbox"
+                                                <?php echo $value; ?> value=""
+                                                onchange="change_status('<?php echo $groups->id; ?>', '<?php echo $groups->is_active; ?>')" />
+                                        </div>
+                                    </td>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);"
+                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                                            onclick="edit_group('<?php echo $groups->id; ?>')">
+                                            <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
+                                            <span class="svg-icon svg-icon-3">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none">
+                                                    <path opacity="0.3"
+                                                        d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z"
+                                                        fill="currentColor"></path>
+                                                    <path
+                                                        d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z"
+                                                        fill="currentColor"></path>
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->
+                                        </a>
+                                    </td>
+                                </tr>
 
                             <?php
-                            $i++;   
-                            }?>
+                                $i++;
+                            } ?>
                         </tbody>
                         <!--end::Table body-->
                     </table>
@@ -168,77 +173,75 @@
     <!--end::Post-->
 </div>
 <script>
-function change_status(category_id, is_active) {
-    if (is_active == 1)
-        status = 0;
-    else if (is_active == 0) {
-        status = 1;
-    }
-    var ops_url = baseurl + 'product/change_status/';
-    $.ajax({
-        type: "POST",
-        cache: false,
-        async: false,
-        url: ops_url,
-        data: {
-            "load": 1,
-            "category_id": category_id,
-            "status": status
-        },
-        success: function(result) {
-            var data = $.parseJSON(result);
+    function change_status(id, is_active) {
+        if (is_active == 1)
+            status = 0;
+        else if (is_active == 0) {
+            status = 1;
+        }
+        var ops_url = baseurl + 'mt/change_group_status/';
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: ops_url,
+            data: {
+                "load": 1,
+                "id": id,
+                "status": status
+            },
+            success: function(result) {
+                var data = $.parseJSON(result);
 
-            if (data.status == 1) {
-                if (status == 0) {
-                    Swal.fire({
-                        title: 'Success',
-                        text: 'Category status deactivated.',
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.reload();
-                        }
-                    });
-                } else if (status == 1) {
-                    Swal.fire({
-                        title: 'Success',
-                        text: 'Category status activated.',
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.reload();
-                        }
-                    });
+                if (data.status == 1) {
+                    if (status == 0) {
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'Status deactivated.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    } else if (status == 1) {
+                        Swal.fire({
+                            title: 'Success',
+                            text: 'Status activated.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    }
                 }
             }
-        }
-    });
-}
+        });
+    }
 
-function edit_category(category_id, category, description, mobile) {
-    var ops_url = baseurl + 'product/edit-category';
-    $.ajax({
-        type: "POST",
-        cache: false,
-        async: false,
-        url: ops_url,
-        data: {
-            "load": 1,
-            "category_id": category_id,
-            "category": category,
-            "description": description,
-        },
-        success: function(result) {
-            console.log(result);
-            var data = $.parseJSON(result);
-            $("#kt_post").html(data.view);
-            $('#kt_post').addClass('in-down');
-            $("html, body").animate({
-                scrollTop: 0
-            }, "slow");
-        }
-    });
-}
+    function edit_group(id) {
+        var ops_url = baseurl + 'mt/edit-group';
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: ops_url,
+            data: {
+                "load": 1,
+                "group_id": id,
+            },
+            success: function(result) {
+                console.log(result);
+                var data = $.parseJSON(result);
+                $("#kt_post").html(data.view);
+                $('#kt_post').addClass('in-down');
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "slow");
+            }
+        });
+    }
 </script>
