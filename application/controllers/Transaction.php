@@ -19,7 +19,7 @@ class Transaction extends CI_Controller
     {
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Deposits';
-        $data['details_data'] = $this->TModel->get_details($data);
+        $data['deposit_data'] = $this->TModel->get_deposit_details($data);
         $data['template'] = 'modules/transactions/view_deposit';
         $this->load->view('template/dashboard_template', $data);
     }
@@ -27,7 +27,7 @@ class Transaction extends CI_Controller
     {
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Withdrawals';
-        $data['details_data'] = $this->TModel->get_details($data);
+        $data['withdraw_data'] = $this->TModel->get_withdraw_details($data);
         $data['template'] = 'modules/transactions/view_withdraw';
         $this->load->view('template/dashboard_template', $data);
     }
