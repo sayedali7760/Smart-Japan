@@ -186,6 +186,7 @@
             var password = $('#password').val();
             var name = $('#name').val();
             var phno = $('#phno').val();
+            var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
             if (name == '') {
                 Swal.fire({
@@ -199,6 +200,14 @@
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Email is required',
+                    icon: 'error'
+                });
+                return false;
+            }
+            if (!emailRegex.test(username)) {
+                Swal.fire({
+                    title: 'Login failed',
+                    text: 'Email is not valid',
                     icon: 'error'
                 });
                 return false;
@@ -228,10 +237,21 @@
                     var data = $.parseJSON(result);
                     if (data.status == 1) {
                         Swal.fire({
+                            title: 'Success',
+                            text: 'Account created.',
                             icon: 'success',
-                            title: 'Account created successfully.'
-                        }).then(() => {
-                            window.location.href = '<?php echo base_url(); ?>login';
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    } else if (data.status == 2) {
+                        Swal.fire({
+                            title: 'Failed',
+                            text: 'Email Already registered.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
                         });
                     } else {
                         Swal.fire({

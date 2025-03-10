@@ -2,7 +2,7 @@
 <!--
 Author: Keenthemes
 Product Name: Metronic - Bootstrap 5 HTML, VueJS, React, Angular & Laravel Admin Dashboard Theme
-Purchase: https://1.envato.market/EA4JP
+Purchase: javascript:void(0);
 Website: http://www.keenthemes.com
 Contact: support@keenthemes.com
 Follow: www.twitter.com/keenthemes
@@ -26,7 +26,7 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:type" content="article" />
     <meta property="og:title"
         content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-    <meta property="og:url" content="https://keenthemes.com/metronic" />
+    <meta property="og:url" content="javascript:void(0);/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/media/footer.png" />
@@ -488,21 +488,21 @@ License: For each use you must have a valid license purchased only from above li
                         class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
                         <!--begin::Copyright-->
                         <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted fw-bold me-1">2022©</span>
-                            <a href="https://keenthemes.com" target="_blank"
-                                class="text-gray-800 text-hover-primary">Keenthemes</a>
+                            <span class="text-muted fw-bold me-1">2025©</span>
+                            <a href="javascript:void(0);" target="_blank"
+                                class="text-gray-800 text-hover-primary">SmartFX</a>
                         </div>
                         <!--end::Copyright-->
                         <!--begin::Menu-->
                         <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
                             <li class="menu-item">
-                                <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+                                <a href="javascript:void(0);" target="_blank" class="menu-link px-2">About</a>
                             </li>
                             <li class="menu-item">
-                                <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
+                                <a href="javascript:void(0);" target="_blank" class="menu-link px-2">Support</a>
                             </li>
                             <li class="menu-item">
-                                <a href="https://1.envato.market/EA4JP" target="_blank"
+                                <a href="javascript:void(0);" target="_blank"
                                     class="menu-link px-2">Purchase</a>
                             </li>
                         </ul>
@@ -1506,7 +1506,7 @@ License: For each use you must have a valid license purchased only from above li
                             <div class="p-5 rounded bg-light-info text-dark fw-bold mw-lg-400px text-start"
                                 data-kt-element="message-text">You can unwatch this repository immediately by clicking
                                 here:
-                                <a href="https://keenthemes.com">Keenthemes.com</a>
+                                <a href="javascript:void(0);">Keenthemes.com</a>
                             </div>
                             <!--end::Text-->
                         </div>
@@ -1758,14 +1758,14 @@ License: For each use you must have a valid license purchased only from above li
                                     <div class="fs-7 text-muted">Reach us for custom license offers.</div>
                                 </div>
                                 <div class="text-nowrap">
-                                    <a href="https://keenthemes.com/contact/" class="btn btn-sm btn-success"
+                                    <a href="javascript:void(0);/contact/" class="btn btn-sm btn-success"
                                         target="_blank">Contact Us</a>
                                 </div>
                             </div>
                         </div>
                         <!--end::License-->
                         <!--begin::Purchase-->
-                        <a href="https://1.envato.market/EA4JP" class="btn btn-primary mb-15 w-100">Buy Now</a>
+                        <a href="javascript:void(0);" class="btn btn-primary mb-15 w-100">Buy Now</a>
                         <!--end::Purchase-->
                         <!--begin::Demos-->
                         <div class="mb-0">
@@ -2230,18 +2230,18 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="rounded border border-dashed border-gray-300 p-6 p-lg-8 mb-10">
                         <!--begin::Heading-->
                         <h2 class="fw-bolder mb-5">Support at
-                            <a href="https://devs.keenthemes.com" class="">devs.keenthemes.com</a>
+                            <a href="javascript:void(0);" class="">devs.keenthemes.com</a>
                         </h2>
                         <!--end::Heading-->
                         <!--begin::Description-->
                         <div class="fs-5 fw-bold mb-5">
                             <span class="text-gray-500">Join our developers community to find answer to your question
                                 and help others.</span>
-                            <a class="explore-link d-none" href="https://keenthemes.com/licensing">FAQs</a>
+                            <a class="explore-link d-none" href="javascript:void(0);/licensing">FAQs</a>
                         </div>
                         <!--end::Description-->
                         <!--begin::Link-->
-                        <a href="https://devs.keenthemes.com" class="btn btn-lg explore-btn-primary w-100">Get
+                        <a href="javascript:void(0);" class="btn btn-lg explore-btn-primary w-100">Get
                             Support</a>
                         <!--end::Link-->
                     </div>
@@ -2426,7 +2426,7 @@ License: For each use you must have a valid license purchased only from above li
                             <!--begin::Wrapper-->
                             <div class="d-flex flex-column me-2 me-lg-5">
                                 <!--begin::Title-->
-                                <a href="https://devs.keenthemes.com/metronic"
+                                <a href="javascript:void(0);/metronic"
                                     class="text-dark text-hover-primary fw-bolder fs-6 fs-lg-4 mb-1">Metronic
                                     Downloads</a>
                                 <!--end::Title-->
@@ -2517,7 +2517,7 @@ License: For each use you must have a valid license purchased only from above li
 				<span id="kt_engage_demos_label">Demos</span>
 			</button>
 			<button id="kt_help_toggle" class="engage-help-toggle btn btn-flex h-35px bg-body btn-color-gray-700 btn-active-color-gray-900 shadow-sm px-5 rounded-top-0" title="Learn &amp; Get Inspired" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-dismiss="click" data-bs-trigger="hover">Help</button>
-			<a href="https://1.envato.market/EA4JP" target="_blank" class="engage-purchase-link btn btn-color-gray-700 bg-body btn-active-color-gray-900' btn-flex h-35px px-5 shadow-sm rounded-top-0">Buy now</a>
+			<a href="javascript:void(0);" target="_blank" class="engage-purchase-link btn btn-color-gray-700 bg-body btn-active-color-gray-900' btn-flex h-35px px-5 shadow-sm rounded-top-0">Buy now</a>
 		</div> -->
     <!--end::Engage toolbar-->
     <!--begin::Scrolltop-->
