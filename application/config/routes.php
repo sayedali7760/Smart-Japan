@@ -126,7 +126,7 @@ $route['mt/change_group_status'] = 'settings/Mt_Accounts/change_group_status';
 $route['mt/edit-group'] = 'settings/Mt_Accounts/edit_group';
 $route['mt/update-group'] = 'settings/Mt_Accounts/update_group';
 
-$route['transaction/deposit'] = 'Transaction/view_deposit';
+$route['transaction/successful'] = 'Transaction/view_succesfull_transactions';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
 $route['transaction/internal-transfer'] = 'Transaction/internal_transactions';
 $route['transaction/pending-payments'] = 'Transaction/pending_transactions';

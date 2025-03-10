@@ -91,7 +91,7 @@
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
                     <!--begin::Table-->
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_demo_sales_table">
                         <!--begin::Table head-->
                         <thead>
                             <!--begin::Table row-->
@@ -124,12 +124,12 @@
                                     <td class="text-start pe-0"><?php echo $data->method; ?></td>
                                     <td class="text-start pe-0"><?php echo $data->amount; ?></td>
                                     <td class="text-start pe-0">
-                                        <?php if ($data->status == 'pending') { ?>
-                                            <span class="badge badge-light-warning">Pending</span>
-                                        <?php } else if ($data->status == 'declined') { ?>
+                                        <?php if ($data->status_finished == 'approved') { ?>
+                                            <span class="badge badge-light-primary">Approved</span>
+                                        <?php } else if ($data->status_finished == 'declined') { ?>
                                             <span class="badge badge-light-danger">Declined</span>
-                                        <?php } else if ($data->status == 'new') { ?>
-                                            <span class="badge badge-light-primary">New</span>
+                                        <?php } else if ($data->status_finished == 'closed') { ?>
+                                            <span class="badge badge-light-success">Closed</span>
                                         <?php } ?>
                                     </td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->date_created)); ?></td>

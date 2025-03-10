@@ -15,19 +15,20 @@ class Transaction extends CI_Controller
         }
         $this->load->model('Transactions_model', 'TModel');
     }
-    public function view_deposit()
+    public function view_succesfull_transactions()
     {
         $data['title'] = 'Transactions';
-        $data['subtitle'] = 'Deposits';
-        $data['deposit_data'] = $this->TModel->get_deposit_details($data);
-        $data['template'] = 'modules/transactions/view_deposit';
+        $data['subtitle'] = 'Successful Transactions';
+        $data['deposit_data'] = $this->TModel->get_success_deposit_details($data);
+        $data['withdraw_data'] = $this->TModel->get_success_withdraw_details($data);
+        $data['template'] = 'modules/transactions/view_succesfull_trans';
         $this->load->view('template/dashboard_template', $data);
     }
     public function view_withdrawal()
     {
         $data['title'] = 'Transactions';
-        $data['subtitle'] = 'Withdrawals';
-        $data['withdraw_data'] = $this->TModel->get_withdraw_details($data);
+        $data['subtitle'] = 'Successful Withdrawals';
+        $data['withdraw_data'] = $this->TModel->get_success_withdraw_details($data);
         $data['template'] = 'modules/transactions/view_withdraw';
         $this->load->view('template/dashboard_template', $data);
     }
