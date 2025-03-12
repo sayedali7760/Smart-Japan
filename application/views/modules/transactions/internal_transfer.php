@@ -98,8 +98,11 @@
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-100px">Sl.no</th>
                                 <th class="text-strat min-w-75px">Transaction Id</th>
+                                <th class="text-start min-w-75px">Type</th>
                                 <th class="text-start min-w-75px">Contact Id</th>
-                                <th class="text-start min-w-75px">Account Id</th>
+                                <th class="text-start min-w-75px">Name</th>
+                                <th class="text-start min-w-75px">From Account</th>
+                                <th class="text-start min-w-75px">To Account</th>
                                 <th class="text-start min-w-75px">Method</th>
                                 <th class="text-start min-w-75px">Amount</th>
                                 <th class="text-start min-w-75px">Charge</th>
@@ -111,7 +114,42 @@
                         <!--begin::Table body-->
                         <tbody class="fw-bold text-gray-600">
                             <!--begin::Table row-->
+                            <?php
+                            $i = 1;
+                            foreach ($transfer_data as $data) { ?>
+                                <tr>
+                                    <td><?php echo $i; ?></td>
+                                    <td><?php echo $data->id; ?></td>
+                                    <td class="text-start pe-0">
+                                        <?php if ($data->type == 'own deposit') { ?>
+                                            <span class="badge badge-light-primary">Deposit</span>
+                                        <?php } else if ($data->type == 'own withdrawal') { ?>
+                                            <span class="badge badge-light-success">Withdraw</span>
+                                        <?php } ?>
+                                    </td>
+                                    <td class="text-start pe-0"><?php echo $data->user_id; ?></td>
+                                    <td class="text-start pe-0"><?php echo $data->name; ?></td>
+                                    <td class="text-start pe-0"><?php echo $data->account_id; ?></td>
+                                    <td class="text-start pe-0">
+                                        <?php echo $data->opt_account_id; ?>
+                                    </td>
+                                    <td class="text-start pe-0"><?php echo $data->method; ?></td>
+                                    <td class="text-start pe-0"><?php echo $data->amount; ?></td>
+                                    <td class="text-start pe-0">
+                                        <?php if ($data->status_finished == 'approved') { ?>
+                                            <span class="badge badge-light-primary">Approved</span>
+                                        <?php } else if ($data->status_finished == 'declined') { ?>
+                                            <span class="badge badge-light-danger">Declined</span>
+                                        <?php } else if ($data->status_finished == 'closed') { ?>
+                                            <span class="badge badge-light-success">Closed</span>
+                                        <?php } ?>
+                                    </td>
+                                    <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->date_created)); ?></td>
+                                </tr>
 
+                            <?php
+                                $i++;
+                            } ?>
                         </tbody>
                         <!--end::Table body-->
                     </table>
