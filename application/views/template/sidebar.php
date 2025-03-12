@@ -87,26 +87,26 @@
 
 
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Deposits') {
+                            <a class="menu-link <?php if ($subtitle == 'Successful Deposits') {
                                                     echo "active";
                                                 } ?>"
                                 href="<?php echo base_url(); ?>transaction/deposit">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Deposits</span>
+                                <span class="menu-title">Successful Deposits</span>
                             </a>
                         </div>
 
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Withdrawals') {
+                            <a class="menu-link <?php if ($subtitle == 'Successful Withdrawals') {
                                                     echo "active";
                                                 } ?>"
                                 href="<?php echo base_url(); ?>transaction/withdraw">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Withdrawals</span>
+                                <span class="menu-title">Success Withdrawals</span>
                             </a>
                         </div>
 
@@ -123,14 +123,14 @@
                         </div>
 
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Pending Payments') {
+                            <a class="menu-link <?php if ($subtitle == 'Pending Deposits') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>transaction/pending-payments">
+                                href="<?php echo base_url(); ?>transaction/pending-deposits">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Pending Payments</span>
+                                <span class="menu-title">Pending Deposits</span>
                             </a>
                         </div>
 

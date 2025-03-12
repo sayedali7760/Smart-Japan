@@ -89,59 +89,61 @@
                 </div>
                 <!--end::Card header-->
                 <!--begin::Card body-->
-                <div class="card-body pt-0">
-                    <!--begin::Table-->
-                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
-                        <!--begin::Table head-->
-                        <thead>
-                            <!--begin::Table row-->
-                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="min-w-100px">Sl.no</th>
-                                <th class="text-strat min-w-75px">Transaction Id</th>
-                                <th class="text-start min-w-75px">Contact Id</th>
-                                <th class="text-start min-w-75px">Name</th>
-                                <th class="text-start min-w-75px">Account Id</th>
-                                <th class="text-start min-w-75px">Method</th>
-                                <th class="text-start min-w-75px">Amount</th>
-                                <th class="text-start min-w-75px">Status</th>
-                                <th class="text-start min-w-75px">Created On</th>
-                            </tr>
-                            <!--end::Table row-->
-                        </thead>
-                        <!--end::Table head-->
-                        <!--begin::Table body-->
-                        <tbody class="fw-bold text-gray-600">
-                            <!--begin::Table row-->
-                            <?php
-                            $i = 1;
-                            foreach ($deposit_data as $data) { ?>
-                                <tr>
-                                    <td><?php echo $i; ?></td>
-                                    <td><?php echo $data->id; ?></td>
-                                    <td class="text-start pe-0"><?php echo $data->user_id; ?></td>
-                                    <td class="text-start pe-0"><?php echo $data->name; ?></td>
-                                    <td class="text-start pe-0"><?php echo $data->account_id; ?></td>
-                                    <td class="text-start pe-0"><?php echo $data->method; ?></td>
-                                    <td class="text-start pe-0"><?php echo $data->amount; ?></td>
-                                    <td class="text-start pe-0">
-                                        <?php if ($data->status == 'pending') { ?>
-                                            <span class="badge badge-light-warning">Pending</span>
-                                        <?php } else if ($data->status == 'error') { ?>
-                                            <span class="badge badge-light-danger">Error</span>
-                                        <?php } else if ($data->status == 'success') { ?>
-                                            <span class="badge badge-light-primary">Success</span>
-                                        <?php } ?>
-                                    </td>
-                                    <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->date_created)); ?></td>
-                                </tr>
+                <div class="py-5">
 
-                            <?php
-                                $i++;
-                            } ?>
-                        </tbody>
-                        <!--end::Table body-->
-                    </table>
-                    <!--end::Table-->
+                    <div class="card-body pt-0">
+                        <!--begin::Table-->
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
+                            <!--begin::Table head-->
+                            <thead>
+                                <!--begin::Table row-->
+                                <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                    <th class="min-w-100px">Sl.no</th>
+                                    <th class="text-strat min-w-75px">Transaction Id</th>
+                                    <th class="text-start min-w-75px">Contact Id</th>
+                                    <th class="text-start min-w-75px">Name</th>
+                                    <th class="text-start min-w-75px">Account Id</th>
+                                    <th class="text-start min-w-75px">Method</th>
+                                    <th class="text-start min-w-75px">Amount</th>
+                                    <th class="text-start min-w-75px">Status</th>
+                                    <th class="text-start min-w-75px">Created On</th>
+                                </tr>
+                                <!--end::Table row-->
+                            </thead>
+                            <!--end::Table head-->
+                            <!--begin::Table body-->
+                            <tbody class="fw-bold text-gray-600">
+                                <!--begin::Table row-->
+                                <?php
+                                $i = 1;
+                                foreach ($deposit_data as $data) { ?>
+                                    <tr>
+                                        <td><?php echo $i; ?></td>
+                                        <td><?php echo $data->id; ?></td>
+                                        <td class="text-start pe-0"><?php echo $data->user_id; ?></td>
+                                        <td class="text-start pe-0"><?php echo $data->name; ?></td>
+                                        <td class="text-start pe-0"><?php echo $data->account_id; ?></td>
+                                        <td class="text-start pe-0"><?php echo $data->method; ?></td>
+                                        <td class="text-start pe-0"><?php echo $data->amount; ?></td>
+                                        <td class="text-start pe-0">
+                                            <?php if ($data->status == 'pending') { ?>
+                                                <span class="badge badge-light-warning">Pending</span>
+                                            <?php } else if ($data->status == 'error') { ?>
+                                                <span class="badge badge-light-danger">Error</span>
+                                            <?php } else if ($data->status == 'success') { ?>
+                                                <span class="badge badge-light-primary">Success</span>
+                                            <?php } ?>
+                                        </td>
+                                        <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->date_created)); ?></td>
+                                    </tr>
+                                <?php
+                                    $i++;
+                                } ?>
+                            </tbody>
+                            <!--end::Table body-->
+                        </table>
+                        <!--end::Table-->
+                    </div>
                 </div>
                 <!--end::Card body-->
             </div>
@@ -151,3 +153,20 @@
     </div>
     <!--end::Post-->
 </div>
+<!-- <script>
+    function show_deposit() {
+        $('#deposit_btn').addClass('btn-active-light-success');
+        $('#deposit_btn').addClass('active');
+        $('#withdraw_btn').removeClass('btn-active-light-info');
+        $('#withdraw_table').hide();
+        $('#deposit_table').show();
+    }
+
+    function show_withdraw() {
+        $('#deposit_btn').removeClass('btn-active-light-success');
+        $('#withdraw_btn').addClass('btn-active-light-info');
+        $('#withdraw_btn').addClass('active');
+        $('#withdraw_table').show();
+        $('#deposit_table').hide();
+    }
+</script> -->

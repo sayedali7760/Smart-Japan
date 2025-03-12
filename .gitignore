@@ -6,5 +6,5 @@ application/config/database.php
 /system/
 /third_party/
 /vendor/
-/logs/
+application/logs/
 
