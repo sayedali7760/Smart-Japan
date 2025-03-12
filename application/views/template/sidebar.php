@@ -87,14 +87,14 @@
 
 
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Successful Transactions') {
+                            <a class="menu-link <?php if ($subtitle == 'Successful Deposits') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>transaction/successful">
+                                href="<?php echo base_url(); ?>transaction/deposit">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Successful Transactions</span>
+                                <span class="menu-title">Successful Deposits</span>
                             </a>
                         </div>
 
@@ -123,14 +123,14 @@
                         </div>
 
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Pending Payments') {
+                            <a class="menu-link <?php if ($subtitle == 'Pending Deposits') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>transaction/pending-payments">
+                                href="<?php echo base_url(); ?>transaction/pending-deposits">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Pending Payments</span>
+                                <span class="menu-title">Pending Deposits</span>
                             </a>
                         </div>
 

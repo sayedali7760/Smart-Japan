@@ -90,33 +90,7 @@
                 <!--end::Card header-->
                 <!--begin::Card body-->
                 <div class="py-5">
-                    <div class="rounded border p-10">
-                        <a id="deposit_btn" class="nav-link active btn btn-flex btn-active-light-success" href="javascript:void(0);" onclick="show_deposit()">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen001.svg-->
-                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M13 14.4V3C13 2.4 12.6 2 12 2C11.4 2 11 2.4 11 3V14.4H13Z" fill="currentColor" />
-                                    <path opacity="0.3" d="M4 14.4H20L12.7 21.7C12.3 22.1 11.7 22.1 11.3 21.7L4 14.4Z" fill="currentColor" />
-                                </svg></span>
-                            <!--end::Svg Icon-->
-                            <span class="d-flex flex-column align-items-start">
-                                <span class="fs-4 fw-bolder">Deposits</span>
-                                <span class="fs-7">Successful Deposits</span>
-                            </span>
-                        </a>
-                        <a id="withdraw_btn" class="nav-link btn btn-flex btn-active-light-info" href="javascript:void(0);" onclick="show_withdraw()">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen003.svg-->
-                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path d="M13 9.59998V21C13 21.6 12.6 22 12 22C11.4 22 11 21.6 11 21V9.59998H13Z" fill="currentColor" />
-                                    <path opacity="0.3" d="M4 9.60002H20L12.7 2.3C12.3 1.9 11.7 1.9 11.3 2.3L4 9.60002Z" fill="currentColor" />
-                                </svg></span>
-                            <!--end::Svg Icon-->
-                            <span class="d-flex flex-column align-items-start">
-                                <span class="fs-4 fw-bolder">Withdrawals</span>
-                                <span class="fs-7">Successful Withdrawals</span>
-                            </span>
-                        </a>
 
-                    </div>
                     <div class="card-body pt-0">
                         <!--begin::Table-->
                         <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_report_sales_table">
@@ -138,7 +112,7 @@
                             </thead>
                             <!--end::Table head-->
                             <!--begin::Table body-->
-                            <tbody class="fw-bold text-gray-600" id="deposit_table">
+                            <tbody class="fw-bold text-gray-600">
                                 <!--begin::Table row-->
                                 <?php
                                 $i = 1;
@@ -162,36 +136,6 @@
                                         </td>
                                         <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->date_created)); ?></td>
                                     </tr>
-
-                                <?php
-                                    $i++;
-                                } ?>
-                            </tbody>
-                            <tbody class="fw-bold text-gray-600" id="withdraw_table" style="display:none;">
-                                <!--begin::Table row-->
-                                <?php
-                                $i = 1;
-                                foreach ($withdraw_data as $data) { ?>
-                                    <tr class="withdraw_table">
-                                        <td><?php echo $i; ?></td>
-                                        <td><?php echo $data->id; ?></td>
-                                        <td class="text-start pe-0"><?php echo $data->user_id; ?></td>
-                                        <td class="text-start pe-0"><?php echo $data->name; ?></td>
-                                        <td class="text-start pe-0"><?php echo $data->account_id; ?></td>
-                                        <td class="text-start pe-0"><?php echo $data->method; ?></td>
-                                        <td class="text-start pe-0"><?php echo $data->amount; ?></td>
-                                        <td class="text-start pe-0">
-                                            <?php if ($data->status_finished == 'approved') { ?>
-                                                <span class="badge badge-light-primary">Approved</span>
-                                            <?php } else if ($data->status_finished == 'declined') { ?>
-                                                <span class="badge badge-light-danger">Declined</span>
-                                            <?php } else if ($data->status_finished == 'closed') { ?>
-                                                <span class="badge badge-light-success">Closed</span>
-                                            <?php } ?>
-                                        </td>
-                                        <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->date_created)); ?></td>
-                                    </tr>
-
                                 <?php
                                     $i++;
                                 } ?>
@@ -200,7 +144,6 @@
                         </table>
                         <!--end::Table-->
                     </div>
-
                 </div>
                 <!--end::Card body-->
             </div>
@@ -210,7 +153,7 @@
     </div>
     <!--end::Post-->
 </div>
-<script>
+<!-- <script>
     function show_deposit() {
         $('#deposit_btn').addClass('btn-active-light-success');
         $('#deposit_btn').addClass('active');
@@ -226,4 +169,4 @@
         $('#withdraw_table').show();
         $('#deposit_table').hide();
     }
-</script>
+</script> -->

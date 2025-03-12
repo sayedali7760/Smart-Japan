@@ -15,13 +15,12 @@ class Transaction extends CI_Controller
         }
         $this->load->model('Transactions_model', 'TModel');
     }
-    public function view_succesfull_transactions()
+    public function view_succesfull_deposit()
     {
         $data['title'] = 'Transactions';
-        $data['subtitle'] = 'Successful Transactions';
-        $data['deposit_data'] = $this->TModel->get_success_deposit_details($data);
-        $data['withdraw_data'] = $this->TModel->get_success_withdraw_details($data);
-        $data['template'] = 'modules/transactions/view_succesfull_trans';
+        $data['subtitle'] = 'Successful Deposits';
+        $data['deposit_data'] = $this->TModel->view_succesfull_deposit($data);
+        $data['template'] = 'modules/transactions/view_deposit';
         $this->load->view('template/dashboard_template', $data);
     }
     public function view_withdrawal()
@@ -37,17 +36,50 @@ class Transaction extends CI_Controller
     {
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Internal Transfers';
-        $data['details_data'] = $this->TModel->get_details($data);
+        $data['transfer_data'] = $this->TModel->get_success_internal_transfers($data);
         $data['template'] = 'modules/transactions/internal_transfer';
         $this->load->view('template/dashboard_template', $data);
     }
 
-    public function pending_transactions()
+    public function pending_deposits()
     {
         $data['title'] = 'Transactions';
-        $data['subtitle'] = 'Pending Payments';
-        $data['details_data'] = $this->TModel->get_details($data);
+        $data['subtitle'] = 'Pending Deposits';
+        $data['pending_data'] = $this->TModel->get_pending_deposit_details($data);
         $data['template'] = 'modules/transactions/pending_transactions';
         $this->load->view('template/dashboard_template', $data);
+    }
+    public function approve_deposit()
+    {
+        $transaction_id = $this->input->post('transaction_id');
+        $data = array('status' => 'success', 'status_finished' => 'approved');
+        if ($this->TModel->approve_deposit($data, $transaction_id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
+    }
+    public function reject_deposit()
+    {
+        $transaction_id = $this->input->post('transaction_id');
+        $data = array('status' => 'success', 'status_finished' => 'declined');
+        if ($this->TModel->reject_deposit($data, $transaction_id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
+    }
+    public function process_deposit()
+    {
+        $transaction_id = $this->input->post('transaction_id');
+        $data = array('status' => 'success', 'status_finished' => 'closed');
+        if ($this->TModel->process_deposit($data, $transaction_id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
     }
 }
