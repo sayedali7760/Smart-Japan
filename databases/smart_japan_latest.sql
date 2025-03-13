@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 12, 2025 at 07:03 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Host: localhost:8889
+-- Generation Time: Mar 10, 2025 at 06:55 AM
+-- Server version: 8.0.35
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,27 +28,27 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `accounts` (
-  `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL COMMENT 'User ID',
-  `login` bigint(20) DEFAULT NULL COMMENT 'Trading Platform login',
-  `server` varchar(128) NOT NULL COMMENT 'Server Domain Name or IP address',
-  `platform` varchar(128) DEFAULT 'mt5',
-  `name` varchar(64) DEFAULT NULL,
-  `isglobal` tinyint(4) NOT NULL DEFAULT 0,
-  `currency` varchar(3) NOT NULL,
-  `balance` decimal(12,2) NOT NULL DEFAULT 0.00,
-  `leverage` int(11) NOT NULL DEFAULT 1,
-  `main_password` varchar(500) NOT NULL,
-  `invest_password` varchar(500) NOT NULL,
-  `phone_password` varchar(500) NOT NULL,
-  `type` varchar(16) NOT NULL,
-  `group` varchar(64) DEFAULT NULL,
-  `info` text DEFAULT NULL,
-  `isdeleted` tinyint(1) DEFAULT 0,
-  `flags` bigint(20) DEFAULT 0,
-  `created` timestamp NULL DEFAULT current_timestamp(),
+  `id` bigint NOT NULL,
+  `user_id` bigint NOT NULL COMMENT 'User ID',
+  `login` bigint DEFAULT NULL COMMENT 'Trading Platform login',
+  `server` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Server Domain Name or IP address',
+  `platform` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'mt5',
+  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isglobal` tinyint NOT NULL DEFAULT '0',
+  `currency` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `balance` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `leverage` int NOT NULL DEFAULT '1',
+  `main_password` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `invest_password` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone_password` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `isdeleted` tinyint(1) DEFAULT '0',
+  `flags` bigint DEFAULT '0',
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Trading accounts';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `accounts`
@@ -886,11 +886,11 @@ DELIMITER ;
 --
 
 CREATE TABLE `category` (
-  `category_id` int(11) NOT NULL,
-  `category` varchar(255) NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
-  `created_on` timestamp NOT NULL DEFAULT current_timestamp()
+  `category_id` int NOT NULL,
+  `category` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
+  `is_active` int NOT NULL DEFAULT '1',
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -909,28 +909,28 @@ INSERT INTO `category` (`category_id`, `category`, `description`, `is_active`, `
 --
 
 CREATE TABLE `clients` (
-  `id` bigint(20) NOT NULL,
-  `uid` varchar(36) DEFAULT NULL,
-  `name` varchar(128) DEFAULT NULL COMMENT 'Full name',
-  `email` varchar(128) NOT NULL,
-  `template_type` int(11) NOT NULL DEFAULT 2,
-  `filenum` bigint(20) DEFAULT NULL COMMENT 'Sequence for Company use',
-  `file` varchar(500) NOT NULL,
-  `brand` varchar(64) NOT NULL DEFAULT '',
-  `password` varchar(255) NOT NULL COMMENT 'MD5 hash',
-  `password_secure` varchar(255) DEFAULT NULL COMMENT 'Password for secure transactions',
-  `phone` varchar(16) DEFAULT NULL,
-  `country` varchar(2) DEFAULT NULL COMMENT 'ISO-3166-1 alpha-2 code',
-  `lang` varchar(2) DEFAULT 'en',
-  `status` bigint(20) UNSIGNED DEFAULT 1,
-  `type` varchar(16) NOT NULL DEFAULT 'secure' COMMENT 'backoffice,admin,...',
-  `acl` varchar(64) DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id` bigint NOT NULL,
+  `uid` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Full name',
+  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `template_type` int NOT NULL DEFAULT '2',
+  `filenum` bigint DEFAULT NULL COMMENT 'Sequence for Company use',
+  `file` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `brand` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'MD5 hash',
+  `password_secure` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Password for secure transactions',
+  `phone` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'ISO-3166-1 alpha-2 code',
+  `lang` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT 'en',
+  `status` bigint UNSIGNED DEFAULT '1',
+  `type` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'secure' COMMENT 'backoffice,admin,...',
+  `acl` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `activated` datetime DEFAULT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
+  `is_active` int NOT NULL DEFAULT '1',
   `modified` timestamp NULL DEFAULT NULL,
-  `campaign` varchar(128) DEFAULT NULL COMMENT 'Campaign ID'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `campaign` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Campaign ID'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `clients`
@@ -1584,11 +1584,11 @@ DELIMITER ;
 --
 
 CREATE TABLE `country` (
-  `id` int(11) NOT NULL,
-  `country_name` varchar(255) NOT NULL,
-  `country_code` varchar(10) NOT NULL,
-  `phone_code` varchar(20) NOT NULL,
-  `flag_image_url` varchar(255) NOT NULL
+  `id` int NOT NULL,
+  `country_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `country_code` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone_code` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `flag_image_url` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1828,16 +1828,16 @@ INSERT INTO `country` (`id`, `country_name`, `country_code`, `phone_code`, `flag
 --
 
 CREATE TABLE `currency` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `code` varchar(3) NOT NULL,
   `name` varchar(50) NOT NULL,
   `symbol` varchar(10) DEFAULT NULL,
-  `numeric_code` int(11) DEFAULT NULL,
-  `minor_units` int(11) DEFAULT 2,
+  `numeric_code` int DEFAULT NULL,
+  `minor_units` int DEFAULT '2',
   `exchange_rate` decimal(15,6) DEFAULT NULL,
   `country` varchar(100) DEFAULT NULL,
-  `is_active` tinyint(1) DEFAULT 1,
-  `last_updated` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `is_active` tinyint(1) DEFAULT '1',
+  `last_updated` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1845,50 +1845,50 @@ CREATE TABLE `currency` (
 --
 
 INSERT INTO `currency` (`id`, `code`, `name`, `symbol`, `numeric_code`, `minor_units`, `exchange_rate`, `country`, `is_active`, `last_updated`) VALUES
-(1, 'USD', 'United States Dollar', '$', 840, 2, 1.000000, 'United States', 1, '2025-03-04 02:40:25'),
-(2, 'EUR', 'Euro', '€', 978, 2, 1.100000, 'European Union', 1, '2025-03-04 02:40:25'),
-(3, 'GBP', 'British Pound Sterling', '£', 826, 2, 1.250000, 'United Kingdom', 1, '2025-03-04 02:40:25'),
-(4, 'JPY', 'Japanese Yen', '¥', 392, 0, 0.007500, 'Japan', 1, '2025-03-04 02:40:25'),
-(5, 'INR', 'Indian Rupee', '₹', 356, 2, 0.012000, 'India', 1, '2025-03-04 02:40:25'),
-(6, 'AUD', 'Australian Dollar', 'A$', 36, 2, 0.660000, 'Australia', 1, '2025-03-04 02:40:25'),
-(7, 'CAD', 'Canadian Dollar', 'C$', 124, 2, 0.740000, 'Canada', 1, '2025-03-04 02:40:25'),
-(8, 'CNY', 'Chinese Yuan Renminbi', '¥', 156, 2, 0.140000, 'China', 1, '2025-03-04 02:40:25'),
-(9, 'CHF', 'Swiss Franc', 'CHF', 756, 2, 1.130000, 'Switzerland', 1, '2025-03-04 02:40:25'),
-(10, 'SGD', 'Singapore Dollar', 'S$', 702, 2, 0.740000, 'Singapore', 1, '2025-03-04 02:40:25'),
-(11, 'HKD', 'Hong Kong Dollar', 'HK$', 344, 2, 0.130000, 'Hong Kong', 1, '2025-03-04 02:40:25'),
-(12, 'NZD', 'New Zealand Dollar', 'NZ$', 554, 2, 0.620000, 'New Zealand', 1, '2025-03-04 02:40:25'),
-(13, 'SEK', 'Swedish Krona', 'kr', 752, 2, 0.095000, 'Sweden', 1, '2025-03-04 02:40:25'),
-(14, 'NOK', 'Norwegian Krone', 'kr', 578, 2, 0.090000, 'Norway', 1, '2025-03-04 02:40:25'),
-(15, 'DKK', 'Danish Krone', 'kr', 208, 2, 0.150000, 'Denmark', 1, '2025-03-04 02:40:25'),
-(16, 'KRW', 'South Korean Won', '₩', 410, 0, 0.000760, 'South Korea', 1, '2025-03-04 02:40:25'),
-(17, 'ZAR', 'South African Rand', 'R', 710, 2, 0.052000, 'South Africa', 1, '2025-03-04 02:40:25'),
-(18, 'MXN', 'Mexican Peso', 'Mex$', 484, 2, 0.058000, 'Mexico', 1, '2025-03-04 02:40:25'),
-(19, 'BRL', 'Brazilian Real', 'R$', 986, 2, 0.200000, 'Brazil', 1, '2025-03-04 02:40:25'),
-(20, 'RUB', 'Russian Ruble', '₽', 643, 2, 0.011000, 'Russia', 1, '2025-03-04 02:40:25'),
-(21, 'TRY', 'Turkish Lira', '₺', 949, 2, 0.032000, 'Turkey', 1, '2025-03-04 02:40:25'),
-(22, 'THB', 'Thai Baht', '฿', 764, 2, 0.029000, 'Thailand', 1, '2025-03-04 02:40:25'),
-(23, 'IDR', 'Indonesian Rupiah', 'Rp', 360, 2, 0.000065, 'Indonesia', 1, '2025-03-04 02:40:25'),
-(24, 'MYR', 'Malaysian Ringgit', 'RM', 458, 2, 0.210000, 'Malaysia', 1, '2025-03-04 02:40:25'),
-(25, 'PHP', 'Philippine Peso', '₱', 608, 2, 0.018000, 'Philippines', 1, '2025-03-04 02:40:25'),
-(26, 'VND', 'Vietnamese Dong', '₫', 704, 0, 0.000042, 'Vietnam', 1, '2025-03-04 02:40:25'),
-(27, 'PLN', 'Polish Zloty', 'zł', 985, 2, 0.250000, 'Poland', 1, '2025-03-04 02:40:25'),
-(28, 'HUF', 'Hungarian Forint', 'Ft', 348, 2, 0.002800, 'Hungary', 1, '2025-03-04 02:40:25'),
-(29, 'CZK', 'Czech Koruna', 'Kč', 203, 2, 0.044000, 'Czech Republic', 1, '2025-03-04 02:40:25'),
-(30, 'ILS', 'Israeli New Shekel', '₪', 376, 2, 0.280000, 'Israel', 1, '2025-03-04 02:40:25'),
-(31, 'SAR', 'Saudi Riyal', '﷼', 682, 2, 0.267000, 'Saudi Arabia', 1, '2025-03-04 02:40:25'),
-(32, 'AED', 'United Arab Emirates Dirham', 'د.إ', 784, 2, 0.272000, 'United Arab Emirates', 1, '2025-03-04 02:40:25'),
-(33, 'EGP', 'Egyptian Pound', '£', 818, 2, 0.032000, 'Egypt', 1, '2025-03-04 02:40:25'),
-(34, 'PKR', 'Pakistani Rupee', '₨', 586, 2, 0.003600, 'Pakistan', 1, '2025-03-04 02:40:25'),
-(35, 'BDT', 'Bangladeshi Taka', '৳', 50, 2, 0.009400, 'Bangladesh', 1, '2025-03-04 02:40:25'),
-(36, 'LKR', 'Sri Lankan Rupee', 'Rs', 144, 2, 0.003300, 'Sri Lanka', 1, '2025-03-04 02:40:25'),
-(37, 'NGN', 'Nigerian Naira', '₦', 566, 2, 0.002000, 'Nigeria', 1, '2025-03-04 02:40:25'),
-(38, 'KES', 'Kenyan Shilling', 'KSh', 404, 2, 0.006500, 'Kenya', 1, '2025-03-04 02:40:25'),
-(39, 'GHS', 'Ghanaian Cedi', '₵', 936, 2, 0.086000, 'Ghana', 1, '2025-03-04 02:40:25'),
-(40, 'COP', 'Colombian Peso', '$', 170, 2, 0.000260, 'Colombia', 1, '2025-03-04 02:40:25'),
-(41, 'ARS', 'Argentine Peso', '$', 32, 2, 0.002000, 'Argentina', 1, '2025-03-04 02:40:25'),
-(42, 'CLP', 'Chilean Peso', '$', 152, 2, 0.001100, 'Chile', 1, '2025-03-04 02:40:25'),
-(43, 'PEN', 'Peruvian Sol', 'S/', 604, 2, 0.270000, 'Peru', 1, '2025-03-04 02:40:25'),
-(44, 'UAH', 'Ukrainian Hryvnia', '₴', 980, 2, 0.026000, 'Ukraine', 1, '2025-03-04 02:40:25');
+(1, 'USD', 'United States Dollar', '$', 840, 2, 1.000000, 'United States', 1, '2025-03-04 06:40:25'),
+(2, 'EUR', 'Euro', '€', 978, 2, 1.100000, 'European Union', 1, '2025-03-04 06:40:25'),
+(3, 'GBP', 'British Pound Sterling', '£', 826, 2, 1.250000, 'United Kingdom', 1, '2025-03-04 06:40:25'),
+(4, 'JPY', 'Japanese Yen', '¥', 392, 0, 0.007500, 'Japan', 1, '2025-03-04 06:40:25'),
+(5, 'INR', 'Indian Rupee', '₹', 356, 2, 0.012000, 'India', 1, '2025-03-04 06:40:25'),
+(6, 'AUD', 'Australian Dollar', 'A$', 36, 2, 0.660000, 'Australia', 1, '2025-03-04 06:40:25'),
+(7, 'CAD', 'Canadian Dollar', 'C$', 124, 2, 0.740000, 'Canada', 1, '2025-03-04 06:40:25'),
+(8, 'CNY', 'Chinese Yuan Renminbi', '¥', 156, 2, 0.140000, 'China', 1, '2025-03-04 06:40:25'),
+(9, 'CHF', 'Swiss Franc', 'CHF', 756, 2, 1.130000, 'Switzerland', 1, '2025-03-04 06:40:25'),
+(10, 'SGD', 'Singapore Dollar', 'S$', 702, 2, 0.740000, 'Singapore', 1, '2025-03-04 06:40:25'),
+(11, 'HKD', 'Hong Kong Dollar', 'HK$', 344, 2, 0.130000, 'Hong Kong', 1, '2025-03-04 06:40:25'),
+(12, 'NZD', 'New Zealand Dollar', 'NZ$', 554, 2, 0.620000, 'New Zealand', 1, '2025-03-04 06:40:25'),
+(13, 'SEK', 'Swedish Krona', 'kr', 752, 2, 0.095000, 'Sweden', 1, '2025-03-04 06:40:25'),
+(14, 'NOK', 'Norwegian Krone', 'kr', 578, 2, 0.090000, 'Norway', 1, '2025-03-04 06:40:25'),
+(15, 'DKK', 'Danish Krone', 'kr', 208, 2, 0.150000, 'Denmark', 1, '2025-03-04 06:40:25'),
+(16, 'KRW', 'South Korean Won', '₩', 410, 0, 0.000760, 'South Korea', 1, '2025-03-04 06:40:25'),
+(17, 'ZAR', 'South African Rand', 'R', 710, 2, 0.052000, 'South Africa', 1, '2025-03-04 06:40:25'),
+(18, 'MXN', 'Mexican Peso', 'Mex$', 484, 2, 0.058000, 'Mexico', 1, '2025-03-04 06:40:25'),
+(19, 'BRL', 'Brazilian Real', 'R$', 986, 2, 0.200000, 'Brazil', 1, '2025-03-04 06:40:25'),
+(20, 'RUB', 'Russian Ruble', '₽', 643, 2, 0.011000, 'Russia', 1, '2025-03-04 06:40:25'),
+(21, 'TRY', 'Turkish Lira', '₺', 949, 2, 0.032000, 'Turkey', 1, '2025-03-04 06:40:25'),
+(22, 'THB', 'Thai Baht', '฿', 764, 2, 0.029000, 'Thailand', 1, '2025-03-04 06:40:25'),
+(23, 'IDR', 'Indonesian Rupiah', 'Rp', 360, 2, 0.000065, 'Indonesia', 1, '2025-03-04 06:40:25'),
+(24, 'MYR', 'Malaysian Ringgit', 'RM', 458, 2, 0.210000, 'Malaysia', 1, '2025-03-04 06:40:25'),
+(25, 'PHP', 'Philippine Peso', '₱', 608, 2, 0.018000, 'Philippines', 1, '2025-03-04 06:40:25'),
+(26, 'VND', 'Vietnamese Dong', '₫', 704, 0, 0.000042, 'Vietnam', 1, '2025-03-04 06:40:25'),
+(27, 'PLN', 'Polish Zloty', 'zł', 985, 2, 0.250000, 'Poland', 1, '2025-03-04 06:40:25'),
+(28, 'HUF', 'Hungarian Forint', 'Ft', 348, 2, 0.002800, 'Hungary', 1, '2025-03-04 06:40:25'),
+(29, 'CZK', 'Czech Koruna', 'Kč', 203, 2, 0.044000, 'Czech Republic', 1, '2025-03-04 06:40:25'),
+(30, 'ILS', 'Israeli New Shekel', '₪', 376, 2, 0.280000, 'Israel', 1, '2025-03-04 06:40:25'),
+(31, 'SAR', 'Saudi Riyal', '﷼', 682, 2, 0.267000, 'Saudi Arabia', 1, '2025-03-04 06:40:25'),
+(32, 'AED', 'United Arab Emirates Dirham', 'د.إ', 784, 2, 0.272000, 'United Arab Emirates', 1, '2025-03-04 06:40:25'),
+(33, 'EGP', 'Egyptian Pound', '£', 818, 2, 0.032000, 'Egypt', 1, '2025-03-04 06:40:25'),
+(34, 'PKR', 'Pakistani Rupee', '₨', 586, 2, 0.003600, 'Pakistan', 1, '2025-03-04 06:40:25'),
+(35, 'BDT', 'Bangladeshi Taka', '৳', 50, 2, 0.009400, 'Bangladesh', 1, '2025-03-04 06:40:25'),
+(36, 'LKR', 'Sri Lankan Rupee', 'Rs', 144, 2, 0.003300, 'Sri Lanka', 1, '2025-03-04 06:40:25'),
+(37, 'NGN', 'Nigerian Naira', '₦', 566, 2, 0.002000, 'Nigeria', 1, '2025-03-04 06:40:25'),
+(38, 'KES', 'Kenyan Shilling', 'KSh', 404, 2, 0.006500, 'Kenya', 1, '2025-03-04 06:40:25'),
+(39, 'GHS', 'Ghanaian Cedi', '₵', 936, 2, 0.086000, 'Ghana', 1, '2025-03-04 06:40:25'),
+(40, 'COP', 'Colombian Peso', '$', 170, 2, 0.000260, 'Colombia', 1, '2025-03-04 06:40:25'),
+(41, 'ARS', 'Argentine Peso', '$', 32, 2, 0.002000, 'Argentina', 1, '2025-03-04 06:40:25'),
+(42, 'CLP', 'Chilean Peso', '$', 152, 2, 0.001100, 'Chile', 1, '2025-03-04 06:40:25'),
+(43, 'PEN', 'Peruvian Sol', 'S/', 604, 2, 0.270000, 'Peru', 1, '2025-03-04 06:40:25'),
+(44, 'UAH', 'Ukrainian Hryvnia', '₴', 980, 2, 0.026000, 'Ukraine', 1, '2025-03-04 06:40:25');
 
 -- --------------------------------------------------------
 
@@ -1897,19 +1897,19 @@ INSERT INTO `currency` (`id`, `code`, `name`, `symbol`, `numeric_code`, `minor_u
 --
 
 CREATE TABLE `documents` (
-  `id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL,
-  `eid` varchar(255) NOT NULL,
-  `eid_status` int(11) DEFAULT 0,
-  `passport` varchar(255) NOT NULL,
-  `pass_status` int(11) DEFAULT 0,
-  `bank` varchar(255) NOT NULL,
-  `bank_status` int(11) DEFAULT 0,
-  `others` varchar(255) NOT NULL,
-  `others_status` int(11) DEFAULT 0,
-  `account_verify` int(11) NOT NULL DEFAULT 0,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id` int NOT NULL,
+  `client_id` int NOT NULL,
+  `eid` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `eid_status` int DEFAULT '0',
+  `passport` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `pass_status` int DEFAULT '0',
+  `bank` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `bank_status` int DEFAULT '0',
+  `others` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `others_status` int DEFAULT '0',
+  `account_verify` int NOT NULL DEFAULT '0',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1930,12 +1930,12 @@ INSERT INTO `documents` (`id`, `client_id`, `eid`, `eid_status`, `passport`, `pa
 --
 
 CREATE TABLE `mt_groups` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `name` varchar(500) NOT NULL,
   `currency` varchar(500) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
-  `created_on` timestamp NOT NULL DEFAULT current_timestamp()
+  `is_active` int NOT NULL DEFAULT '1',
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1943,9 +1943,9 @@ CREATE TABLE `mt_groups` (
 --
 
 INSERT INTO `mt_groups` (`id`, `name`, `currency`, `description`, `is_active`, `created_on`) VALUES
-(1, 'SSC\\FINR-B\\SSC-FINR-VIP-SWAP-9(Markup)-USD-A', 'USD', 'Testing group', 1, '2025-03-04 03:10:25'),
-(2, 'SSC\\FINR-B\\SSC-FINR-VIP-SWAP-9(Markup)-USD-A', 'USD', 'Testing group', 1, '2025-03-04 03:10:29'),
-(3, 'SSC\\FINR-B\\SSC-FINR-VIP', 'USD', 'test', 0, '2025-03-04 03:12:05');
+(1, 'SSC\\FINR-B\\SSC-FINR-VIP-SWAP-9(Markup)-USD-A', 'USD', 'Testing group', 1, '2025-03-04 07:10:25'),
+(2, 'SSC\\FINR-B\\SSC-FINR-VIP-SWAP-9(Markup)-USD-A', 'USD', 'Testing group', 1, '2025-03-04 07:10:29'),
+(3, 'SSC\\FINR-B\\SSC-FINR-VIP', 'USD', 'test', 0, '2025-03-04 07:12:05');
 
 -- --------------------------------------------------------
 
@@ -1954,12 +1954,12 @@ INSERT INTO `mt_groups` (`id`, `name`, `currency`, `description`, `is_active`, `
 --
 
 CREATE TABLE `organization` (
-  `organization_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `mail_id` varchar(100) NOT NULL,
-  `mobile` varchar(50) NOT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
-  `created_on` timestamp NOT NULL DEFAULT current_timestamp()
+  `organization_id` int NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `mail_id` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `mobile` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `is_active` int NOT NULL DEFAULT '1',
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1977,11 +1977,11 @@ INSERT INTO `organization` (`organization_id`, `name`, `mail_id`, `mobile`, `is_
 --
 
 CREATE TABLE `positions` (
-  `position_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `position_identity` varchar(100) NOT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
-  `created_on` datetime NOT NULL DEFAULT current_timestamp()
+  `position_id` int NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `position_identity` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `is_active` int NOT NULL DEFAULT '1',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -2013,31 +2013,31 @@ INSERT INTO `positions` (`position_id`, `name`, `position_identity`, `is_active`
 --
 
 CREATE TABLE `transactions` (
-  `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  `owner_id` bigint(20) DEFAULT NULL COMMENT 'Transaction ID this transaction belongs to (refund belongs withdrawal)',
-  `parent_id` bigint(20) DEFAULT NULL COMMENT 'Transaction ID this transaction is linked to (Refund linked to Deposit)',
-  `date_created` timestamp NULL DEFAULT current_timestamp(),
+  `id` bigint NOT NULL,
+  `user_id` bigint NOT NULL,
+  `owner_id` bigint DEFAULT NULL COMMENT 'Transaction ID this transaction belongs to (refund belongs withdrawal)',
+  `parent_id` bigint DEFAULT NULL COMMENT 'Transaction ID this transaction is linked to (Refund linked to Deposit)',
+  `date_created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `date_modified` timestamp NULL DEFAULT NULL,
-  `type` varchar(16) NOT NULL COMMENT 'deposit, withdrawal, transfer',
-  `method` varchar(16) DEFAULT NULL COMMENT 'BANK, OTHER',
-  `reference` varchar(45) DEFAULT NULL,
-  `account_id` bigint(20) NOT NULL,
-  `opt_account_id` bigint(20) DEFAULT NULL,
-  `purse_id` bigint(20) DEFAULT NULL,
-  `currency` varchar(3) DEFAULT NULL,
+  `type` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'deposit, withdrawal, transfer',
+  `method` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'BANK, OTHER',
+  `reference` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `account_id` bigint NOT NULL,
+  `opt_account_id` bigint DEFAULT NULL,
+  `purse_id` bigint DEFAULT NULL,
+  `currency` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount` decimal(12,2) NOT NULL,
   `amount_processed` decimal(12,2) DEFAULT NULL COMMENT 'Amount came from payment system',
   `amount_finished` decimal(12,2) DEFAULT NULL COMMENT 'Amount approved\n',
   `finished` timestamp NULL DEFAULT NULL COMMENT 'date transaction was finished with backoffice',
   `processed` timestamp NULL DEFAULT NULL COMMENT 'date transaction was finished with processor',
-  `manager_id` bigint(20) DEFAULT NULL,
-  `comment` varchar(512) DEFAULT NULL,
-  `status` varchar(16) DEFAULT 'new' COMMENT 'Status from processing',
-  `status_finished` varchar(16) DEFAULT NULL COMMENT 'Status from backoffice',
-  `comment_finished` varchar(512) DEFAULT NULL COMMENT 'Comment by manager',
-  `platform_order_id` varchar(64) DEFAULT NULL,
-  `opt_platform_order_id` varchar(64) DEFAULT NULL
+  `manager_id` bigint DEFAULT NULL,
+  `comment` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT 'new' COMMENT 'Status from processing',
+  `status_finished` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Status from backoffice',
+  `comment_finished` varchar(512) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Comment by manager',
+  `platform_order_id` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `opt_platform_order_id` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Store financial transactions';
 
 --
@@ -4146,17 +4146,17 @@ DELIMITER ;
 --
 
 CREATE TABLE `user_details` (
-  `id` int(11) NOT NULL,
-  `position` varchar(100) NOT NULL,
-  `template_type` int(11) NOT NULL DEFAULT 1,
-  `email` varchar(500) NOT NULL,
-  `fname` varchar(255) NOT NULL,
-  `lname` varchar(255) NOT NULL,
-  `file` varchar(500) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `created_on` timestamp NOT NULL DEFAULT current_timestamp(),
-  `is_active` int(11) NOT NULL DEFAULT 1,
-  `forgot_pass_flag` int(11) NOT NULL
+  `id` int NOT NULL,
+  `position` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `template_type` int NOT NULL DEFAULT '1',
+  `email` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
+  `fname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `file` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_active` int NOT NULL DEFAULT '1',
+  `forgot_pass_flag` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -4176,10 +4176,10 @@ INSERT INTO `user_details` (`id`, `position`, `template_type`, `email`, `fname`,
 --
 
 CREATE TABLE `user_roles` (
-  `role_id` int(11) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
-  `created_on` timestamp NOT NULL DEFAULT current_timestamp()
+  `role_id` int NOT NULL,
+  `description` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `is_active` int NOT NULL DEFAULT '1',
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -4192,6 +4192,172 @@ INSERT INTO `user_roles` (`role_id`, `description`, `is_active`, `created_on`) V
 (3, 'Supervisor', 1, '2021-08-26 12:13:20'),
 (4, 'Management', 1, '2022-07-05 07:11:58'),
 (5, 'Higher Management', 1, '2022-07-05 07:11:58');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email_UNIQUE` (`email`,`brand`),
+  ADD UNIQUE KEY `uid_UNIQUE` (`uid`),
+  ADD UNIQUE KEY `filenum_UNIQUE` (`filenum`,`brand`);
+
+--
+-- Indexes for table `country`
+--
+ALTER TABLE `country`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `currency`
+--
+ALTER TABLE `currency`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`),
+  ADD UNIQUE KEY `numeric_code` (`numeric_code`);
+
+--
+-- Indexes for table `documents`
+--
+ALTER TABLE `documents`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mt_groups`
+--
+ALTER TABLE `mt_groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `organization`
+--
+ALTER TABLE `organization`
+  ADD PRIMARY KEY (`organization_id`);
+
+--
+-- Indexes for table `positions`
+--
+ALTER TABLE `positions`
+  ADD PRIMARY KEY (`position_id`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_transactions_1` (`account_id`),
+  ADD KEY `fk_transactions_2` (`opt_account_id`),
+  ADD KEY `fk_transactions_3` (`user_id`),
+  ADD KEY `fk_transactions_4` (`manager_id`),
+  ADD KEY `fk_transactions_5` (`purse_id`),
+  ADD KEY `fk_transactions_6` (`parent_id`),
+  ADD KEY `fk_transactions_7` (`owner_id`),
+  ADD KEY `platform_oder_id_idx` (`platform_order_id`),
+  ADD KEY `opt_platform_order_id_idx` (`opt_platform_order_id`);
+
+--
+-- Indexes for table `user_details`
+--
+ALTER TABLE `user_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  ADD PRIMARY KEY (`role_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=805;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70001;
+
+--
+-- AUTO_INCREMENT for table `country`
+--
+ALTER TABLE `country`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
+
+--
+-- AUTO_INCREMENT for table `currency`
+--
+ALTER TABLE `currency`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `documents`
+--
+ALTER TABLE `documents`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `mt_groups`
+--
+ALTER TABLE `mt_groups`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `organization`
+--
+ALTER TABLE `organization`
+  MODIFY `organization_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `positions`
+--
+ALTER TABLE `positions`
+  MODIFY `position_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2074;
+
+--
+-- AUTO_INCREMENT for table `user_details`
+--
+ALTER TABLE `user_details`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT for table `user_roles`
+--
+ALTER TABLE `user_roles`
+  MODIFY `role_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -130,6 +130,7 @@ $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
 $route['transaction/internal-transfer'] = 'Transaction/internal_transactions';
 $route['transaction/pending-deposits'] = 'Transaction/pending_deposits';
+$route['transaction/pending-withdrawal'] = 'Transaction/pending_withdrawal';
 
 $route['transaction/approve-deposit'] = 'Transaction/approve_deposit';
 $route['transaction/reject-deposit'] = 'Transaction/reject_deposit';
