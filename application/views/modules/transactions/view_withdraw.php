@@ -99,10 +99,11 @@
                                 <th class="min-w-100px">Sl.no</th>
                                 <th class="text-strat min-w-75px">Transaction Id</th>
                                 <th class="text-start min-w-75px">Contact Id</th>
+                                <th class="text-start min-w-75px">Name</th>
                                 <th class="text-start min-w-75px">Account Id</th>
                                 <th class="text-start min-w-75px">Method</th>
                                 <th class="text-start min-w-75px">Amount</th>
-                                <th class="text-start min-w-75px">Charge</th>
+                                <th class="text-start min-w-75px">Status</th>
                                 <th class="text-start min-w-75px">Created On</th>
                             </tr>
                             <!--end::Table row-->
@@ -111,7 +112,32 @@
                         <!--begin::Table body-->
                         <tbody class="fw-bold text-gray-600">
                             <!--begin::Table row-->
+                            <?php
+                            $i = 1;
+                            foreach ($withdraw_data as $data) { ?>
+                                <tr>
+                                    <td><?php echo $i; ?></td>
+                                    <td><?php echo $data->id; ?></td>
+                                    <td class="text-start pe-0"><?php echo $data->user_id; ?></td>
+                                    <td class="text-start pe-0"><?php echo $data->name; ?></td>
+                                    <td class="text-start pe-0"><?php echo $data->account_id; ?></td>
+                                    <td class="text-start pe-0"><?php echo $data->method; ?></td>
+                                    <td class="text-start pe-0"><?php echo $data->amount; ?></td>
+                                    <td class="text-start pe-0">
+                                        <?php if ($data->status_finished == 'approved') { ?>
+                                            <span class="badge badge-light-primary">Approved</span>
+                                        <?php } else if ($data->status_finished == 'declined') { ?>
+                                            <span class="badge badge-light-danger">Declined</span>
+                                        <?php } else if ($data->status_finished == 'closed') { ?>
+                                            <span class="badge badge-light-success">Closed</span>
+                                        <?php } ?>
+                                    </td>
+                                    <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->date_created)); ?></td>
+                                </tr>
 
+                            <?php
+                                $i++;
+                            } ?>
                         </tbody>
                         <!--end::Table body-->
                     </table>
@@ -125,79 +151,3 @@
     </div>
     <!--end::Post-->
 </div>
-<script>
-    function change_status(organization_id, is_active) {
-        if (is_active == 1)
-            status = 0;
-        else if (is_active == 0) {
-            status = 1;
-        }
-        var ops_url = baseurl + 'organization/change_status/';
-        $.ajax({
-            type: "POST",
-            cache: false,
-            async: false,
-            url: ops_url,
-            data: {
-                "load": 1,
-                "organization_id": organization_id,
-                "status": status
-            },
-            success: function(result) {
-                var data = $.parseJSON(result);
-
-                if (data.status == 1) {
-                    if (status == 0) {
-                        Swal.fire({
-                            title: 'Success',
-                            text: 'Organization status deactivated.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.reload();
-                            }
-                        });
-                    } else if (status == 1) {
-                        Swal.fire({
-                            title: 'Success',
-                            text: 'Organization status activated.',
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.reload();
-                            }
-                        });
-                    }
-                }
-            }
-        });
-    }
-
-    function edit_organization(organization_id, name, mail_id, mobile) {
-        var ops_url = baseurl + 'organization/edit-organization';
-        $.ajax({
-            type: "POST",
-            cache: false,
-            async: false,
-            url: ops_url,
-            data: {
-                "load": 1,
-                "organization_id": organization_id,
-                "name": name,
-                "mail_id": mail_id,
-                "mobile": mobile
-            },
-            success: function(result) {
-                console.log(result);
-                var data = $.parseJSON(result);
-                $("#kt_post").html(data.view);
-                $('#kt_post').addClass('in-down');
-                $("html, body").animate({
-                    scrollTop: 0
-                }, "slow");
-            }
-        });
-    }
-</script>

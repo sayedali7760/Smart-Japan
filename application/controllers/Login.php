@@ -211,17 +211,30 @@ class Login extends CI_Controller
         $phno = $this->input->post('phno');
 
         $uuid_data = random_bytes(16);
-        $uuid_data[6] = chr(ord($uuid_data[6]) & 0x0f | 0x40); // Set version 4
-        $uuid_data[8] = chr(ord($uuid_data[8]) & 0x3f | 0x80); // Set variant
+        $uuid_data[6] = chr(ord($uuid_data[6]) & 0x0f | 0x40);
+        $uuid_data[8] = chr(ord($uuid_data[8]) & 0x3f | 0x80);
         $uuid =  vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($uuid_data), 4));
-
-        $user_data = array('uid' => $uuid, 'name' => $name, 'email' => $email, 'file' => 'abc.jpg', 'brand' =>  'smartfxcfd.com', 'password' => $password, 'phone' => $phno);
-        if ($this->CModel->add_client($user_data)) {
-            echo json_encode(array('status' => 1));
+        $qry = $this->db->get_where('clients', "email like '$email'");
+        if ($qry->num_rows() > 0) {
+            echo json_encode(array('status' => 2));
             return;
         } else {
-            echo json_encode(array('status' => 0));
-            return;
+            $user_data = array('uid' => $uuid, 'name' => $name, 'email' => $email, 'file' => 'abc.jpg', 'brand' =>  'smartfxcfd.com', 'password' => $password, 'phone' => $phno);
+            if ($this->CModel->add_client($user_data)) {
+                $mailto = $email;
+                $subject = 'Account Created Successfully';
+                $data_user_array['name'] = $name;
+                $data_user_array['name'] = 'Seyad Ali';
+                $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $data_user_array, true);
+                $cc = "";
+                send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+
+                echo json_encode(array('status' => 1));
+                return;
+            } else {
+                echo json_encode(array('status' => 0));
+                return;
+            }
         }
     }
 }

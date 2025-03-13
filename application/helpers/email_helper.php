@@ -9,56 +9,38 @@ function send_smtp_mailer($subject = '', $mailto = '', $mailcontent = '', $cc = 
 {
     $CI = get_instance();
 
-    $inst_name = 'NIMS UAE';
-    $inst_id = 0;
+
 
     try {
-        // $host = 'email-smtp.ap-south-1.amazonaws.com';
-        // $smtp_username = "AKIAUM27CUNHHOQJ3FHI";
-        // $password = "BLc2/24QN2Vn8G4l+62a4URY+7DGMynoUyjJ1tj6gpdo";
 
+
+        $name = 'Smart-FX';
         $host = 'smtp.gmail.com';
-        $smtp_username = "mailalert@docme.cloud";
-        $password = "123abcAB";
+        $smtp_username = "noreply@smartfx.com";
+        $password = "noreply@smartfx";
 
-        switch ($inst_id) {
-            case 0:
-                $smtp_from_email = "mailalert@docme.cloud";
-                break;
-            case 5:
-                $smtp_from_email = "mailalert@docme.cloud";
-                break;
-            case 8:
-                $smtp_from_email = "mailalert@docme.cloud";
-                break;
-            case 20:
-                $smtp_from_email = "mailalert@docme.cloud";
-                break;
-            default:
-                $smtp_from_email = "mailalert@docme.cloud";
-                break;
-        }
 
-        if (ENVIRONMENT == 'development') {
-            $mailto = 'mailalert@docme.cloud';
-        }
 
-        if (strpos($mailto, '@hotmail.com')) {
-            $host = 'smtp.gmail.com';
-            $smtp_username = "mailalert@docme.cloud";
-            $password = "123abcAB";
-            $smtp_from_email = "mailalert@docme.cloud";
-        }
+        // if (ENVIRONMENT == 'development') {
+        //     $mailto = '';
+        // }
+
+        // if (strpos($mailto, '@hotmail.com')) {
+        //     $host = 'smtp.gmail.com';
+        //     $smtp_username = "";
+        //     $password = "";
+        $smtp_from_email = "noreply@smartfx.com";
+        // }
 
         $mail = new PHPMailer\PHPMailer\PHPMailer;
         $mail->isSMTP();
         $mail->Host = $host;
-        $mail->Port = 587;
-        $mail->SMTPSecure = 'tls';
+        $mail->Port = 465;
+        $mail->SMTPSecure = 'ssl';
         $mail->SMTPAuth = true;
         $mail->Username = $smtp_username;
         $mail->Password = $password;
-        $mail->SetFrom($smtp_from_email, $inst_name);
+        $mail->SetFrom($smtp_from_email, $name);
         if ($reply_to != '') {
             $mail->ClearReplyTos();
             $mail->addReplyTo($reply_to);
@@ -86,7 +68,7 @@ function send_smtp_mailer($subject = '', $mailto = '', $mailcontent = '', $cc = 
             $channel = $connection->channel();
             $email_log_data['email'] = $smtp_from_email;
             $email_log_data['action'] = 'Email_notification';
-            $email_log_data['module_name'] = APP_TITLE . '-' . $inst_name . ' : ' . $subject;
+            $email_log_data['module_name'] = APP_TITLE . '-' . $name . ' : ' . $subject;
             $email_log_data['timestamp_server'] = time();
             $email_log_data['timestamp_date'] = date('Y-m-d h:i:s');
 

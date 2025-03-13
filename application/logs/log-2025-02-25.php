@@ -46,3 +46,5 @@ ERROR - 2025-02-25 07:44:40 --> Severity: Warning --> Trying to access array off
 ERROR - 2025-02-25 07:44:40 --> Severity: Warning --> Undefined variable $user_data C:\xampp\htdocs\Smart-Japan\application\views\modules\general_settings\my_profile.php 81
 ERROR - 2025-02-25 07:44:40 --> Severity: Warning --> Trying to access array offset on value of type null C:\xampp\htdocs\Smart-Japan\application\views\modules\general_settings\my_profile.php 81
 ERROR - 2025-02-25 07:44:40 --> Severity: Warning --> Undefined variable $count_qry C:\xampp\htdocs\Smart-Japan\application\views\modules\general_settings\my_profile.php 116
+ERROR - 2025-02-25 12:54:40 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) /Applications/MAMP/htdocs/Smart-Japan/system/database/drivers/mysqli/mysqli_driver.php 203
+ERROR - 2025-02-25 12:54:40 --> Unable to connect to the database
