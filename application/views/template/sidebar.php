@@ -134,6 +134,18 @@
                             </a>
                         </div>
 
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Pending Withdrawals') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>transaction/pending-withdrawal">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Pending Withdrawals</span>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
 

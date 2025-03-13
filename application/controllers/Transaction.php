@@ -49,6 +49,14 @@ class Transaction extends CI_Controller
         $data['template'] = 'modules/transactions/pending_transactions';
         $this->load->view('template/dashboard_template', $data);
     }
+    public function pending_withdrawal()
+    {
+        $data['title'] = 'Transactions';
+        $data['subtitle'] = 'Pending Withdrawals';
+        $data['pending_data'] = $this->TModel->get_pending_withdraw_details($data);
+        $data['template'] = 'modules/transactions/pending_withdraw';
+        $this->load->view('template/dashboard_template', $data);
+    }
     public function approve_deposit()
     {
         $transaction_id = $this->input->post('transaction_id');
@@ -76,10 +84,28 @@ class Transaction extends CI_Controller
         $transaction_id = $this->input->post('transaction_id');
         $data = array('status' => 'success', 'status_finished' => 'closed');
         if ($this->TModel->process_deposit($data, $transaction_id)) {
-            echo json_encode(array('status' => 1));
-            return;
+
+            $transaction_data = $this->TModel->get_transactions_unique($transaction_id);
+            $mtAmount = $transaction_data['amount'];
+            require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
+            $instance = new MTWebAPI();
+            // $response = $instance->Connect(LIVE_IP, LIVE_PORT, LIVE_TIMEOUT, LIVE_LOGIN, LIVE_PASSWORD);
+            $response = $instance->Connect(DEMO_IP, DEMO_PORT, DEMO_TIMEOUT, DEMO_LOGIN, DEMO_PASSWORD);
+            if ($response !== MTRetCode::MT_RET_OK) {
+                // echo "Failed to connect to MetaTrader 5 server. Error code: " . $response;
+                echo json_encode(array('status' => 2));
+                return;
+            } else {
+                $mtAmount = $transaction_data['amount'];
+                // $login = $transaction_data['login'];
+                $login = 1105391;
+                $result = $instance->TradeBalance($login, MTEnDealAction::DEAL_BALANCE,  $mtAmount, 'Nexus', $ticket);
+                echo json_encode(array('status' => 1));
+                return;
+            }
         } else {
-            return false;
+            echo json_encode(array('status' => 2));
+            return;
         }
     }
 }

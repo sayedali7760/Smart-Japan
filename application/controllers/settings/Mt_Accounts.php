@@ -171,7 +171,6 @@ class Mt_Accounts extends CI_Controller
         } else {
             $mtAmount = 10000;
             $mtLeverage = 400;
-
             require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
             try {
                 $instance = new MTWebAPI();
