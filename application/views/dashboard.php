@@ -82,7 +82,7 @@
 					<div class="card card-xl-stretch mb-xl-8">
 						<!--begin::Header-->
 						<div class="card-header border-0">
-							<h3 class="card-title fw-bolder text-dark">Notifications</h3>
+							<h3 class="card-title fw-bolder text-dark">Recent Transactions</h3>
 							<div class="card-toolbar">
 								<!--begin::Menu-->
 								<button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -181,120 +181,38 @@
 						<!--end::Header-->
 						<!--begin::Body-->
 						<div class="card-body pt-2">
-							<!--begin::Item-->
-							<div class="d-flex align-items-center mb-8">
-								<!--begin::Bullet-->
-								<span class="bullet bullet-vertical h-40px bg-success"></span>
-								<!--end::Bullet-->
-								<!--begin::Checkbox-->
-								<div class="form-check form-check-custom form-check-solid mx-5">
-									<input class="form-check-input" type="checkbox" value="" />
+							<?php foreach ($transaction_details as $history) { ?>
+								<div class="d-flex align-items-center mb-8">
+									<?php if ($history->type == 'withdraw') { ?>
+										<span class="bullet bullet-vertical h-40px bg-danger"></span>
+									<?php } else { ?>
+										<span class="bullet bullet-vertical h-40px bg-success"></span>
+									<?php } ?>
+									<div class="form-check form-check-custom form-check-solid mx-5">
+										<?php if ($history->type == 'withdraw') { ?>
+											<span class="svg-icon svg-icon-danger svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+													<path d="M22 7H2V11H22V7Z" fill="currentColor" />
+													<path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19ZM14 14C14 13.4 13.6 13 13 13H5C4.4 13 4 13.4 4 14C4 14.6 4.4 15 5 15H13C13.6 15 14 14.6 14 14ZM16 15.5C16 16.3 16.7 17 17.5 17H18.5C19.3 17 20 16.3 20 15.5C20 14.7 19.3 14 18.5 14H17.5C16.7 14 16 14.7 16 15.5Z" fill="currentColor" />
+												</svg></span>
+										<?php } else { ?>
+											<span class="svg-icon svg-icon-success svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+													<path d="M22 7H2V11H22V7Z" fill="currentColor" />
+													<path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19ZM14 14C14 13.4 13.6 13 13 13H5C4.4 13 4 13.4 4 14C4 14.6 4.4 15 5 15H13C13.6 15 14 14.6 14 14ZM16 15.5C16 16.3 16.7 17 17.5 17H18.5C19.3 17 20 16.3 20 15.5C20 14.7 19.3 14 18.5 14H17.5C16.7 14 16 14.7 16 15.5Z" fill="currentColor" />
+												</svg></span>
+										<?php } ?>
+
+									</div>
+									<div class="flex-grow-1">
+										<a href="#" class="text-gray-800 text-hover-primary fw-bolder fs-6"><?php echo $history->name; ?></a>
+										<span class="text-muted fw-bold d-block"><?php echo date('d/m/Y H:i:s', strtotime($history->date_created)); ?></span>
+									</div>
+									<?php if ($history->type == 'withdraw') { ?>
+										<span class="badge badge-light-danger fs-8 fw-bolder"><?php echo $history->currency; ?> <?php echo $history->amount; ?></span>
+									<?php } else { ?>
+										<span class="badge badge-light-success fs-8 fw-bolder"><?php echo $history->currency; ?> <?php echo $history->amount; ?></span>
+									<?php } ?>
 								</div>
-								<!--end::Checkbox-->
-								<!--begin::Description-->
-								<div class="flex-grow-1">
-									<a href="#" class="text-gray-800 text-hover-primary fw-bolder fs-6">Create FireStone Logo</a>
-									<span class="text-muted fw-bold d-block">Due in 2 Days</span>
-								</div>
-								<!--end::Description-->
-								<span class="badge badge-light-success fs-8 fw-bolder">New</span>
-							</div>
-							<!--end:Item-->
-							<!--begin::Item-->
-							<div class="d-flex align-items-center mb-8">
-								<!--begin::Bullet-->
-								<span class="bullet bullet-vertical h-40px bg-primary"></span>
-								<!--end::Bullet-->
-								<!--begin::Checkbox-->
-								<div class="form-check form-check-custom form-check-solid mx-5">
-									<input class="form-check-input" type="checkbox" value="" />
-								</div>
-								<!--end::Checkbox-->
-								<!--begin::Description-->
-								<div class="flex-grow-1">
-									<a href="#" class="text-gray-800 text-hover-primary fw-bolder fs-6">Stakeholder Meeting</a>
-									<span class="text-muted fw-bold d-block">Due in 3 Days</span>
-								</div>
-								<!--end::Description-->
-								<span class="badge badge-light-primary fs-8 fw-bolder">New</span>
-							</div>
-							<!--end:Item-->
-							<!--begin::Item-->
-							<div class="d-flex align-items-center mb-8">
-								<!--begin::Bullet-->
-								<span class="bullet bullet-vertical h-40px bg-warning"></span>
-								<!--end::Bullet-->
-								<!--begin::Checkbox-->
-								<div class="form-check form-check-custom form-check-solid mx-5">
-									<input class="form-check-input" type="checkbox" value="" />
-								</div>
-								<!--end::Checkbox-->
-								<!--begin::Description-->
-								<div class="flex-grow-1">
-									<a href="#" class="text-gray-800 text-hover-primary fw-bolder fs-6">Scoping &amp; Estimations</a>
-									<span class="text-muted fw-bold d-block">Due in 5 Days</span>
-								</div>
-								<!--end::Description-->
-								<span class="badge badge-light-warning fs-8 fw-bolder">New</span>
-							</div>
-							<!--end:Item-->
-							<!--begin::Item-->
-							<div class="d-flex align-items-center mb-8">
-								<!--begin::Bullet-->
-								<span class="bullet bullet-vertical h-40px bg-primary"></span>
-								<!--end::Bullet-->
-								<!--begin::Checkbox-->
-								<div class="form-check form-check-custom form-check-solid mx-5">
-									<input class="form-check-input" type="checkbox" value="" />
-								</div>
-								<!--end::Checkbox-->
-								<!--begin::Description-->
-								<div class="flex-grow-1">
-									<a href="#" class="text-gray-800 text-hover-primary fw-bolder fs-6">KPI App Showcase</a>
-									<span class="text-muted fw-bold d-block">Due in 2 Days</span>
-								</div>
-								<!--end::Description-->
-								<span class="badge badge-light-primary fs-8 fw-bolder">New</span>
-							</div>
-							<!--end:Item-->
-							<!--begin::Item-->
-							<div class="d-flex align-items-center mb-8">
-								<!--begin::Bullet-->
-								<span class="bullet bullet-vertical h-40px bg-danger"></span>
-								<!--end::Bullet-->
-								<!--begin::Checkbox-->
-								<div class="form-check form-check-custom form-check-solid mx-5">
-									<input class="form-check-input" type="checkbox" value="" />
-								</div>
-								<!--end::Checkbox-->
-								<!--begin::Description-->
-								<div class="flex-grow-1">
-									<a href="#" class="text-gray-800 text-hover-primary fw-bolder fs-6">Project Meeting</a>
-									<span class="text-muted fw-bold d-block">Due in 12 Days</span>
-								</div>
-								<!--end::Description-->
-								<span class="badge badge-light-danger fs-8 fw-bolder">New</span>
-							</div>
-							<!--end:Item-->
-							<!--begin::Item-->
-							<div class="d-flex align-items-center">
-								<!--begin::Bullet-->
-								<span class="bullet bullet-vertical h-40px bg-success"></span>
-								<!--end::Bullet-->
-								<!--begin::Checkbox-->
-								<div class="form-check form-check-custom form-check-solid mx-5">
-									<input class="form-check-input" type="checkbox" value="" />
-								</div>
-								<!--end::Checkbox-->
-								<!--begin::Description-->
-								<div class="flex-grow-1">
-									<a href="#" class="text-gray-800 text-hover-primary fw-bolder fs-6">Customers Update</a>
-									<span class="text-muted fw-bold d-block">Due in 1 week</span>
-								</div>
-								<!--end::Description-->
-								<span class="badge badge-light-success fs-8 fw-bolder">New</span>
-							</div>
-							<!--end:Item-->
+							<?php } ?>
 						</div>
 						<!--end::Body-->
 					</div>

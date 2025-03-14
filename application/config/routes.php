@@ -131,10 +131,13 @@ $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
 $route['transaction/internal-transfer'] = 'Transaction/internal_transactions';
 $route['transaction/pending-deposits'] = 'Transaction/pending_deposits';
 $route['transaction/pending-withdrawal'] = 'Transaction/pending_withdrawal';
+$route['transaction/rejected-transactions'] = 'Transaction/rejected_transactions';
 
 $route['transaction/approve-deposit'] = 'Transaction/approve_deposit';
 $route['transaction/reject-deposit'] = 'Transaction/reject_deposit';
 $route['transaction/process-deposit'] = 'Transaction/process_deposit';
+$route['transaction/reject-withdraw'] = 'Transaction/reject_withdraw';
+$route['transaction/process-withdraw'] = 'Transaction/process_withdraw';
 
 
 $route['test-mail'] = 'settings/MT_Accounts/send_mail';

@@ -145,7 +145,17 @@
                                 <span class="menu-title">Pending Withdrawals</span>
                             </a>
                         </div>
-
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Rejected Transactions') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>transaction/rejected-transactions">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Rejected Transactions</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 

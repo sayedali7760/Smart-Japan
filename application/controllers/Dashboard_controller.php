@@ -21,6 +21,7 @@ class Dashboard_controller extends CI_Controller
         $data['subtitle'] = 'Dashboard';
         $type = $this->session->userdata['template_type'];
         if ($type == 1) {
+            $data['transaction_details'] = $this->MDashboard->get_transaction_history();
             $data['template'] = 'dashboard';
         }
         if ($type == 2) {

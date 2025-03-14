@@ -84,6 +84,18 @@ class Transactions_model extends CI_Model
         $query = $this->db->get()->result();
         return $query;
     }
+    public function get_rejected_transaction_details()
+    {
+        $this->db->select('t.*, c.name');
+        $this->db->from('transactions AS t');
+        $this->db->join('clients AS c', 'c.id = t.user_id', 'left');
+        //$this->db->where('t.type', 'withdraw');
+        //$this->db->where_in('t.status', ['new']);
+        $this->db->where('t.status_finished', 'declined');
+        $this->db->order_by('t.id', "desc");
+        $query = $this->db->get()->result();
+        return $query;
+    }
     public function approve_deposit($data, $transaction_id)
     {
         $this->db->update('transactions', $data, 'id=' . $transaction_id . '');
@@ -94,7 +106,17 @@ class Transactions_model extends CI_Model
         $this->db->update('transactions', $data, 'id=' . $transaction_id . '');
         return true;
     }
+    public function reject_withdraw($data, $transaction_id)
+    {
+        $this->db->update('transactions', $data, 'id=' . $transaction_id . '');
+        return true;
+    }
     public function process_deposit($data, $transaction_id)
+    {
+        $this->db->update('transactions', $data, 'id=' . $transaction_id . '');
+        return true;
+    }
+    public function process_withdraw($data, $transaction_id)
     {
         $this->db->update('transactions', $data, 'id=' . $transaction_id . '');
         return true;
