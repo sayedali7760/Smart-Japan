@@ -101,7 +101,7 @@ class Transaction extends CI_Controller
     public function process_deposit()
     {
         $transaction_id = $this->input->post('transaction_id');
-        $data = array('status' => 'success', 'status_finished' => 'closed');
+        $data = array('status' => 'success', 'status_finished' => 'closed', 'date_modified' => date('Y-m-d H:i:s'));
         if ($this->TModel->process_deposit($data, $transaction_id)) {
 
             $transaction_data = $this->TModel->get_transactions_unique($transaction_id);

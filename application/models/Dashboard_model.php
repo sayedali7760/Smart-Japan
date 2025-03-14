@@ -50,9 +50,27 @@ class Dashboard_model extends CI_Model
         // $this->db->where('t.type', 'deposit');
         //$this->db->where('t.status', 'success');
         $this->db->where('t.status_finished', 'closed');
-        $this->db->order_by('t.id', "desc");
+        $this->db->order_by('t.date_modified', "desc");
         $this->db->limit(6);
         $query = $this->db->get()->result();
+        return $query;
+    }
+    public function get_deposit_total()
+    {
+        $this->db->select('SUM(t.amount) AS total_amount');
+        $this->db->from('transactions AS t');
+        $this->db->where('t.type', 'deposit');
+        $this->db->where('t.status_finished', 'closed');
+        $query = $this->db->get()->row_array();
+        return $query;
+    }
+    public function get_withdraw_total()
+    {
+        $this->db->select('SUM(t.amount) AS total_amount');
+        $this->db->from('transactions AS t');
+        $this->db->where('t.type', 'withdraw');
+        $this->db->where('t.status_finished', 'closed');
+        $query = $this->db->get()->row_array();
         return $query;
     }
 }

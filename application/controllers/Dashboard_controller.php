@@ -22,6 +22,8 @@ class Dashboard_controller extends CI_Controller
         $type = $this->session->userdata['template_type'];
         if ($type == 1) {
             $data['transaction_details'] = $this->MDashboard->get_transaction_history();
+            $data['deposit_total'] = $this->MDashboard->get_deposit_total();
+            $data['withdrawal_total'] = $this->MDashboard->get_withdraw_total();
             $data['template'] = 'dashboard';
         }
         if ($type == 2) {

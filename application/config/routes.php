@@ -125,6 +125,7 @@ $route['mt/group-show'] = 'settings/Mt_Accounts/show_group';
 $route['mt/change_group_status'] = 'settings/Mt_Accounts/change_group_status';
 $route['mt/edit-group'] = 'settings/Mt_Accounts/edit_group';
 $route['mt/update-group'] = 'settings/Mt_Accounts/update_group';
+$route['mt-account/show-mt-create'] = 'settings/Mt_Accounts/show_mt_create';
 
 $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
