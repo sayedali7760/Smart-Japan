@@ -80,7 +80,8 @@
 									<br>Welcome to an exciting new experience!
 								</h3>
 								<div class="d-flex gap-3">
-									<a href="javascript:void(0);" onclick="create_live()" class="btn btn-success fw-bold px-6 py-3">Create Live Account</a>
+									<a href="javascript:void(0);" class="btn btn-success fw-bold px-6 py-3">Create MT5 Account</a>
+									<!-- <a href="javascript:void(0);" onclick="create_live()" class="btn btn-success fw-bold px-6 py-3">Create Live Account</a> -->
 									<a href="javascript:void(0);" onclick="create_demo()" class="btn btn-primary fw-bold px-6 py-3">Create Demo Account</a>
 								</div>
 							</div>

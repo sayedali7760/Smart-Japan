@@ -12,6 +12,13 @@ class Mt_Accounts extends CI_Controller
         }
         $this->load->model('general_settings/Mt_model', 'MModel');
     }
+    public function show_mt_create()
+    {
+        $data['title'] = 'MT Account';
+        $data['subtitle'] = 'Create MT5 Account';
+        $data['template'] = 'modules/mt/add_account';
+        $this->load->view('template/dashboard_template', $data);
+    }
     public function show_live_account()
     {
         $data['title'] = 'MT Accounts';
