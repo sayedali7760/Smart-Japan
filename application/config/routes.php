@@ -125,15 +125,20 @@ $route['mt/group-show'] = 'settings/Mt_Accounts/show_group';
 $route['mt/change_group_status'] = 'settings/Mt_Accounts/change_group_status';
 $route['mt/edit-group'] = 'settings/Mt_Accounts/edit_group';
 $route['mt/update-group'] = 'settings/Mt_Accounts/update_group';
+$route['mt-account/show-mt-create'] = 'settings/Mt_Accounts/show_mt_create';
 
 $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
 $route['transaction/internal-transfer'] = 'Transaction/internal_transactions';
 $route['transaction/pending-deposits'] = 'Transaction/pending_deposits';
+$route['transaction/pending-withdrawal'] = 'Transaction/pending_withdrawal';
+$route['transaction/rejected-transactions'] = 'Transaction/rejected_transactions';
 
 $route['transaction/approve-deposit'] = 'Transaction/approve_deposit';
 $route['transaction/reject-deposit'] = 'Transaction/reject_deposit';
 $route['transaction/process-deposit'] = 'Transaction/process_deposit';
+$route['transaction/reject-withdraw'] = 'Transaction/reject_withdraw';
+$route['transaction/process-withdraw'] = 'Transaction/process_withdraw';
 
 
 $route['test-mail'] = 'settings/MT_Accounts/send_mail';

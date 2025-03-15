@@ -21,13 +21,44 @@ class Dashboard_controller extends CI_Controller
         $data['subtitle'] = 'Dashboard';
         $type = $this->session->userdata['template_type'];
         if ($type == 1) {
+            $data['transaction_details'] = $this->MDashboard->get_transaction_history();
+            $data['deposit_total'] = $this->MDashboard->get_deposit_total();
+            $data['withdrawal_total'] = $this->MDashboard->get_withdraw_total();
             $data['template'] = 'dashboard';
         }
         if ($type == 2) {
             $id = $this->session->userdata['id'];
             $data['client_document_data'] = $this->CModel->get_documents_details($id);
-            $data['mt_demo_accounts'] = $this->MModel->get_mt_demo_account_details($id);
-            $data['mt_live_accounts'] = $this->MModel->get_mt_live_account_details($id);
+
+            require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
+            try {
+                $instance = new MTWebAPI();
+                $response = $instance->Connect(DEMO_IP, DEMO_PORT, DEMO_TIMEOUT, DEMO_LOGIN, DEMO_PASSWORD);
+                if ($response !== MTRetCode::MT_RET_OK) {
+                    echo "Failed to connect to MetaTrader 5 server. Error code: " . $response;
+                } else {
+                }
+            } catch (Exception $e) {
+                echo "An error occurred: " . $e->getMessage();
+            }
+            $demo_account = $this->MModel->get_mt_demo_account_details($id);
+            $mt_demo_accounts = [];
+            foreach ($demo_account as $row) {
+                $instance->UserAccountGet($row->login, $demo_user_server);
+                $mt_demo_accounts[$row->login] = array('login' => $demo_user_server->Login, 'Balance' => $demo_user_server->Balance, 'Profit' => $demo_user_server->Profit);
+            }
+
+            $response = $instance->Connect(LIVE_IP, LIVE_PORT, LIVE_TIMEOUT, LIVE_LOGIN, LIVE_PASSWORD);
+            $live_account = $this->MModel->get_mt_live_account_details($id);
+            $mt_live_accounts = [];
+            foreach ($live_account as $rows) {
+                $instance->UserAccountGet($rows->login, $live_user_server);
+                $mt_live_accounts[$rows->login] = array('login' => $live_user_server->Login, 'Balance' => $live_user_server->Balance, 'Profit' => $live_user_server->Profit);
+            }
+
+
+            $data['mt_demo_accounts'] = $mt_demo_accounts;
+            $data['mt_live_accounts'] = $mt_live_accounts;
             $data['template'] = 'dashboard_client';
         }
         $this->load->view('template/dashboard_template', $data);
