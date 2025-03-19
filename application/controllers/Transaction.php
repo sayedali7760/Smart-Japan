@@ -10,13 +10,13 @@ class Transaction extends CI_Controller
         if (!isset($this->session->userdata['ecomm_login'])) {
             redirect('login');
         }
-        if ($this->session->userdata['template_type'] != 1) {
-            redirect('error');
-        }
         $this->load->model('Transactions_model', 'TModel');
     }
     public function view_succesfull_deposit()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Successful Deposits';
         $data['deposit_data'] = $this->TModel->view_succesfull_deposit();
@@ -25,15 +25,29 @@ class Transaction extends CI_Controller
     }
     public function view_withdrawal()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Successful Withdrawals';
         $data['withdraw_data'] = $this->TModel->get_success_withdraw_details();
         $data['template'] = 'modules/transactions/view_withdraw';
         $this->load->view('template/dashboard_template', $data);
     }
-
+    public function my_transaction_details()
+    {
+        $data['title'] = 'Reports';
+        $data['subtitle'] = 'My Transactions';
+        $client_id = $this->session->userdata('id');
+        $data['transaction_data'] = $this->TModel->get_transaction_details($client_id);
+        $data['template'] = 'modules/transactions/show_transaction_history';
+        $this->load->view('template/dashboard_template', $data);
+    }
     public function internal_transactions()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Internal Transfers';
         $data['transfer_data'] = $this->TModel->get_success_internal_transfers();
@@ -43,6 +57,9 @@ class Transaction extends CI_Controller
 
     public function pending_deposits()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Pending Deposits';
         $data['pending_data'] = $this->TModel->get_pending_deposit_details();
@@ -51,6 +68,9 @@ class Transaction extends CI_Controller
     }
     public function pending_withdrawal()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Pending Withdrawals';
         $data['pending_data'] = $this->TModel->get_pending_withdraw_details();
@@ -59,6 +79,9 @@ class Transaction extends CI_Controller
     }
     public function rejected_transactions()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Rejected Transactions';
         $data['rejected_data'] = $this->TModel->get_rejected_transaction_details();
@@ -67,6 +90,9 @@ class Transaction extends CI_Controller
     }
     public function approve_deposit()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $transaction_id = $this->input->post('transaction_id');
         $data = array('status' => 'success', 'status_finished' => 'approved');
         if ($this->TModel->approve_deposit($data, $transaction_id)) {
@@ -78,6 +104,9 @@ class Transaction extends CI_Controller
     }
     public function reject_deposit()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $transaction_id = $this->input->post('transaction_id');
         $data = array('status' => 'success', 'status_finished' => 'declined');
         if ($this->TModel->reject_deposit($data, $transaction_id)) {
@@ -89,6 +118,9 @@ class Transaction extends CI_Controller
     }
     public function reject_withdraw()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $transaction_id = $this->input->post('transaction_id');
         $data = array('status_finished' => 'declined');
         if ($this->TModel->reject_withdraw($data, $transaction_id)) {
@@ -100,6 +132,9 @@ class Transaction extends CI_Controller
     }
     public function process_deposit()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $transaction_id = $this->input->post('transaction_id');
         $data = array('status' => 'success', 'status_finished' => 'closed', 'date_modified' => date('Y-m-d H:i:s'));
         if ($this->TModel->process_deposit($data, $transaction_id)) {
@@ -129,6 +164,9 @@ class Transaction extends CI_Controller
     }
     public function process_withdraw()
     {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
         $transaction_id = $this->input->post('transaction_id');
         $data = array('status_finished' => 'closed');
         if ($this->TModel->process_withdraw($data, $transaction_id)) {

@@ -39,6 +39,16 @@ class Transactions_model extends CI_Model
         $query = $this->db->get()->result();
         return $query;
     }
+    public function get_transaction_details($client_id)
+    {
+        $this->db->select('t.*, c.name');
+        $this->db->from('transactions AS t');
+        $this->db->join('clients AS c', 'c.id = t.user_id', 'left');
+        $this->db->where('t.user_id', $client_id);
+        $this->db->order_by('t.id', "desc");
+        $query = $this->db->get()->result();
+        return $query;
+    }
     public function get_success_withdraw_details()
     {
         $this->db->select('t.*, c.name');
