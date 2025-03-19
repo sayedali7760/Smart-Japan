@@ -27,6 +27,16 @@ class Mt_Accounts extends CI_Controller
         $data['template'] = 'modules/mt/show_live_accounts';
         $this->load->view('template/dashboard_template', $data);
     }
+    public function my_mt_details()
+    {
+        $data['title'] = 'MT Account';
+        $data['subtitle'] = 'MT5 Account Details';
+        $client_id = $this->session->userdata('id');
+        $data['details_data'] = $this->MModel->get_my_mt_details($client_id);
+        $data['template'] = 'modules/mt/my_mt_details';
+        $this->load->view('template/dashboard_template', $data);
+    }
+
     public function show_demo_account()
     {
         $data['title'] = 'MT Accounts';
@@ -78,15 +88,15 @@ class Mt_Accounts extends CI_Controller
                     echo "Failed to connect to MetaTrader 5 server. Error code: " . $response;
                 } else {
                     $new_user = $instance->UserCreate();
-                    $new_user->Email = $user_details['email'];
+                    $new_user->Email = 'sayed.ali7760@gmail.com';
                     $new_user->MainPassword = RandString();
                     $new_user->InvestPassword = RandString();
                     $new_user->Group = 'SSC\JAPAN\SSC-JAPAN-VIP-USD-B';
-                    $new_user->ZipCode = '';
-                    $new_user->Country = $user_details['country'];
-                    $new_user->State = '';
-                    $new_user->City = '';
-                    $new_user->Address = '';
+                    $new_user->ZipCode = '123456';
+                    $new_user->Country = 'United Arab Emirates';
+                    $new_user->State = 'Dubai';
+                    $new_user->City = 'Baysquare';
+                    $new_user->Address = '402, 4th Floor, Al Saqr Business Tower, Sheikh Zayed Road, Dubai, UAE';
                     $new_user->Phone = $user_details['phone'];
                     $new_user->Name = $fullname;
                     $new_user->PhonePassword = RandString();
