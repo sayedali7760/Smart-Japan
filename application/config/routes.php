@@ -135,6 +135,10 @@ $route['transaction/internal-transfer'] = 'Transaction/internal_transactions';
 $route['transaction/pending-deposits'] = 'Transaction/pending_deposits';
 $route['transaction/pending-withdrawal'] = 'Transaction/pending_withdrawal';
 $route['transaction/rejected-transactions'] = 'Transaction/rejected_transactions';
+$route['transaction/deposit-client'] = 'Transaction/deposit_client_account';
+$route['transaction/deposit-save'] = 'Transaction/deposit_client_save';
+$route['transaction/withdraw-client'] = 'Transaction/withdraw_client_account';
+$route['transaction/transfer-client'] = 'Transaction/transfer_client_account';
 
 $route['transaction/approve-deposit'] = 'Transaction/approve_deposit';
 $route['transaction/reject-deposit'] = 'Transaction/reject_deposit';

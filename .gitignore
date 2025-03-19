@@ -1,6 +1,5 @@
 .htaccess
-application/config/database.php
-/captcha/
+application/config/
 /pdf/
 /report_pdf/
 /system/

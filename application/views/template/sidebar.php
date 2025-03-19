@@ -422,7 +422,7 @@
                             <a class="menu-link <?php if ($subtitle == 'Deposit') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>client/my-profile">
+                                href="<?php echo base_url(); ?>transaction/deposit-client">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -435,11 +435,24 @@
                             <a class="menu-link <?php if ($subtitle == 'Withdraw') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>client/my-profile">
+                                href="<?php echo base_url(); ?>transaction/withdraw-client">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Withdraw</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Transfer') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>transaction/transfer-client">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Transfer</span>
                             </a>
                         </div>
                     </div>

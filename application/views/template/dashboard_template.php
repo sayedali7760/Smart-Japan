@@ -43,6 +43,23 @@ License: For each use you must have a valid license purchased only from above li
     <link href="<?php echo base_url(); ?>assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/plugins/custom/cookiealert/cookiealert.bundle.css" rel="stylesheet" type="text/css" />
+    <style>
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->

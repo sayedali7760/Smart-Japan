@@ -11,6 +11,7 @@ class Transaction extends CI_Controller
             redirect('login');
         }
         $this->load->model('Transactions_model', 'TModel');
+        $this->load->model('general_settings/Mt_model', 'Mt_model');
     }
     public function view_succesfull_deposit()
     {
@@ -22,6 +23,57 @@ class Transaction extends CI_Controller
         $data['deposit_data'] = $this->TModel->view_succesfull_deposit();
         $data['template'] = 'modules/transactions/view_deposit';
         $this->load->view('template/dashboard_template', $data);
+    }
+    public function deposit_client_account()
+    {
+        $data['title'] = 'Transactions';
+        $data['subtitle'] = 'Deposit';
+        $client_id = $this->session->userdata('id');
+        $data['account_details'] = $this->Mt_model->view_client_accounts($client_id);
+        $data['template'] = 'modules/transactions/client_deposit';
+        $this->load->view('template/dashboard_template', $data);
+    }
+    public function withdraw_client_account()
+    {
+        $data['title'] = 'Transactions';
+        $data['subtitle'] = 'Withdraw';
+        $client_id = $this->session->userdata('id');
+        $data['account_details'] = $this->Mt_model->view_client_accounts($client_id);
+        $data['template'] = 'modules/transactions/client_withdraw';
+        $this->load->view('template/dashboard_template', $data);
+    }
+    public function transfer_client_account()
+    {
+        $data['title'] = 'Transactions';
+        $data['subtitle'] = 'Transfer';
+        $client_id = $this->session->userdata('id');
+        $data['account_details'] = $this->Mt_model->view_client_accounts($client_id);
+        $data['template'] = 'modules/transactions/client_transfer';
+        $this->load->view('template/dashboard_template', $data);
+    }
+    public function deposit_client_save()
+    {
+        $account = $this->input->post('account');
+        $method = $this->input->post('method');
+        $currency = $this->input->post('currency');
+        $data_array = array(
+            'account' => $account,
+            'method' => $method,
+            'currency' => $currency,
+        );
+        // Nexus Pay
+        if ($method == 1) {
+        }
+        // SticPay
+        if ($method == 2) {
+        }
+        // if ($this->MModel->insert_group($data_array)) {
+        //     echo json_encode(array('status' => 1));
+        //     return;
+        // } else {
+        //     echo json_encode(array('status' => 2));
+        //     return;
+        // }
     }
     public function view_withdrawal()
     {
