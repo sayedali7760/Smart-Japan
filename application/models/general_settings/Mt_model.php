@@ -26,6 +26,15 @@ class Mt_model extends CI_Model
         $query = $this->db->get()->result();
         return $query;
     }
+    public function view_client_accounts($id)
+    {
+        $this->db->select('a.*');
+        $this->db->from('accounts AS a');
+        $this->db->where('a.user_id', $id);
+        $this->db->where('a.server', 'Demo');
+        $query = $this->db->get()->result();
+        return $query;
+    }
     public function get_live_accounts()
     {
         $this->db->select('a.*, c.name');
