@@ -19,6 +19,17 @@ class Transactions_model extends CI_Model
     {
         parent::__construct();
     }
+    public function insert_transaction($data_array)
+    {
+        if ($this->db->insert('transactions', $data_array)) {
+            return true;
+        }
+    }
+    public function update_transaction($data_update_array, $transaction_id)
+    {
+        $this->db->update('transactions', $data_update_array, 'id=' . $transaction_id . '');
+        return true;
+    }
     public function get_transactions_unique($transaction_id)
     {
         $this->db->select('t.*');

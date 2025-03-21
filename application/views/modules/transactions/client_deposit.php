@@ -68,7 +68,7 @@
                                                 name="method" id="method">
                                                 <option value=""></option>
                                                 <option value="1">NexusPay</option>
-                                                <option value="2">SticPay</option>
+                                                <!-- <option value="2">SticPay</option> -->
                                             </select>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root form_div">
@@ -107,8 +107,13 @@
                                         <a href="<?php echo base_url(); ?>transaction/deposit-client" id="kt_ecommerce_add_product_cancel"
                                             class="btn btn-light me-5">Cancel</a>
 
-                                        <a href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
+                                        <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
                                             onclick="submit_data()">Deposit</a>
+                                        <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                                            <span class="indicator-label">Submit</span>
+                                            <span class="indicator-progress">Please wait...
+                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        </a>
 
                                         <a href="javascript:void(0);" style="display:none;" class="btn btn-success copy_butt" id="copyButton" title="Copy" onclick="copy_address()">Copy</a>
 
@@ -149,7 +154,8 @@
     }
 
     function submit_data() {
-        $("#loader").show();
+        $("#actual_submit").hide();
+        $("#loader_submit").show();
         var ops_url = baseurl + 'transaction/deposit-save';
         var account = $('#account').val();
         var currency = $('#currency').val();
@@ -161,7 +167,8 @@
                 title: '',
                 text: 'Account is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (method == "") {
@@ -170,7 +177,8 @@
                 title: '',
                 text: 'Method is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (currency == "") {
@@ -179,7 +187,8 @@
                 title: '',
                 text: 'Currency is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         var form = $("#deposit_save");
@@ -194,7 +203,6 @@
             contentType: false,
             data: formData,
             success: function(result) {
-                $("#loader").hide();
                 var data = $.parseJSON(result);
                 if (data.status == 1) {
                     console.log(data.result_data);
@@ -204,6 +212,7 @@
                     $('.form_div').hide();
                     $('.submit_butt').hide();
                     $('.copy_butt').show();
+                    $("#loader_submit").hide();
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
@@ -212,11 +221,14 @@
                         confirmButtonText: 'OK'
                     });
                 } else {
-                    $('#faculty_loader').removeClass('sk-loading');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred while processing your request.'
+                    });
                 }
             },
             error: function(xhr, status, error) {
-                $("#loader").hide();
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',

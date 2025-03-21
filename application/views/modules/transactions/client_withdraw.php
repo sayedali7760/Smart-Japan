@@ -5,7 +5,7 @@
         <div id="kt_content_container" class="container-xxl">
 
             <?php
-            echo form_open_multipart('transaction/add_deposit', array('id' => 'deposit_save', 'role' => 'form', 'class' => 'form d-flex flex-column flex-lg-row'));
+            echo form_open_multipart('transaction/add_withdraw', array('id' => 'withdraw_save', 'role' => 'form', 'class' => 'form d-flex flex-column flex-lg-row'));
             ?>
 
 
@@ -48,7 +48,7 @@
                                             <label class="required form-label">Account</label>
                                             <select class="form-select mb-5" data-control="select2"
                                                 data-placeholder="Select an option"
-                                                name="account" id="account">
+                                                name="account" id="account" onchange="get_account_details()">
                                                 <option value=""></option>
                                                 <?php
                                                 if (isset($account_details) && !empty($account_details)) {
@@ -67,6 +67,7 @@
                                                 <option value=""></option>
                                                 <option value="1">NexusPay</option>
                                                 <option value="2">SticPay</option>
+                                                <option value="3">Bank Transfer</option>
                                             </select>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
@@ -109,9 +110,53 @@
     </div>
 </div>
 <script>
+    function get_account_details() {
+        var ops_url = baseurl + 'transaction/get-mtaccount-details';
+        var account = $('#account').val();
+        var form = $("#withdraw_save");
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: true,
+            url: ops_url,
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function(result) {
+                $("#loader").hide();
+                var data = $.parseJSON(result);
+                if (data.status == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Deposit Completed.',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    $('#faculty_loader').removeClass('sk-loading');
+                }
+            },
+            error: function(xhr, status, error) {
+                $("#loader").hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while processing your request.'
+                });
+            }
+        });
+    }
+
     function submit_data() {
         $("#loader").show();
-        var ops_url = baseurl + 'transaction/deposit-save';
+        var ops_url = baseurl + 'transaction/withdraw-save';
         var account = $('#account').val();
         var currency = $('#currency').val();
         var method = $('#method').val();

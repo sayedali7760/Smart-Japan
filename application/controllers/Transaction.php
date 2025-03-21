@@ -51,18 +51,91 @@ class Transaction extends CI_Controller
         $data['template'] = 'modules/transactions/client_transfer';
         $this->load->view('template/dashboard_template', $data);
     }
+    public function get_mtaccount_details()
+    {
+        $account = $this->input->post('account');
+    }
+    public function withdraw_client_save() {}
     public function deposit_client_save()
     {
         $account = $this->input->post('account');
         $method = $this->input->post('method');
         $currency = $this->input->post('currency');
-        $data_array = array(
-            'account' => $account,
-            'method' => $method,
-            'currency' => $currency,
-        );
+        $client_id = $this->session->userdata('id');
         // Nexus Pay
         if ($method == 1) {
+
+            $data_array = array(
+                'user_id' => $client_id,
+                'type' =>  'deposit',
+                'method' => 'nexus',
+                'account_id' => $account,
+                'currency' => 'USD',
+                'amount' => 0,
+                'status' => 'pending',
+                'status_finished' => 'approved',
+                'comment' => 'Deposit [nexus]',
+                'wallet_address' => '',
+                'nexus_status' => '',
+            );
+            if ($this->TModel->insert_transaction($data_array)) {
+                $last_id = $this->db->insert_id();
+                $transaction_id = '' . $last_id . '';
+                $payment_route_id = "37c01844-5512-4f91-94a2-54e1ad70e12b";
+
+                $url = 'https://vakotrade-nexus.cryptosrvc.com/graphql';
+
+                $query = 'query ($network: String, $currency_id: String!, $reference: String, $payment_route_id: String!) {
+                    deposit_address_crypto(network: $network, currency_id: $currency_id, reference: $reference, payment_route_id: $payment_route_id) {
+                    deposit_address_crypto_id
+                    currency_id
+                    address
+                    address_tag_type
+                    address_tag_value
+                    network
+                    created_at
+                    updated_at
+                    }}';
+                $variables = [
+                    "currency_id" => "USDT",
+                    "network" => "Tron",
+                    "reference" => $transaction_id,
+                    "payment_route_id" => $payment_route_id
+                ];
+
+                $data = json_encode([
+                    "query" => $query,
+                    "variables" => $variables
+                ]);
+
+                $headers = [
+                    "Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFlNzljYWJiYWNjYjgzYmUwN2FiMDk3YzU4MjEyMjliIn0.eyJhcGlfa2V5X2lkIjoiYWFkMWI3MjctYjYzMy00MjFmLTlkMmUtMTdjNzdhYzM2OGMzIiwic3ViIjoiYjY4MWUwY2ItYWZlNi00OGNkLTgyNjUtM2Y4MjNiNzdiYzg5Iiwicm9sZSI6InRyYWRlciIsImV4Y2hhbmdlIjoiTkVYVVNWNCIsImlzcyI6Imh0dHBzOi8vdmFrb3RyYWRlLW5leHVzLmNyeXB0b3NydmMuY29tIiwiaWF0IjoxNzM1ODAyNjQ3LCJleHAiOjE3NjczMTIwMDB9.ugPj_9BtBO2SFlNwpiMS3So6uViTG9rH7CrKUFvp-guJhwFEGpO4oXt2XHHZWcQS32l8MOATzwiGZ8Q96--Xd-3LbtGtuDQ8VIVbvkzSWr9TLd21O61rr13oLWQWaw4YyLfQ_34Y4KGY8YDoVgehueOdfJ4yT-r-4ZNdZ97RqToaAOZvzdIbcsKFt3rB5qLs3Rgi3QcqU1ass1PLLVSMnqPi_ZXj-LFp0lRJqDZX0ITyF4biwMT_5MV87U0IMjWsGxpdnr26SEMbqGMkRAMjOMNjlnL117A8FHklO8h_EqRUnGalYi04aDUBBDjpwpmRZwIx9GHIXxE-4TCGqfbMm3Eyh8SqIUktwHVLkydw7jH5FBjOsjqV9JAr_Zz9UkhYraZOcEeDHOll5t1DlZuS1szS5lN_sWagPQRAOkml2Zjw3BoUqljrVrCer4rg_-eSwUycNUMaEAj_tVU7WwwoJ1S9-IVjCe0FFZMyUZlLLHxA5rLLlJU1lk2fBA-aqaxukUkF-G2gd0vCh6AZU_KwReJa438aMoz3xu-2uBk8CFCexuntVjXwKibbuzFbd-n1ZEQtAFq2OK0y-IeXX1hZbk3m7SS6sNJs_xKMzImvFJfLSyFsueNd1F3apRT2KkRwcoZpaskOQU9lBQnzvXYz4ru_c1QJJ8j8KH4ml5OelG0",
+                    "Content-Type: application/json"
+                ];
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                $response = curl_exec($ch);
+                curl_close($ch);
+
+                $result_data = json_decode($response, true);
+                $wallet_address = $result_data['data']['deposit_address_crypto']['address'];
+                $data_update_array = array('wallet_address' => $wallet_address, 'nexus_status' => 1);
+                $result = $this->TModel->update_transaction($data_update_array, $transaction_id);
+                //$wallet_address = 'TRFDGHHSHJHJSUUJSKJKJDKLKS';
+                echo json_encode(array('status' => 1, 'wallet_address' => $wallet_address));
+                return;
+                // $wallet_address = 'TRFDGHHSHJHJSUUJSKJKJDKLKS';
+                // echo json_encode(array('status' => 1, 'wallet_address' => $wallet_address));
+                // return;
+            } else {
+                echo json_encode(array('status' => 0));
+                return;
+            }
             //     $transaction_id = "test-123"; // Get this dynamically
             //     $payment_route_id = "37c01844-5512-4f91-94a2-54e1ad70e12b";
 
@@ -107,9 +180,9 @@ class Transaction extends CI_Controller
 
             //     $result_data = json_decode($response, true);
             //     $wallet_address = $result_data['data']['deposit_address_crypto']['address'];
-            $wallet_address = 'TRFDGHHSHJHJSUUJSKJKJDKLKS';
-            echo json_encode(array('status' => 1, 'wallet_address' => $wallet_address));
-            return;
+            // $wallet_address = 'TRFDGHHSHJHJSUUJSKJKJDKLKS';
+            // echo json_encode(array('status' => 1, 'wallet_address' => $wallet_address));
+            // return;
             // Debugging or logging
             //log_message('info', 'GraphQL Response: ' . print_r($result, true));
 
