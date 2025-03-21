@@ -54,6 +54,28 @@ class Transaction extends CI_Controller
     public function get_mtaccount_details()
     {
         $account = $this->input->post('account');
+
+        require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
+        try {
+            $instance = new MTWebAPI();
+            $response = $instance->Connect(DEMO_IP, DEMO_PORT, DEMO_TIMEOUT, DEMO_LOGIN, DEMO_PASSWORD);
+            if ($response !== MTRetCode::MT_RET_OK) {
+                echo "Failed to connect to MetaTrader 5 server. Error code: " . $response;
+            } else {
+            }
+        } catch (Exception $e) {
+            echo "An error occurred: " . $e->getMessage();
+        }
+        $instance->UserAccountGet($account, $account_details);
+        $account_data['Equity'] = number_format($account_details->Equity, 2);
+        $account_data['MarginFree'] = number_format($account_details->MarginFree, 2);
+        $account_data['MarginLeverage'] = number_format($account_details->MarginLeverage, 2);
+        $account_data['Balance'] = number_format($account_details->Balance, 2);
+
+        echo json_encode(array('status' => 1, 'account_data' => $account_data));
+        return;
+
+        // $mt_demo_accounts[$row->login] = array('login' => $demo_user_server->Login, 'Balance' => $demo_user_server->Balance, 'Profit' => $demo_user_server->Profit);
     }
     public function withdraw_client_save() {}
     public function deposit_client_save()

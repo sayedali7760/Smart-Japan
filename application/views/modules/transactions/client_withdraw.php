@@ -80,6 +80,44 @@
                                         </div>
 
                                     </div>
+                                    <div class="gap-5 wallet_div" style="display: none;">
+                                        <div class="alert alert-primary d-flex align-items-center p-5 mb-10">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
+                                            <span class="svg-icon svg-icon-2hx svg-icon-primary me-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path opacity="0.3" d="M3.20001 5.91897L16.9 3.01895C17.4 2.91895 18 3.219 18.1 3.819L19.2 9.01895L3.20001 5.91897Z" fill="currentColor" />
+                                                    <path opacity="0.3" d="M13 13.9189C13 12.2189 14.3 10.9189 16 10.9189H21C21.6 10.9189 22 11.3189 22 11.9189V15.9189C22 16.5189 21.6 16.9189 21 16.9189H16C14.3 16.9189 13 15.6189 13 13.9189ZM16 12.4189C15.2 12.4189 14.5 13.1189 14.5 13.9189C14.5 14.7189 15.2 15.4189 16 15.4189C16.8 15.4189 17.5 14.7189 17.5 13.9189C17.5 13.1189 16.8 12.4189 16 12.4189Z" fill="currentColor" />
+                                                    <path d="M13 13.9189C13 12.2189 14.3 10.9189 16 10.9189H21V7.91895C21 6.81895 20.1 5.91895 19 5.91895H3C2.4 5.91895 2 6.31895 2 6.91895V20.9189C2 21.5189 2.4 21.9189 3 21.9189H19C20.1 21.9189 21 21.0189 21 19.9189V16.9189H16C14.3 16.9189 13 15.6189 13 13.9189Z" fill="currentColor" />
+                                                </svg>
+                                            </span>
+                                            <!--end::Svg Icon-->
+                                            <div class="d-flex flex-column">
+                                                <h4 class="mb-1 text-primary">Account Details (<span id="account_span"></span>)</h4>
+                                                <table>
+                                                    <tr>
+                                                        <td>Balance</td>
+                                                        <td> - <span id="balance_span"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Equity</td>
+                                                        <td> - <span id="equity_span"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MarginFree</td>
+                                                        <td> - <span id="free_span"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MarginLeverage</td>
+                                                        <td> - <span id="leverage_span"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Outstanding Withdraw</td>
+                                                        <td> - <span id="withdraw_span">0.00</span></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="d-flex flex-wrap gap-5">
 
@@ -125,26 +163,25 @@
             contentType: false,
             data: formData,
             success: function(result) {
-                $("#loader").hide();
                 var data = $.parseJSON(result);
+                console.log(data.account_data);
                 if (data.status == 1) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Deposit Completed.',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.reload();
-                        }
-                    });
+                    $('#account_span').html(account);
+                    $('.wallet_div').show();
+                    $('#balance_span').html(data.account_data['Balance']);
+                    $('#equity_span').html(data.account_data['Equity']);
+                    $('#free_span').html(data.account_data['MarginFree']);
+                    $('#leverage_span').html(data.account_data['MarginLeverage']);
+                    $('#withdraw_span').html('');
                 } else {
-                    $('#faculty_loader').removeClass('sk-loading');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred while processing your request.'
+                    });
                 }
             },
             error: function(xhr, status, error) {
-                $("#loader").hide();
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
