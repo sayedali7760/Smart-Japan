@@ -128,6 +128,8 @@ $route['mt/update-group'] = 'settings/Mt_Accounts/update_group';
 $route['mt-account/show-mt-create'] = 'settings/Mt_Accounts/show_mt_create';
 $route['mt-account/my-mt-details'] = 'settings/Mt_Accounts/my_mt_details';
 $route['transaction/my-transaction-details'] = 'Transaction/my_transaction_details';
+$route['transaction/withdraw-save'] = 'Transaction/withdraw_client_save';
+$route['transaction/get-mtaccount-details'] = 'Transaction/get_mtaccount_details';
 
 $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
@@ -135,6 +137,10 @@ $route['transaction/internal-transfer'] = 'Transaction/internal_transactions';
 $route['transaction/pending-deposits'] = 'Transaction/pending_deposits';
 $route['transaction/pending-withdrawal'] = 'Transaction/pending_withdrawal';
 $route['transaction/rejected-transactions'] = 'Transaction/rejected_transactions';
+$route['transaction/deposit-client'] = 'Transaction/deposit_client_account';
+$route['transaction/deposit-save'] = 'Transaction/deposit_client_save';
+$route['transaction/withdraw-client'] = 'Transaction/withdraw_client_account';
+$route['transaction/transfer-client'] = 'Transaction/transfer_client_account';
 
 $route['transaction/approve-deposit'] = 'Transaction/approve_deposit';
 $route['transaction/reject-deposit'] = 'Transaction/reject_deposit';
