@@ -129,6 +129,7 @@ $route['mt-account/show-mt-create'] = 'settings/Mt_Accounts/show_mt_create';
 $route['mt-account/my-mt-details'] = 'settings/Mt_Accounts/my_mt_details';
 $route['transaction/my-transaction-details'] = 'Transaction/my_transaction_details';
 $route['transaction/withdraw-save'] = 'Transaction/withdraw_client_save';
+$route['transaction/transfer-save'] = 'Transaction/transfer_client_save';
 $route['transaction/get-mtaccount-details'] = 'Transaction/get_mtaccount_details';
 
 $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';
