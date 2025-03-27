@@ -55,6 +55,7 @@ $route['logout'] = 'Login/logout';
 $route['home'] = 'dashboard_controller';
 $route['error'] = 'Login/error';
 $route['login/login'] = 'Login/loginaction';
+$route['admin'] = 'Login/admin_login';
 $route['home/dashboard'] = 'dashboard_controller';
 $route['login/forgot-password'] = 'Login/forgot_password_check';
 $route['update-forgot-password?(:any)'] = 'Login/change_password_user';

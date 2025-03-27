@@ -96,21 +96,21 @@ class Transaction extends CI_Controller
         } catch (Exception $e) {
             echo "An error occurred: " . $e->getMessage();
         }
-        $from_instance->UserAccountGet($from_account, $from_account_details);
-        $from_account_data['Equity'] = $from_account_details->Equity;
-        $from_account_data['MarginFree'] = $from_account_details->MarginFree;
-        $from_account_data['MarginLeverage'] = $from_account_details->MarginLeverage;
-        $from_account_data['Balance'] = $from_account_details->Balance;
-        $mtAmount_from = $account_data['Balance'] - $amount;
-        $result = $instance->TradeBalance($from_account, MTEnDealAction::DEAL_BALANCE,  $mtAmount_from, 'Web Transfer', $ticket);
+        $instance->UserAccountGet($from_account, $from_account_details);
+        $instance->UserAccountGet($to_account, $to_account_details);
 
-        $to_instance->UserAccountGet($to_account, $to_account_details);
-        $to_account_data['Equity'] = $to_account_details->Equity;
-        $to_account_data['MarginFree'] = $to_account_details->MarginFree;
-        $to_account_data['MarginLeverage'] = $to_account_details->MarginLeverage;
-        $to_account_data['Balance'] = $to_account_details->Balance;
-        $mtAmount_to = $account_data['Balance'] + $amount;
-        $result = $instance->TradeBalance($to_account, MTEnDealAction::DEAL_BALANCE,  $mtAmount_to, 'Web Transfer', $ticket);
+        $from_account_data['Equity'] = $from_account_details->Equity;
+        // $from_account_data['MarginFree'] = $from_account_details->MarginFree;
+        // $from_account_data['MarginLeverage'] = $from_account_details->MarginLeverage;
+        // $from_account_data['Balance'] = $from_account_details->Balance;
+        // $mtAmount_from = $from_account_data['Balance'] - $amount;
+        $result = $instance->TradeBalance($from_account, MTEnDealAction::DEAL_BALANCE,  -$amount, 'Web Transfer', $ticket);
+        // $to_account_data['Equity'] = $to_account_details->Equity;
+        // $to_account_data['MarginFree'] = $to_account_details->MarginFree;
+        // $to_account_data['MarginLeverage'] = $to_account_details->MarginLeverage;
+        // $to_account_data['Balance'] = $to_account_details->Balance;
+        // $mtAmount_to = $to_account_data['Balance'] + $amount;
+        $result = $instance->TradeBalance($to_account, MTEnDealAction::DEAL_BALANCE,  $amount, 'Web Transfer', $ticket);
 
         if ($amount >= $from_account_data['Equity']) {
             echo json_encode(array('status' => 3));
@@ -120,6 +120,7 @@ class Transaction extends CI_Controller
         $deposit_transfer = array(
             'user_id' => $client_id,
             'type' => 'own deposit',
+            'method' => 'own transfer',
             'account_id' => $from_account,
             'opt_account_id' => $to_account,
             'amount' => $amount,
@@ -130,6 +131,7 @@ class Transaction extends CI_Controller
         $withdraw_transfer = array(
             'user_id' => $client_id,
             'type' => 'own withdrawal',
+            'method' => 'own transfer',
             'account_id' => $to_account,
             'opt_account_id' => $from_account,
             'amount' => $amount,

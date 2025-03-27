@@ -58,9 +58,9 @@
                         </a>
                         <!--end::Title-->
                         <!--begin::Link-->
-                        <div class="text-gray-400 fw-bold fs-4">Already have an account??
+                        <div class="text-gray-400 fw-bold fs-4">Already have an account?
                             <a href="<?php echo base_url(); ?>login"
-                                class="link-primary fw-bolder">Log in?</a>
+                                class="link-primary fw-bolder">Login</a>
                         </div>
                         <!--end::Link-->
                     </div>
@@ -86,9 +86,9 @@
                     <div class="fv-row mb-10">
                         <label class="form-label fs-6 fw-bolder text-dark">Phone No</label>
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
-                            onPaste="return false" placeholder="Enter Phno" id="phno" name="phno" value="<?php if (isset($_COOKIE["ecomm_phno"])) {
-                                                                                                                echo $_COOKIE["green_username"];
-                                                                                                            } ?>">
+                            onPaste="return false" placeholder="Enter Phone No" id="phno" name="phno" value="<?php if (isset($_COOKIE["ecomm_phno"])) {
+                                                                                                                    echo $_COOKIE["green_username"];
+                                                                                                                } ?>">
                     </div>
 
 
@@ -138,12 +138,9 @@
                             title="Login"><i class="icon-unlock2"></i> Sign up</a>
                         <!--end::Submit button-->
                         <!--begin::Separator-->
-                        <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
                         <!--end::Separator-->
                         <!--begin::Google link-->
-                        <a href="javascript:void(0);" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                            <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
-                                class="h-20px me-3" />Continue with Google</a>
+
                         <!--end::Google link-->
                         <!--begin::Google link-->
 
