@@ -26,7 +26,7 @@ use Google\Service\MyBusinessQA\Question;
  * Typical usage is:
  *  <code>
  *   $mybusinessqandaService = new Google\Service\MyBusinessQA(...);
- *   $questions = $mybusinessqandaService->questions;
+ *   $questions = $mybusinessqandaService->locations_questions;
  *  </code>
  */
 class LocationsQuestions extends \Google\Service\Resource
@@ -39,6 +39,7 @@ class LocationsQuestions extends \Google\Service\Resource
    * @param Question $postBody
    * @param array $optParams Optional parameters.
    * @return Question
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Question $postBody, $optParams = [])
   {
@@ -52,27 +53,13 @@ class LocationsQuestions extends \Google\Service\Resource
    * @param string $name Required. The name of the question to delete.
    * @param array $optParams Optional parameters.
    * @return MybusinessqandaEmpty
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
     $params = ['name' => $name];
     $params = array_merge($params, $optParams);
     return $this->call('delete', [$params], MybusinessqandaEmpty::class);
-  }
-  /**
-   * Deletes the answer written by the current user to a question.
-   * (questions.deleteAnswers)
-   *
-   * @param string $name Required. The name of the question to delete an answer
-   * for.
-   * @param array $optParams Optional parameters.
-   * @return MybusinessqandaEmpty
-   */
-  public function deleteAnswers($name, $optParams = [])
-  {
-    $params = ['name' => $name];
-    $params = array_merge($params, $optParams);
-    return $this->call('deleteAnswers', [$params], MybusinessqandaEmpty::class);
   }
   /**
    * Returns the paginated list of questions and some of its answers for a
@@ -96,6 +83,7 @@ class LocationsQuestions extends \Google\Service\Resource
    * @opt_param string pageToken Optional. If specified, the next page of
    * questions is retrieved.
    * @return ListQuestionsResponse
+   * @throws \Google\Service\Exception
    */
   public function listLocationsQuestions($parent, $optParams = [])
   {
@@ -115,6 +103,7 @@ class LocationsQuestions extends \Google\Service\Resource
    * @opt_param string updateMask Required. The specific fields to update. Only
    * question text can be updated.
    * @return Question
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Question $postBody, $optParams = [])
   {

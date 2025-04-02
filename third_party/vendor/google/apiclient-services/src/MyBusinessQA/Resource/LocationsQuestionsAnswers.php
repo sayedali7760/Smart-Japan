@@ -19,6 +19,7 @@ namespace Google\Service\MyBusinessQA\Resource;
 
 use Google\Service\MyBusinessQA\Answer;
 use Google\Service\MyBusinessQA\ListAnswersResponse;
+use Google\Service\MyBusinessQA\MybusinessqandaEmpty;
 use Google\Service\MyBusinessQA\UpsertAnswerRequest;
 
 /**
@@ -26,11 +27,27 @@ use Google\Service\MyBusinessQA\UpsertAnswerRequest;
  * Typical usage is:
  *  <code>
  *   $mybusinessqandaService = new Google\Service\MyBusinessQA(...);
- *   $answers = $mybusinessqandaService->answers;
+ *   $answers = $mybusinessqandaService->locations_questions_answers;
  *  </code>
  */
 class LocationsQuestionsAnswers extends \Google\Service\Resource
 {
+  /**
+   * Deletes the answer written by the current user to a question.
+   * (answers.delete)
+   *
+   * @param string $name Required. The name of the question to delete an answer
+   * for.
+   * @param array $optParams Optional parameters.
+   * @return MybusinessqandaEmpty
+   * @throws \Google\Service\Exception
+   */
+  public function delete($name, $optParams = [])
+  {
+    $params = ['name' => $name];
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', [$params], MybusinessqandaEmpty::class);
+  }
   /**
    * Returns the paginated list of answers for a specified question.
    * (answers.listLocationsQuestionsAnswers)
@@ -48,6 +65,7 @@ class LocationsQuestionsAnswers extends \Google\Service\Resource
    * @opt_param string pageToken Optional. If specified, the next page of answers
    * is retrieved.
    * @return ListAnswersResponse
+   * @throws \Google\Service\Exception
    */
   public function listLocationsQuestionsAnswers($parent, $optParams = [])
   {
@@ -65,6 +83,7 @@ class LocationsQuestionsAnswers extends \Google\Service\Resource
    * @param UpsertAnswerRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Answer
+   * @throws \Google\Service\Exception
    */
   public function upsert($parent, UpsertAnswerRequest $postBody, $optParams = [])
   {

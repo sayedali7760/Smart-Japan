@@ -17,6 +17,14 @@ class Login extends CI_Controller
             $this->load->view('login/login');
         }
     }
+    public function admin_login()
+    {
+        if (isset($this->session->userdata['ecomm_login']) && ($this->session->userdata['ecomm_login'] == TRUE)) {
+            redirect('home');
+        } else {
+            $this->load->view('login/admin_login');
+        }
+    }
     public function error()
     {
         $this->load->view('template/error-404');

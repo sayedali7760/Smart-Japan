@@ -19,6 +19,12 @@ namespace Google\Service\ArtifactRegistry;
 
 class Repository extends \Google\Model
 {
+  protected $cleanupPoliciesType = CleanupPolicy::class;
+  protected $cleanupPoliciesDataType = 'map';
+  /**
+   * @var bool
+   */
+  public $cleanupPolicyDryRun;
   /**
    * @var string
    */
@@ -27,6 +33,12 @@ class Repository extends \Google\Model
    * @var string
    */
   public $description;
+  /**
+   * @var bool
+   */
+  public $disallowUnspecifiedMode;
+  protected $dockerConfigType = DockerRepositoryConfig::class;
+  protected $dockerConfigDataType = '';
   /**
    * @var string
    */
@@ -44,12 +56,66 @@ class Repository extends \Google\Model
   /**
    * @var string
    */
+  public $mode;
+  /**
+   * @var string
+   */
   public $name;
   /**
    * @var string
    */
+  public $registryUri;
+  protected $remoteRepositoryConfigType = RemoteRepositoryConfig::class;
+  protected $remoteRepositoryConfigDataType = '';
+  /**
+   * @var bool
+   */
+  public $satisfiesPzi;
+  /**
+   * @var bool
+   */
+  public $satisfiesPzs;
+  /**
+   * @var string
+   */
+  public $sizeBytes;
+  /**
+   * @var string
+   */
   public $updateTime;
+  protected $virtualRepositoryConfigType = VirtualRepositoryConfig::class;
+  protected $virtualRepositoryConfigDataType = '';
+  protected $vulnerabilityScanningConfigType = VulnerabilityScanningConfig::class;
+  protected $vulnerabilityScanningConfigDataType = '';
 
+  /**
+   * @param CleanupPolicy[]
+   */
+  public function setCleanupPolicies($cleanupPolicies)
+  {
+    $this->cleanupPolicies = $cleanupPolicies;
+  }
+  /**
+   * @return CleanupPolicy[]
+   */
+  public function getCleanupPolicies()
+  {
+    return $this->cleanupPolicies;
+  }
+  /**
+   * @param bool
+   */
+  public function setCleanupPolicyDryRun($cleanupPolicyDryRun)
+  {
+    $this->cleanupPolicyDryRun = $cleanupPolicyDryRun;
+  }
+  /**
+   * @return bool
+   */
+  public function getCleanupPolicyDryRun()
+  {
+    return $this->cleanupPolicyDryRun;
+  }
   /**
    * @param string
    */
@@ -77,6 +143,34 @@ class Repository extends \Google\Model
   public function getDescription()
   {
     return $this->description;
+  }
+  /**
+   * @param bool
+   */
+  public function setDisallowUnspecifiedMode($disallowUnspecifiedMode)
+  {
+    $this->disallowUnspecifiedMode = $disallowUnspecifiedMode;
+  }
+  /**
+   * @return bool
+   */
+  public function getDisallowUnspecifiedMode()
+  {
+    return $this->disallowUnspecifiedMode;
+  }
+  /**
+   * @param DockerRepositoryConfig
+   */
+  public function setDockerConfig(DockerRepositoryConfig $dockerConfig)
+  {
+    $this->dockerConfig = $dockerConfig;
+  }
+  /**
+   * @return DockerRepositoryConfig
+   */
+  public function getDockerConfig()
+  {
+    return $this->dockerConfig;
   }
   /**
    * @param string
@@ -137,6 +231,20 @@ class Repository extends \Google\Model
   /**
    * @param string
    */
+  public function setMode($mode)
+  {
+    $this->mode = $mode;
+  }
+  /**
+   * @return string
+   */
+  public function getMode()
+  {
+    return $this->mode;
+  }
+  /**
+   * @param string
+   */
   public function setName($name)
   {
     $this->name = $name;
@@ -151,6 +259,76 @@ class Repository extends \Google\Model
   /**
    * @param string
    */
+  public function setRegistryUri($registryUri)
+  {
+    $this->registryUri = $registryUri;
+  }
+  /**
+   * @return string
+   */
+  public function getRegistryUri()
+  {
+    return $this->registryUri;
+  }
+  /**
+   * @param RemoteRepositoryConfig
+   */
+  public function setRemoteRepositoryConfig(RemoteRepositoryConfig $remoteRepositoryConfig)
+  {
+    $this->remoteRepositoryConfig = $remoteRepositoryConfig;
+  }
+  /**
+   * @return RemoteRepositoryConfig
+   */
+  public function getRemoteRepositoryConfig()
+  {
+    return $this->remoteRepositoryConfig;
+  }
+  /**
+   * @param bool
+   */
+  public function setSatisfiesPzi($satisfiesPzi)
+  {
+    $this->satisfiesPzi = $satisfiesPzi;
+  }
+  /**
+   * @return bool
+   */
+  public function getSatisfiesPzi()
+  {
+    return $this->satisfiesPzi;
+  }
+  /**
+   * @param bool
+   */
+  public function setSatisfiesPzs($satisfiesPzs)
+  {
+    $this->satisfiesPzs = $satisfiesPzs;
+  }
+  /**
+   * @return bool
+   */
+  public function getSatisfiesPzs()
+  {
+    return $this->satisfiesPzs;
+  }
+  /**
+   * @param string
+   */
+  public function setSizeBytes($sizeBytes)
+  {
+    $this->sizeBytes = $sizeBytes;
+  }
+  /**
+   * @return string
+   */
+  public function getSizeBytes()
+  {
+    return $this->sizeBytes;
+  }
+  /**
+   * @param string
+   */
   public function setUpdateTime($updateTime)
   {
     $this->updateTime = $updateTime;
@@ -161,6 +339,34 @@ class Repository extends \Google\Model
   public function getUpdateTime()
   {
     return $this->updateTime;
+  }
+  /**
+   * @param VirtualRepositoryConfig
+   */
+  public function setVirtualRepositoryConfig(VirtualRepositoryConfig $virtualRepositoryConfig)
+  {
+    $this->virtualRepositoryConfig = $virtualRepositoryConfig;
+  }
+  /**
+   * @return VirtualRepositoryConfig
+   */
+  public function getVirtualRepositoryConfig()
+  {
+    return $this->virtualRepositoryConfig;
+  }
+  /**
+   * @param VulnerabilityScanningConfig
+   */
+  public function setVulnerabilityScanningConfig(VulnerabilityScanningConfig $vulnerabilityScanningConfig)
+  {
+    $this->vulnerabilityScanningConfig = $vulnerabilityScanningConfig;
+  }
+  /**
+   * @return VulnerabilityScanningConfig
+   */
+  public function getVulnerabilityScanningConfig()
+  {
+    return $this->vulnerabilityScanningConfig;
   }
 }
 

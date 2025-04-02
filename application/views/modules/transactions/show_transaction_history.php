@@ -99,8 +99,8 @@
                                 <!--begin::Table row-->
                                 <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                     <th class="min-w-100px">Sl.no</th>
+                                    <th class="text-start min-w-75px">Type</th>
                                     <th class="text-strat min-w-75px">Transaction Id</th>
-                                    <th class="text-start min-w-75px">Contact Id</th>
                                     <th class="text-start min-w-75px">Name</th>
                                     <th class="text-start min-w-75px">Account Id</th>
                                     <th class="text-start min-w-75px">Method</th>
@@ -119,20 +119,50 @@
                                 foreach ($transaction_data as $data) { ?>
                                     <tr>
                                         <td><?php echo $i; ?></td>
+                                        <td class="text-start pe-0">
+                                            <?php if ($data->type == 'deposit') { ?>
+                                                <span class="badge badge-light-primary">Deposit</span>
+                                            <?php } else if ($data->type == 'withdraw') { ?>
+                                                <span class="badge badge-light-info">Withdraw</span>
+                                            <?php } else if ($data->type == 'own deposit') { ?>
+                                                <span class="badge badge-light-primary">Deposit Transfer</span>
+                                            <?php } else if ($data->type == 'own withdrawal') { ?>
+                                                <span class="badge badge-light-info">Withdraw Transfer</span>
+                                            <?php } ?>
+                                        </td>
                                         <td><?php echo $data->id; ?></td>
-                                        <td class="text-start pe-0"><?php echo $data->user_id; ?></td>
                                         <td class="text-start pe-0"><?php echo $data->name; ?></td>
                                         <td class="text-start pe-0"><?php echo $data->account_id; ?></td>
                                         <td class="text-start pe-0"><?php echo $data->method; ?></td>
                                         <td class="text-start pe-0"><?php echo $data->amount; ?></td>
                                         <td class="text-start pe-0">
-                                            <?php if ($data->status == 'pending') { ?>
-                                                <span class="badge badge-light-warning">Pending</span>
-                                            <?php } else if ($data->status == 'error') { ?>
-                                                <span class="badge badge-light-danger">Error</span>
-                                            <?php } else if ($data->status == 'success') { ?>
-                                                <span class="badge badge-light-primary">Success</span>
+                                            <?php if ($data->type == 'deposit') { ?>
+                                                <?php if ($data->status == 'pending') { ?>
+                                                    <span class="badge badge-light-warning">Pending</span>
+                                                <?php } else if ($data->status == 'error') { ?>
+                                                    <span class="badge badge-light-danger">Error</span>
+                                                <?php } else if ($data->status == 'success') { ?>
+                                                    <span class="badge badge-light-primary">Success</span>
+                                                <?php } ?>
+                                            <?php } else if ($data->type == 'withdraw') { ?>
+                                                <?php if ($data->status_finished == 'approved') { ?>
+                                                    <span class="badge badge-light-warning">Pending</span>
+                                                <?php } else if ($data->status_finished == 'declined') { ?>
+                                                    <span class="badge badge-light-danger">Declined</span>
+                                                <?php } else if ($data->status_finished == 'closed') { ?>
+                                                    <span class="badge badge-light-primary">Success</span>
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <?php if ($data->status == 'pending') { ?>
+                                                    <span class="badge badge-light-warning">Pending</span>
+                                                <?php } else if ($data->status == 'error') { ?>
+                                                    <span class="badge badge-light-danger">Error</span>
+                                                <?php } else if ($data->status == 'success') { ?>
+                                                    <span class="badge badge-light-primary">Success</span>
+                                                <?php } ?>
+
                                             <?php } ?>
+
                                         </td>
                                         <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->date_created)); ?></td>
                                     </tr>

@@ -23,6 +23,12 @@ class SourceObjectIdentifier extends \Google\Model
   protected $mysqlIdentifierDataType = '';
   protected $oracleIdentifierType = OracleObjectIdentifier::class;
   protected $oracleIdentifierDataType = '';
+  protected $postgresqlIdentifierType = PostgresqlObjectIdentifier::class;
+  protected $postgresqlIdentifierDataType = '';
+  protected $salesforceIdentifierType = SalesforceObjectIdentifier::class;
+  protected $salesforceIdentifierDataType = '';
+  protected $sqlServerIdentifierType = SqlServerObjectIdentifier::class;
+  protected $sqlServerIdentifierDataType = '';
 
   /**
    * @param MysqlObjectIdentifier
@@ -51,6 +57,48 @@ class SourceObjectIdentifier extends \Google\Model
   public function getOracleIdentifier()
   {
     return $this->oracleIdentifier;
+  }
+  /**
+   * @param PostgresqlObjectIdentifier
+   */
+  public function setPostgresqlIdentifier(PostgresqlObjectIdentifier $postgresqlIdentifier)
+  {
+    $this->postgresqlIdentifier = $postgresqlIdentifier;
+  }
+  /**
+   * @return PostgresqlObjectIdentifier
+   */
+  public function getPostgresqlIdentifier()
+  {
+    return $this->postgresqlIdentifier;
+  }
+  /**
+   * @param SalesforceObjectIdentifier
+   */
+  public function setSalesforceIdentifier(SalesforceObjectIdentifier $salesforceIdentifier)
+  {
+    $this->salesforceIdentifier = $salesforceIdentifier;
+  }
+  /**
+   * @return SalesforceObjectIdentifier
+   */
+  public function getSalesforceIdentifier()
+  {
+    return $this->salesforceIdentifier;
+  }
+  /**
+   * @param SqlServerObjectIdentifier
+   */
+  public function setSqlServerIdentifier(SqlServerObjectIdentifier $sqlServerIdentifier)
+  {
+    $this->sqlServerIdentifier = $sqlServerIdentifier;
+  }
+  /**
+   * @return SqlServerObjectIdentifier
+   */
+  public function getSqlServerIdentifier()
+  {
+    return $this->sqlServerIdentifier;
   }
 }
 

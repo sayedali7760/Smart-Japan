@@ -36,8 +36,6 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * Creates a new Response Policy Rule. (responsePolicyRules.create)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $responsePolicy User assigned name of the Response Policy
    * containing the Response Policy Rule.
    * @param ResponsePolicyRule $postBody
@@ -47,10 +45,11 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ResponsePolicyRule
+   * @throws \Google\Service\Exception
    */
-  public function create($project, $location, $responsePolicy, ResponsePolicyRule $postBody, $optParams = [])
+  public function create($project, $responsePolicy, ResponsePolicyRule $postBody, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'responsePolicy' => $responsePolicy, 'postBody' => $postBody];
+    $params = ['project' => $project, 'responsePolicy' => $responsePolicy, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('create', [$params], ResponsePolicyRule::class);
   }
@@ -59,8 +58,6 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * (responsePolicyRules.delete)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $responsePolicy User assigned name of the Response Policy
    * containing the Response Policy Rule.
    * @param string $responsePolicyRule User assigned name of the Response Policy
@@ -70,10 +67,11 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * @opt_param string clientOperationId For mutating operation requests only. An
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
+   * @throws \Google\Service\Exception
    */
-  public function delete($project, $location, $responsePolicy, $responsePolicyRule, $optParams = [])
+  public function delete($project, $responsePolicy, $responsePolicyRule, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'responsePolicy' => $responsePolicy, 'responsePolicyRule' => $responsePolicyRule];
+    $params = ['project' => $project, 'responsePolicy' => $responsePolicy, 'responsePolicyRule' => $responsePolicyRule];
     $params = array_merge($params, $optParams);
     return $this->call('delete', [$params]);
   }
@@ -82,8 +80,6 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * (responsePolicyRules.get)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $responsePolicy User assigned name of the Response Policy
    * containing the Response Policy Rule.
    * @param string $responsePolicyRule User assigned name of the Response Policy
@@ -94,10 +90,11 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ResponsePolicyRule
+   * @throws \Google\Service\Exception
    */
-  public function get($project, $location, $responsePolicy, $responsePolicyRule, $optParams = [])
+  public function get($project, $responsePolicy, $responsePolicyRule, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'responsePolicy' => $responsePolicy, 'responsePolicyRule' => $responsePolicyRule];
+    $params = ['project' => $project, 'responsePolicy' => $responsePolicy, 'responsePolicyRule' => $responsePolicyRule];
     $params = array_merge($params, $optParams);
     return $this->call('get', [$params], ResponsePolicyRule::class);
   }
@@ -106,8 +103,6 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * (responsePolicyRules.listResponsePolicyRules)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $responsePolicy User assigned name of the Response Policy to
    * list.
    * @param array $optParams Optional parameters.
@@ -118,10 +113,11 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * request that was truncated. Use this parameter to continue a previous list
    * request.
    * @return ResponsePolicyRulesListResponse
+   * @throws \Google\Service\Exception
    */
-  public function listResponsePolicyRules($project, $location, $responsePolicy, $optParams = [])
+  public function listResponsePolicyRules($project, $responsePolicy, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'responsePolicy' => $responsePolicy];
+    $params = ['project' => $project, 'responsePolicy' => $responsePolicy];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], ResponsePolicyRulesListResponse::class);
   }
@@ -130,8 +126,6 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * (responsePolicyRules.patch)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $responsePolicy User assigned name of the Response Policy
    * containing the Response Policy Rule.
    * @param string $responsePolicyRule User assigned name of the Response Policy
@@ -143,10 +137,11 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ResponsePolicyRulesPatchResponse
+   * @throws \Google\Service\Exception
    */
-  public function patch($project, $location, $responsePolicy, $responsePolicyRule, ResponsePolicyRule $postBody, $optParams = [])
+  public function patch($project, $responsePolicy, $responsePolicyRule, ResponsePolicyRule $postBody, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'responsePolicy' => $responsePolicy, 'responsePolicyRule' => $responsePolicyRule, 'postBody' => $postBody];
+    $params = ['project' => $project, 'responsePolicy' => $responsePolicy, 'responsePolicyRule' => $responsePolicyRule, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('patch', [$params], ResponsePolicyRulesPatchResponse::class);
   }
@@ -154,8 +149,6 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * Updates an existing Response Policy Rule. (responsePolicyRules.update)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location Specifies the location of the resource. This
-   * information will be used for routing and will be part of the resource name.
    * @param string $responsePolicy User assigned name of the Response Policy
    * containing the Response Policy Rule.
    * @param string $responsePolicyRule User assigned name of the Response Policy
@@ -167,10 +160,11 @@ class ResponsePolicyRules extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return ResponsePolicyRulesUpdateResponse
+   * @throws \Google\Service\Exception
    */
-  public function update($project, $location, $responsePolicy, $responsePolicyRule, ResponsePolicyRule $postBody, $optParams = [])
+  public function update($project, $responsePolicy, $responsePolicyRule, ResponsePolicyRule $postBody, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'responsePolicy' => $responsePolicy, 'responsePolicyRule' => $responsePolicyRule, 'postBody' => $postBody];
+    $params = ['project' => $project, 'responsePolicy' => $responsePolicy, 'responsePolicyRule' => $responsePolicyRule, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('update', [$params], ResponsePolicyRulesUpdateResponse::class);
   }
