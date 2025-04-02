@@ -19,13 +19,17 @@ namespace Google\Service\Compute;
 
 class BackendBucket extends \Google\Collection
 {
-  protected $collection_key = 'customResponseHeaders';
+  protected $collection_key = 'usedBy';
   /**
    * @var string
    */
   public $bucketName;
   protected $cdnPolicyType = BackendBucketCdnPolicy::class;
   protected $cdnPolicyDataType = '';
+  /**
+   * @var string
+   */
+  public $compressionMode;
   /**
    * @var string
    */
@@ -62,6 +66,8 @@ class BackendBucket extends \Google\Collection
    * @var string
    */
   public $selfLink;
+  protected $usedByType = BackendBucketUsedBy::class;
+  protected $usedByDataType = 'array';
 
   /**
    * @param string
@@ -90,6 +96,20 @@ class BackendBucket extends \Google\Collection
   public function getCdnPolicy()
   {
     return $this->cdnPolicy;
+  }
+  /**
+   * @param string
+   */
+  public function setCompressionMode($compressionMode)
+  {
+    $this->compressionMode = $compressionMode;
+  }
+  /**
+   * @return string
+   */
+  public function getCompressionMode()
+  {
+    return $this->compressionMode;
   }
   /**
    * @param string
@@ -216,6 +236,20 @@ class BackendBucket extends \Google\Collection
   public function getSelfLink()
   {
     return $this->selfLink;
+  }
+  /**
+   * @param BackendBucketUsedBy[]
+   */
+  public function setUsedBy($usedBy)
+  {
+    $this->usedBy = $usedBy;
+  }
+  /**
+   * @return BackendBucketUsedBy[]
+   */
+  public function getUsedBy()
+  {
+    return $this->usedBy;
   }
 }
 

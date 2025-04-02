@@ -14,7 +14,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Head-->
 
 <head>
-    <title><?php echo APP_TITLE;?></title>
+    <title><?php echo APP_TITLE; ?></title>
     <meta charset="utf-8" />
     <meta name="description"
         content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
@@ -50,7 +50,7 @@ License: For each use you must have a valid license purchased only from above li
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <!--begin::Logo-->
-               
+
                 <!--end::Logo-->
                 <!--begin::Wrapper-->
                 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
@@ -60,8 +60,8 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="text-center mb-10">
                         <!--begin::Title-->
                         <a href="<?php echo base_url(); ?>../../demo8/dist/index.html" class="mb-12">
-                    <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/Logo.png" class="h-40px" />
-                </a>
+                            <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/Logo.png" class="h-40px" />
+                        </a>
                         <!--end::Title-->
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">New Here?
@@ -78,9 +78,9 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Label-->
                         <!--begin::Input-->
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
-                             placeholder="Enter Username" id="username" name="username" value="<?php if (isset($_COOKIE["ecomm_username"])) {
-																																																					echo $_COOKIE["green_username"];
-																																																				} ?>">
+                            placeholder="Enter Email" id="username" name="username" value="<?php if (isset($_COOKIE["ecomm_username"])) {
+                                                                                                echo $_COOKIE["green_username"];
+                                                                                            } ?>">
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -96,25 +96,15 @@ License: For each use you must have a valid license purchased only from above li
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Input-->
-                        <input type="password"  autocomplete="off" placeholder="Enter Password"
+                        <input type="password" autocomplete="off" placeholder="Enter Password"
                             id="password" class="form-control form-control-lg form-control-solid" name="password" value="<?php if (isset($_COOKIE["ecomm_password"])) {
-																																																						echo $_COOKIE["green_password"];
-																																																					} ?>">
+                                                                                                                                echo $_COOKIE["green_password"];
+                                                                                                                            } ?>">
                         <!--end::Input-->
                     </div>
 
-                    <div class="fv-row mb-10">
-                        <div class="d-flex flex-stack mb-2">
-                            <label class="form-label fw-bolder text-dark fs-6 mb-0">Organization</label>
-                        </div>
-                        <select class="form-select mb-5" data-control="select2"
-                                                data-placeholder="Select an option" 
-                                                name="position" id="position">
-                                                <option value="1" selected>Client</option>
-                                                <option value="2">Administration</option>
-                                            </select>
-                    </div>
-                    
+
+
                     <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
@@ -143,7 +133,7 @@ License: For each use you must have a valid license purchased only from above li
             </div>
             <!--end::Content-->
             <!--begin::Footer-->
-            
+
             <!--end::Footer-->
         </div>
         <!--end::Authentication - Sign-in-->
@@ -152,7 +142,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Main-->
     <!--begin::Javascript-->
     <script>
-    var hostUrl = "assets/";
+        var hostUrl = "assets/";
     </script>
     <!--begin::Global Javascript Bundle(used by all pages)-->
     <script src="<?php echo base_url(); ?>assets/plugins/global/plugins.bundle.js"></script>
@@ -163,125 +153,125 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
     <script type="text/javascript">
-    function submit() {
-        var baseurl = '<?php echo base_url(); ?>';
-        var ops_url = baseurl + 'login/login';
-        var username = $('#username').val();
-        var password = $('#password').val();
-        var position = $('#position').val();
-        if (username == '') {
-            Swal.fire({
-                title: 'Login failed',
-                text: 'Username is required',
-                icon: 'error'
-            });
-            return false;
-        }
-        if (password == '') {
-            Swal.fire({
-                title: 'Login failed',
-                text: 'Password is required',
-                icon: 'error'
-            });
-            return false;
-        }
-
-        $.ajax({
-            type: "POST",
-            cache: false,
-            async: true,
-            url: ops_url,
-            data: {
-                "username": username,
-                "password": password,
-                "position": position
-            },
-            success: function(result) {
-                var data = $.parseJSON(result);
-                if (data.status == 1) {
-                    location.reload();
-                }
-                if (data.status == 0) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Login Failed',
-                        text: 'Invalid credentials. Please contact the administrator.'
-                    });
-                }
-                if (data.status == 2) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Login Failed',
-                        text: 'Your account is temporarily blocked. Please contact the administrator.'
-                    });
-                }
-            },
-            error: function(xhr, status, error) {
-                $("#loader").hide();
+        function submit() {
+            var baseurl = '<?php echo base_url(); ?>';
+            var ops_url = baseurl + 'login/login';
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var position = 1;
+            if (username == '') {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'An error occurred while processing your request.'
+                    title: 'Login failed',
+                    text: 'Email is required',
+                    icon: 'error'
                 });
+                return false;
             }
-        });
+            if (password == '') {
+                Swal.fire({
+                    title: 'Login failed',
+                    text: 'Password is required',
+                    icon: 'error'
+                });
+                return false;
+            }
 
-    }
+            $.ajax({
+                type: "POST",
+                cache: false,
+                async: true,
+                url: ops_url,
+                data: {
+                    "username": username,
+                    "password": password,
+                    "position": position
+                },
+                success: function(result) {
+                    var data = $.parseJSON(result);
+                    if (data.status == 1) {
+                        location.reload();
+                    }
+                    if (data.status == 0) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Failed',
+                            text: 'Invalid credentials. Please contact the administrator.'
+                        });
+                    }
+                    if (data.status == 2) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Failed',
+                            text: 'Your account is temporarily blocked. Please contact the administrator.'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $("#loader").hide();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred while processing your request.'
+                    });
+                }
+            });
+
+        }
     </script>
 
     <script type="text/javascript">
-    function send_verification() {
-        $("#loader").show();
-        var email = $('#forgot_email').val();
-        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        if (email == '') {
-            swal('', 'Email-Id Required.', 'info');
-            $("#loader").hide();
-            return false;
-        } else if (!regex.test(email)) {
-            swal('', 'Enter valid Email-id.', 'info');
-            $("#loader").hide();
-            return false;
-        }
-        var baseurl = '<?php echo base_url(); ?>';
-        var ops_url = baseurl + 'login/forgot-password';
-        $.ajax({
-            type: "POST",
-            cache: false,
-            async: true,
-            url: ops_url,
-            data: {
-                "email": email
-            },
-            success: function(result) {
+        function send_verification() {
+            $("#loader").show();
+            var email = $('#forgot_email').val();
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (email == '') {
+                swal('', 'Email-Id Required.', 'info');
                 $("#loader").hide();
-                var data = $.parseJSON(result)
-                if (data.status == 1) {
-                    swal({
-                            title: "Success",
-                            text: "Please check your Email.",
-                            type: "success",
-                            showCancelButton: false,
-                            confirmButtonText: 'OK',
-                            closeOnConfirm: false,
-                            closeOnCancel: false
-                        },
-                        function(isConfirm) {
-
-                            if (isConfirm) {
-                                window.location.reload(true);
-
-                            } else {
-                                window.location.reload(true);
-                            }
-                        });
-                } else {
-                    swal('', 'Email not registered.', 'error');
-                }
+                return false;
+            } else if (!regex.test(email)) {
+                swal('', 'Enter valid Email-id.', 'info');
+                $("#loader").hide();
+                return false;
             }
-        });
+            var baseurl = '<?php echo base_url(); ?>';
+            var ops_url = baseurl + 'login/forgot-password';
+            $.ajax({
+                type: "POST",
+                cache: false,
+                async: true,
+                url: ops_url,
+                data: {
+                    "email": email
+                },
+                success: function(result) {
+                    $("#loader").hide();
+                    var data = $.parseJSON(result)
+                    if (data.status == 1) {
+                        swal({
+                                title: "Success",
+                                text: "Please check your Email.",
+                                type: "success",
+                                showCancelButton: false,
+                                confirmButtonText: 'OK',
+                                closeOnConfirm: false,
+                                closeOnCancel: false
+                            },
+                            function(isConfirm) {
 
-    }
+                                if (isConfirm) {
+                                    window.location.reload(true);
+
+                                } else {
+                                    window.location.reload(true);
+                                }
+                            });
+                    } else {
+                        swal('', 'Email not registered.', 'error');
+                    }
+                }
+            });
+
+        }
     </script>
 </body>
 

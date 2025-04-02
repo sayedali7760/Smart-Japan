@@ -79,6 +79,20 @@
                                             </select>
                                         </div>
 
+
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-5">
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Withdraw Amount</label>
+                                            <input type="text" class="form-control mb-5" id="amount" name="amount"
+                                                placeholder="Withdraw Amount" maxlength="10">
+                                            <input type="hidden" class="form-control mb-5" id="equity_amount" name="equity_amount"
+                                                maxlength="10">
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                        </div>
                                     </div>
                                     <div class="gap-5 wallet_div" style="display: none;">
                                         <div class="alert alert-primary d-flex align-items-center p-5 mb-10">
@@ -132,8 +146,13 @@
                                         <a href="<?php echo base_url(); ?>home" id="kt_ecommerce_add_product_cancel"
                                             class="btn btn-light me-5">Cancel</a>
 
-                                        <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes"
+                                        <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
                                             onclick="submit_data()">Withdraw</a>
+                                        <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                                            <span class="indicator-label">Submit</span>
+                                            <span class="indicator-progress">Please wait...
+                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        </a>
 
                                     </div>
 
@@ -170,6 +189,7 @@
                     $('.wallet_div').show();
                     $('#balance_span').html(data.account_data['Balance']);
                     $('#equity_span').html(data.account_data['Equity']);
+                    $('#equity_amount').val(data.account_data['Equity']);
                     $('#free_span').html(data.account_data['MarginFree']);
                     $('#leverage_span').html(data.account_data['MarginLeverage']);
                     $('#withdraw_span').html('');
@@ -192,11 +212,15 @@
     }
 
     function submit_data() {
-        $("#loader").show();
+        $("#actual_submit").hide();
+        $("#loader_submit").show();
+
         var ops_url = baseurl + 'transaction/withdraw-save';
         var account = $('#account').val();
         var currency = $('#currency').val();
         var method = $('#method').val();
+        var amount = $("#amount").val();
+        var equity_amount = $("#equity_amount").val();
 
         if (account == "") {
             Swal.fire({
@@ -204,7 +228,8 @@
                 title: '',
                 text: 'Account is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (method == "") {
@@ -213,7 +238,8 @@
                 title: '',
                 text: 'Method is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (currency == "") {
@@ -222,10 +248,21 @@
                 title: '',
                 text: 'Currency is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
-        var form = $("#deposit_save");
+        if (amount == "") {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Amount is required.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+        var form = $("#withdraw_save");
         var formData = new FormData(form[0]);
 
         $.ajax({
@@ -237,13 +274,14 @@
             contentType: false,
             data: formData,
             success: function(result) {
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 var data = $.parseJSON(result);
                 if (data.status == 1) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: 'Deposit Completed.',
+                        text: 'Withdraw Completed.',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     }).then((result) => {
@@ -251,12 +289,20 @@
                             location.reload();
                         }
                     });
-                } else {
-                    $('#faculty_loader').removeClass('sk-loading');
+                }
+                if (data.status == 3) {
+                    Swal.fire({
+                        icon: 'warning', // Changed to 'warning' for better emphasis
+                        title: 'Insufficient Balance',
+                        text: 'Your maximum withdrawable amount is ' + equity_amount + '. Please enter a lower amount.',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    });
                 }
             },
             error: function(xhr, status, error) {
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',

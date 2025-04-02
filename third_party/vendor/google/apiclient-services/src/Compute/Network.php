@@ -46,6 +46,10 @@ class Network extends \Google\Collection
   /**
    * @var string
    */
+  public $firewallPolicy;
+  /**
+   * @var string
+   */
   public $gatewayIPv4;
   /**
    * @var string
@@ -71,6 +75,10 @@ class Network extends \Google\Collection
    * @var string
    */
   public $networkFirewallPolicyEnforcementOrder;
+  /**
+   * @var string
+   */
+  public $networkProfile;
   protected $peeringsType = NetworkPeering::class;
   protected $peeringsDataType = 'array';
   protected $routingConfigType = NetworkRoutingConfig::class;
@@ -157,6 +165,20 @@ class Network extends \Google\Collection
   public function getEnableUlaInternalIpv6()
   {
     return $this->enableUlaInternalIpv6;
+  }
+  /**
+   * @param string
+   */
+  public function setFirewallPolicy($firewallPolicy)
+  {
+    $this->firewallPolicy = $firewallPolicy;
+  }
+  /**
+   * @return string
+   */
+  public function getFirewallPolicy()
+  {
+    return $this->firewallPolicy;
   }
   /**
    * @param string
@@ -255,6 +277,20 @@ class Network extends \Google\Collection
   public function getNetworkFirewallPolicyEnforcementOrder()
   {
     return $this->networkFirewallPolicyEnforcementOrder;
+  }
+  /**
+   * @param string
+   */
+  public function setNetworkProfile($networkProfile)
+  {
+    $this->networkProfile = $networkProfile;
+  }
+  /**
+   * @return string
+   */
+  public function getNetworkProfile()
+  {
+    return $this->networkProfile;
   }
   /**
    * @param NetworkPeering[]

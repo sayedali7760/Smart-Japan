@@ -77,7 +77,141 @@ class Transaction extends CI_Controller
 
         // $mt_demo_accounts[$row->login] = array('login' => $demo_user_server->Login, 'Balance' => $demo_user_server->Balance, 'Profit' => $demo_user_server->Profit);
     }
-    public function withdraw_client_save() {}
+    public function transfer_client_save()
+    {
+
+        $from_account = $this->input->post('account');
+        $to_account = $this->input->post('to_account');
+        $amount = $this->input->post('amount');
+        $client_id = $this->session->userdata('id');
+
+        require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
+        try {
+            $instance = new MTWebAPI();
+            $response = $instance->Connect(DEMO_IP, DEMO_PORT, DEMO_TIMEOUT, DEMO_LOGIN, DEMO_PASSWORD);
+            if ($response !== MTRetCode::MT_RET_OK) {
+                echo "Failed to connect to MetaTrader 5 server. Error code: " . $response;
+            } else {
+            }
+        } catch (Exception $e) {
+            echo "An error occurred: " . $e->getMessage();
+        }
+        $instance->UserAccountGet($from_account, $from_account_details);
+        $instance->UserAccountGet($to_account, $to_account_details);
+
+        $from_account_data['Equity'] = $from_account_details->Equity;
+        // $from_account_data['MarginFree'] = $from_account_details->MarginFree;
+        // $from_account_data['MarginLeverage'] = $from_account_details->MarginLeverage;
+        // $from_account_data['Balance'] = $from_account_details->Balance;
+        // $mtAmount_from = $from_account_data['Balance'] - $amount;
+        $result = $instance->TradeBalance($from_account, MTEnDealAction::DEAL_BALANCE,  -$amount, 'Web Transfer', $ticket);
+        // $to_account_data['Equity'] = $to_account_details->Equity;
+        // $to_account_data['MarginFree'] = $to_account_details->MarginFree;
+        // $to_account_data['MarginLeverage'] = $to_account_details->MarginLeverage;
+        // $to_account_data['Balance'] = $to_account_details->Balance;
+        // $mtAmount_to = $to_account_data['Balance'] + $amount;
+        $result = $instance->TradeBalance($to_account, MTEnDealAction::DEAL_BALANCE,  $amount, 'Web Transfer', $ticket);
+
+        if ($amount >= $from_account_data['Equity']) {
+            echo json_encode(array('status' => 3));
+            return;
+        }
+
+        $deposit_transfer = array(
+            'user_id' => $client_id,
+            'type' => 'own deposit',
+            'method' => 'own transfer',
+            'account_id' => $from_account,
+            'opt_account_id' => $to_account,
+            'amount' => $amount,
+            'status' => 'success',
+            'status_finished' => 'approved',
+            'comment' => 'Own Transfer',
+        );
+        $withdraw_transfer = array(
+            'user_id' => $client_id,
+            'type' => 'own withdrawal',
+            'method' => 'own transfer',
+            'account_id' => $to_account,
+            'opt_account_id' => $from_account,
+            'amount' => $amount,
+            'status' => 'success',
+            'status_finished' => 'approved',
+            'comment' => 'Own Transfer',
+        );
+
+        if ($this->TModel->insert_transaction($deposit_transfer)) {
+            $this->TModel->insert_transaction($withdraw_transfer);
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 0));
+            return;
+        }
+    }
+    public function withdraw_client_save()
+    {
+        $account = $this->input->post('account');
+        $method = $this->input->post('method');
+        $currency = $this->input->post('currency');
+        $amount = $this->input->post('amount');
+        $client_id = $this->session->userdata('id');
+
+        if ($method == 1) {
+            $method_name = 'nexus';
+        } else if ($method == 2) {
+            $method_name = 'sticpay';
+        } else if ($method == 3) {
+            $method_name = 'bank';
+        }
+        require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
+        try {
+            $instance = new MTWebAPI();
+            $response = $instance->Connect(DEMO_IP, DEMO_PORT, DEMO_TIMEOUT, DEMO_LOGIN, DEMO_PASSWORD);
+            if ($response !== MTRetCode::MT_RET_OK) {
+                echo "Failed to connect to MetaTrader 5 server. Error code: " . $response;
+            } else {
+            }
+        } catch (Exception $e) {
+            echo "An error occurred: " . $e->getMessage();
+        }
+        $instance->UserAccountGet($account, $account_details);
+        $account_data['Equity'] = $account_details->Equity;
+        $account_data['MarginFree'] = $account_details->MarginFree;
+        $account_data['MarginLeverage'] = $account_details->MarginLeverage;
+        $account_data['Balance'] = $account_details->Balance;
+
+        if ($amount >= $account_data['Equity']) {
+            echo json_encode(array('status' => 3));
+            return;
+        }
+
+        $withdrawal = array(
+            'user_id' => $client_id,
+            'type' => 'withdraw',
+            'method' => $method_name,
+            'account_id' => $account,
+            'currency' => $currency,
+            'amount' => $amount,
+            'amount_finished' => $amount,
+            'status' => 'new',
+            'status_finished' => 'approved',
+            'comment' => 'Withdrawal',
+            'wallet_address' => '',
+            'nexus_status' => '',
+        );
+
+        if ($this->TModel->insert_transaction($withdrawal)) {
+            $mtAmount = $account_data['Equity'] - $amount;
+            $login = $account;
+            $result = $instance->TradeBalance($login, MTEnDealAction::DEAL_BALANCE,  $mtAmount, 'Nexus', $ticket);
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 0));
+            return;
+        }
+    }
     public function deposit_client_save()
     {
         $account = $this->input->post('account');

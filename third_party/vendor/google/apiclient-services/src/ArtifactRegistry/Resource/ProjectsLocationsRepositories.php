@@ -30,7 +30,7 @@ use Google\Service\ArtifactRegistry\TestIamPermissionsResponse;
  * Typical usage is:
  *  <code>
  *   $artifactregistryService = new Google\Service\ArtifactRegistry(...);
- *   $repositories = $artifactregistryService->repositories;
+ *   $repositories = $artifactregistryService->projects_locations_repositories;
  *  </code>
  */
 class ProjectsLocationsRepositories extends \Google\Service\Resource
@@ -45,8 +45,10 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * @param Repository $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string repositoryId The repository id to use for this repository.
+   * @opt_param string repositoryId Required. The repository id to use for this
+   * repository.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Repository $postBody, $optParams = [])
   {
@@ -63,6 +65,7 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * @param string $name Required. The name of the repository to delete.
    * @param array $optParams Optional parameters.
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -76,6 +79,7 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * @param string $name Required. The name of the repository to retrieve.
    * @param array $optParams Optional parameters.
    * @return Repository
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -87,8 +91,9 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * Gets the IAM policy for a given resource. (repositories.getIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. See the operation documentation for the appropriate value for this
-   * field.
+   * requested. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int options.requestedPolicyVersion Optional. The maximum policy
@@ -104,6 +109,7 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -118,11 +124,24 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * repositories will be listed.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string filter Optional. An expression for filtering the results of
+   * the request. Filter rules are case insensitive. The fields eligible for
+   * filtering are: * `name` Examples of using a filter: To filter the results of
+   * your request to repositories with the name `my-repo` in project `my-project`
+   * in the `us-central` region, append the following filter expression to your
+   * request: * `name="projects/my-project/locations/us-central1/repositories/my-
+   * repo"` You can also use wildcards to match any number of characters before or
+   * after the value: * `name="projects/my-project/locations/us-
+   * central1/repositories/my-*"` * `name="projects/my-project/locations/us-
+   * central1/repositoriesrepo"` * `name="projects/my-project/locations/us-
+   * central1/repositoriesrepo*"`
+   * @opt_param string orderBy Optional. The field to order the results by.
    * @opt_param int pageSize The maximum number of repositories to return. Maximum
    * page size is 1,000.
    * @opt_param string pageToken The next_page_token value returned from a
    * previous list request, if any.
    * @return ListRepositoriesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsRepositories($parent, $optParams = [])
   {
@@ -134,7 +153,8 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * Updates a repository. (repositories.patch)
    *
    * @param string $name The name of the repository, for example:
-   * "projects/p1/locations/us-central1/repositories/repo1".
+   * `projects/p1/locations/us-central1/repositories/repo1`. For each location in
+   * a project, repository names must be unique.
    * @param Repository $postBody
    * @param array $optParams Optional parameters.
    *
@@ -142,6 +162,7 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * `FieldMask` definition, see https://developers.google.com/protocol-
    * buffers/docs/reference/google.protobuf#fieldmask
    * @return Repository
+   * @throws \Google\Service\Exception
    */
   public function patch($name, Repository $postBody, $optParams = [])
   {
@@ -153,11 +174,13 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * Updates the IAM policy for a given resource. (repositories.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. See the operation documentation for the appropriate value for this
-   * field.
+   * specified. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -170,11 +193,13 @@ class ProjectsLocationsRepositories extends \Google\Service\Resource
    * (repositories.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. See the operation documentation for the appropriate value
-   * for this field.
+   * being requested. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

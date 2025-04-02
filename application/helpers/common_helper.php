@@ -68,13 +68,16 @@ function check_permission($pageid, $operationid = NULL, $moduleid = NULL)
 function RandString($length = 10)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $sc = '@#$!';
+    $specialChars = '@#$!';
+    if ($length < 2) {
+        return "Length should be at least 2 to include a special character.";
+    }
     $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
+    for ($i = 0; $i < $length - 1; $i++) {
         $randomString .= $characters[rand(0, strlen($characters) - 1)];
     }
-    $sp = $sc[rand(0, strlen($sc) - 1)];
-    return str_shuffle($sp . $randomString);
+    $specialChar = $specialChars[rand(0, strlen($specialChars) - 1)];
+    return str_shuffle($specialChar . $randomString);
 }
 
 function Filenamegenerator($length = 8)
