@@ -43,12 +43,15 @@ class Baremetalsolution extends \Google\Service
   public $projects_locations_instances;
   public $projects_locations_networks;
   public $projects_locations_nfsShares;
+  public $projects_locations_operations;
+  public $projects_locations_osImages;
   public $projects_locations_provisioningConfigs;
   public $projects_locations_provisioningQuotas;
-  public $projects_locations_snapshotSchedulePolicies;
+  public $projects_locations_sshKeys;
   public $projects_locations_volumes;
   public $projects_locations_volumes_luns;
   public $projects_locations_volumes_snapshots;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the Baremetalsolution service.
@@ -61,6 +64,7 @@ class Baremetalsolution extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://baremetalsolution.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://baremetalsolution.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';
@@ -114,7 +118,57 @@ class Baremetalsolution extends \Google\Service
         'instances',
         [
           'methods' => [
-            'get' => [
+            'detachLun' => [
+              'path' => 'v2/{+instance}:detachLun',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'instance' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'disableHyperthreading' => [
+              'path' => 'v2/{+name}:disableHyperthreading',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'disableInteractiveSerialConsole' => [
+              'path' => 'v2/{+name}:disableInteractiveSerialConsole',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'enableHyperthreading' => [
+              'path' => 'v2/{+name}:enableHyperthreading',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'enableInteractiveSerialConsole' => [
+              'path' => 'v2/{+name}:enableInteractiveSerialConsole',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -146,6 +200,16 @@ class Baremetalsolution extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'loadAuthInfo' => [
+              'path' => 'v2/{+name}:loadAuthInfo',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'patch' => [
               'path' => 'v2/{+name}',
               'httpMethod' => 'PATCH',
@@ -160,6 +224,26 @@ class Baremetalsolution extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'reimage' => [
+              'path' => 'v2/{+name}:reimage',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'rename' => [
+              'path' => 'v2/{+name}:rename',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'reset' => [
               'path' => 'v2/{+name}:reset',
               'httpMethod' => 'POST',
@@ -172,6 +256,16 @@ class Baremetalsolution extends \Google\Service
               ],
             ],'start' => [
               'path' => 'v2/{+name}:start',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'stop' => [
+              'path' => 'v2/{+name}:stop',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -246,6 +340,16 @@ class Baremetalsolution extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'rename' => [
+              'path' => 'v2/{+name}:rename',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],
           ]
         ]
@@ -256,7 +360,27 @@ class Baremetalsolution extends \Google\Service
         'nfsShares',
         [
           'methods' => [
-            'get' => [
+            'create' => [
+              'path' => 'v2/{+parent}/nfsShares',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'delete' => [
+              'path' => 'v2/{+name}',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -298,6 +422,74 @@ class Baremetalsolution extends \Google\Service
                   'required' => true,
                 ],
                 'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],'rename' => [
+              'path' => 'v2/{+name}:rename',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_operations = new Baremetalsolution\Resource\ProjectsLocationsOperations(
+        $this,
+        $this->serviceName,
+        'operations',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v2/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_osImages = new Baremetalsolution\Resource\ProjectsLocationsOsImages(
+        $this,
+        $this->serviceName,
+        'osImages',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v2/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v2/{+parent}/osImages',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -396,14 +588,14 @@ class Baremetalsolution extends \Google\Service
           ]
         ]
     );
-    $this->projects_locations_snapshotSchedulePolicies = new Baremetalsolution\Resource\ProjectsLocationsSnapshotSchedulePolicies(
+    $this->projects_locations_sshKeys = new Baremetalsolution\Resource\ProjectsLocationsSshKeys(
         $this,
         $this->serviceName,
-        'snapshotSchedulePolicies',
+        'sshKeys',
         [
           'methods' => [
             'create' => [
-              'path' => 'v2/{+parent}/snapshotSchedulePolicies',
+              'path' => 'v2/{+parent}/sshKeys',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -411,7 +603,7 @@ class Baremetalsolution extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'snapshotSchedulePolicyId' => [
+                'sshKeyId' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -426,18 +618,8 @@ class Baremetalsolution extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'get' => [
-              'path' => 'v2/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
             ],'list' => [
-              'path' => 'v2/{+parent}/snapshotSchedulePolicies',
+              'path' => 'v2/{+parent}/sshKeys',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -445,29 +627,11 @@ class Baremetalsolution extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'filter' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
                 'pageSize' => [
                   'location' => 'query',
                   'type' => 'integer',
                 ],
                 'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'patch' => [
-              'path' => 'v2/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],
@@ -482,7 +646,17 @@ class Baremetalsolution extends \Google\Service
         'volumes',
         [
           'methods' => [
-            'get' => [
+            'evict' => [
+              'path' => 'v2/{+name}:evict',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -528,6 +702,26 @@ class Baremetalsolution extends \Google\Service
                   'type' => 'string',
                 ],
               ],
+            ],'rename' => [
+              'path' => 'v2/{+name}:rename',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'resize' => [
+              'path' => 'v2/{+volume}:resize',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'volume' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],
           ]
         ]
@@ -538,7 +732,17 @@ class Baremetalsolution extends \Google\Service
         'luns',
         [
           'methods' => [
-            'get' => [
+            'evict' => [
+              'path' => 'v2/{+name}:evict',
+              'httpMethod' => 'POST',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'get' => [
               'path' => 'v2/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
