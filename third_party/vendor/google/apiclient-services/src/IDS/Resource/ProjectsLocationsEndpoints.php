@@ -30,7 +30,7 @@ use Google\Service\IDS\TestIamPermissionsResponse;
  * Typical usage is:
  *  <code>
  *   $idsService = new Google\Service\IDS(...);
- *   $endpoints = $idsService->endpoints;
+ *   $endpoints = $idsService->projects_locations_endpoints;
  *  </code>
  */
 class ProjectsLocationsEndpoints extends \Google\Service\Resource
@@ -51,7 +51,7 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
    * Specify a unique request ID so that if you must retry your request, the
    * server will know to ignore the request if it has already been completed. The
    * server will guarantee that for at least 60 minutes since the first request.
-   * For example, consider a situation where you make an initial request and t he
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
@@ -59,6 +59,7 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
    * valid UUID with the exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, Endpoint $postBody, $optParams = [])
   {
@@ -76,7 +77,7 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
    * Specify a unique request ID so that if you must retry your request, the
    * server will know to ignore the request if it has already been completed. The
    * server will guarantee that for at least 60 minutes after the first request.
-   * For example, consider a situation where you make an initial request and t he
+   * For example, consider a situation where you make an initial request and the
    * request times out. If you make the request again with the same request ID,
    * the server can check if original operation with the same request ID was
    * received, and if so, will ignore the second request. This prevents clients
@@ -84,6 +85,7 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
    * valid UUID with the exception that zero UUID is not supported
    * (00000000-0000-0000-0000-000000000000).
    * @return Operation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -98,6 +100,7 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
    * projects/{project}/locations/{location}/endpoints/{endpoint}
    * @param array $optParams Optional parameters.
    * @return Endpoint
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -110,8 +113,9 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
    * resource exists and does not have a policy set. (endpoints.getIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. See the operation documentation for the appropriate value for this
-   * field.
+   * requested. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int options.requestedPolicyVersion Optional. The maximum policy
@@ -127,6 +131,7 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
    * documentation](https://cloud.google.com/iam/help/conditions/resource-
    * policies).
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -153,6 +158,7 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
    * paginating, all other parameters provided to `ListEndpoints` must match the
    * call that provided the page token.
    * @return ListEndpointsResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsEndpoints($parent, $optParams = [])
   {
@@ -161,16 +167,50 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
     return $this->call('list', [$params], ListEndpointsResponse::class);
   }
   /**
+   * Updates the parameters of a single Endpoint. (endpoints.patch)
+   *
+   * @param string $name Output only. The name of the endpoint.
+   * @param Endpoint $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed. The
+   * server will guarantee that for at least 60 minutes since the first request.
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments. The request ID must be a
+   * valid UUID with the exception that zero UUID is not supported
+   * (00000000-0000-0000-0000-000000000000).
+   * @opt_param string updateMask Field mask is used to specify the fields to be
+   * overwritten in the Endpoint resource by the update. The fields specified in
+   * the update_mask are relative to the resource, not the full request. A field
+   * will be overwritten if it is in the mask. If the user does not provide a mask
+   * then all fields will be overwritten.
+   * @return Operation
+   * @throws \Google\Service\Exception
+   */
+  public function patch($name, Endpoint $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('patch', [$params], Operation::class);
+  }
+  /**
    * Sets the access control policy on the specified resource. Replaces any
    * existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and
    * `PERMISSION_DENIED` errors. (endpoints.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. See the operation documentation for the appropriate value for this
-   * field.
+   * specified. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
    * @param SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -187,11 +227,13 @@ class ProjectsLocationsEndpoints extends \Google\Service\Resource
    * (endpoints.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. See the operation documentation for the appropriate value
-   * for this field.
+   * being requested. See [Resource
+   * names](https://cloud.google.com/apis/design/resource_names) for the
+   * appropriate value for this field.
    * @param TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, TestIamPermissionsRequest $postBody, $optParams = [])
   {

@@ -51,9 +51,17 @@ class FirewallPolicyRule extends \Google\Collection
    */
   public $priority;
   /**
+   * @var string
+   */
+  public $ruleName;
+  /**
    * @var int
    */
   public $ruleTupleCount;
+  /**
+   * @var string
+   */
+  public $securityProfileGroup;
   /**
    * @var string[]
    */
@@ -64,6 +72,10 @@ class FirewallPolicyRule extends \Google\Collection
    * @var string[]
    */
   public $targetServiceAccounts;
+  /**
+   * @var bool
+   */
+  public $tlsInspect;
 
   /**
    * @param string
@@ -178,6 +190,20 @@ class FirewallPolicyRule extends \Google\Collection
     return $this->priority;
   }
   /**
+   * @param string
+   */
+  public function setRuleName($ruleName)
+  {
+    $this->ruleName = $ruleName;
+  }
+  /**
+   * @return string
+   */
+  public function getRuleName()
+  {
+    return $this->ruleName;
+  }
+  /**
    * @param int
    */
   public function setRuleTupleCount($ruleTupleCount)
@@ -190,6 +216,20 @@ class FirewallPolicyRule extends \Google\Collection
   public function getRuleTupleCount()
   {
     return $this->ruleTupleCount;
+  }
+  /**
+   * @param string
+   */
+  public function setSecurityProfileGroup($securityProfileGroup)
+  {
+    $this->securityProfileGroup = $securityProfileGroup;
+  }
+  /**
+   * @return string
+   */
+  public function getSecurityProfileGroup()
+  {
+    return $this->securityProfileGroup;
   }
   /**
    * @param string[]
@@ -232,6 +272,20 @@ class FirewallPolicyRule extends \Google\Collection
   public function getTargetServiceAccounts()
   {
     return $this->targetServiceAccounts;
+  }
+  /**
+   * @param bool
+   */
+  public function setTlsInspect($tlsInspect)
+  {
+    $this->tlsInspect = $tlsInspect;
+  }
+  /**
+   * @return bool
+   */
+  public function getTlsInspect()
+  {
+    return $this->tlsInspect;
   }
 }
 

@@ -77,7 +77,7 @@ class Mt_Accounts extends CI_Controller
             echo json_encode(array('status' => 2));
             return;
         } else {
-            $mtAmount = 10000;
+            $mtAmount = 0;
             $mtLeverage = 400;
 
             require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
@@ -87,16 +87,29 @@ class Mt_Accounts extends CI_Controller
                 if ($response !== MTRetCode::MT_RET_OK) {
                     echo "Failed to connect to MetaTrader 5 server. Error code: " . $response;
                 } else {
+
+
+                    $query = $this->db->select_max('login')
+                        ->from('accounts')
+                        ->where('server', 'Live')
+                        ->where('LENGTH(login) =', 5)
+                        ->get()
+                        ->row();
+                    //Account not creating then check the login is already exist or not
+                    $maxLogin = isset($query->login) ? $query->login : 0;
+                    $newLogin = $maxLogin + 1;
+
                     $new_user = $instance->UserCreate();
-                    $new_user->Email = 'sayed.ali7760@gmail.com';
+                    $new_user->Email = $user_details['email'];
                     $new_user->MainPassword = RandString();
                     $new_user->InvestPassword = RandString();
                     $new_user->Group = 'SSC\JAPAN\SSC-JAPAN-VIP-USD-B';
-                    $new_user->ZipCode = '123456';
-                    $new_user->Country = 'United Arab Emirates';
-                    $new_user->State = 'Dubai';
-                    $new_user->City = 'Baysquare';
-                    $new_user->Address = '402, 4th Floor, Al Saqr Business Tower, Sheikh Zayed Road, Dubai, UAE';
+                    $new_user->ZipCode = '';
+                    $new_user->Country = $user_details['country'];
+                    $new_user->State = '';
+                    $new_user->City = '';
+                    $new_user->Address = '';
+                    $new_user->Login = $newLogin;
                     $new_user->Phone = $user_details['phone'];
                     $new_user->Name = $fullname;
                     $new_user->PhonePassword = RandString();
@@ -112,6 +125,7 @@ class Mt_Accounts extends CI_Controller
                         'main_password' => $new_user->MainPassword,
                         'invest_password' => $new_user->InvestPassword,
                         'phone_password' => $new_user->PhonePassword,
+                        'currency' => 'USD',
                         'leverage' => $new_user->Leverage,
                         'server' => 'Live',
                         'balance' => $mtAmount,
@@ -221,6 +235,7 @@ class Mt_Accounts extends CI_Controller
                         'invest_password' => $new_user->InvestPassword,
                         'phone_password' => $new_user->PhonePassword,
                         'leverage' => $new_user->Leverage,
+                        'currency' => 'USD',
                         'server' => 'Demo',
                         'balance' => $mtAmount,
                         'name' => 'mt5',

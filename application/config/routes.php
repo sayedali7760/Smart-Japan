@@ -55,6 +55,7 @@ $route['logout'] = 'Login/logout';
 $route['home'] = 'dashboard_controller';
 $route['error'] = 'Login/error';
 $route['login/login'] = 'Login/loginaction';
+$route['admin'] = 'Login/admin_login';
 $route['home/dashboard'] = 'dashboard_controller';
 $route['login/forgot-password'] = 'Login/forgot_password_check';
 $route['update-forgot-password?(:any)'] = 'Login/change_password_user';
@@ -129,6 +130,7 @@ $route['mt-account/show-mt-create'] = 'settings/Mt_Accounts/show_mt_create';
 $route['mt-account/my-mt-details'] = 'settings/Mt_Accounts/my_mt_details';
 $route['transaction/my-transaction-details'] = 'Transaction/my_transaction_details';
 $route['transaction/withdraw-save'] = 'Transaction/withdraw_client_save';
+$route['transaction/transfer-save'] = 'Transaction/transfer_client_save';
 $route['transaction/get-mtaccount-details'] = 'Transaction/get_mtaccount_details';
 
 $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';

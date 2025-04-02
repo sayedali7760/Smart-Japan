@@ -104,6 +104,7 @@
                                 <th class="text-strat min-w-75px">Platform</th>
                                 <th class="text-start min-w-75px">Currency</th>
                                 <th class="text-start min-w-75px">Main Password</th>
+                                <th class="text-start min-w-75px">Phone Password</th>
                                 <th class="text-start min-w-100px">Created</th>
                             </tr>
                             <!--end::Table row-->
@@ -129,6 +130,7 @@
                                     <td class="text-start pe-0"><?php echo $data->platform; ?></td>
                                     <td class="text-start pe-0"><?php echo $data->currency; ?></td>
                                     <td class="text-start pe-0"><?php echo $data->main_password; ?></td>
+                                    <td class="text-start pe-0"><?php echo $data->phone_password; ?></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($data->created)); ?></td>
                                 </tr>
 

@@ -44,6 +44,7 @@ class ApiKeysService extends \Google\Service
   public $keys;
   public $operations;
   public $projects_locations_keys;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the ApiKeysService service.
@@ -56,6 +57,7 @@ class ApiKeysService extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://apikeys.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://apikeys.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v2';
@@ -106,17 +108,7 @@ class ApiKeysService extends \Google\Service
         'keys',
         [
           'methods' => [
-            'clone' => [
-              'path' => 'v2/{+name}:clone',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'create' => [
+            'create' => [
               'path' => 'v2/{+parent}/keys',
               'httpMethod' => 'POST',
               'parameters' => [
@@ -172,10 +164,6 @@ class ApiKeysService extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'filter' => [
-                  'location' => 'query',
-                  'type' => 'string',
                 ],
                 'pageSize' => [
                   'location' => 'query',

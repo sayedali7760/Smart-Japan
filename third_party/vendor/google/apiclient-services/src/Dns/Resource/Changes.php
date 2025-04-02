@@ -34,7 +34,6 @@ class Changes extends \Google\Service\Resource
    * Atomically updates the ResourceRecordSet collection. (changes.create)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location
    * @param string $managedZone Identifies the managed zone addressed by this
    * request. Can be the managed zone name or ID.
    * @param Change $postBody
@@ -44,10 +43,11 @@ class Changes extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return Change
+   * @throws \Google\Service\Exception
    */
-  public function create($project, $location, $managedZone, Change $postBody, $optParams = [])
+  public function create($project, $managedZone, Change $postBody, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'managedZone' => $managedZone, 'postBody' => $postBody];
+    $params = ['project' => $project, 'managedZone' => $managedZone, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('create', [$params], Change::class);
   }
@@ -55,7 +55,6 @@ class Changes extends \Google\Service\Resource
    * Fetches the representation of an existing Change. (changes.get)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location
    * @param string $managedZone Identifies the managed zone addressed by this
    * request. Can be the managed zone name or ID.
    * @param string $changeId The identifier of the requested change, from a
@@ -66,10 +65,11 @@ class Changes extends \Google\Service\Resource
    * optional identifier specified by the client. Must be unique for operation
    * resources in the Operations collection.
    * @return Change
+   * @throws \Google\Service\Exception
    */
-  public function get($project, $location, $managedZone, $changeId, $optParams = [])
+  public function get($project, $managedZone, $changeId, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'managedZone' => $managedZone, 'changeId' => $changeId];
+    $params = ['project' => $project, 'managedZone' => $managedZone, 'changeId' => $changeId];
     $params = array_merge($params, $optParams);
     return $this->call('get', [$params], Change::class);
   }
@@ -77,7 +77,6 @@ class Changes extends \Google\Service\Resource
    * Enumerates Changes to a ResourceRecordSet collection. (changes.listChanges)
    *
    * @param string $project Identifies the project addressed by this request.
-   * @param string $location
    * @param string $managedZone Identifies the managed zone addressed by this
    * request. Can be the managed zone name or ID.
    * @param array $optParams Optional parameters.
@@ -92,10 +91,11 @@ class Changes extends \Google\Service\Resource
    * @opt_param string sortOrder Sorting order direction: 'ascending' or
    * 'descending'.
    * @return ChangesListResponse
+   * @throws \Google\Service\Exception
    */
-  public function listChanges($project, $location, $managedZone, $optParams = [])
+  public function listChanges($project, $managedZone, $optParams = [])
   {
-    $params = ['project' => $project, 'location' => $location, 'managedZone' => $managedZone];
+    $params = ['project' => $project, 'managedZone' => $managedZone];
     $params = array_merge($params, $optParams);
     return $this->call('list', [$params], ChangesListResponse::class);
   }
