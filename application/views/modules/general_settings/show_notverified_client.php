@@ -103,6 +103,7 @@
                                 <th class="text-strat min-w-75px">Phone</th>
                                 <th class="text-start min-w-75px">Created</th>
                                 <th class="text-start min-w-75px">Verification</th>
+                                <th class="text-start min-w-75px">Bank Data Verification</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -121,7 +122,7 @@
                                     <td class="text-start pe-0"><?php echo $client->phone; ?></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($client->created)); ?>
                                     <td class="text-start pe-0"><a href="javascript:void(0);" onclick="edit_client('<?php echo $client->id; ?>')"><span class="badge badge-light-primary">View Documents</span></a></td>
-
+                                    <td class="text-start pe-0"><a href="javascript:void(0);" onclick="bank_data('<?php echo $client->id; ?>')"><span class="badge badge-light-success">View Account Details</span></a></td>
                                 </tr>
 
                             <?php
@@ -192,6 +193,29 @@
 
     function edit_client(id) {
         var ops_url = baseurl + 'user-management/edit-client';
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: ops_url,
+            data: {
+                "load": 1,
+                "client_id": id,
+            },
+            success: function(result) {
+                console.log(result);
+                var data = $.parseJSON(result);
+                $("#kt_post").html(data.view);
+                $('#kt_post').addClass('in-down');
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "slow");
+            }
+        });
+    }
+
+    function bank_data(id) {
+        var ops_url = baseurl + 'client/show-bank-details';
         $.ajax({
             type: "POST",
             cache: false,

@@ -176,6 +176,9 @@ class User_management extends CI_Controller
             $this->load->view(ERROR_500);
         }
     }
+
+
+
     public function edit_profile_self()
     {
         $user_id = $this->session->userdata('id');

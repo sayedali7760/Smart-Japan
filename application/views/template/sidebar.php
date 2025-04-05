@@ -352,6 +352,18 @@
                             </a>
                         </div>
 
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Bank Data') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>client/my-data">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Bank Details</span>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click"
