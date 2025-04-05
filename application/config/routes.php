@@ -153,6 +153,11 @@ $route['transaction/process-withdraw'] = 'Transaction/process_withdraw';
 
 $route['test-mail'] = 'settings/MT_Accounts/send_mail';
 
+$route['client/my-data'] = 'settings/Client_crm/my_data';
+$route['client/bdata-save'] = 'settings/Client_crm/bank_data';
+$route['client/wallet-save'] = 'settings/Client_crm/wallet_id';
+$route['client/show-bank-details'] = 'settings/Client_crm/show_bank_details';
+
 
 $route['default_controller'] = 'Login';
 $route['404_override'] = 'Login/error';
