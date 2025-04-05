@@ -25,6 +25,63 @@ class Client_crm extends CI_Controller
         $data['template'] = 'modules/general_settings/my_profile';
         $this->load->view('template/dashboard_template', $data);
     }
+    // new sush
+    public function my_data()
+    {
+        $data['title'] = 'Client';
+        $data['subtitle'] = 'Bank Details';
+        $id = $this->session->userdata['id'];
+        $data['wallet_data'] = $this->CModel->get_wallet_details($id);
+        $data['bank_data'] = $this->CModel->get_bank_data($id);
+
+        $data['template'] = 'modules/general_settings/bank_data';
+        $this->load->view('template/dashboard_template', $data);
+    }
+
+    public function bank_data()
+    {
+        $data['client_id'] = $this->session->userdata('id');
+        $data['beneficiary_name'] = $this->input->post('name');
+        $data['bank_name'] = $this->input->post('bname');
+        $data['account_no'] = $this->input->post('acc_no');
+        $data['iban'] = $this->input->post('iban');
+        $data['swift'] = $this->input->post('swift');
+        $data['bank_addr'] = $this->input->post('addr');
+        $data['branch'] = $this->input->post('branch');
+        $data['created_by'] = $this->session->userdata('id');
+
+        $uploadPath = 'uploads';
+
+        $file_statement = 'files_statement';
+        $files_statement = $this->fileUpload($uploadPath, $file_statement);
+        if ($files_statement != null) {
+            $data['statement'] = $files_statement;
+        }
+
+        if ($this->CModel->add_bank_data($data)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
+    }
+
+    public function wallet_id()
+    {
+        $data['client_id'] = $this->session->userdata('id');
+        $data['wallet_address'] = $this->input->post('wallet');
+        $data['type'] = $this->input->post('wal_type');
+        $data['created_by'] = $this->session->userdata('id');
+        $data['status'] = 1;
+
+        if ($this->CModel->add_wallet($data)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
+    }
+    // end
     public function update_doc_status()
     {
         $client_id = $this->input->post('client_id');
@@ -147,6 +204,25 @@ class Client_crm extends CI_Controller
         }
     }
 
+    // new sush 
+    public function show_bank_details()
+    {
+        if ($this->input->is_ajax_request() == 1) {
+            $onload =  $this->input->post('load');
+            $user_id = $this->input->post('client_id');
+            if ($onload == 1) {
+
+                $data['bank_data'] = $this->CModel->get_bank_data($user_id);
+
+                $view = $this->load->view('modules/general_settings/bank_details', $data, TRUE);
+                echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
+                return;
+            }
+        } else {
+            $this->load->view(ERROR_500);
+        }
+    }
+    // end
 
     public function fileUpload($uploadPath, $uploadfile = '')
     {
