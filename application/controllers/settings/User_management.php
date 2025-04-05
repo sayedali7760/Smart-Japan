@@ -34,6 +34,7 @@ class User_management extends CI_Controller
         $data['subtitle'] = 'Add Client';
         $data['countries'] = $this->CModel->get_countries();
         $data['user_role'] = $this->UMModel->get_user_role();
+        $data['staff_details'] = $this->CModel->get_client_staff_details();
         $data['template'] = 'modules/general_settings/add_client';
         $this->load->view('template/dashboard_template', $data);
     }
@@ -45,6 +46,7 @@ class User_management extends CI_Controller
         $phone = $this->input->post('phone');
         $country = $this->input->post('country');
         $password = md5($this->input->post('password'));
+        $manager = $this->input->post('manager');
 
         $uploadPath = 'uploads';
         $uploadfile = 'avatar';
@@ -57,7 +59,7 @@ class User_management extends CI_Controller
         $uuid_data[8] = chr(ord($uuid_data[8]) & 0x3f | 0x80); // Set variant
         $uuid =  vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($uuid_data), 4));
 
-        $data = array('name' => $name, 'uid' => $uuid, 'country' => $country, 'phone' => $phone, 'email' => $email, 'file' => $avatar, 'password' => $password);
+        $data = array('name' => $name, 'uid' => $uuid, 'country' => $country, 'phone' => $phone, 'email' => $email, 'file' => $avatar, 'manager' => $manager, 'password' => $password);
         $qry = $this->db->get_where('clients', "email like '$email'");
         if ($qry->num_rows() > 0) {
             echo json_encode(array('status' => 0, 'view' => $this->load->view('modules/general_settings/add_client', $data, TRUE)));
@@ -101,6 +103,7 @@ class User_management extends CI_Controller
             if ($onload == 1) {
                 $client_data_raw = $this->CModel->get_client_details($client_id);
                 $data['document_details'] = $this->CModel->get_client_document_details($client_id);
+                $data['staff_details'] = $this->CModel->get_client_staff_details();
                 $data['client_id'] = $client_id;
                 $data['client_data'] = $client_data_raw;
                 $data['countries'] = $this->CModel->get_countries();
@@ -198,6 +201,7 @@ class User_management extends CI_Controller
         $country = $this->input->post('country');
         $phone = $this->input->post('phone');
         $not_enrypted_pass = $this->input->post('password');
+        $manager = $this->input->post('manager');
 
 
         $uploadPath = 'uploads';
@@ -206,7 +210,7 @@ class User_management extends CI_Controller
         $filename = $this->fileUpload($uploadPath, $uploadfile);
         $avatar = $filename;
 
-        $data = array('name' => $name, 'email' => $email, 'country' => $country, 'phone' => $phone);
+        $data = array('name' => $name, 'email' => $email, 'country' => $country, 'phone' => $phone, 'manager' => $manager);
         $qry = $this->db->get_where('clients', "email LIKE '$email' AND id != '$client_id'");
         if ($not_enrypted_pass != '') {
             $password = md5($not_enrypted_pass);
