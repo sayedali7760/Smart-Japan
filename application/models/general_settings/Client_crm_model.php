@@ -80,4 +80,35 @@ class Client_crm_model extends CI_Model
         $query = $this->db->get()->result();
         return $query;
     }
+
+    public function add_bank_data($data)
+    {
+        if ($this->db->insert('bank_data', $data)) {
+            return true;
+        }
+    }
+
+    public function add_wallet($data)
+    {
+        if ($this->db->insert('wallet_address', $data)) {
+            return true;
+        }
+    }
+
+    public function get_wallet_details($id)
+    {
+        $this->db->from('wallet_address');
+        $this->db->where('client_id', $id);
+        $this->db->order_by('id', "desc");
+        $query = $this->db->get()->row_array();
+        return $query;
+    }
+
+    public function get_bank_data($id)
+    {
+        $this->db->from('bank_data');
+        $this->db->where('client_id', $id);
+        $query = $this->db->get()->result_array();
+        return $query;
+    }
 }
