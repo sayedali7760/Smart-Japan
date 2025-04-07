@@ -157,6 +157,8 @@ $route['client/my-data'] = 'settings/Client_crm/my_data';
 $route['client/bdata-save'] = 'settings/Client_crm/bank_data';
 $route['client/wallet-save'] = 'settings/Client_crm/wallet_id';
 $route['client/show-bank-details'] = 'settings/Client_crm/show_bank_details';
+$route['client/reject_data'] = 'settings/Client_crm/reject_bank_data';
+$route['client/approve_data'] = 'settings/Client_crm/approve_bank_data';
 
 
 $route['default_controller'] = 'Login';

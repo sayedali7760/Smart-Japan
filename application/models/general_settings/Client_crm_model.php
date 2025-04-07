@@ -111,4 +111,16 @@ class Client_crm_model extends CI_Model
         $query = $this->db->get()->result_array();
         return $query;
     }
+
+    public function reject_data($client_id, $id)
+    {
+        $this->db->update('bank_data', ['status' => '2'], ['client_id' => $client_id, 'id' => $id]);
+        return true;
+    }
+
+    public function approve_data($client_id, $id)
+    {
+        $this->db->update('bank_data', ['status' => '1'], ['client_id' => $client_id, 'id' => $id]);
+        return true;
+    }
 }
