@@ -222,6 +222,36 @@ class Client_crm extends CI_Controller
             $this->load->view(ERROR_500);
         }
     }
+
+    public function reject_bank_data()
+    {
+        if ($this->input->is_ajax_request() == 1) {
+            $client_id = $this->input->post('client_id');
+            $id = $this->input->post('id');
+            if ($this->CModel->reject_data($client_id, $id)) {
+                echo json_encode(array('status' => 1));
+                return;
+            } else {
+                echo json_encode(array('status' => 0));
+                return;
+            }
+        }
+    }
+
+    public function approve_bank_data()
+    {
+        if ($this->input->is_ajax_request() == 1) {
+            $client_id = $this->input->post('client_id');
+            $id = $this->input->post('id');
+            if ($this->CModel->approve_data($client_id, $id)) {
+                echo json_encode(array('status' => 1));
+                return;
+            } else {
+                echo json_encode(array('status' => 0));
+                return;
+            }
+        }
+    }
     // end
 
     public function fileUpload($uploadPath, $uploadfile = '')

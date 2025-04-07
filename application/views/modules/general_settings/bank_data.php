@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                                 <?php
-                                if ($wallet_data['status'] == 0) {
+                                if (!isset($wallet_data)) {
                                 ?>
                                     <div class="card-body pt-0">
                                         <div class="row g-3">
