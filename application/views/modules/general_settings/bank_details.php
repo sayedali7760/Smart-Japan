@@ -180,7 +180,7 @@
                                 confirmButtonText: 'OK'
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    location.reload();
+                                    bank_data(client_id);
                                 }
                             });
 
@@ -226,7 +226,7 @@
                                 confirmButtonText: 'OK'
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    location.reload();
+                                    bank_data(client_id);
                                 }
                             });
 
@@ -236,5 +236,28 @@
             }
         });
 
+    }
+
+    function bank_data(id) {
+        var ops_url = baseurl + 'client/show-bank-details';
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: ops_url,
+            data: {
+                "load": 1,
+                "client_id": id,
+            },
+            success: function(result) {
+                console.log(result);
+                var data = $.parseJSON(result);
+                $("#kt_post").html(data.view);
+                $('#kt_post').addClass('in-down');
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "slow");
+            }
+        });
     }
 </script>
