@@ -105,13 +105,36 @@
 
 
                             </div>
+                            <div class="d-flex flex-wrap gap-5">
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="form-label">Manager</label>
+                                    <select class="form-select" data-placeholder="Select an option" id="manager" name="manager">
+                                        <?php foreach ($staff_details as $staff) { ?>
+                                            <option value="<?php echo $staff->id; ?>"><?php echo $staff->fname; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="fv-row w-100 flex-md-root">
+
+                                </div>
+                                <div class="fv-row w-100 flex-md-root">
+
+                                </div>
+
+
+                            </div>
                             <div class="d-flex justify-content-end">
 
                                 <a href="<?php echo base_url(); ?>user-management/client-show" id="kt_ecommerce_add_product_cancel"
                                     class="btn btn-light me-5">Cancel</a>
 
-                                <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="update_data()">Save
-                                    Changes</a>
+                                <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
+                                    onclick="update_data()">Save</a>
+                                <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                                    <span class="indicator-label">Submit</span>
+                                    <span class="indicator-progress">Please wait...
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </a>
 
                             </div>
                             <?php if (isset($document_details)) { ?>
@@ -351,18 +374,13 @@
         KTUtil.onDOMContentLoaded(function() {
             KTAppEcommerceSalesSaveOrder.init();
         });
-        $('#position').select2({
-            placeholder: 'Select an option',
-            allowClear: true
-        });
+    });
+    $('#manager').select2({
+        placeholder: 'Select an option',
     });
     KTImageInput.init();
 </script>
 <script>
-    function show_div() {
-
-    }
-
     function update_doc_status(doc_id, status) {
         var client_id = $('#client_id').val();
         var ops_url = baseurl + 'client-crm/update-doc-status';
@@ -441,7 +459,8 @@
     }
 
     function update_data() {
-        $("#loader").show();
+        $("#actual_submit").hide();
+        $("#loader_submit").show();
         var ops_url = baseurl + 'user-management/update-client';
         var user_id = $('#user_id').val();
         var name = $('#name').val();
@@ -449,6 +468,7 @@
         var con_password = $('#con_password').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
+        var manager = $('#manager').val();
 
         if (name == "") {
             Swal.fire({
@@ -456,6 +476,8 @@
                 title: '',
                 text: 'Name is required.'
             });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (name.length < 3) {
@@ -464,6 +486,8 @@
                 title: '',
                 text: 'Enter at least three characters for Name.'
             });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
 
@@ -473,6 +497,8 @@
                 title: '',
                 text: 'Email is required.'
             });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (phone == "") {
@@ -481,7 +507,8 @@
                 title: '',
                 text: 'Phone is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
 
@@ -492,7 +519,8 @@
                     title: '',
                     text: 'Enter at least three characters for Password.'
                 });
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 return false;
             }
             if (con_password == '') {
@@ -501,7 +529,8 @@
                     title: '',
                     text: 'Confirm Password is required.'
                 });
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 return false;
             }
             if (password != con_password) {
@@ -510,9 +539,21 @@
                     title: '',
                     text: 'Password and Confirm Password must be the same.'
                 });
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 return false;
             }
+            if (manager == '') {
+                Swal.fire({
+                    icon: 'info',
+                    title: '',
+                    text: 'Manager is required.'
+                });
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
+                return false;
+            }
+
         }
 
         var form = $("#client_save");
@@ -528,7 +569,8 @@
             contentType: false,
             data: formData,
             success: function(result) {
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 var data = $.parseJSON(result);
                 if (data.status == 1) {
                     Swal.fire({
