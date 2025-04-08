@@ -159,6 +159,8 @@ $route['client/wallet-save'] = 'settings/Client_crm/wallet_id';
 $route['client/show-bank-details'] = 'settings/Client_crm/show_bank_details';
 $route['client/reject_data'] = 'settings/Client_crm/reject_bank_data';
 $route['client/approve_data'] = 'settings/Client_crm/approve_bank_data';
+$route['mt/group_update'] = 'settings/Mt_Accounts/group_update';
+$route['mt/group_change'] = 'settings/Mt_Accounts/group_change';
 
 
 $route['default_controller'] = 'Login';

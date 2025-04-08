@@ -117,9 +117,13 @@
                             foreach ($details_data as $data) { ?>
                                 <tr>
                                     <td><?php echo $i; ?></td>
-                                    <td class="text-start pe-0"><?php echo $data->login; ?></td>
-                                    <td class="text-start pe-0"><?php echo $data->group; ?></td>
-                                    <td><?php echo $data->user_id; ?></td>
+                                    <td class="text-start pe-0 login"><?php echo $data->login; ?></td>
+                                    <td class="text-start pe-0">
+                                        <a href="javascript:void(0);" style="color: inherit;" onclick='edit_group(this,<?php echo json_encode($data->group); ?>)'>
+                                            <?php echo htmlspecialchars($data->group); ?>
+                                        </a>
+                                    </td>
+                                    <td class="user_id"><?php echo $data->user_id; ?></td>
                                     <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_client('<?php echo $data->user_id; ?>')"><?php echo $data->name; ?></a></b></td>
                                     <td class="text-start pe-0"><?php echo $data->platform; ?></td>
                                     <td class="text-start pe-0"><?php echo $data->server; ?></td>
@@ -165,5 +169,39 @@
                 }, "slow");
             }
         });
+    }
+</script>
+
+<script>
+    function edit_group(el, group) {
+        var ops_url = baseurl + 'mt/group_update';
+        var row = $(el).closest('tr');
+        var id = row.find('.user_id').text().trim();
+        var login = row.find('.login').text().trim();
+        $.ajax({
+            type: "POST",
+            url: ops_url,
+            data: {
+                id: id,
+                login: login,
+                group: group,
+            },
+            success: function(result) {
+                var data = $.parseJSON(result);
+                $("#kt_post").html(data.view);
+                $('#kt_post').addClass('in-down');
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "slow");
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while processing your request.'
+                });
+            }
+        });
+
     }
 </script>

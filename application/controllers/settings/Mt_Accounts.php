@@ -346,6 +346,36 @@ class Mt_Accounts extends CI_Controller
         }
     }
 
+    // new sush
+    public function group_update()
+    {
+        $data['title'] = 'Mt Groups';
+        $data['subtitle'] = 'Update Group';
+        $data['user_id'] = $this->input->post('id');
+        $data['login'] = $this->input->post('login');
+        $data['group'] = $this->input->post('group');
+        $data['group_data'] = $this->MModel->get_mtgroup();
+        $view = $this->load->view('modules/mt/group_update', $data, TRUE);
+        echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
+        return;
+    }
+
+    public function group_change()
+    {
+        $user_id = $this->input->post('client_id');
+        $login = $this->input->post('login');
+        $group = $this->input->post('group_name');
+        if ($this->MModel->group_change($user_id, $login, $group)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 2));
+            return;
+        }
+    }
+
+    // end
+
     public function send_mail()
     {
 
