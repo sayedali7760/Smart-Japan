@@ -99,7 +99,7 @@
 				</div>
 
 				<div class="row g-5 g-xl-8">
-					<?php if (isset($mt_demo_accounts)) { ?>
+					<?php if (count($mt_demo_accounts) > 0) { ?>
 						<?php foreach ($mt_demo_accounts as $demo) { ?>
 							<div class="col-xl-3 demo-class" style="display:none;">
 								<a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
@@ -118,7 +118,7 @@
 							</div>
 						<?php }
 					} else { ?>
-						<div class="col-xl-3 demo-class" style="display:none;">
+						<div class="col-xl-3 demo-class">
 							<a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
 								<div class="card-body">
 									<span class="svg-icon svg-icon-gray-100 svg-icon-3x ms-n1">
@@ -128,7 +128,7 @@
 											<path d="M15 18.6C15 20.3 16.3 21.6 18 21.6C19.7 21.6 21 20.3 21 18.6V12.5C21 12.2 20.6 12 20.3 12.2L19 13.6L17.7 12.3C17.3 11.9 16.7 11.9 16.3 12.3L15 13.6V18.6Z" fill="currentColor"></path>
 										</svg>
 									</span>
-									<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">Create Demo</div>
+									<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">No Demo Accounts</div>
 									<div class="fw-bold text-gray-100"></div>
 								</div>
 							</a>
@@ -136,7 +136,7 @@
 					<?php } ?>
 
 					<?php
-					if (isset($mt_live_accounts)) { ?>
+					if (count($mt_live_accounts) > 0) { ?>
 						<?php foreach ($mt_live_accounts as $live) { ?>
 							<div class="col-xl-3 live-class">
 								<a href="#" class="card bg-dark hoverable card-xl-stretch mb-5 mb-xl-8">
@@ -155,7 +155,7 @@
 							</div>
 						<?php } ?>
 					<?php } else { ?>
-						<div class="col-xl-3 demo-class" style="display:none;">
+						<div class="col-xl-3 live-class">
 							<a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
 								<div class="card-body">
 									<span class="svg-icon svg-icon-gray-100 svg-icon-3x ms-n1">
@@ -165,7 +165,7 @@
 											<path d="M15 18.6C15 20.3 16.3 21.6 18 21.6C19.7 21.6 21 20.3 21 18.6V12.5C21 12.2 20.6 12 20.3 12.2L19 13.6L17.7 12.3C17.3 11.9 16.7 11.9 16.3 12.3L15 13.6V18.6Z" fill="currentColor"></path>
 										</svg>
 									</span>
-									<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">Create Live</div>
+									<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">No Live Accounts</div>
 									<div class="fw-bold text-gray-100"></div>
 								</div>
 							</a>

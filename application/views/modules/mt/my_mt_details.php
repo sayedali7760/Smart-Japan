@@ -124,9 +124,13 @@
                                             <span class="badge badge-light-success">Live</span>
                                         <?php } ?>
                                     </td>
-                                    <td class="text-start pe-0"><?php echo $data->login; ?></td>
-                                    <td><?php echo $data->user_id; ?></td>
-                                    <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_client('<?php echo $data->user_id; ?>')"><?php echo $data->name; ?></a></b></td>
+                                    <td class="text-start pe-0 login"><?php echo $data->login; ?></td>
+                                    <td class="group">
+                                        <?php echo $data->group; ?>
+                                    </td>
+                                    <td class="text-start pe-0 user_id">
+                                        <b><?php echo $data->user_id; ?></b>
+                                    </td>
                                     <td class="text-start pe-0"><?php echo $data->platform; ?></td>
                                     <td class="text-start pe-0"><?php echo $data->currency; ?></td>
                                     <td class="text-start pe-0"><?php echo $data->main_password; ?></td>

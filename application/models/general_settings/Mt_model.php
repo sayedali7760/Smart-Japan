@@ -142,4 +142,23 @@ class Mt_model extends CI_Model
         $this->db->update('mt_groups', $data, 'id=' . $id . '');
         return true;
     }
+
+    public function group_change($user_id, $login, $group)
+    {
+        $this->db->where('user_id', $user_id);
+        $this->db->where('login', $login);
+        $this->db->update('accounts', ['group' => $group]);
+        return true;
+    }
+
+    public function get_mtgroup()
+    {
+        $this->db->distinct();
+        $this->db->select('a.group');
+        $this->db->from('accounts AS a');
+        $this->db->where('a.group !=', '');
+        $this->db->where('a.group IS NOT NULL', null, false);
+        $query = $this->db->get()->result();
+        return $query;
+    }
 }

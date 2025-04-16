@@ -29,9 +29,10 @@ class Client_model extends CI_Model
 
     public function get_details()
     {
-        $this->db->select('c.*, d.account_verify');
+        $this->db->select('c.*, d.account_verify,u.fname as manager');
         $this->db->from('clients AS c');
         $this->db->join('documents AS d', 'd.client_id = c.id', 'left');
+        $this->db->join('user_details AS u', 'c.manager = u.id', 'left');
         $this->db->order_by('c.id', "desc");
 
         $query = $this->db->get()->result();
@@ -45,6 +46,14 @@ class Client_model extends CI_Model
             ->where('C.id', $client_id)
             ->get()
             ->row_array();
+        return $query;
+    }
+    public function get_client_staff_details()
+    {
+        $query = $this->db->select('U.*')
+            ->from('user_details as U')
+            ->get()
+            ->result();
         return $query;
     }
 
