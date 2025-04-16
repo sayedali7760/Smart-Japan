@@ -40,6 +40,7 @@ class Client_crm extends CI_Controller
 
     public function bank_data()
     {
+        $id = $this->session->userdata('id');
         $data['client_id'] = $this->session->userdata('id');
         $data['beneficiary_name'] = $this->input->post('name');
         $data['bank_name'] = $this->input->post('bname');
@@ -59,6 +60,15 @@ class Client_crm extends CI_Controller
         }
 
         if ($this->CModel->add_bank_data($data)) {
+            $subject = "New Bank Data Verification Request - .'$id'.";
+            $mailto = 'seyad@smartfx.com';
+            $data['id'] = $id;
+            $mailcontent =  $this->load->view('mail_templates/notify_bank_verify_template', $data, true);
+
+            $cc = "";
+
+            send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+
             echo json_encode(array('status' => 1));
             return;
         } else {
