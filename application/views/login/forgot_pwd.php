@@ -94,7 +94,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Submit button-->
 
                         <a href="javascript:void(0);" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5"
-                            title="Submit"><i class="icon-unlock2"></i> Get New Password -></a>
+                            title="Submit"><i class="icon-unlock2"></i> Get New Password</a>
                         <!--end::Submit button-->
                         <!--begin::Separator-->
                         <!-- <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div> -->
