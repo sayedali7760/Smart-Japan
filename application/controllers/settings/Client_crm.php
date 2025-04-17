@@ -197,6 +197,14 @@ class Client_crm extends CI_Controller
         $count_qry = $this->db->get_where('documents', "client_id=$id");
         if ($count_qry->num_rows() > 0) {
             if ($this->CModel->upload_document_update($data, $id)) {
+                $subject = "New Document Upload - .'$id'.";
+                $mailto = 'susmitha@smartfx.com';
+                $data['id'] = $id;
+                $mailcontent =  $this->load->view('mail_templates/notify_documents_template', $data, true);
+
+                $cc = "";
+
+                send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
                 echo json_encode(array('status' => 1, 'message' => 'Document Updated successfully.', 'view' => $this->load->view('modules/general_settings/my_profile', $data, TRUE)));
                 return;
             } else {
@@ -205,6 +213,16 @@ class Client_crm extends CI_Controller
             }
         } else {
             if ($this->CModel->doc_upload($data)) {
+                $subject = "New Document Upload - .'$id'.";
+                $mailto = 'susmitha@smartfx.com';
+                $data['id'] = $id;
+                $mailcontent =  $this->load->view('mail_templates/notify_documents_template', $data, true);
+
+                $cc = "";
+
+                send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+
+
                 echo json_encode(array('status' => 1, 'message' => 'Document Updated successfully.', 'view' => $this->load->view('modules/general_settings/my_profile', $data, TRUE)));
                 return;
             } else {

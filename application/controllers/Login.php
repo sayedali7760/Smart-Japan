@@ -177,6 +177,38 @@ class Login extends CI_Controller
         $data['current_flag'] = $result[0]['forgot_pass_flag'];
         $this->load->view('login/forgot_password', $data);
     }
+    public function forgot_pwd()
+    {
+        $this->load->view('login/forgot_pwd');
+    }
+    public function reset_pwd()
+    {
+        $email = $this->input->post('email');
+        $pass = RandString();
+        $password = md5($pass);
+
+        $this->db->where('email', $email);
+        $query = $this->db->get('clients');
+
+        if ($query->num_rows() > 0) {
+            $this->db->where('email', $email);
+            $this->db->update('clients', ['password' => $password]);
+            $subject = "Password changed successfully";
+            $mailto = $email;
+            $data['email'] = $email;
+            $data['password'] = $pass;
+            $mailcontent =  $this->load->view('mail_templates/password_changed_mail_template', $data, true);
+
+            $cc = "";
+
+            send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+            $data[] = '';
+            echo json_encode(array('status' => 1, 'view' => $this->load->view('login/forgot_pwd', $data, TRUE)));
+            return;
+        } else {
+            echo json_encode(['status' => 0, 'message' => 'Email does not exist.']);
+        }
+    }
     public function update_password()
     {
         $email = $this->input->post('email');

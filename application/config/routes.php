@@ -161,6 +161,8 @@ $route['client/reject_data'] = 'settings/Client_crm/reject_bank_data';
 $route['client/approve_data'] = 'settings/Client_crm/approve_bank_data';
 $route['mt/group_update'] = 'settings/Mt_Accounts/group_update';
 $route['mt/group_change'] = 'settings/Mt_Accounts/group_change';
+$route['login/forgot-password'] = 'Login/forgot_pwd';
+$route['login/reset-password'] = 'Login/reset_pwd';
 
 
 $route['default_controller'] = 'Login';

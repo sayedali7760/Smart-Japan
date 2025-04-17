@@ -17,7 +17,7 @@ function send_smtp_mailer($subject = '', $mailto = '', $mailcontent = '', $cc = 
         $name = 'Smart-FX';
         $host = 'smtp.gmail.com';
         $smtp_username = "noreply@smartfx.com";
-        $password = "noreply@smartfx";
+        $password = "korl srnu rnlk unjr";
 
 
 
