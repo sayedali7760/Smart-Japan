@@ -150,6 +150,8 @@ License: For each use you must have a valid license purchased only from above li
             var username = $('#username').val();
             var position = 1;
             if (username == '') {
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Email is required',
