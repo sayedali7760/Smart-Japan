@@ -132,6 +132,7 @@ $route['transaction/my-transaction-details'] = 'Transaction/my_transaction_detai
 $route['transaction/withdraw-save'] = 'Transaction/withdraw_client_save';
 $route['transaction/transfer-save'] = 'Transaction/transfer_client_save';
 $route['transaction/get-mtaccount-details'] = 'Transaction/get_mtaccount_details';
+$route['transaction/check-wallet-address'] = 'Transaction/check_wallet_address';
 
 $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
