@@ -40,6 +40,7 @@ class Client_crm extends CI_Controller
 
     public function bank_data()
     {
+        $id = $this->session->userdata('id');
         $data['client_id'] = $this->session->userdata('id');
         $data['beneficiary_name'] = $this->input->post('name');
         $data['bank_name'] = $this->input->post('bname');
@@ -59,6 +60,15 @@ class Client_crm extends CI_Controller
         }
 
         if ($this->CModel->add_bank_data($data)) {
+            $subject = "New Bank Data Verification Request - .'$id'.";
+            $mailto = 'seyad@smartfx.com';
+            $data['id'] = $id;
+            $mailcontent =  $this->load->view('mail_templates/notify_bank_verify_template', $data, true);
+
+            $cc = "";
+
+            send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+
             echo json_encode(array('status' => 1));
             return;
         } else {
@@ -187,6 +197,14 @@ class Client_crm extends CI_Controller
         $count_qry = $this->db->get_where('documents', "client_id=$id");
         if ($count_qry->num_rows() > 0) {
             if ($this->CModel->upload_document_update($data, $id)) {
+                $subject = "New Document Upload - .'$id'.";
+                $mailto = 'susmitha@smartfx.com';
+                $data['id'] = $id;
+                $mailcontent =  $this->load->view('mail_templates/notify_documents_template', $data, true);
+
+                $cc = "";
+
+                send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
                 echo json_encode(array('status' => 1, 'message' => 'Document Updated successfully.', 'view' => $this->load->view('modules/general_settings/my_profile', $data, TRUE)));
                 return;
             } else {
@@ -195,6 +213,16 @@ class Client_crm extends CI_Controller
             }
         } else {
             if ($this->CModel->doc_upload($data)) {
+                $subject = "New Document Upload - .'$id'.";
+                $mailto = 'susmitha@smartfx.com';
+                $data['id'] = $id;
+                $mailcontent =  $this->load->view('mail_templates/notify_documents_template', $data, true);
+
+                $cc = "";
+
+                send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+
+
                 echo json_encode(array('status' => 1, 'message' => 'Document Updated successfully.', 'view' => $this->load->view('modules/general_settings/my_profile', $data, TRUE)));
                 return;
             } else {

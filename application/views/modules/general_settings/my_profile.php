@@ -343,13 +343,25 @@
                                             <?php if ($documents_data['account_verify'] == 0) { ?>
                                                 <label class="form-label">&nbsp;</label>
                                                 <div class="d-flex justify-content-end">
-                                                    <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="upload_doc()">Upload</a>
+                                                    <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
+                                                        onclick="upload_doc()">Upload</a>
+                                                    <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                                                        <span class="indicator-label">Submit</span>
+                                                        <span class="indicator-progress">Please wait...
+                                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                    </a>
                                                 </div>
                                             <?php } ?>
                                         <?php } else { ?>
                                             <label class="form-label">&nbsp;</label>
                                             <div class="d-flex justify-content-end">
-                                                <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="upload_doc()">Upload</a>
+                                                <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
+                                                    onclick="upload_doc()">Upload</a>
+                                                <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                                                    <span class="indicator-label">Submit</span>
+                                                    <span class="indicator-progress">Please wait...
+                                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                </a>
                                             </div>
                                         <?php } ?>
                                     </div>
@@ -498,7 +510,8 @@
 
 <script>
     function upload_doc() {
-        $("#loader").show();
+        $("#actual_submit").hide();
+        $("#loader_submit").show();
         var ops_url = baseurl + 'client-crm/upload-doc';
         var form = $("#document_upload");
         var formData = new FormData(form[0]);
