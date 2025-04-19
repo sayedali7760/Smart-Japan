@@ -28,7 +28,7 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/media/logos/favicon.ico" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -46,7 +46,7 @@ License: For each use you must have a valid license purchased only from above li
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-in -->
         <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
-            style="background-image: url(assets/media/bg/login.png">
+            style="background-image: url(<?php echo base_url(); ?>assets/media/bg/login.png)">
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <!--begin::Logo-->
@@ -64,9 +64,8 @@ License: For each use you must have a valid license purchased only from above li
                         </a>
                         <!--end::Title-->
                         <!--begin::Link-->
-                        <div class="text-gray-400 fw-bold fs-4">New Here?
-                            <a href="<?php echo base_url(); ?>signup"
-                                class="link-primary fw-bolder">Create an Account</a>
+                        <div class="text-gray-400 fw-bold fs-4">Reset Password
+
                         </div>
                         <!--end::Link-->
                     </div>
@@ -74,7 +73,7 @@ License: For each use you must have a valid license purchased only from above li
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">Email</label>
+                        <label class="form-label fs-6 fw-bolder text-dark">Enter your Registered Email</label>
                         <!--end::Label-->
                         <!--begin::Input-->
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
@@ -85,23 +84,7 @@ License: For each use you must have a valid license purchased only from above li
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="fv-row mb-10">
-                        <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack mb-2">
-                            <!--begin::Label-->
-                            <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
-                            <!--end::Label-->
-                            <!--begin::Link-->
-                            <!--end::Link-->
-                        </div>
-                        <!--end::Wrapper-->
-                        <!--begin::Input-->
-                        <input type="password" autocomplete="off" placeholder="Enter Password"
-                            id="password" class="form-control form-control-lg form-control-solid" name="password" value="<?php if (isset($_COOKIE["ecomm_password"])) {
-                                                                                                                                echo $_COOKIE["green_password"];
-                                                                                                                            } ?>">
-                        <!--end::Input-->
-                    </div>
+
 
 
 
@@ -111,17 +94,21 @@ License: For each use you must have a valid license purchased only from above li
                         <!--begin::Submit button-->
 
                         <a href="javascript:void(0);" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5"
-                            title="Login"><i class="icon-unlock2"></i> Login</a>
+                            title="Submit"><i class="icon-unlock2"></i> Get New Password</a>
                         <!--end::Submit button-->
                         <!--begin::Separator-->
                         <!-- <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div> -->
                         <!--end::Separator-->
                         <!--begin::Google link-->
-                        Forgot Password?
-                        <a href="<?php echo base_url(); ?>login/forgot-password" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                        <a id="#actual_submit" href="<?php echo base_url(); ?>/login" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
                             <!-- <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
                                 class="h-20px me-3" />Continue with Google</a> -->
-                            Click here to Reset! </a>
+                            Click here to Login! </a>
+                        <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </a>
                         <!--end::Google link-->
                         <!--begin::Google link-->
 
@@ -156,23 +143,18 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Javascript-->
     <script type="text/javascript">
         function submit() {
+            $("#actual_submit").hide();
+            $("#loader_submit").show();
             var baseurl = '<?php echo base_url(); ?>';
-            var ops_url = baseurl + 'login/login';
+            var ops_url = baseurl + 'login/reset-password';
             var username = $('#username').val();
-            var password = $('#password').val();
             var position = 1;
             if (username == '') {
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Email is required',
-                    icon: 'error'
-                });
-                return false;
-            }
-            if (password == '') {
-                Swal.fire({
-                    title: 'Login failed',
-                    text: 'Password is required',
                     icon: 'error'
                 });
                 return false;
@@ -184,27 +166,29 @@ License: For each use you must have a valid license purchased only from above li
                 async: true,
                 url: ops_url,
                 data: {
-                    "username": username,
-                    "password": password,
-                    "position": position
+                    "email": username,
                 },
                 success: function(result) {
                     var data = $.parseJSON(result);
+
                     if (data.status == 1) {
-                        location.reload();
-                    }
-                    if (data.status == 0) {
                         Swal.fire({
-                            icon: 'error',
-                            title: 'Login Failed',
-                            text: 'Invalid credentials. Please contact the administrator.'
+                            icon: 'success',
+                            title: 'Password Changed',
+                            text: 'Updated password is sent to your registered Mail-Id.'
+                        }).then(function(result) {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
                         });
                     }
-                    if (data.status == 2) {
+                    if (data.status == 0) {
+                        $("#actual_submit").show();
+                        $("#loader_submit").hide();
                         Swal.fire({
                             icon: 'error',
-                            title: 'Login Failed',
-                            text: 'Your account is temporarily blocked. Please contact the administrator.'
+                            title: 'Failed to Reset Password',
+                            text: 'Please Provide your Registered Mail-Id'
                         });
                     }
                 },
