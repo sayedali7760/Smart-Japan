@@ -38,9 +38,21 @@ class Transaction extends CI_Controller
         $data['title'] = 'Transactions';
         $data['subtitle'] = 'Withdraw';
         $client_id = $this->session->userdata('id');
+        $data['verified_banks'] = $this->TModel->get_verified_bank_details($client_id);
         $data['account_details'] = $this->Mt_model->view_client_accounts($client_id);
         $data['template'] = 'modules/transactions/client_withdraw';
         $this->load->view('template/dashboard_template', $data);
+    }
+    public function check_wallet_address()
+    {
+        $client_id = $this->session->userdata('id');
+        if ($this->TModel->check_wallet_address($client_id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 0));
+            return;
+        }
     }
     public function transfer_client_account()
     {
@@ -162,6 +174,8 @@ class Transaction extends CI_Controller
         } else if ($method == 2) {
             $method_name = 'sticpay';
         } else if ($method == 3) {
+            $bank = $this->session->userdata('bank');
+            $withdrawal['bank_id'] = $bank;
             $method_name = 'bank';
         }
         require_once(APPPATH . 'MT/mt5_api/mt5_api.php');

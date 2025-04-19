@@ -353,7 +353,7 @@
                         </div>
 
                         <div class="menu-item">
-                            <a class="menu-link <?php if ($subtitle == 'Bank Data') {
+                            <a class="menu-link <?php if ($subtitle == 'Bank Details') {
                                                     echo "active";
                                                 } ?>"
                                 href="<?php echo base_url(); ?>client/my-data">
