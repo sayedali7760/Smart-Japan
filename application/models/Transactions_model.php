@@ -142,4 +142,22 @@ class Transactions_model extends CI_Model
         $this->db->update('transactions', $data, 'id=' . $transaction_id . '');
         return true;
     }
+    public function get_verified_bank_details($id)
+    {
+        $this->db->select('b.*');
+        $this->db->from('bank_data AS b');
+        $this->db->where('b.client_id', $id);
+        $this->db->where('b.status', 1);
+        $query = $this->db->get()->result();
+        return $query;
+    }
+    public function check_wallet_address($id)
+    {
+        $this->db->select('w.*');
+        $this->db->from('wallet_address AS w');
+        $this->db->where('w.client_id', $id);
+        $this->db->where('w.status', 1);
+        $query = $this->db->get()->row_array();
+        return $query;
+    }
 }

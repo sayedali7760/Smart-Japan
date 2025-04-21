@@ -63,7 +63,7 @@
                                             <label class="required form-label">Withdraw Method</label>
                                             <select class="form-select mb-5" data-control="select2"
                                                 data-placeholder="Select an option"
-                                                name="method" id="method">
+                                                name="method" id="method" onchange="check_type()">
                                                 <option value=""></option>
                                                 <option value="1">NexusPay</option>
                                                 <option value="2">SticPay</option>
@@ -90,6 +90,23 @@
                                                 maxlength="10">
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
+                                            <div class="fv-row w-100 flex-md-root" id="bank_transfer_div" style="display: none;">
+                                                <label class="required form-label">Bank</label>
+                                                <select class="form-select mb-5" data-control="select2"
+                                                    data-placeholder="Select an option"
+                                                    name="bank" id="bank">
+                                                    <option value=""></option>
+                                                    <?php
+                                                    if (isset($verified_banks) && !empty($verified_banks)) {
+                                                        foreach ($verified_banks as $bank) {
+                                                            echo '<option value ="' . $bank->id . '">' . $bank->bank_name . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo '<option value ="' . 0 . '">' . 'No Bank Available' . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                         </div>
@@ -211,6 +228,40 @@
         });
     }
 
+    function check_type() {
+        var method = $('#method').val();
+        if (method == 3) {
+            $('#bank_transfer_div').show();
+        } else if (method == 1) {
+            $('#bank_transfer_div').hide();
+            var ops_url = baseurl + 'transaction/check-wallet-address';
+            $.ajax({
+                type: "POST",
+                cache: false,
+                async: true,
+                url: ops_url,
+                processData: false,
+                contentType: false,
+                data: '',
+                success: function(result) {
+                    var data = $.parseJSON(result);
+                    if (data.status == 0) {
+                        $('#method').val('').trigger('change');
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Warning',
+                            text: 'To complete your withdrawal, please ensure that your TRC wallet address is added and verified in your profile. This step is required to securely process your transaction and prevent any delays.',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+            });
+        } else {
+            $('#bank_transfer_div').hide();
+        }
+    }
+
     function submit_data() {
         $("#actual_submit").hide();
         $("#loader_submit").show();
@@ -241,6 +292,19 @@
             $("#actual_submit").show();
             $("#loader_submit").hide();
             return false;
+        }
+        if (method == 3) {
+            var bank = $("#bank").val();
+            if (bank == 0) {
+                Swal.fire({
+                    icon: 'info',
+                    title: '',
+                    text: 'Please add a bank account in your profile to proceed with the withdrawal.'
+                });
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
+                return false;
+            }
         }
         if (currency == "") {
             Swal.fire({
