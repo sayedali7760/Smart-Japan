@@ -93,22 +93,33 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="text-center">
                         <!--begin::Submit button-->
 
-                        <a href="javascript:void(0);" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5"
+                        <!-- <a href="javascript:void(0);" id="#actual_submit" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5 actual_submit"
                             title="Submit"><i class="icon-unlock2"></i> Get New Password</a>
+                        <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary loader_submit" data-kt-indicator="on">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </a> -->
+                        <button type="button" id="actual_submit" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5 actual_submit" title="Submit">
+                            <i class="icon-unlock2"></i> Get New Password
+                        </button>
+
+                        <button type="button" id="loader_submit" class="btn btn-lg btn-primary w-100 mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button>
                         <!--end::Submit button-->
                         <!--begin::Separator-->
                         <!-- <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div> -->
                         <!--end::Separator-->
                         <!--begin::Google link-->
-                        <a id="#actual_submit" href="<?php echo base_url(); ?>/login" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                        <a href="<?php echo base_url(); ?>/login" class=" btn-lg w-100 mb-5">
                             <!-- <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
                                 class="h-20px me-3" />Continue with Google</a> -->
-                            Click here to Login! </a>
-                        <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
-                            <span class="indicator-label">Submit</span>
-                            <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </a>
+                            Back to Login! </a>
+
                         <!--end::Google link-->
                         <!--begin::Google link-->
 
@@ -143,15 +154,15 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Javascript-->
     <script type="text/javascript">
         function submit() {
-            $("#actual_submit").hide();
-            $("#loader_submit").show();
+            $(".actual_submit").hide();
+            $(".loader_submit").show();
             var baseurl = '<?php echo base_url(); ?>';
             var ops_url = baseurl + 'login/reset-password';
             var username = $('#username').val();
             var position = 1;
             if (username == '') {
-                $("#actual_submit").show();
-                $("#loader_submit").hide();
+                $(".actual_submit").show();
+                $(".loader_submit").hide();
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Email is required',
@@ -178,13 +189,13 @@ License: For each use you must have a valid license purchased only from above li
                             text: 'Updated password is sent to your registered Mail-Id.'
                         }).then(function(result) {
                             if (result.isConfirmed) {
-                                window.location.reload();
+                                window.location.href = baseurl + 'login';
                             }
                         });
                     }
                     if (data.status == 0) {
-                        $("#actual_submit").show();
-                        $("#loader_submit").hide();
+                        $(".actual_submit").show();
+                        $(".loader_submit").hide();
                         Swal.fire({
                             icon: 'error',
                             title: 'Failed to Reset Password',
@@ -205,7 +216,7 @@ License: For each use you must have a valid license purchased only from above li
         }
     </script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         function send_verification() {
             $("#loader").show();
             var email = $('#forgot_email').val();
@@ -258,7 +269,7 @@ License: For each use you must have a valid license purchased only from above li
             });
 
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
