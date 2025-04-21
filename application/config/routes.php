@@ -151,6 +151,13 @@ $route['transaction/reject-withdraw'] = 'Transaction/reject_withdraw';
 $route['transaction/process-withdraw'] = 'Transaction/process_withdraw';
 
 
+
+// API
+
+$route['api/(:any)'] = 'api/$1';  
+
+
+
 $route['test-mail'] = 'settings/MT_Accounts/send_mail';
 
 
