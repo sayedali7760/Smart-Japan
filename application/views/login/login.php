@@ -118,7 +118,9 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Separator-->
                         <!--begin::Google link-->
 
-                        <a href="<?php echo base_url(); ?>login/forgot-password" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                        Forgot Password?
+                        <a href="<?php echo base_url(); ?>login/forgot-password" class=" flex-center w-100 mb-5">
+
                             <!-- <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
                                 class="h-20px me-3" />Continue with Google</a> -->
                             Forgot Password </a>
