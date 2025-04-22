@@ -96,27 +96,27 @@ class User_management extends CI_Controller
     }
     public function edit_client()
     {
-        if ($this->input->is_ajax_request() == 1) {
-            $onload =  $this->input->post('load');
-            $client_id = $this->input->post('client_id');
+        // if ($this->input->is_ajax_request() == 1) {
+        $onload =  $this->input->post('load');
+        $client_id = $this->input->post('client_id');
 
-            if ($onload == 1) {
-                $client_data_raw = $this->CModel->get_client_details($client_id);
-                $data['document_details'] = $this->CModel->get_client_document_details($client_id);
-                $data['staff_details'] = $this->CModel->get_client_staff_details();
-                $data['client_id'] = $client_id;
-                $data['client_data'] = $client_data_raw;
-                $data['countries'] = $this->CModel->get_countries();
-                $data['subtitle'] = 'Update - ' . $client_data_raw['name'];
-                $resultArray = json_decode(json_encode($data['client_data']), true);
+        if ($onload == 1) {
+            $client_data_raw = $this->CModel->get_client_details($client_id);
+            $data['document_details'] = $this->CModel->get_client_document_details($client_id);
+            $data['staff_details'] = $this->CModel->get_client_staff_details();
+            $data['client_id'] = $client_id;
+            $data['client_data'] = $client_data_raw;
+            $data['countries'] = $this->CModel->get_countries();
+            $data['subtitle'] = 'Update - ' . $client_data_raw['name'];
+            $resultArray = json_decode(json_encode($data['client_data']), true);
 
-                $view = $this->load->view('modules/general_settings/edit_client', $data, TRUE);
-                echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
-                return;
-            }
-        } else {
-            $this->load->view(ERROR_500);
+            $view = $this->load->view('modules/general_settings/edit_client', $data, TRUE);
+            echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
+            return;
         }
+        // } else {
+        //     $this->load->view(ERROR_500);
+        // }
     }
 
     public function user_list()
@@ -159,25 +159,25 @@ class User_management extends CI_Controller
     }
     public function edit_user()
     {
-        if ($this->input->is_ajax_request() == 1) {
-            $onload =  $this->input->post('load');
-            $user_id = $this->input->post('user_id');
-            if ($onload == 1) {
-                $user_data_raw = $this->UMModel->get_user_details($user_id);
-                $data['user_id'] = $user_id;
-                $data['user_data'] = $user_data_raw;
-                $data['subtitle'] = 'Update - ' . $user_data_raw['email'];
-                $data['user_role'] = $this->UMModel->get_user_role();
-                $resultArray = json_decode(json_encode($data['user_data']), true);
-                $data['current_user_role'] = $resultArray['position'];
+        // if ($this->input->is_ajax_request() == 1) {
+        $onload =  $this->input->post('load');
+        $user_id = $this->input->post('user_id');
+        if ($onload == 1) {
+            $user_data_raw = $this->UMModel->get_user_details($user_id);
+            $data['user_id'] = $user_id;
+            $data['user_data'] = $user_data_raw;
+            $data['subtitle'] = 'Update - ' . $user_data_raw['email'];
+            $data['user_role'] = $this->UMModel->get_user_role();
+            $resultArray = json_decode(json_encode($data['user_data']), true);
+            $data['current_user_role'] = $resultArray['position'];
 
-                $view = $this->load->view('modules/general_settings/edit_user', $data, TRUE);
-                echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
-                return;
-            }
-        } else {
-            $this->load->view(ERROR_500);
+            $view = $this->load->view('modules/general_settings/edit_user', $data, TRUE);
+            echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
+            return;
         }
+        // } else {
+        //     $this->load->view(ERROR_500);
+        // }
     }
 
 
