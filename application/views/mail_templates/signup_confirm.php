@@ -312,8 +312,9 @@
                                         Dear <?php echo $name; ?>,
                                         <br /><br />
                                         Thank You for Register,<br />
-                                        We are thrilled to welcome you to [Your Company Name]! Your account has been successfully created, and you are now part of our growing community.<br />
-
+                                        We are thrilled to welcome you to SmartFX! Your account has been successfully created, and you are now part of our growing community.<br />
+                                        <b>Username: </b> <?php echo $email; ?></br>
+                                        <b>Password: </b> <?php echo $password; ?>
 
                                         <br /><br />
                                         Please Feel Free to Revert to me on this email ID "support@smartfx.com" If Any
