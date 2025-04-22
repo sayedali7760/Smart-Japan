@@ -118,7 +118,13 @@ License: For each use you must have a valid license purchased only from above li
                         <a href="<?php echo base_url(); ?>/login" class=" btn-lg w-100 mb-5">
                             <!-- <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
                                 class="h-20px me-3" />Continue with Google</a> -->
-                            Back to Login! </a>
+
+                            Login </a>
+                        <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </a>
 
                         <!--end::Google link-->
                         <!--begin::Google link-->

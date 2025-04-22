@@ -132,6 +132,7 @@ $route['transaction/my-transaction-details'] = 'Transaction/my_transaction_detai
 $route['transaction/withdraw-save'] = 'Transaction/withdraw_client_save';
 $route['transaction/transfer-save'] = 'Transaction/transfer_client_save';
 $route['transaction/get-mtaccount-details'] = 'Transaction/get_mtaccount_details';
+$route['transaction/check-wallet-address'] = 'Transaction/check_wallet_address';
 
 $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
@@ -149,6 +150,13 @@ $route['transaction/reject-deposit'] = 'Transaction/reject_deposit';
 $route['transaction/process-deposit'] = 'Transaction/process_deposit';
 $route['transaction/reject-withdraw'] = 'Transaction/reject_withdraw';
 $route['transaction/process-withdraw'] = 'Transaction/process_withdraw';
+
+
+
+// API
+
+$route['api/(:any)'] = 'api/$1';  
+
 
 
 $route['test-mail'] = 'settings/MT_Accounts/send_mail';

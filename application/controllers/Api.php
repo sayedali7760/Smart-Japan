@@ -1,12 +1,17 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-require APPPATH . 'libraries/REST_Controller.php';
-
-
-class Api extends REST_Controller
+class Api extends CI_Controller
 {
-    function __construct()
+     public function __construct()
     {
         parent::__construct();
+    }
+   
+    public function nexus_callback()
+    {
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
+        print_r($data);
+        die;
     }
 }

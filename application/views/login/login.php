@@ -117,11 +117,13 @@ License: For each use you must have a valid license purchased only from above li
                         <!-- <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div> -->
                         <!--end::Separator-->
                         <!--begin::Google link-->
+
                         Forgot Password?
                         <a href="<?php echo base_url(); ?>login/forgot-password" class=" flex-center w-100 mb-5">
+
                             <!-- <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
                                 class="h-20px me-3" />Continue with Google</a> -->
-                            Click here to Reset! </a>
+                            Forgot Password </a>
                         <!--end::Google link-->
                         <!--begin::Google link-->
 
