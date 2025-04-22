@@ -21,4 +21,4 @@ Allow from localhost
 # Static file caching (uncomment if needed)
 # <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
 # Header set Cache-Control "max-age=604800, public"
-# </FilesMatch>
+# </FilesMatch>

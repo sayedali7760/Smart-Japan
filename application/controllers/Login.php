@@ -248,6 +248,7 @@ class Login extends CI_Controller
         $name = $this->input->post('name');
         $email = $this->input->post('email');
         $password = md5($this->input->post('password'));
+        $pwd = $this->input->post('password');
         $phno = $this->input->post('phno');
 
         $uuid_data = random_bytes(16);
@@ -264,8 +265,9 @@ class Login extends CI_Controller
                 $mailto = $email;
                 $subject = 'Account Created Successfully';
                 $data_user_array['name'] = $name;
-                $data_user_array['name'] = 'Seyad Ali';
-                $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $data_user_array, true);
+                $data_user_array['email'] = $email;
+                $data_user_array['password'] = $pwd;
+                $mailcontent =  $this->load->view('mail_templates/signup_confirm', $data_user_array, true);
                 $cc = "";
                 send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
 

@@ -134,7 +134,7 @@
                                                 <?php if ($documents_data['eid_status'] == 0 || $documents_data['eid_status'] == 3) { ?>
                                                     <label class="required form-label">ID</label>
                                                     <input type="hidden" name="client_id" id="client_id" value="<?php echo $user_data['id']; ?>">
-                                                    <input type="file" class="form-control files" name="files_id[]" id="files_id">
+                                                    <input type="file" class="form-control files" name="files_id[]" id="files_id" required>
                                                     <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                                 <?php } else if ($documents_data['eid_status'] == 1) { ?>
                                                     <label class="required form-label">ID</label>
@@ -174,7 +174,7 @@
                                             <div class="col-md-4">
                                                 <?php if ($documents_data['pass_status'] == 0 || $documents_data['pass_status'] == 3) { ?>
                                                     <label class="required form-label">Passport</label>
-                                                    <input type="file" class="form-control files" name="files_pass[]" id="files_pass">
+                                                    <input type="file" class="form-control files" name="files_pass[]" id="files_pass" required>
                                                     <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                                 <?php } else if ($documents_data['pass_status'] == 1) { ?>
                                                     <label class="required form-label">Passport</label>
@@ -212,7 +212,7 @@
                                             <div class="col-md-4">
                                                 <?php if ($documents_data['bank_status'] == 0 || $documents_data['bank_status'] == 3) { ?>
                                                     <label class="required form-label">Bank Statement</label>
-                                                    <input type="file" class="form-control files" name="files_bank[]" id="files_bank">
+                                                    <input type="file" class="form-control files" name="files_bank[]" id="files_bank" required>
                                                     <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                                 <?php } else if ($documents_data['bank_status'] == 1) { ?>
                                                     <label class="required form-label">Bank Statement</label>
@@ -318,17 +318,17 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label class="required form-label">ID</label>
-                                            <input type="file" class="form-control files" name="files_id[]" id="files_id">
+                                            <input type="file" class="form-control files" name="files_id[]" id="files_id" required>
                                             <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="required form-label">Passport</label>
-                                            <input type="file" class="form-control files" name="files_pass[]" id="files_pass">
+                                            <input type="file" class="form-control files" name="files_pass[]" id="files_pass" required>
                                             <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="required form-label">Bank Statement</label>
-                                            <input type="file" class="form-control files" name="files_bank[]" id="files_bank">
+                                            <input type="file" class="form-control files" name="files_bank[]" id="files_bank" required>
                                             <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                         </div>
                                         <div class="col-md-4">
@@ -510,6 +510,11 @@
 
 <script>
     function upload_doc() {
+        var forms = document.getElementById('document_upload');
+        if (!forms.checkValidity()) {
+            forms.reportValidity(); // Show validation errors
+            return false; // Stop further execution
+        }
         $("#actual_submit").hide();
         $("#loader_submit").show();
         var ops_url = baseurl + 'client-crm/upload-doc';
