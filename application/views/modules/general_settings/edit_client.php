@@ -286,88 +286,104 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-end">
-                                    <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="activate_account()">Activate Account</a>
-                                </div>
+                                <?php if ($document_details['account_verify'] == 1) { ?>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="javascript:void(0);" class="btn btn-success">Account Activated</a>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" id="actual_submit" onclick="activate_account()" class="btn btn-lg btn-primary mb-5 me-2 actual_submit" title="Submit">
+                                            Activate Account
+                                        </button>
+                                        <button type="button" id="loader_submit" class="btn btn-lg btn-primary mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
+                                            <span class="indicator-label">Submit</span>
+                                            <span class="indicator-progress">Please wait...
+                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <!-- <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="activate_account()">Activate Account</a> --> -->
+                        </div>
+                    <?php } ?>
 
-                            <?php } else { ?>
-                                <div id="kt_billing_payment_tab_content" class="card-body tab-content">
-                                    <div id="kt_billing_creditcard" class="tab-pane fade show active" role="tabpanel">
-                                        <h3 class="mb-5">Uploaded Documents</h3>
-                                        <div class="row gx-9 gy-6">
+                <?php } else { ?>
+                    <div id="kt_billing_payment_tab_content" class="card-body tab-content">
+                        <div id="kt_billing_creditcard" class="tab-pane fade show active" role="tabpanel">
+                            <h3 class="mb-5">Uploaded Documents</h3>
+                            <div class="row gx-9 gy-6">
 
-                                            <div class="col-xl-6">
-                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                    <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center py-2">
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                        <div class="d-flex flex-column py-2">
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity
                                             </div>
-                                            <div class="col-xl-6">
-                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                    <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Passport
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center py-2">
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                    <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Bank
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center py-2">
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                    <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Other
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center py-2">
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        </div>
+                                        <div class="d-flex align-items-center py-2">
+                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                <div class="d-flex flex-column">
+                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            <?php } ?>
+                                <div class="col-xl-6">
+                                    <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                        <div class="d-flex flex-column py-2">
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Passport
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center py-2">
+                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                <div class="d-flex flex-column">
+                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                        <div class="d-flex flex-column py-2">
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Bank
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center py-2">
+                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                <div class="d-flex flex-column">
+                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                        <div class="d-flex flex-column py-2">
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Other
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center py-2">
+                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                <div class="d-flex flex-column">
+                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
+                <?php } ?>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-    <?php echo form_close(); ?>
+</div>
+<?php echo form_close(); ?>
 </div>
 <script>
     $(document).ready(function() {
@@ -415,9 +431,11 @@
     }
 
     function activate_account() {
-
+        $(".actual_submit").hide();
+        $(".loader_submit").show();
         var ops_url = baseurl + 'client-crm/activate-client';
         var client_id = $('#client_id').val();
+        var email = $('#email').val();
         Swal.fire({
             title: "Are you sure?",
             text: "Do you want to activate?",
@@ -434,9 +452,12 @@
                     async: true,
                     url: ops_url,
                     data: {
-                        client_id: client_id
+                        client_id: client_id,
+                        email: email,
                     },
                     success: function(result) {
+                        $(".actual_submit").show();
+                        $(".loader_submit").hide();
                         Swal.fire({
                             icon: 'success',
                             title: 'Success',
