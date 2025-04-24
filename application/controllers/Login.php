@@ -37,8 +37,8 @@ class Login extends CI_Controller
         $position = $this->input->post('position');
         $password = md5($this->input->post('password'));
 
-        $session_position = ['position' => $position];
-        $this->session->set_userdata('session_position', $session_position);
+        // $session_position = ['position' => $position];
+        // $this->session->set_userdata('session_position', $session_position);
 
 
         if ($position == 1) {
@@ -66,6 +66,7 @@ class Login extends CI_Controller
                 return;
             }
             $this->session->set_userdata($session_data);
+
             if ($this->input->post("remember") == '1') {
                 setcookie("ecomm_username", $username, time() + (10 * 365 * 24 * 60 * 60));
                 setcookie("ecomm_password", $password, time() + (10 * 365 * 24 * 60 * 60));
@@ -240,14 +241,14 @@ class Login extends CI_Controller
     {
         // $this->session->sess_destroy();
         // redirect('login');
-        $session_position = $this->session->userdata('session_position');
+        // $session_position = $this->session->userdata('session_position');
 
-        if (is_array($session_position) && isset($session_position['position']) && $session_position['position'] == 1) {
-            $this->session->sess_destroy();
-            redirect('login');
-        } else {
+        if (isset($this->session->userdata['position'])) {
             $this->session->sess_destroy();
             redirect('admin');
+        } else {
+            $this->session->sess_destroy();
+            redirect('login');
         }
     }
 
