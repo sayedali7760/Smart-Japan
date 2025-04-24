@@ -37,6 +37,10 @@ class Login extends CI_Controller
         $position = $this->input->post('position');
         $password = md5($this->input->post('password'));
 
+        $session_position = ['position' => $position];
+        $this->session->set_userdata('session_position', $session_position);
+
+
         if ($position == 1) {
             $qr = $this->db->select('C.*')
                 ->from('clients as C')
@@ -234,8 +238,17 @@ class Login extends CI_Controller
     }
     public function logout()
     {
-        $this->session->sess_destroy();
-        redirect('login');
+        // $this->session->sess_destroy();
+        // redirect('login');
+        $session_position = $this->session->userdata('session_position');
+
+        if (is_array($session_position) && isset($session_position['position']) && $session_position['position'] == 1) {
+            $this->session->sess_destroy();
+            redirect('login');
+        } else {
+            $this->session->sess_destroy();
+            redirect('admin');
+        }
     }
 
     public function signup()
