@@ -1,4 +1,4 @@
-<?php if (isset($bank_data)) {    ?>
+<?php if (isset($bank_data) && $bank_data != null) {    ?>
 
     <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
@@ -142,7 +142,9 @@
     </div>
     <!--end::Container-->
 
-<?php  } ?>
+<?php  } else { ?>
+    <p>No records found!!!</p>
+<?php } ?>
 
 
 <script>
