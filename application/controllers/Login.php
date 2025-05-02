@@ -37,6 +37,10 @@ class Login extends CI_Controller
         $position = $this->input->post('position');
         $password = md5($this->input->post('password'));
 
+        // $session_position = ['position' => $position];
+        // $this->session->set_userdata('session_position', $session_position);
+
+
         if ($position == 1) {
             $qr = $this->db->select('C.*')
                 ->from('clients as C')
@@ -62,6 +66,7 @@ class Login extends CI_Controller
                 return;
             }
             $this->session->set_userdata($session_data);
+
             if ($this->input->post("remember") == '1') {
                 setcookie("ecomm_username", $username, time() + (10 * 365 * 24 * 60 * 60));
                 setcookie("ecomm_password", $password, time() + (10 * 365 * 24 * 60 * 60));
@@ -234,8 +239,17 @@ class Login extends CI_Controller
     }
     public function logout()
     {
-        $this->session->sess_destroy();
-        redirect('login');
+        // $this->session->sess_destroy();
+        // redirect('login');
+        // $session_position = $this->session->userdata('session_position');
+
+        if (isset($this->session->userdata['position'])) {
+            $this->session->sess_destroy();
+            redirect('admin');
+        } else {
+            $this->session->sess_destroy();
+            redirect('login');
+        }
     }
 
     public function signup()
@@ -248,6 +262,7 @@ class Login extends CI_Controller
         $name = $this->input->post('name');
         $email = $this->input->post('email');
         $password = md5($this->input->post('password'));
+        $pwd = $this->input->post('password');
         $phno = $this->input->post('phno');
 
         $uuid_data = random_bytes(16);
@@ -264,8 +279,9 @@ class Login extends CI_Controller
                 $mailto = $email;
                 $subject = 'Account Created Successfully';
                 $data_user_array['name'] = $name;
-                $data_user_array['name'] = 'Seyad Ali';
-                $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $data_user_array, true);
+                $data_user_array['email'] = $email;
+                $data_user_array['password'] = $pwd;
+                $mailcontent =  $this->load->view('mail_templates/signup_confirm', $data_user_array, true);
                 $cc = "";
                 send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
 
