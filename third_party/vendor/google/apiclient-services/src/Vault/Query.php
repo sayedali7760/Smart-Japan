@@ -21,6 +21,8 @@ class Query extends \Google\Model
 {
   protected $accountInfoType = AccountInfo::class;
   protected $accountInfoDataType = '';
+  protected $calendarOptionsType = CalendarOptions::class;
+  protected $calendarOptionsDataType = '';
   /**
    * @var string
    */
@@ -29,12 +31,16 @@ class Query extends \Google\Model
    * @var string
    */
   public $dataScope;
+  protected $driveDocumentInfoType = DriveDocumentInfo::class;
+  protected $driveDocumentInfoDataType = '';
   protected $driveOptionsType = DriveOptions::class;
   protected $driveOptionsDataType = '';
   /**
    * @var string
    */
   public $endTime;
+  protected $geminiOptionsType = GeminiOptions::class;
+  protected $geminiOptionsDataType = '';
   protected $hangoutsChatInfoType = HangoutsChatInfo::class;
   protected $hangoutsChatInfoDataType = '';
   protected $hangoutsChatOptionsType = HangoutsChatOptions::class;
@@ -53,6 +59,8 @@ class Query extends \Google\Model
   public $searchMethod;
   protected $sharedDriveInfoType = SharedDriveInfo::class;
   protected $sharedDriveInfoDataType = '';
+  protected $sitesUrlInfoType = SitesUrlInfo::class;
+  protected $sitesUrlInfoDataType = '';
   /**
    * @var string
    */
@@ -85,6 +93,20 @@ class Query extends \Google\Model
     return $this->accountInfo;
   }
   /**
+   * @param CalendarOptions
+   */
+  public function setCalendarOptions(CalendarOptions $calendarOptions)
+  {
+    $this->calendarOptions = $calendarOptions;
+  }
+  /**
+   * @return CalendarOptions
+   */
+  public function getCalendarOptions()
+  {
+    return $this->calendarOptions;
+  }
+  /**
    * @param string
    */
   public function setCorpus($corpus)
@@ -113,6 +135,20 @@ class Query extends \Google\Model
     return $this->dataScope;
   }
   /**
+   * @param DriveDocumentInfo
+   */
+  public function setDriveDocumentInfo(DriveDocumentInfo $driveDocumentInfo)
+  {
+    $this->driveDocumentInfo = $driveDocumentInfo;
+  }
+  /**
+   * @return DriveDocumentInfo
+   */
+  public function getDriveDocumentInfo()
+  {
+    return $this->driveDocumentInfo;
+  }
+  /**
    * @param DriveOptions
    */
   public function setDriveOptions(DriveOptions $driveOptions)
@@ -139,6 +175,20 @@ class Query extends \Google\Model
   public function getEndTime()
   {
     return $this->endTime;
+  }
+  /**
+   * @param GeminiOptions
+   */
+  public function setGeminiOptions(GeminiOptions $geminiOptions)
+  {
+    $this->geminiOptions = $geminiOptions;
+  }
+  /**
+   * @return GeminiOptions
+   */
+  public function getGeminiOptions()
+  {
+    return $this->geminiOptions;
   }
   /**
    * @param HangoutsChatInfo
@@ -237,6 +287,20 @@ class Query extends \Google\Model
   public function getSharedDriveInfo()
   {
     return $this->sharedDriveInfo;
+  }
+  /**
+   * @param SitesUrlInfo
+   */
+  public function setSitesUrlInfo(SitesUrlInfo $sitesUrlInfo)
+  {
+    $this->sitesUrlInfo = $sitesUrlInfo;
+  }
+  /**
+   * @return SitesUrlInfo
+   */
+  public function getSitesUrlInfo()
+  {
+    return $this->sitesUrlInfo;
   }
   /**
    * @param string

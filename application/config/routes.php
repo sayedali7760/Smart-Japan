@@ -55,6 +55,7 @@ $route['logout'] = 'Login/logout';
 $route['home'] = 'dashboard_controller';
 $route['error'] = 'Login/error';
 $route['login/login'] = 'Login/loginaction';
+$route['admin'] = 'Login/admin_login';
 $route['home/dashboard'] = 'dashboard_controller';
 $route['login/forgot-password'] = 'Login/forgot_password_check';
 $route['update-forgot-password?(:any)'] = 'Login/change_password_user';
@@ -125,19 +126,51 @@ $route['mt/group-show'] = 'settings/Mt_Accounts/show_group';
 $route['mt/change_group_status'] = 'settings/Mt_Accounts/change_group_status';
 $route['mt/edit-group'] = 'settings/Mt_Accounts/edit_group';
 $route['mt/update-group'] = 'settings/Mt_Accounts/update_group';
+$route['mt-account/show-mt-create'] = 'settings/Mt_Accounts/show_mt_create';
+$route['mt-account/my-mt-details'] = 'settings/Mt_Accounts/my_mt_details';
+$route['transaction/my-transaction-details'] = 'Transaction/my_transaction_details';
+$route['transaction/withdraw-save'] = 'Transaction/withdraw_client_save';
+$route['transaction/transfer-save'] = 'Transaction/transfer_client_save';
+$route['transaction/get-mtaccount-details'] = 'Transaction/get_mtaccount_details';
+$route['transaction/check-wallet-address'] = 'Transaction/check_wallet_address';
 
 $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
 $route['transaction/internal-transfer'] = 'Transaction/internal_transactions';
 $route['transaction/pending-deposits'] = 'Transaction/pending_deposits';
 $route['transaction/pending-withdrawal'] = 'Transaction/pending_withdrawal';
+$route['transaction/rejected-transactions'] = 'Transaction/rejected_transactions';
+$route['transaction/deposit-client'] = 'Transaction/deposit_client_account';
+$route['transaction/deposit-save'] = 'Transaction/deposit_client_save';
+$route['transaction/withdraw-client'] = 'Transaction/withdraw_client_account';
+$route['transaction/transfer-client'] = 'Transaction/transfer_client_account';
 
 $route['transaction/approve-deposit'] = 'Transaction/approve_deposit';
 $route['transaction/reject-deposit'] = 'Transaction/reject_deposit';
 $route['transaction/process-deposit'] = 'Transaction/process_deposit';
+$route['transaction/reject-withdraw'] = 'Transaction/reject_withdraw';
+$route['transaction/process-withdraw'] = 'Transaction/process_withdraw';
+
+
+
+// API
+
+$route['api/(:any)'] = 'api/$1';  
+
 
 
 $route['test-mail'] = 'settings/MT_Accounts/send_mail';
+
+$route['client/my-data'] = 'settings/Client_crm/my_data';
+$route['client/bdata-save'] = 'settings/Client_crm/bank_data';
+$route['client/wallet-save'] = 'settings/Client_crm/wallet_id';
+$route['client/show-bank-details'] = 'settings/Client_crm/show_bank_details';
+$route['client/reject_data'] = 'settings/Client_crm/reject_bank_data';
+$route['client/approve_data'] = 'settings/Client_crm/approve_bank_data';
+$route['mt/group_update'] = 'settings/Mt_Accounts/group_update';
+$route['mt/group_change'] = 'settings/Mt_Accounts/group_change';
+$route['login/forgot-password'] = 'Login/forgot_pwd';
+$route['login/reset-password'] = 'Login/reset_pwd';
 
 
 $route['default_controller'] = 'Login';

@@ -105,13 +105,36 @@
 
 
                             </div>
+                            <div class="d-flex flex-wrap gap-5">
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="form-label">Manager</label>
+                                    <select class="form-select" data-placeholder="Select an option" id="manager" name="manager">
+                                        <?php foreach ($staff_details as $staff) { ?>
+                                            <option value="<?php echo $staff->id; ?>"><?php echo $staff->fname; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="fv-row w-100 flex-md-root">
+
+                                </div>
+                                <div class="fv-row w-100 flex-md-root">
+
+                                </div>
+
+
+                            </div>
                             <div class="d-flex justify-content-end">
 
                                 <a href="<?php echo base_url(); ?>user-management/client-show" id="kt_ecommerce_add_product_cancel"
                                     class="btn btn-light me-5">Cancel</a>
 
-                                <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="update_data()">Save
-                                    Changes</a>
+                                <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
+                                    onclick="update_data()">Save</a>
+                                <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                                    <span class="indicator-label">Submit</span>
+                                    <span class="indicator-progress">Please wait...
+                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                </a>
 
                             </div>
                             <?php if (isset($document_details)) { ?>
@@ -263,106 +286,117 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-end">
-                                    <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="activate_account()">Activate Account</a>
-                                </div>
+                                <?php if ($document_details['account_verify'] == 1) { ?>
+                                    <div class="d-flex justify-content-end">
+                                        <a href="javascript:void(0);" class="btn btn-success">Account Activated</a>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="d-flex justify-content-end">
+                                        <button type="button" id="actual_submit" onclick="activate_account()" class="btn btn-lg btn-primary mb-5 me-2 actual_submit" title="Submit">
+                                            Activate Account
+                                        </button>
+                                        <button type="button" id="loader_submit" class="btn btn-lg btn-primary mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
+                                            <span class="indicator-label">Submit</span>
+                                            <span class="indicator-progress">Please wait...
+                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <!-- <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="activate_account()">Activate Account</a> --> -->
+                        </div>
+                    <?php } ?>
 
-                            <?php } else { ?>
-                                <div id="kt_billing_payment_tab_content" class="card-body tab-content">
-                                    <div id="kt_billing_creditcard" class="tab-pane fade show active" role="tabpanel">
-                                        <h3 class="mb-5">Uploaded Documents</h3>
-                                        <div class="row gx-9 gy-6">
+                <?php } else { ?>
+                    <div id="kt_billing_payment_tab_content" class="card-body tab-content">
+                        <div id="kt_billing_creditcard" class="tab-pane fade show active" role="tabpanel">
+                            <h3 class="mb-5">Uploaded Documents</h3>
+                            <div class="row gx-9 gy-6">
 
-                                            <div class="col-xl-6">
-                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                    <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center py-2">
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                        <div class="d-flex flex-column py-2">
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity
                                             </div>
-                                            <div class="col-xl-6">
-                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                    <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Passport
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center py-2">
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                    <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Bank
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center py-2">
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
-                                                    <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Other
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex align-items-center py-2">
-                                                        <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
-                                                            <div class="d-flex flex-column">
-                                                                <h4 class="mb-1 text-warning">Not Uploaded</h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                        </div>
+                                        <div class="d-flex align-items-center py-2">
+                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                <div class="d-flex flex-column">
+                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            <?php } ?>
+                                <div class="col-xl-6">
+                                    <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                        <div class="d-flex flex-column py-2">
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Passport
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center py-2">
+                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                <div class="d-flex flex-column">
+                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                        <div class="d-flex flex-column py-2">
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Bank
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center py-2">
+                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                <div class="d-flex flex-column">
+                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
+                                        <div class="d-flex flex-column py-2">
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Other
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center py-2">
+                                            <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
+                                                <div class="d-flex flex-column">
+                                                    <h4 class="mb-1 text-warning">Not Uploaded</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
+                <?php } ?>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-    <?php echo form_close(); ?>
+</div>
+<?php echo form_close(); ?>
 </div>
 <script>
     $(document).ready(function() {
         KTUtil.onDOMContentLoaded(function() {
             KTAppEcommerceSalesSaveOrder.init();
         });
-        $('#position').select2({
-            placeholder: 'Select an option',
-            allowClear: true
-        });
+    });
+    $('#manager').select2({
+        placeholder: 'Select an option',
     });
     KTImageInput.init();
 </script>
 <script>
-    function show_div() {
-
-    }
-
     function update_doc_status(doc_id, status) {
         var client_id = $('#client_id').val();
         var ops_url = baseurl + 'client-crm/update-doc-status';
@@ -397,9 +431,11 @@
     }
 
     function activate_account() {
-
+        $(".actual_submit").hide();
+        $(".loader_submit").show();
         var ops_url = baseurl + 'client-crm/activate-client';
         var client_id = $('#client_id').val();
+        var email = $('#email').val();
         Swal.fire({
             title: "Are you sure?",
             text: "Do you want to activate?",
@@ -416,9 +452,12 @@
                     async: true,
                     url: ops_url,
                     data: {
-                        client_id: client_id
+                        client_id: client_id,
+                        email: email,
                     },
                     success: function(result) {
+                        $(".actual_submit").show();
+                        $(".loader_submit").hide();
                         Swal.fire({
                             icon: 'success',
                             title: 'Success',
@@ -441,7 +480,8 @@
     }
 
     function update_data() {
-        $("#loader").show();
+        $("#actual_submit").hide();
+        $("#loader_submit").show();
         var ops_url = baseurl + 'user-management/update-client';
         var user_id = $('#user_id').val();
         var name = $('#name').val();
@@ -449,6 +489,7 @@
         var con_password = $('#con_password').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
+        var manager = $('#manager').val();
 
         if (name == "") {
             Swal.fire({
@@ -456,6 +497,8 @@
                 title: '',
                 text: 'Name is required.'
             });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (name.length < 3) {
@@ -464,6 +507,8 @@
                 title: '',
                 text: 'Enter at least three characters for Name.'
             });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
 
@@ -473,6 +518,8 @@
                 title: '',
                 text: 'Email is required.'
             });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (phone == "") {
@@ -481,7 +528,8 @@
                 title: '',
                 text: 'Phone is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
 
@@ -492,7 +540,8 @@
                     title: '',
                     text: 'Enter at least three characters for Password.'
                 });
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 return false;
             }
             if (con_password == '') {
@@ -501,7 +550,8 @@
                     title: '',
                     text: 'Confirm Password is required.'
                 });
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 return false;
             }
             if (password != con_password) {
@@ -510,9 +560,21 @@
                     title: '',
                     text: 'Password and Confirm Password must be the same.'
                 });
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 return false;
             }
+            if (manager == '') {
+                Swal.fire({
+                    icon: 'info',
+                    title: '',
+                    text: 'Manager is required.'
+                });
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
+                return false;
+            }
+
         }
 
         var form = $("#client_save");
@@ -528,7 +590,8 @@
             contentType: false,
             data: formData,
             success: function(result) {
-                $("#loader").hide();
+                $("#actual_submit").show();
+                $("#loader_submit").hide();
                 var data = $.parseJSON(result);
                 if (data.status == 1) {
                     Swal.fire({

@@ -23,8 +23,9 @@ use Google\Client;
  * Service definition for MyBusinessQA (v1).
  *
  * <p>
- * The My Business Q API allows questions and answers to be posted for specific
- * listings.</p>
+ * The My Business Q&A API allows questions and answers to be posted for
+ * specific listings. Note - If you have a quota of 0 after enabling the API,
+ * please request for GBP API access.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -39,6 +40,7 @@ class MyBusinessQA extends \Google\Service
 
   public $locations_questions;
   public $locations_questions_answers;
+  public $rootUrlTemplate;
 
   /**
    * Constructs the internal representation of the MyBusinessQA service.
@@ -51,6 +53,7 @@ class MyBusinessQA extends \Google\Service
   {
     parent::__construct($clientOrConfig);
     $this->rootUrl = $rootUrl ?: 'https://mybusinessqanda.googleapis.com/';
+    $this->rootUrlTemplate = $rootUrl ?: 'https://mybusinessqanda.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
     $this->version = 'v1';
@@ -74,16 +77,6 @@ class MyBusinessQA extends \Google\Service
               ],
             ],'delete' => [
               'path' => 'v1/{+name}',
-              'httpMethod' => 'DELETE',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'deleteAnswers' => [
-              'path' => 'v1/{+name}/answers',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -146,8 +139,18 @@ class MyBusinessQA extends \Google\Service
         'answers',
         [
           'methods' => [
-            'list' => [
-              'path' => 'v1/{+parent}',
+            'delete' => [
+              'path' => 'v1/{+name}/answers:delete',
+              'httpMethod' => 'DELETE',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/answers',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [

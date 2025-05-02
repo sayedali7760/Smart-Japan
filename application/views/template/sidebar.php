@@ -145,7 +145,17 @@
                                 <span class="menu-title">Pending Withdrawals</span>
                             </a>
                         </div>
-
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Rejected Transactions') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>transaction/rejected-transactions">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Rejected Transactions</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -305,46 +315,6 @@
                     </div>
                 </div>
 
-
-
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path
-                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                        fill="currentColor" />
-                                    <path
-                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3"
-                                        d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-title">Reports</span>
-                        <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div class="menu-item">
-                            <a class="menu-link" href="">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Lists</span>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
             <?php } else { ?>
                 <div data-kt-menu-trigger="click"
                     class="menu-item menu-accordion <?php if ($title == 'Client') {
@@ -382,6 +352,18 @@
                             </a>
                         </div>
 
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Bank Details') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>client/my-data">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Bank Details</span>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click"
@@ -412,7 +394,7 @@
                             <a class="menu-link <?php if ($subtitle == 'Deposit') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>client/my-profile">
+                                href="<?php echo base_url(); ?>transaction/deposit-client">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -425,7 +407,7 @@
                             <a class="menu-link <?php if ($subtitle == 'Withdraw') {
                                                     echo "active";
                                                 } ?>"
-                                href="<?php echo base_url(); ?>client/my-profile">
+                                href="<?php echo base_url(); ?>transaction/withdraw-client">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -433,6 +415,88 @@
                             </a>
                         </div>
                     </div>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Transfer') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>transaction/transfer-client">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Transfer</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div data-kt-menu-trigger="click"
+                    class="menu-item menu-accordion <?php if ($title == 'MT Account') {
+                                                        echo "hover show";
+                                                    } ?>">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/technology/teh004.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
+                                    <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor" />
+                                    <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Account</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'MT5 Account Details') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>mt-account/my-mt-details">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">MT5 Account Details</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div data-kt-menu-trigger="click"
+                    class="menu-item menu-accordion <?php if ($title == 'Reports') {
+                                                        echo "hover show";
+                                                    } ?>">
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/technology/teh004.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM14.5 12L12.7 9.3C12.3 8.9 11.7 8.9 11.3 9.3L10 12H11.5V17C11.5 17.6 11.4 18 12 18C12.6 18 12.5 17.6 12.5 17V12H14.5Z" fill="currentColor" />
+                                    <path d="M13 11.5V17.9355C13 18.2742 12.6 19 12 19C11.4 19 11 18.2742 11 17.9355V11.5H13Z" fill="currentColor" />
+                                    <path d="M8.2575 11.4411C7.82942 11.8015 8.08434 12.5 8.64398 12.5H15.356C15.9157 12.5 16.1706 11.8015 15.7425 11.4411L12.4375 8.65789C12.1875 8.44737 11.8125 8.44737 11.5625 8.65789L8.2575 11.4411Z" fill="currentColor" />
+                                    <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">Reports</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'My Transactions') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>transaction/my-transaction-details">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Transaction Details</span>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             <?php } ?>
 

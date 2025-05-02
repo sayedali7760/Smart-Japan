@@ -101,6 +101,7 @@
                                 <th class="text-start min-w-75px">Name</th>
                                 <th class="text-strat min-w-75px">Email</th>
                                 <th class="text-strat min-w-75px">Phone</th>
+                                <th class="text-strat min-w-75px">Manager</th>
                                 <th class="text-start min-w-75px">Created</th>
                                 <th class="text-start min-w-75px">Verification</th>
                                 <th class="text-start min-w-75px">Status</th>
@@ -121,6 +122,7 @@
                                     <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_client('<?php echo $client->id; ?>')"><?php echo $client->name; ?></a></b></td>
                                     <td class="text-start pe-0"><?php echo $client->email; ?></td>
                                     <td class="text-start pe-0"><?php echo $client->phone; ?></td>
+                                    <td class="text-start pe-0"><?php echo $client->manager; ?></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($client->created)); ?>
                                     <td class="text-start pe-0">
                                         <?php if ($client->account_verify == 1) { ?>

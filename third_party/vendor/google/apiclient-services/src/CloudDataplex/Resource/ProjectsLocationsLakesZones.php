@@ -30,7 +30,7 @@ use Google\Service\CloudDataplex\GoogleLongrunningOperation;
  * Typical usage is:
  *  <code>
  *   $dataplexService = new Google\Service\CloudDataplex(...);
- *   $zones = $dataplexService->zones;
+ *   $zones = $dataplexService->projects_locations_lakes_zones;
  *  </code>
  */
 class ProjectsLocationsLakesZones extends \Google\Service\Resource
@@ -39,7 +39,7 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * Creates a zone resource within a lake. (zones.create)
    *
    * @param string $parent Required. The resource name of the parent lake:
-   * projects/{project_number}/locations/{location_id}/lakes/{lake_id}
+   * projects/{project_number}/locations/{location_id}/lakes/{lake_id}.
    * @param GoogleCloudDataplexV1Zone $postBody
    * @param array $optParams Optional parameters.
    *
@@ -53,6 +53,7 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * from all locations in a project. * Must not be one of the reserved IDs (i.e.
    * "default", "global-temp")
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function create($parent, GoogleCloudDataplexV1Zone $postBody, $optParams = [])
   {
@@ -64,11 +65,11 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * Deletes a zone resource. All assets within a zone must be deleted before the
    * zone can be deleted. (zones.delete)
    *
-   * @param string $name Required. The resource name of the zone:
-   * projects/{project_number}/locations/{location_id}/lakes/{lake_id}
-   * /zones/{zone_id}`
+   * @param string $name Required. The resource name of the zone: projects/{projec
+   * t_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}.
    * @param array $optParams Optional parameters.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function delete($name, $optParams = [])
   {
@@ -79,11 +80,11 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
   /**
    * Retrieves a zone resource. (zones.get)
    *
-   * @param string $name Required. The resource name of the zone:
-   * projects/{project_number}/locations/{location_id}/lakes/{lake_id}
-   * /zones/{zone_id}
+   * @param string $name Required. The resource name of the zone: projects/{projec
+   * t_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}.
    * @param array $optParams Optional parameters.
    * @return GoogleCloudDataplexV1Zone
+   * @throws \Google\Service\Exception
    */
   public function get($name, $optParams = [])
   {
@@ -96,8 +97,9 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * resource exists and does not have a policy set. (zones.getIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * requested. See the operation documentation for the appropriate value for this
-   * field.
+   * requested. See Resource names
+   * (https://cloud.google.com/apis/design/resource_names) for the appropriate
+   * value for this field.
    * @param array $optParams Optional parameters.
    *
    * @opt_param int options.requestedPolicyVersion Optional. The maximum policy
@@ -112,6 +114,7 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * IAM policies, see the IAM documentation
    * (https://cloud.google.com/iam/help/conditions/resource-policies).
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function getIamPolicy($resource, $optParams = [])
   {
@@ -123,7 +126,7 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * Lists zone resources in a lake. (zones.listProjectsLocationsLakesZones)
    *
    * @param string $parent Required. The resource name of the parent lake:
-   * projects/{project_number}/locations/{location_id}/lakes/{lake_id}
+   * projects/{project_number}/locations/{location_id}/lakes/{lake_id}.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string filter Optional. Filter request.
@@ -137,6 +140,7 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * paginating, all other parameters provided to ListZones must match the call
    * that provided the page token.
    * @return GoogleCloudDataplexV1ListZonesResponse
+   * @throws \Google\Service\Exception
    */
   public function listProjectsLocationsLakesZones($parent, $optParams = [])
   {
@@ -157,6 +161,7 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * @opt_param bool validateOnly Optional. Only validate the request, but do not
    * perform mutations. The default is false.
    * @return GoogleLongrunningOperation
+   * @throws \Google\Service\Exception
    */
   public function patch($name, GoogleCloudDataplexV1Zone $postBody, $optParams = [])
   {
@@ -170,11 +175,13 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * errors. (zones.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
-   * specified. See the operation documentation for the appropriate value for this
-   * field.
+   * specified. See Resource names
+   * (https://cloud.google.com/apis/design/resource_names) for the appropriate
+   * value for this field.
    * @param GoogleIamV1SetIamPolicyRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1Policy
+   * @throws \Google\Service\Exception
    */
   public function setIamPolicy($resource, GoogleIamV1SetIamPolicyRequest $postBody, $optParams = [])
   {
@@ -190,11 +197,13 @@ class ProjectsLocationsLakesZones extends \Google\Service\Resource
    * This operation may "fail open" without warning. (zones.testIamPermissions)
    *
    * @param string $resource REQUIRED: The resource for which the policy detail is
-   * being requested. See the operation documentation for the appropriate value
-   * for this field.
+   * being requested. See Resource names
+   * (https://cloud.google.com/apis/design/resource_names) for the appropriate
+   * value for this field.
    * @param GoogleIamV1TestIamPermissionsRequest $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleIamV1TestIamPermissionsResponse
+   * @throws \Google\Service\Exception
    */
   public function testIamPermissions($resource, GoogleIamV1TestIamPermissionsRequest $postBody, $optParams = [])
   {

@@ -22,6 +22,10 @@ class GoogleCloudApigeeV1EndpointAttachment extends \Google\Model
   /**
    * @var string
    */
+  public $connectionState;
+  /**
+   * @var string
+   */
   public $host;
   /**
    * @var string
@@ -35,7 +39,25 @@ class GoogleCloudApigeeV1EndpointAttachment extends \Google\Model
    * @var string
    */
   public $serviceAttachment;
+  /**
+   * @var string
+   */
+  public $state;
 
+  /**
+   * @param string
+   */
+  public function setConnectionState($connectionState)
+  {
+    $this->connectionState = $connectionState;
+  }
+  /**
+   * @return string
+   */
+  public function getConnectionState()
+  {
+    return $this->connectionState;
+  }
   /**
    * @param string
    */
@@ -91,6 +113,20 @@ class GoogleCloudApigeeV1EndpointAttachment extends \Google\Model
   public function getServiceAttachment()
   {
     return $this->serviceAttachment;
+  }
+  /**
+   * @param string
+   */
+  public function setState($state)
+  {
+    $this->state = $state;
+  }
+  /**
+   * @return string
+   */
+  public function getState()
+  {
+    return $this->state;
   }
 }
 

@@ -12,6 +12,13 @@ class Mt_Accounts extends CI_Controller
         }
         $this->load->model('general_settings/Mt_model', 'MModel');
     }
+    public function show_mt_create()
+    {
+        $data['title'] = 'MT Account';
+        $data['subtitle'] = 'Create MT5 Account';
+        $data['template'] = 'modules/mt/add_account';
+        $this->load->view('template/dashboard_template', $data);
+    }
     public function show_live_account()
     {
         $data['title'] = 'MT Accounts';
@@ -20,6 +27,16 @@ class Mt_Accounts extends CI_Controller
         $data['template'] = 'modules/mt/show_live_accounts';
         $this->load->view('template/dashboard_template', $data);
     }
+    public function my_mt_details()
+    {
+        $data['title'] = 'MT Account';
+        $data['subtitle'] = 'MT5 Account Details';
+        $client_id = $this->session->userdata('id');
+        $data['details_data'] = $this->MModel->get_my_mt_details($client_id);
+        $data['template'] = 'modules/mt/my_mt_details';
+        $this->load->view('template/dashboard_template', $data);
+    }
+
     public function show_demo_account()
     {
         $data['title'] = 'MT Accounts';
@@ -60,7 +77,7 @@ class Mt_Accounts extends CI_Controller
             echo json_encode(array('status' => 2));
             return;
         } else {
-            $mtAmount = 10000;
+            $mtAmount = 0;
             $mtLeverage = 400;
 
             require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
@@ -70,6 +87,18 @@ class Mt_Accounts extends CI_Controller
                 if ($response !== MTRetCode::MT_RET_OK) {
                     echo "Failed to connect to MetaTrader 5 server. Error code: " . $response;
                 } else {
+
+
+                    $query = $this->db->select_max('login')
+                        ->from('accounts')
+                        ->where('server', 'Live')
+                        ->where('LENGTH(login) =', 5)
+                        ->get()
+                        ->row();
+                    //Account not creating then check the login is already exist or not
+                    $maxLogin = isset($query->login) ? $query->login : 0;
+                    $newLogin = $maxLogin + 1;
+
                     $new_user = $instance->UserCreate();
                     $new_user->Email = $user_details['email'];
                     $new_user->MainPassword = RandString();
@@ -80,6 +109,7 @@ class Mt_Accounts extends CI_Controller
                     $new_user->State = '';
                     $new_user->City = '';
                     $new_user->Address = '';
+                    $new_user->Login = $newLogin;
                     $new_user->Phone = $user_details['phone'];
                     $new_user->Name = $fullname;
                     $new_user->PhonePassword = RandString();
@@ -95,6 +125,7 @@ class Mt_Accounts extends CI_Controller
                         'main_password' => $new_user->MainPassword,
                         'invest_password' => $new_user->InvestPassword,
                         'phone_password' => $new_user->PhonePassword,
+                        'currency' => 'USD',
                         'leverage' => $new_user->Leverage,
                         'server' => 'Live',
                         'balance' => $mtAmount,
@@ -204,6 +235,7 @@ class Mt_Accounts extends CI_Controller
                         'invest_password' => $new_user->InvestPassword,
                         'phone_password' => $new_user->PhonePassword,
                         'leverage' => $new_user->Leverage,
+                        'currency' => 'USD',
                         'server' => 'Demo',
                         'balance' => $mtAmount,
                         'name' => 'mt5',
@@ -313,6 +345,36 @@ class Mt_Accounts extends CI_Controller
             return;
         }
     }
+
+    // new sush
+    public function group_update()
+    {
+        $data['title'] = 'Mt Groups';
+        $data['subtitle'] = 'Update Group';
+        $data['user_id'] = $this->input->post('id');
+        $data['login'] = $this->input->post('login');
+        $data['group'] = $this->input->post('group');
+        $data['group_data'] = $this->MModel->get_mtgroup();
+        $view = $this->load->view('modules/mt/group_update', $data, TRUE);
+        echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
+        return;
+    }
+
+    public function group_change()
+    {
+        $user_id = $this->input->post('client_id');
+        $login = $this->input->post('login');
+        $group = $this->input->post('group_name');
+        if ($this->MModel->group_change($user_id, $login, $group)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 2));
+            return;
+        }
+    }
+
+    // end
 
     public function send_mail()
     {

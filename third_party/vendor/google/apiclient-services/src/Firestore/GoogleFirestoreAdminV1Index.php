@@ -20,8 +20,20 @@ namespace Google\Service\Firestore;
 class GoogleFirestoreAdminV1Index extends \Google\Collection
 {
   protected $collection_key = 'fields';
+  /**
+   * @var string
+   */
+  public $apiScope;
+  /**
+   * @var string
+   */
+  public $density;
   protected $fieldsType = GoogleFirestoreAdminV1IndexField::class;
   protected $fieldsDataType = 'array';
+  /**
+   * @var bool
+   */
+  public $multikey;
   /**
    * @var string
    */
@@ -36,6 +48,34 @@ class GoogleFirestoreAdminV1Index extends \Google\Collection
   public $state;
 
   /**
+   * @param string
+   */
+  public function setApiScope($apiScope)
+  {
+    $this->apiScope = $apiScope;
+  }
+  /**
+   * @return string
+   */
+  public function getApiScope()
+  {
+    return $this->apiScope;
+  }
+  /**
+   * @param string
+   */
+  public function setDensity($density)
+  {
+    $this->density = $density;
+  }
+  /**
+   * @return string
+   */
+  public function getDensity()
+  {
+    return $this->density;
+  }
+  /**
    * @param GoogleFirestoreAdminV1IndexField[]
    */
   public function setFields($fields)
@@ -48,6 +88,20 @@ class GoogleFirestoreAdminV1Index extends \Google\Collection
   public function getFields()
   {
     return $this->fields;
+  }
+  /**
+   * @param bool
+   */
+  public function setMultikey($multikey)
+  {
+    $this->multikey = $multikey;
+  }
+  /**
+   * @return bool
+   */
+  public function getMultikey()
+  {
+    return $this->multikey;
   }
   /**
    * @param string

@@ -65,17 +65,19 @@ function check_permission($pageid, $operationid = NULL, $moduleid = NULL)
     }
 }
 
-function RandString($length = 8)
+function RandString($length = 10)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $sc = '@#$!';
+    $specialChars = '@#$!';
+    if ($length < 2) {
+        return "Length should be at least 2 to include a special character.";
+    }
     $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
+    for ($i = 0; $i < $length - 1; $i++) {
         $randomString .= $characters[rand(0, strlen($characters) - 1)];
     }
-    $sp = $sc[rand(0, strlen($sc) - 1)];
-
-    return str_shuffle($sp . $randomString);
+    $specialChar = $specialChars[rand(0, strlen($specialChars) - 1)];
+    return str_shuffle($specialChar . $randomString);
 }
 
 function Filenamegenerator($length = 8)
@@ -454,15 +456,34 @@ function convert_number_to_indian_words(float $number)
     $i = 0;
     $str = array();
     $words = array(
-        0 => '', 1 => 'one', 2 => 'two',
-        3 => 'three', 4 => 'four', 5 => 'five', 6 => 'six',
-        7 => 'seven', 8 => 'eight', 9 => 'nine',
-        10 => 'ten', 11 => 'eleven', 12 => 'twelve',
-        13 => 'thirteen', 14 => 'fourteen', 15 => 'fifteen',
-        16 => 'sixteen', 17 => 'seventeen', 18 => 'eighteen',
-        19 => 'nineteen', 20 => 'twenty', 30 => 'thirty',
-        40 => 'forty', 50 => 'fifty', 60 => 'sixty',
-        70 => 'seventy', 80 => 'eighty', 90 => 'ninety'
+        0 => '',
+        1 => 'one',
+        2 => 'two',
+        3 => 'three',
+        4 => 'four',
+        5 => 'five',
+        6 => 'six',
+        7 => 'seven',
+        8 => 'eight',
+        9 => 'nine',
+        10 => 'ten',
+        11 => 'eleven',
+        12 => 'twelve',
+        13 => 'thirteen',
+        14 => 'fourteen',
+        15 => 'fifteen',
+        16 => 'sixteen',
+        17 => 'seventeen',
+        18 => 'eighteen',
+        19 => 'nineteen',
+        20 => 'twenty',
+        30 => 'thirty',
+        40 => 'forty',
+        50 => 'fifty',
+        60 => 'sixty',
+        70 => 'seventy',
+        80 => 'eighty',
+        90 => 'ninety'
     );
     $digits = array('', 'hundred', 'thousand', 'lakh', 'crore');
     while ($i < $digits_length) {
@@ -525,26 +546,22 @@ function save_student_image($image, $id, $inst, $user)
     }
 }
 
-function get_student_image($id,$inst_id)
+function get_student_image($id, $inst_id)
 {
-    $college = array(13,14,16);
-    if(in_array($inst_id, $college))
-    {
+    $college = array(13, 14, 16);
+    if (in_array($inst_id, $college)) {
         $path = COLLEGE_PATH;
-    }
-    else
-    {
+    } else {
         $path = SCHOOL_PATH;
     }
     $filepath = $path . 'student_profiles/' . $id . '.txt';
-            
+
     $filedata = json_decode(file_get_contents($filepath));
-    if(!empty($filedata->profileImage)){
-    return $filedata->profileImage;
-    }
-      else {
+    if (!empty($filedata->profileImage)) {
+        return $filedata->profileImage;
+    } else {
         return '';
-    } 
+    }
     // $file_headers = @get_headers($filepath);
     // if($file_headers[0] == 'HTTP/1.0 404 Not Found' || (($file_headers[0] == 'HTTP/1.0 302 Found' && $file_headers[7] == 'HTTP/1.0 404 Not Found'))){
     //       return '';
@@ -566,54 +583,55 @@ function print_tax_vat()
     echo $CI->session->userdata('TAXNAME');
 }
 
-function encrypt_data_for_url($input_data){
-                
+function encrypt_data_for_url($input_data)
+{
+
     // Store a string into the variable which 
     // need to be Encrypted 
-    $simple_string = $input_data; 
-    
+    $simple_string = $input_data;
+
     // Store the cipher method 
-    $ciphering = "AES-128-CTR"; 
-    
+    $ciphering = "AES-128-CTR";
+
     // Use OpenSSl Encryption method 
-    $iv_length = openssl_cipher_iv_length($ciphering); 
-    $options = 0; 
-    
+    $iv_length = openssl_cipher_iv_length($ciphering);
+    $options = 0;
+
     // Non-NULL Initialization Vector for encryption 
-    $encryption_iv = '1234567891011121'; 
-    
+    $encryption_iv = '1234567891011121';
+
     // Store the encryption key 
-    $encryption_key = "WelcometoDocMe"; 
-    
+    $encryption_key = "WelcometoDocMe";
+
     // Use openssl_encrypt() function to encrypt the data 
-    $encryption = openssl_encrypt($simple_string, $ciphering,$encryption_key, $options, $encryption_iv); 
-    return base64_encode( $encryption ); 
-    
+    $encryption = openssl_encrypt($simple_string, $ciphering, $encryption_key, $options, $encryption_iv);
+    return base64_encode($encryption);
 }
-function decrypt_data_for_url($input_key){
-            
+function decrypt_data_for_url($input_key)
+{
+
     // Store a string into the variable which 
     // need to be Encrypted
-    $encryption = base64_decode($input_key);  
-    
+    $encryption = base64_decode($input_key);
+
     // Store the cipher method 
-    $ciphering = "AES-128-CTR"; 
-    
+    $ciphering = "AES-128-CTR";
+
     // Use OpenSSl Encryption method 
-    $iv_length = openssl_cipher_iv_length($ciphering); 
-    $options = 0; 
-    
+    $iv_length = openssl_cipher_iv_length($ciphering);
+    $options = 0;
+
     // Non-NULL Initialization Vector for decryption 
-    $decryption_iv = '1234567891011121'; 
-    
+    $decryption_iv = '1234567891011121';
+
     // Store the decryption key 
-    $decryption_key = "WelcometoDocMe"; 
-    
+    $decryption_key = "WelcometoDocMe";
+
     // Use openssl_decrypt() function to decrypt the data 
-    $decryption=openssl_decrypt ($encryption, $ciphering, $decryption_key, $options, $decryption_iv); 
-    
+    $decryption = openssl_decrypt($encryption, $ciphering, $decryption_key, $options, $decryption_iv);
+
     // Display the decrypted string 
-    return $decryption; 
+    return $decryption;
 }
 function arrear_sms_data($data)
 {
@@ -633,40 +651,40 @@ function arrear_sms_data($data)
     return $result;
 }
 /*** sabitha listing Name of months between two dates 30mar 2021 */
-function list_months($date_from,$date_to, $return_format){
-   
-        $arr_months = array();
-        $a =  new \DateTime($date_from);
-        $x =  new \DateTime($date_to);
+function list_months($date_from, $date_to, $return_format)
+{
 
-        $start = $a->modify('first day of this month');
-        $end = $x->modify('first day of next month');
+    $arr_months = array();
+    $a =  new \DateTime($date_from);
+    $x =  new \DateTime($date_to);
 
-        $interval = \DateInterval::createFromDateString('1 month');
-        $period = new \DatePeriod($start, $interval, $end);
-        $mon_arr=[];
-        $month_name=[];
-        $month_num=[];
-        $yr=[];
-        $mon_start=[];
-        $mon_end=[];
-        foreach ($period as $dt) {
-            $mon_n=$dt->format("m");
-            $yr=$dt->format("Y");
-          //  $start=
-            $d = new DateTime(  date("$yr-$mon_n-01") ); 
-            $end= $d->format( 'Y-m-t' );
-            //$mon_arr=explode('-',$dt->format($return_format));
-            $mon_arr[]=array(
-                'mon_start'=>date("$yr-$mon_n-01"),
-                'mon_end'=>$end,
-                'mon_name'=>$dt->format("F"),
-                'mon_num'=>$dt->format("m"),
-                'yr'=>$dt->format("Y")
-            );
-        
-        }
-       // $arr_months[] =$mnth;
-        return $mon_arr;//json_encode($month_name.'~'. $month_num.'~'.$yr);
-    
+    $start = $a->modify('first day of this month');
+    $end = $x->modify('first day of next month');
+
+    $interval = \DateInterval::createFromDateString('1 month');
+    $period = new \DatePeriod($start, $interval, $end);
+    $mon_arr = [];
+    $month_name = [];
+    $month_num = [];
+    $yr = [];
+    $mon_start = [];
+    $mon_end = [];
+    foreach ($period as $dt) {
+        $mon_n = $dt->format("m");
+        $yr = $dt->format("Y");
+        //  $start=
+        $d = new DateTime(date("$yr-$mon_n-01"));
+        $end = $d->format('Y-m-t');
+        //$mon_arr=explode('-',$dt->format($return_format));
+        $mon_arr[] = array(
+            'mon_start' => date("$yr-$mon_n-01"),
+            'mon_end' => $end,
+            'mon_name' => $dt->format("F"),
+            'mon_num' => $dt->format("m"),
+            'yr' => $dt->format("Y")
+        );
+    }
+    // $arr_months[] =$mnth;
+    return $mon_arr; //json_encode($month_name.'~'. $month_num.'~'.$yr);
+
 }

@@ -20,7 +20,7 @@
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/media/footer.png" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -58,9 +58,9 @@
                         </a>
                         <!--end::Title-->
                         <!--begin::Link-->
-                        <div class="text-gray-400 fw-bold fs-4">Already have an account??
+                        <div class="text-gray-400 fw-bold fs-4">Already have an account?
                             <a href="<?php echo base_url(); ?>login"
-                                class="link-primary fw-bolder">Log in?</a>
+                                class="link-primary fw-bolder">Login</a>
                         </div>
                         <!--end::Link-->
                     </div>
@@ -86,9 +86,9 @@
                     <div class="fv-row mb-10">
                         <label class="form-label fs-6 fw-bolder text-dark">Phone No</label>
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
-                            onPaste="return false" placeholder="Enter Phno" id="phno" name="phno" value="<?php if (isset($_COOKIE["ecomm_phno"])) {
-                                                                                                                echo $_COOKIE["green_username"];
-                                                                                                            } ?>">
+                            onPaste="return false" placeholder="Enter Phone No" id="phno" name="phno" value="<?php if (isset($_COOKIE["ecomm_phno"])) {
+                                                                                                                    echo $_COOKIE["green_username"];
+                                                                                                                } ?>">
                     </div>
 
 
@@ -134,16 +134,22 @@
                         <!--begin::Submit button-->
 
 
-                        <a href="javascript:void(0);" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5"
-                            title="Login"><i class="icon-unlock2"></i> Sign up</a>
+                        <!-- <a href="javascript:void(0);" id="actual_submit" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5"
+                            title="Login"><i class="icon-unlock2"></i> Sign up</a> -->
+                        <button type="button" id="actual_submit" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5 actual_submit" title="Submit">
+                            <i class="icon-unlock2"></i> Sign up
+                        </button>
+                        <button type="button" id="loader_submit" class="btn btn-lg btn-primary w-100 mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button>
                         <!--end::Submit button-->
                         <!--begin::Separator-->
-                        <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
                         <!--end::Separator-->
                         <!--begin::Google link-->
-                        <a href="javascript:void(0);" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                            <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
-                                class="h-20px me-3" />Continue with Google</a>
+
                         <!--end::Google link-->
                         <!--begin::Google link-->
 
@@ -180,6 +186,8 @@
     <!--end::Javascript-->
     <script type="text/javascript">
         function submit() {
+            $(".actual_submit").hide();
+            $(".loader_submit").show();
             var baseurl = '<?php echo base_url(); ?>';
             var ops_url = baseurl + 'register';
             var username = $('#username').val();
@@ -189,6 +197,8 @@
             var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
             if (name == '') {
+                $(".actual_submit").show();
+                $(".loader_submit").hide();
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Name is required',
@@ -197,6 +207,8 @@
                 return false;
             }
             if (username == '') {
+                $(".actual_submit").show();
+                $(".loader_submit").hide();
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Email is required',
@@ -205,6 +217,8 @@
                 return false;
             }
             if (!emailRegex.test(username)) {
+                $(".actual_submit").show();
+                $(".loader_submit").hide();
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Email is not valid',
@@ -213,6 +227,8 @@
                 return false;
             }
             if (password == '') {
+                $(".actual_submit").show();
+                $(".loader_submit").hide();
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Password is required',
@@ -235,6 +251,8 @@
                 },
                 success: function(result) {
                     var data = $.parseJSON(result);
+                    $(".actual_submit").show();
+                    $(".loader_submit").hide();
                     if (data.status == 1) {
                         Swal.fire({
                             title: 'Success',
@@ -243,7 +261,7 @@
                             confirmButtonText: 'OK'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                location.reload();
+                                window.location.href = baseurl + 'login';
                             }
                         });
                     } else if (data.status == 2) {
