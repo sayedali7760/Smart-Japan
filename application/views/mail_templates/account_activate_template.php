@@ -309,18 +309,11 @@
 
                                     <td class="content-block">
                                         <br />
-                                        Dear <?php echo $name; ?>,
+                                        Dear User,
                                         <br /><br />
-                                        Thank You for Register,<br />
-                                        We are thrilled to welcome you to SmartFX! Your account has been successfully created, and you are now part of our growing community.<br />
-                                        <b>Username: </b> <?php echo $email; ?></br>
-                                        <b>Password: </b> <?php echo $password; ?>
+                                        Account Activated Successfully for the client: <?php echo $email; ?>. </br>Your account is now ready to use.
+                                        Please log in to your account using the credentials you provided during registration. <br />
 
-                                        <br /><br />
-                                        Please Feel Free to Revert to me on this email ID "support@smartfx.com" If Any
-                                        Clarification
-                                        on<br />
-                                        the Account.
 
                                         <br />
                                         <br />
@@ -336,7 +329,7 @@
                                         <br />
                                         <br />
                                         Regards,<br />
-                                        SSC-Smart-FX
+                                        SmartFX
                                     </td>
                                 </tr>
 
