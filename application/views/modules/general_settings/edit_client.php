@@ -290,7 +290,7 @@
                                     <div class="d-flex justify-content-end">
                                         <a href="javascript:void(0);" class="btn btn-success">Account Activated</a>
                                     </div>
-                                <?php } else { ?>
+                                <?php } else if (isset($document_details) && $document_details['account_verify'] == 0) { ?>
                                     <div class="d-flex justify-content-end">
                                         <button type="button" id="actual_submit" onclick="activate_account()" class="btn btn-lg btn-primary mb-5 me-2 actual_submit" title="Submit">
                                             Activate Account
