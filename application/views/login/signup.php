@@ -195,6 +195,7 @@
             var name = $('#name').val();
             var phno = $('#phno').val();
             var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            var regex = /^[0-9]{12}$/;
 
             if (name == '') {
                 $(".actual_submit").show();
@@ -232,6 +233,16 @@
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Password is required',
+                    icon: 'error'
+                });
+                return false;
+            }
+            if (phno == '' || !regex.test(phno)) {
+                $(".actual_submit").show();
+                $(".loader_submit").hide();
+                Swal.fire({
+                    title: 'Login failed',
+                    text: 'Enter a valid Phone no.',
                     icon: 'error'
                 });
                 return false;

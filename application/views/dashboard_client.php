@@ -10,7 +10,7 @@
 							<path d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z" fill="currentColor"></path>
 						</svg>
 					</span>
-					<div class="d-flex flex-column">
+					<div class="d-flex flex-column on_click" style="cursor: pointer;">
 						<h4 class="mb-1 text-primary">Please upload documents to verify your account</h4>
 						<span>To complete the verification process for your account, please upload a document that confirms your identity. This step is necessary to ensure the security and authenticity of your account. Accepted documents may include identification cards, utility bills, or other official records.</span>
 					</div>
@@ -254,4 +254,8 @@
 			}
 		});
 	}
+
+	document.querySelector('.on_click').addEventListener('click', function() {
+		window.location.href = 'client/my-profile';
+	});
 </script>
