@@ -21,9 +21,9 @@ function send_smtp_mailer($subject = '', $mailto = '', $mailcontent = '', $cc = 
 
 
 
-        if (ENVIRONMENT == 'development') {
-            $mailto = 'seyad@smartfx.com';
-        }
+        // if (ENVIRONMENT == 'development') {
+        //     $mailto = 'seyad@smartfx.com';
+        // }
 
         // if (strpos($mailto, '@hotmail.com')) {
         //     $host = 'smtp.gmail.com';
