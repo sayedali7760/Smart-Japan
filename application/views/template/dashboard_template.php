@@ -18,17 +18,17 @@ License: For each use you must have a valid license purchased only from above li
     <title><?php echo APP_TITLE; ?></title>
     <meta charset="utf-8" />
     <meta name="description"
-        content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
+        content="" />
     <meta name="keywords"
-        content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+        content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta property="og:title"
-        content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-    <meta property="og:url" content="javascript:void(0);/metronic" />
-    <meta property="og:site_name" content="Keenthemes | Metronic" />
-    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+        content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <link rel="canonical" href="" />
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/media/footer.png" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -163,7 +163,7 @@ License: For each use you must have a valid license purchased only from above li
                                                     <div class="fw-bolder d-flex align-items-center fs-5">
                                                         <?php echo $this->session->userdata('fname'); ?>
                                                         <span
-                                                            class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
+                                                            class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Online</span>
                                                     </div>
                                                     <a href="#"
                                                         class="fw-bold text-muted text-hover-primary fs-7"><?php echo $this->session->userdata('email'); ?></a>
@@ -194,7 +194,7 @@ License: For each use you must have a valid license purchased only from above li
 
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
+                                        <!-- <div class="menu-item px-5">
                                             <a href="" class="menu-link px-5">
                                                 <span class="menu-text">My Projects</span>
                                                 <span class="menu-badge">
@@ -202,16 +202,16 @@ License: For each use you must have a valid license purchased only from above li
                                                         class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
                                                 </span>
                                             </a>
-                                        </div>
+                                        </div> -->
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
 
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
+                                        <!-- <div class="menu-item px-5">
                                             <a href="../../demo8/dist/account/statements.html" class="menu-link px-5">My
                                                 Statements</a>
-                                        </div>
+                                        </div> -->
                                         <!--end::Menu item-->
                                         <!--begin::Menu separator-->
                                         <div class="separator my-2"></div>
@@ -220,10 +220,10 @@ License: For each use you must have a valid license purchased only from above li
 
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
-                                        <div class="menu-item px-5 my-1">
+                                        <!-- <div class="menu-item px-5 my-1">
                                             <a href="../../demo8/dist/account/settings.html"
                                                 class="menu-link px-5">Account Settings</a>
-                                        </div>
+                                        </div> -->
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-5">
@@ -512,7 +512,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Copyright-->
                         <!--begin::Menu-->
                         <ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
-                            <li class="menu-item">
+                            <!-- <li class="menu-item">
                                 <a href="javascript:void(0);" target="_blank" class="menu-link px-2">About</a>
                             </li>
                             <li class="menu-item">
@@ -521,7 +521,7 @@ License: For each use you must have a valid license purchased only from above li
                             <li class="menu-item">
                                 <a href="javascript:void(0);" target="_blank"
                                     class="menu-link px-2">Purchase</a>
-                            </li>
+                            </li> -->
                         </ul>
                         <!--end::Menu-->
                     </div>

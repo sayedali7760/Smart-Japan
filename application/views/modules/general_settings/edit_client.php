@@ -286,25 +286,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <?php if ($document_details['account_verify'] == 1) { ?>
-                                    <div class="d-flex justify-content-end">
-                                        <a href="javascript:void(0);" class="btn btn-success">Account Activated</a>
-                                    </div>
-                                <?php } else if (isset($document_details) && $document_details['account_verify'] == 0) { ?>
-                                    <div class="d-flex justify-content-end">
-                                        <button type="button" id="actual_submit" onclick="activate_account()" class="btn btn-lg btn-primary mb-5 me-2 actual_submit" title="Submit">
-                                            Activate Account
-                                        </button>
-                                        <button type="button" id="loader_submit" class="btn btn-lg btn-primary mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
-                                            <span class="indicator-label">Submit</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                            </span>
-                                        </button>
-                                    </div>
-                                    <!-- <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="activate_account()">Activate Account</a> --> -->
                         </div>
-                    <?php } ?>
+                    </div>
 
                 <?php } else { ?>
                     <div id="kt_billing_payment_tab_content" class="card-body tab-content">
@@ -376,12 +359,32 @@
                         </div>
                     </div>
                 <?php } ?>
+                <?php if ($verify_status == 1) { ?>
+                    <div class="d-flex justify-content-end">
+                        <a href="javascript:void(0);" class="btn btn-lg btn-success mb-5 me-2" title="Account Verified">
+                            Account Activated
+                        </a>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" id="actual_submit" onclick="activate_account()" class="btn btn-lg btn-primary mb-5 me-2 actual_submit" title="Submit">
+                            Activate Account
+                        </button>
+                        <button type="button" id="loader_submit" class="btn btn-lg btn-primary mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button>
+                    </div>
+                <?php } ?>
 
+                </div>
             </div>
+
         </div>
     </div>
+</div>
 </div>
 <?php echo form_close(); ?>
 </div>

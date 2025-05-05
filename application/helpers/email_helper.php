@@ -22,7 +22,7 @@ function send_smtp_mailer($subject = '', $mailto = '', $mailcontent = '', $cc = 
 
 
         // if (ENVIRONMENT == 'development') {
-        //     $mailto = '';
+        //     $mailto = 'seyad@smartfx.com';
         // }
 
         // if (strpos($mailto, '@hotmail.com')) {

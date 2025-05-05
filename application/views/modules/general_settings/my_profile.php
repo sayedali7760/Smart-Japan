@@ -80,13 +80,13 @@
                                         <label class="required form-label">Password</label>
                                         <input type="hidden" name="client_id" id="client_id" value="<?php echo $user_data['id']; ?>">
                                         <input type="text" id="password" maxlength="15" name="password"
-                                            class="mb-5 form-control make-star" id="" placeholder="Password">
+                                            class="mb-5 form-control make-star" placeholder="Password">
                                     </div>
 
                                     <div class="fv-row w-100 flex-md-root">
                                         <label class="required form-label">Confirm Password</label>
                                         <input type="text" id="con_password" maxlength="15" name="con_password"
-                                            class="form-control make-star mb-5" id="" placeholder="Confirm Password">
+                                            class="form-control make-star mb-5" placeholder="Confirm Password">
                                     </div>
                                     <div class="fv-row w-100 flex-md-root">
                                         <label class="form-label">&nbsp;</label>
@@ -476,12 +476,12 @@
         $.ajax({
             type: "POST",
             cache: false,
-            async: true,
+            // async: true,
             url: ops_url,
-            processData: false,
-            contentType: false,
+            // processData: false,
+            // contentType: false,
             data: {
-                password: password
+                'password': password
             },
             success: function(result) {
                 $("#loader").hide();
