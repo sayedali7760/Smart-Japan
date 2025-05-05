@@ -132,6 +132,7 @@ $route['transaction/my-transaction-details'] = 'Transaction/my_transaction_detai
 $route['transaction/withdraw-save'] = 'Transaction/withdraw_client_save';
 $route['transaction/transfer-save'] = 'Transaction/transfer_client_save';
 $route['transaction/get-mtaccount-details'] = 'Transaction/get_mtaccount_details';
+$route['transaction/check-wallet-address'] = 'Transaction/check_wallet_address';
 
 $route['transaction/deposit'] = 'Transaction/view_succesfull_deposit';
 $route['transaction/withdraw'] = 'Transaction/view_withdrawal';
@@ -159,6 +160,17 @@ $route['api/(:any)'] = 'api/$1';
 
 
 $route['test-mail'] = 'settings/MT_Accounts/send_mail';
+
+$route['client/my-data'] = 'settings/Client_crm/my_data';
+$route['client/bdata-save'] = 'settings/Client_crm/bank_data';
+$route['client/wallet-save'] = 'settings/Client_crm/wallet_id';
+$route['client/show-bank-details'] = 'settings/Client_crm/show_bank_details';
+$route['client/reject_data'] = 'settings/Client_crm/reject_bank_data';
+$route['client/approve_data'] = 'settings/Client_crm/approve_bank_data';
+$route['mt/group_update'] = 'settings/Mt_Accounts/group_update';
+$route['mt/group_change'] = 'settings/Mt_Accounts/group_change';
+$route['login/forgot-password'] = 'Login/forgot_pwd';
+$route['login/reset-password'] = 'Login/reset_pwd';
 
 
 $route['default_controller'] = 'Login';

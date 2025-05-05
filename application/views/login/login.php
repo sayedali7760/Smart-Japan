@@ -28,7 +28,7 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/media/footer.png" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
@@ -114,12 +114,16 @@ License: For each use you must have a valid license purchased only from above li
                             title="Login"><i class="icon-unlock2"></i> Login</a>
                         <!--end::Submit button-->
                         <!--begin::Separator-->
-                        <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
+                        <!-- <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div> -->
                         <!--end::Separator-->
                         <!--begin::Google link-->
-                        <a href="javascript:void(0);" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                            <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
-                                class="h-20px me-3" />Continue with Google</a>
+
+                        Forgot Password?
+                        <a href="<?php echo base_url(); ?>login/forgot-password" class=" flex-center w-100 mb-5">
+
+                            <!-- <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
+                                class="h-20px me-3" />Continue with Google</a> -->
+                            Forgot Password </a>
                         <!--end::Google link-->
                         <!--begin::Google link-->
 

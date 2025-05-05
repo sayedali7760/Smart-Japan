@@ -25,6 +25,73 @@ class Client_crm extends CI_Controller
         $data['template'] = 'modules/general_settings/my_profile';
         $this->load->view('template/dashboard_template', $data);
     }
+    // new sush
+    public function my_data()
+    {
+        $data['title'] = 'Client';
+        $data['subtitle'] = 'Bank Details';
+        $id = $this->session->userdata['id'];
+        $data['wallet_data'] = $this->CModel->get_wallet_details($id);
+        $data['bank_data'] = $this->CModel->get_bank_data($id);
+
+        $data['template'] = 'modules/general_settings/bank_data';
+        $this->load->view('template/dashboard_template', $data);
+    }
+
+    public function bank_data()
+    {
+        $id = $this->session->userdata('id');
+        $data['client_id'] = $this->session->userdata('id');
+        $data['beneficiary_name'] = $this->input->post('name');
+        $data['bank_name'] = $this->input->post('bname');
+        $data['account_no'] = $this->input->post('acc_no');
+        $data['iban'] = $this->input->post('iban');
+        $data['swift'] = $this->input->post('swift');
+        $data['bank_addr'] = $this->input->post('addr');
+        $data['branch'] = $this->input->post('branch');
+        $data['created_by'] = $this->session->userdata('id');
+
+        $uploadPath = 'uploads';
+
+        $file_statement = 'files_statement';
+        $files_statement = $this->fileUpload($uploadPath, $file_statement);
+        if ($files_statement != null) {
+            $data['statement'] = $files_statement;
+        }
+
+        if ($this->CModel->add_bank_data($data)) {
+            $subject = "New Bank Data Verification Request - .'$id'.";
+            $mailto = 'seyad@smartfx.com';
+            $data['id'] = $id;
+            $mailcontent =  $this->load->view('mail_templates/notify_bank_verify_template', $data, true);
+
+            $cc = "";
+
+            send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
+    }
+
+    public function wallet_id()
+    {
+        $data['client_id'] = $this->session->userdata('id');
+        $data['wallet_address'] = $this->input->post('wallet');
+        $data['type'] = $this->input->post('wal_type');
+        $data['created_by'] = $this->session->userdata('id');
+        $data['status'] = 1;
+
+        if ($this->CModel->add_wallet($data)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
+    }
+    // end
     public function update_doc_status()
     {
         $client_id = $this->input->post('client_id');
@@ -52,8 +119,17 @@ class Client_crm extends CI_Controller
     public function activate_client()
     {
         $client_id = $this->input->post('client_id');
+        $email = $this->input->post('email');
         $data['account_verify'] = 1;
         if ($this->CModel->activate_client($client_id, $data)) {
+            $subject = "Account Activated - '$client_id'";
+            $mailto = $email;
+            $data['email'] = $email;
+            $mailcontent =  $this->load->view('mail_templates/account_activate_template', $data, true);
+
+            $cc = 'seyad@smartfx.com';
+
+            send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
             echo json_encode(array('status' => 1));
             return;
         } else {
@@ -130,6 +206,14 @@ class Client_crm extends CI_Controller
         $count_qry = $this->db->get_where('documents', "client_id=$id");
         if ($count_qry->num_rows() > 0) {
             if ($this->CModel->upload_document_update($data, $id)) {
+                $subject = "New Document Upload - .'$id'.";
+                $mailto = 'susmitha@smartfx.com';
+                $data['id'] = $id;
+                $mailcontent =  $this->load->view('mail_templates/notify_documents_template', $data, true);
+
+                $cc = "";
+
+                send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
                 echo json_encode(array('status' => 1, 'message' => 'Document Updated successfully.', 'view' => $this->load->view('modules/general_settings/my_profile', $data, TRUE)));
                 return;
             } else {
@@ -138,6 +222,16 @@ class Client_crm extends CI_Controller
             }
         } else {
             if ($this->CModel->doc_upload($data)) {
+                $subject = "New Document Upload - .'$id'.";
+                $mailto = 'susmitha@smartfx.com';
+                $data['id'] = $id;
+                $mailcontent =  $this->load->view('mail_templates/notify_documents_template', $data, true);
+
+                $cc = "";
+
+                send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+
+
                 echo json_encode(array('status' => 1, 'message' => 'Document Updated successfully.', 'view' => $this->load->view('modules/general_settings/my_profile', $data, TRUE)));
                 return;
             } else {
@@ -147,6 +241,55 @@ class Client_crm extends CI_Controller
         }
     }
 
+    // new sush 
+    public function show_bank_details()
+    {
+        // if ($this->input->is_ajax_request() == 1) {
+        $onload =  $this->input->post('load');
+        $user_id = $this->input->post('client_id');
+        if ($onload == 1) {
+
+            $data['bank_data'] = $this->CModel->get_bank_data($user_id);
+
+            $view = $this->load->view('modules/general_settings/bank_details', $data, TRUE);
+            echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
+            return;
+        }
+        // } else {
+        //     $this->load->view(ERROR_500);
+        // }
+    }
+
+    public function reject_bank_data()
+    {
+        // if ($this->input->is_ajax_request() == 1) {
+        $client_id = $this->input->post('client_id');
+        $id = $this->input->post('id');
+        if ($this->CModel->reject_data($client_id, $id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 0));
+            return;
+        }
+        // }
+    }
+
+    public function approve_bank_data()
+    {
+        // if ($this->input->is_ajax_request() == 1) {
+        $client_id = $this->input->post('client_id');
+        $id = $this->input->post('id');
+        if ($this->CModel->approve_data($client_id, $id)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 0));
+            return;
+        }
+        // }
+    }
+    // end
 
     public function fileUpload($uploadPath, $uploadfile = '')
     {

@@ -10,7 +10,7 @@
 							<path d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z" fill="currentColor"></path>
 						</svg>
 					</span>
-					<div class="d-flex flex-column">
+					<div class="d-flex flex-column on_click" style="cursor: pointer;">
 						<h4 class="mb-1 text-primary">Please upload documents to verify your account</h4>
 						<span>To complete the verification process for your account, please upload a document that confirms your identity. This step is necessary to ensure the security and authenticity of your account. Accepted documents may include identification cards, utility bills, or other official records.</span>
 					</div>
@@ -99,7 +99,7 @@
 				</div>
 
 				<div class="row g-5 g-xl-8">
-					<?php if (isset($mt_demo_accounts)) { ?>
+					<?php if (count($mt_demo_accounts) > 0) { ?>
 						<?php foreach ($mt_demo_accounts as $demo) { ?>
 							<div class="col-xl-3 demo-class" style="display:none;">
 								<a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
@@ -118,7 +118,7 @@
 							</div>
 						<?php }
 					} else { ?>
-						<div class="col-xl-3 demo-class" style="display:none;">
+						<div class="col-xl-3 demo-class">
 							<a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
 								<div class="card-body">
 									<span class="svg-icon svg-icon-gray-100 svg-icon-3x ms-n1">
@@ -128,7 +128,7 @@
 											<path d="M15 18.6C15 20.3 16.3 21.6 18 21.6C19.7 21.6 21 20.3 21 18.6V12.5C21 12.2 20.6 12 20.3 12.2L19 13.6L17.7 12.3C17.3 11.9 16.7 11.9 16.3 12.3L15 13.6V18.6Z" fill="currentColor"></path>
 										</svg>
 									</span>
-									<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">Create Demo</div>
+									<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">No Demo Accounts</div>
 									<div class="fw-bold text-gray-100"></div>
 								</div>
 							</a>
@@ -136,7 +136,7 @@
 					<?php } ?>
 
 					<?php
-					if (isset($mt_live_accounts)) { ?>
+					if (count($mt_live_accounts) > 0) { ?>
 						<?php foreach ($mt_live_accounts as $live) { ?>
 							<div class="col-xl-3 live-class">
 								<a href="#" class="card bg-dark hoverable card-xl-stretch mb-5 mb-xl-8">
@@ -155,7 +155,7 @@
 							</div>
 						<?php } ?>
 					<?php } else { ?>
-						<div class="col-xl-3 demo-class" style="display:none;">
+						<div class="col-xl-3 live-class">
 							<a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
 								<div class="card-body">
 									<span class="svg-icon svg-icon-gray-100 svg-icon-3x ms-n1">
@@ -165,7 +165,7 @@
 											<path d="M15 18.6C15 20.3 16.3 21.6 18 21.6C19.7 21.6 21 20.3 21 18.6V12.5C21 12.2 20.6 12 20.3 12.2L19 13.6L17.7 12.3C17.3 11.9 16.7 11.9 16.3 12.3L15 13.6V18.6Z" fill="currentColor"></path>
 										</svg>
 									</span>
-									<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">Create Live</div>
+									<div class="text-gray-100 fw-bolder fs-2 mb-2 mt-5">No Live Accounts</div>
 									<div class="fw-bold text-gray-100"></div>
 								</div>
 							</a>
@@ -254,4 +254,8 @@
 			}
 		});
 	}
+
+	document.querySelector('.on_click').addEventListener('click', function() {
+		window.location.href = 'client/my-profile';
+	});
 </script>

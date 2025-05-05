@@ -54,21 +54,21 @@ class Organization extends CI_Controller
     }
     public function edit_organization()
     {
-        if ($this->input->is_ajax_request() == 1) {
-            $onload = $this->input->post('load');
-            $data['organization_id'] = $this->input->post('organization_id');
-            $data['name'] = $this->input->post('name');
-            $data['mail_id'] = $this->input->post('mail_id');
-            $data['mobile'] = $this->input->post('mobile');
+        // if ($this->input->is_ajax_request() == 1) {
+        $onload = $this->input->post('load');
+        $data['organization_id'] = $this->input->post('organization_id');
+        $data['name'] = $this->input->post('name');
+        $data['mail_id'] = $this->input->post('mail_id');
+        $data['mobile'] = $this->input->post('mobile');
 
-            if ($onload == 1) {
-                $view = $this->load->view('modules/general_settings/organization/edit_organization', $data, TRUE);
-                echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
-                return;
-            }
-        } else {
-            $this->load->view(ERROR_500);
+        if ($onload == 1) {
+            $view = $this->load->view('modules/general_settings/organization/edit_organization', $data, TRUE);
+            echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
+            return;
         }
+        // } else {
+        //     $this->load->view(ERROR_500);
+        // }
     }
     public function update_organization()
     {

@@ -121,10 +121,21 @@
 
                                     </div>
                                     <div class="d-flex flex-wrap gap-5">
-
-
-
-
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="form-label">Manager</label>
+                                            <select class="form-select mb-5" data-control="select2" data-placeholder="Select an option" id="manager" name="manager">
+                                                <option value=""></option>
+                                                <?php foreach ($staff_details as $staff) { ?>
+                                                    <option value="<?php echo $staff->id; ?>"><?php echo $staff->fname; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                        </div>
+                                        <div class="fv-row w-100 flex-md-root">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                         </div>
                                     </div>
@@ -133,8 +144,14 @@
                                         <a href="<?php echo base_url(); ?>home" id="kt_ecommerce_add_product_cancel"
                                             class="btn btn-light me-5">Cancel</a>
 
-                                        <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes"
+
+                                        <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
                                             onclick="submit_data()">Save Changes</a>
+                                        <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                                            <span class="indicator-label">Submit</span>
+                                            <span class="indicator-progress">Please wait...
+                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        </a>
 
                                     </div>
 
@@ -155,13 +172,16 @@
 </div>
 <script>
     function submit_data() {
-        $("#loader").show();
+        $("#actual_submit").hide();
+        $("#loader_submit").show();
         var ops_url = baseurl + 'user-management/save-client';
         var name = $('#name').val();
         var password = $('#password').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
         var confirm_password = $('#con_password').val();
+        var manager = $('#manager').val();
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (name == "") {
             Swal.fire({
@@ -169,7 +189,18 @@
                 title: '',
                 text: 'Name is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+        if (!emailRegex.test(email)) {
+            Swal.fire({
+                title: 'Login failed',
+                text: 'Email is not valid',
+                icon: 'error'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (email == "") {
@@ -178,7 +209,8 @@
                 title: '',
                 text: 'Email is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (phone == "") {
@@ -187,7 +219,8 @@
                 title: '',
                 text: 'Phone is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
 
@@ -197,7 +230,8 @@
                 title: '',
                 text: 'Password is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (password.length < 3) {
@@ -206,7 +240,8 @@
                 title: '',
                 text: 'Enter at least three characters for Password.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (confirm_password == '') {
@@ -215,7 +250,8 @@
                 title: '',
                 text: 'Confirm Password is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (password != confirm_password) {
@@ -224,9 +260,21 @@
                 title: '',
                 text: 'Password and Confirm Password must be the same.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
+        if (manager == '') {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Manager is required.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+
 
         var form = $("#client_save");
         var formData = new FormData(form[0]);
@@ -240,9 +288,10 @@
             contentType: false,
             data: formData,
             success: function(result) {
-                $("#loader").hide();
                 var data = $.parseJSON(result);
                 if (data.status == 1) {
+                    $("#actual_submit").show();
+                    $("#loader_submit").hide();
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
@@ -250,6 +299,8 @@
                     });
                     $('#client_save').trigger("reset");
                 } else if (data.status == 0) {
+                    $("#actual_submit").show();
+                    $("#loader_submit").hide();
                     Swal.fire({
                         icon: 'info',
                         title: 'Info',
@@ -269,13 +320,4 @@
             }
         });
     }
-</script>
-
-<script>
-    document.getElementById('discount').addEventListener('input', function(e) {
-        var value = parseInt(e.target.value);
-        if (value > 200) {
-            e.target.value = 200;
-        }
-    });
 </script>
