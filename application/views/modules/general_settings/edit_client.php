@@ -361,9 +361,15 @@
                 <?php } ?>
                 <?php if ($verify_status == 1) { ?>
                     <div class="d-flex justify-content-end">
-                        <a href="javascript:void(0);" class="btn btn-lg btn-success mb-5 me-2" title="Account Verified">
-                            Account Activated
-                        </a>
+                        <button type="button" id="actual_submit" onclick="deactivate_account()" class="btn btn-lg btn-danger mb-5 me-2 actual_submit" title="Submit">
+                            De-activate Account
+                        </button>
+                        <button type="button" id="loader_submit" class="btn btn-lg btn-primary mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button>
                     </div>
                 <?php } else { ?>
                     <div class="d-flex justify-content-end">
@@ -447,6 +453,55 @@
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, activate it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    cache: false,
+                    async: true,
+                    url: ops_url,
+                    data: {
+                        client_id: client_id,
+                        email: email,
+                    },
+                    success: function(result) {
+                        $(".actual_submit").show();
+                        $(".loader_submit").hide();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Status updated.'
+                        }).then(() => {
+                            edit_client(client_id);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        $("#loader").hide();
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'An error occurred while processing your request.'
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    function deactivate_account() {
+        $(".actual_submit").hide();
+        $(".loader_submit").show();
+        var ops_url = baseurl + 'client-crm/deactivate-client';
+        var client_id = $('#client_id').val();
+        var email = $('#email').val();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to deactivate?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({

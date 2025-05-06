@@ -37,6 +37,23 @@
                         <div class="d-flex flex-column gap-7 gap-lg-10">
 
                             <div class="card card-flush py-4">
+                                <div class="card-body pt-5">
+                                    <div class="gap-5 wallet_div">
+                                        <div class="alert alert-danger d-flex align-items-center p-5">
+                                            <!--begin::Mandatory Icon-->
+                                            <span class="svg-icon svg-icon-2hx svg-icon-danger me-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M1 21h22L12 2 1 21z" fill="currentColor" opacity="0.3" />
+                                                    <path d="M13 16h-2v2h2v-2zm0-6h-2v4h2v-4z" fill="currentColor" />
+                                                </svg>
+                                            </span>
+                                            <!--end::Mandatory Icon-->
+                                            <div class="d-flex flex-column text-center">
+                                                <span>Please avoid using the same address for multiple deposits. Generate a new address for each new deposit.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="card-header">
                                     <div class="card-title">
@@ -133,6 +150,9 @@
             <?php echo form_close(); ?>
         </div>
     </div>
+
+
+
 </div>
 <script>
     function copy_address() {

@@ -311,7 +311,7 @@
                                         <br />
                                         Dear <?php echo $email; ?>,
                                         <br /><br />
-                                        Your Account Activated Successfully.</br>Your account is now ready to use.
+                                        Your Account Activation has been Rejected. </br>Contact Administrator for more information.
                                         Please log in to your account using the credentials you provided during registration. <br />
 
 
