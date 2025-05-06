@@ -9,17 +9,17 @@
     <title><?php echo APP_TITLE; ?></title>
     <meta charset="utf-8" />
     <meta name="description"
-        content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
+        content="" />
     <meta name="keywords"
-        content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+        content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="article" />
     <meta property="og:title"
-        content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-    <meta property="og:url" content="https://keenthemes.com/metronic" />
-    <meta property="og:site_name" content="Keenthemes | Metronic" />
-    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+        content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <link rel="canonical" href="" />
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/media/footer.png" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -195,6 +195,7 @@
             var name = $('#name').val();
             var phno = $('#phno').val();
             var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            var regex = /^[0-9]{12}$/;
 
             if (name == '') {
                 $(".actual_submit").show();
@@ -232,6 +233,16 @@
                 Swal.fire({
                     title: 'Login failed',
                     text: 'Password is required',
+                    icon: 'error'
+                });
+                return false;
+            }
+            if (phno == '' || !regex.test(phno)) {
+                $(".actual_submit").show();
+                $(".loader_submit").hide();
+                Swal.fire({
+                    title: 'Login failed',
+                    text: 'Enter a valid Phone no.',
                     icon: 'error'
                 });
                 return false;

@@ -11,6 +11,7 @@ class Client_crm extends CI_Controller
             redirect('login');
         }
         $this->load->model('general_settings/Client_crm_model', 'CModel');
+        $this->load->model('general_settings/Client_model', 'CCModel');
     }
     public function my_profile()
     {
@@ -118,18 +119,22 @@ class Client_crm extends CI_Controller
     }
     public function activate_client()
     {
+
         $client_id = $this->input->post('client_id');
         $email = $this->input->post('email');
         $data['account_verify'] = 1;
+        $document_details = $this->CCModel->get_client_document_details($client_id);
+        if ($document_details == '') {
+            $data['client_id'] = $client_id;
+            $insert_doc = $this->CModel->doc_upload($data);
+        }
         if ($this->CModel->activate_client($client_id, $data)) {
             $subject = "Account Activated - '$client_id'";
             $mailto = $email;
             $data['email'] = $email;
             $mailcontent =  $this->load->view('mail_templates/account_activate_template', $data, true);
 
-            $cc = 'seyad@smartfx.com';
-
-            send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+            send_smtp_mailer($subject, $mailto, $mailcontent);
             echo json_encode(array('status' => 1));
             return;
         } else {

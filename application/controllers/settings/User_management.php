@@ -22,7 +22,7 @@ class User_management extends CI_Controller
     public function user_add()
     {
         $data['title'] = 'Authentication';
-        $data['subtitle'] = 'Add User';
+        $data['subtitle'] = 'Add Staff';
         $data['user_role'] = $this->UMModel->get_user_role();
         $data['template'] = 'modules/general_settings/add_user';
         $this->load->view('template/dashboard_template', $data);
@@ -102,7 +102,13 @@ class User_management extends CI_Controller
 
         if ($onload == 1) {
             $client_data_raw = $this->CModel->get_client_details($client_id);
-            $data['document_details'] = $this->CModel->get_client_document_details($client_id);
+            $doc_details = $this->CModel->get_client_document_details($client_id);
+            if ($doc_details == '') {
+                $data['verify_status'] = 0;
+            } else {
+                $data['verify_status'] = $doc_details['account_verify'];
+            }
+            $data['document_details'] = $doc_details;
             $data['staff_details'] = $this->CModel->get_client_staff_details();
             $data['client_id'] = $client_id;
             $data['client_data'] = $client_data_raw;
@@ -122,7 +128,7 @@ class User_management extends CI_Controller
     public function user_list()
     {
         $data['title'] = 'Authentication';
-        $data['subtitle'] = 'User List';
+        $data['subtitle'] = 'Staff List';
         $data['user_data'] = $this->UMModel->get_details($data);
         $data['template'] = 'modules/general_settings/show_user';
         $this->load->view('template/dashboard_template', $data);

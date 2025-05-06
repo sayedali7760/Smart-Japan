@@ -129,7 +129,7 @@
                                     class="btn btn-light me-5">Cancel</a>
 
                                 <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
-                                    onclick="update_data()">Save</a>
+                                    onclick="update_data()">Save Changes</a>
                                 <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
                                     <span class="indicator-label">Submit</span>
                                     <span class="indicator-progress">Please wait...
@@ -286,25 +286,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <?php if ($document_details['account_verify'] == 1) { ?>
-                                    <div class="d-flex justify-content-end">
-                                        <a href="javascript:void(0);" class="btn btn-success">Account Activated</a>
-                                    </div>
-                                <?php } else { ?>
-                                    <div class="d-flex justify-content-end">
-                                        <button type="button" id="actual_submit" onclick="activate_account()" class="btn btn-lg btn-primary mb-5 me-2 actual_submit" title="Submit">
-                                            Activate Account
-                                        </button>
-                                        <button type="button" id="loader_submit" class="btn btn-lg btn-primary mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
-                                            <span class="indicator-label">Submit</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                            </span>
-                                        </button>
-                                    </div>
-                                    <!-- <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes" onclick="activate_account()">Activate Account</a> --> -->
                         </div>
-                    <?php } ?>
+                    </div>
 
                 <?php } else { ?>
                     <div id="kt_billing_payment_tab_content" class="card-body tab-content">
@@ -376,12 +359,32 @@
                         </div>
                     </div>
                 <?php } ?>
+                <?php if ($verify_status == 1) { ?>
+                    <div class="d-flex justify-content-end">
+                        <a href="javascript:void(0);" class="btn btn-lg btn-success mb-5 me-2" title="Account Verified">
+                            Account Activated
+                        </a>
                     </div>
-                </div>
+                <?php } else { ?>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" id="actual_submit" onclick="activate_account()" class="btn btn-lg btn-primary mb-5 me-2 actual_submit" title="Submit">
+                            Activate Account
+                        </button>
+                        <button type="button" id="loader_submit" class="btn btn-lg btn-primary mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </button>
+                    </div>
+                <?php } ?>
 
+                </div>
             </div>
+
         </div>
     </div>
+</div>
 </div>
 <?php echo form_close(); ?>
 </div>
@@ -490,6 +493,7 @@
         var email = $('#email').val();
         var phone = $('#phone').val();
         var manager = $('#manager').val();
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (name == "") {
             Swal.fire({
@@ -506,6 +510,17 @@
                 icon: 'info',
                 title: '',
                 text: 'Enter at least three characters for Name.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+
+        if (!emailRegex.test(email)) {
+            Swal.fire({
+                title: 'Account updation failed',
+                text: 'Email is not valid',
+                icon: 'error'
             });
             $("#actual_submit").show();
             $("#loader_submit").hide();

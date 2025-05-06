@@ -146,7 +146,7 @@
 
 
                                         <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
-                                            onclick="submit_data()">Save Changes</a>
+                                            onclick="submit_data()">Save</a>
                                         <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
                                             <span class="indicator-label">Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -181,6 +181,7 @@
         var phone = $('#phone').val();
         var confirm_password = $('#con_password').val();
         var manager = $('#manager').val();
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (name == "") {
             Swal.fire({
@@ -192,13 +193,24 @@
             $("#loader_submit").hide();
             return false;
         }
+        if (!emailRegex.test(email)) {
+            Swal.fire({
+                title: 'Account creation failed',
+                text: 'Email is not valid',
+                icon: 'error'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
         if (email == "") {
             Swal.fire({
                 icon: 'info',
                 title: '',
                 text: 'Email is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (phone == "") {
@@ -207,7 +219,8 @@
                 title: '',
                 text: 'Phone is required.'
             });
-            $("#loader").hide();
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
 
@@ -275,9 +288,10 @@
             contentType: false,
             data: formData,
             success: function(result) {
-                $("#loader").hide();
                 var data = $.parseJSON(result);
                 if (data.status == 1) {
+                    $("#actual_submit").show();
+                    $("#loader_submit").hide();
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
@@ -285,6 +299,8 @@
                     });
                     $('#client_save').trigger("reset");
                 } else if (data.status == 0) {
+                    $("#actual_submit").show();
+                    $("#loader_submit").hide();
                     Swal.fire({
                         icon: 'info',
                         title: 'Info',
