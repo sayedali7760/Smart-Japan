@@ -22,7 +22,7 @@ class User_management extends CI_Controller
     public function user_add()
     {
         $data['title'] = 'Authentication';
-        $data['subtitle'] = 'Add User';
+        $data['subtitle'] = 'Add Staff';
         $data['user_role'] = $this->UMModel->get_user_role();
         $data['template'] = 'modules/general_settings/add_user';
         $this->load->view('template/dashboard_template', $data);
@@ -128,7 +128,7 @@ class User_management extends CI_Controller
     public function user_list()
     {
         $data['title'] = 'Authentication';
-        $data['subtitle'] = 'User List';
+        $data['subtitle'] = 'Staff List';
         $data['user_data'] = $this->UMModel->get_details($data);
         $data['template'] = 'modules/general_settings/show_user';
         $this->load->view('template/dashboard_template', $data);

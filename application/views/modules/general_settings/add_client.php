@@ -146,7 +146,7 @@
 
 
                                         <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
-                                            onclick="submit_data()">Save Changes</a>
+                                            onclick="submit_data()">Save</a>
                                         <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
                                             <span class="indicator-label">Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -195,7 +195,7 @@
         }
         if (!emailRegex.test(email)) {
             Swal.fire({
-                title: 'Login failed',
+                title: 'Account creation failed',
                 text: 'Email is not valid',
                 icon: 'error'
             });

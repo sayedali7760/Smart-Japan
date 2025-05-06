@@ -129,7 +129,7 @@
                                     class="btn btn-light me-5">Cancel</a>
 
                                 <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
-                                    onclick="update_data()">Save</a>
+                                    onclick="update_data()">Save Changes</a>
                                 <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
                                     <span class="indicator-label">Submit</span>
                                     <span class="indicator-progress">Please wait...
@@ -493,6 +493,7 @@
         var email = $('#email').val();
         var phone = $('#phone').val();
         var manager = $('#manager').val();
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (name == "") {
             Swal.fire({
@@ -509,6 +510,17 @@
                 icon: 'info',
                 title: '',
                 text: 'Enter at least three characters for Name.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+
+        if (!emailRegex.test(email)) {
+            Swal.fire({
+                title: 'Account updation failed',
+                text: 'Email is not valid',
+                icon: 'error'
             });
             $("#actual_submit").show();
             $("#loader_submit").hide();
