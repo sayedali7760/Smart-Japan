@@ -41,17 +41,17 @@ class Api extends CI_Controller
             $data_array = array('amount' => $mtAmount, 'amount_processed' => $mtAmount, 'amount_finished' => $mtAmount, 'status' => 'success', 'status_finished' => 'closed');
             $this->db->update('transactions', $data_array, 'id=' . $transaction_id . '');
 
-            // $subject = "Deposit Completed";
-            // $mailto = $email;
-            // $mail_to_manager = MANAGER_MAIL;
-            // $mail_data['name'] = $client_details['name'];
-            // $mail_data['amount'] = $mtAmount;
-            // $mail_data['login'] = $login;
-            // $mailcontent =  $this->load->view('mail_templates/deposit_success', $mail_data, true);
-            //$mailcontent_manager =  $this->load->view('mail_templates/deposit_success_manager', $mail_data, true);
-            // $cc = "";
-            // send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
-            // send_smtp_mailer($subject, $mail_to_manager, $mailcontent_manager, $cc);
+            $subject = "Deposit Completed";
+            $mailto = $email;
+            $mail_to_manager = MANAGER_MAIL;
+            $mail_data['name'] = $client_details['name'];
+            $mail_data['amount'] = $mtAmount;
+            $mail_data['login'] = $login;
+            $mailcontent =  $this->load->view('mail_templates/deposit_success', $mail_data, true);
+            $mailcontent_manager =  $this->load->view('mail_templates/deposit_success_manager', $mail_data, true);
+            $cc = "";
+            send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+            send_smtp_mailer($subject, $mail_to_manager, $mailcontent_manager, $cc);
 
             return true;
         }
