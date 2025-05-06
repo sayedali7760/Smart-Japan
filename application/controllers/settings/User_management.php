@@ -102,7 +102,13 @@ class User_management extends CI_Controller
 
         if ($onload == 1) {
             $client_data_raw = $this->CModel->get_client_details($client_id);
-            $data['document_details'] = $this->CModel->get_client_document_details($client_id);
+            $doc_details = $this->CModel->get_client_document_details($client_id);
+            if ($doc_details == '') {
+                $data['verify_status'] = 0;
+            } else {
+                $data['verify_status'] = $doc_details['account_verify'];
+            }
+            $data['document_details'] = $doc_details;
             $data['staff_details'] = $this->CModel->get_client_staff_details();
             $data['client_id'] = $client_id;
             $data['client_data'] = $client_data_raw;
