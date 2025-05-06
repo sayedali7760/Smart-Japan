@@ -69,6 +69,17 @@
                             location.reload();
                         }
                     });
+                } else if (data.status == 3) {
+                    Swal.fire({
+                        title: 'Failed',
+                        text: 'Meta Trader not responding.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
                 } else {
                     Swal.fire({
                         title: 'Failed',
