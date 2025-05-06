@@ -42,7 +42,7 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">Add User</span>
+                                <span class="menu-title">Add Staff</span>
                             </a>
                         </div>
                         <div class="menu-item">
@@ -53,7 +53,7 @@
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">User List</span>
+                                <span class="menu-title">Staff List</span>
                             </a>
                         </div>
                     </div>

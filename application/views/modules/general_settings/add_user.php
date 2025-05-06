@@ -116,7 +116,7 @@
                                             class="btn btn-light me-5">Cancel</a>
 
                                         <a href="javascript:void(0);" class="btn btn-primary" title="Save Changes"
-                                            onclick="submit_data()">Save Changes</a>
+                                            onclick="submit_data()">Save</a>
 
                                     </div>
                                 </div>
