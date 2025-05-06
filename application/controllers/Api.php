@@ -48,7 +48,7 @@ class Api extends CI_Controller
             $mail_data['amount'] = $mtAmount;
             $mail_data['login'] = $login;
             $mailcontent =  $this->load->view('mail_templates/deposit_success', $mail_data, true);
-            $mailcontent_manager =  $this->load->view('mail_templates/deposit_success_manager', $mail_data, true);
+            //$mailcontent_manager =  $this->load->view('mail_templates/deposit_success_manager', $mail_data, true);
             $cc = "";
             send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
             send_smtp_mailer($subject, $mail_to_manager, $mailcontent_manager, $cc);
