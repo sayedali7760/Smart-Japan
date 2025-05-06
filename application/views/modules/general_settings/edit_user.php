@@ -156,6 +156,7 @@
         var password = $('#password').val();
         var email = $('#email').val();
         var confirm_password = $('#con_password').val();
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (fname == "") {
             Swal.fire({
@@ -173,6 +174,16 @@
                 text: 'Lastname is required.'
             });
             $("#loader").hide();
+            return false;
+        }
+        if (!emailRegex.test(email)) {
+            Swal.fire({
+                title: 'Account updation failed',
+                text: 'Email is not valid',
+                icon: 'error'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
             return false;
         }
         if (email == "") {
