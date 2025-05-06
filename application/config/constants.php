@@ -105,3 +105,4 @@ define('LIVE_LOGIN', '10006');
 define('LIVE_PASSWORD', 'Japan@56789');
 
 define('ACCOUNT_START', '6315');
+define('MANAGER_MAIL', 'seyad@smartfx.com');

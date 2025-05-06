@@ -135,23 +135,28 @@ class Mt_Accounts extends CI_Controller
                         'type' => 'live',
                     );
 
-                    if ($this->MModel->insert_live($data_user_array)) {
+                    if ($new_user->Login != '') {
+                        if ($this->MModel->insert_live($data_user_array)) {
 
-                        // $mailto = $user_details['email'];
-                        // $subject = 'MT5 Live Accont Details';
-                        // $mail_data['name'] = $fullname;
-                        // $mail_data['login'] = $new_user->Login;
-                        // $mail_data['main_password'] = $new_user->MainPassword;
-                        // $mail_data['invest_password'] = $new_user->InvestPassword;
-                        // $mail_data['phone_password'] = $new_user->PhonePassword;
-                        // $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $mail_data, true);
-                        // $cc = "";
-                        // send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
+                            $mailto = $user_details['email'];
+                            $subject = 'MT5 Live Accont Details';
+                            $mail_data['name'] = $fullname;
+                            $mail_data['login'] = $new_user->Login;
+                            $mail_data['main_password'] = $new_user->MainPassword;
+                            $mail_data['invest_password'] = $new_user->InvestPassword;
+                            $mail_data['phone_password'] = $new_user->PhonePassword;
+                            $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $mail_data, true);
+                            $cc = "";
+                            send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
 
-                        echo json_encode(array('status' => 1));
-                        return;
+                            echo json_encode(array('status' => 1));
+                            return;
+                        } else {
+                            echo json_encode(array('status' => 2));
+                            return;
+                        }
                     } else {
-                        echo json_encode(array('status' => 2));
+                        echo json_encode(array('status' => 3));
                         return;
                     }
                 }
@@ -243,25 +248,28 @@ class Mt_Accounts extends CI_Controller
                         'info' => $new_user->Login,
                         'type' => 'demo',
                     );
+                    if ($new_user->Login != '') {
+                        if ($this->MModel->insert_demo($data_user_array)) {
 
+                            $mailto = $user_details['email'];
+                            $subject = 'MT5 Demo Accont Details';
+                            $mail_data['name'] = $fullname;
+                            $mail_data['login'] = $new_user->Login;
+                            $mail_data['main_password'] = $new_user->MainPassword;
+                            $mail_data['invest_password'] = $new_user->InvestPassword;
+                            $mail_data['phone_password'] = $new_user->PhonePassword;
+                            $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $mail_data, true);
+                            $cc = "";
+                            send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
 
-                    if ($this->MModel->insert_demo($data_user_array)) {
-
-                        $mailto = $user_details['email'];
-                        $subject = 'MT5 Demo Accont Details';
-                        $mail_data['name'] = $fullname;
-                        $mail_data['login'] = $new_user->Login;
-                        $mail_data['main_password'] = $new_user->MainPassword;
-                        $mail_data['invest_password'] = $new_user->InvestPassword;
-                        $mail_data['phone_password'] = $new_user->PhonePassword;
-                        $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $mail_data, true);
-                        $cc = "";
-                        send_smtp_mailer($subject, $mailto, $mailcontent, $cc);
-
-                        echo json_encode(array('status' => 1));
-                        return;
+                            echo json_encode(array('status' => 1));
+                            return;
+                        } else {
+                            echo json_encode(array('status' => 2));
+                            return;
+                        }
                     } else {
-                        echo json_encode(array('status' => 2));
+                        echo json_encode(array('status' => 3));
                         return;
                     }
                 }
