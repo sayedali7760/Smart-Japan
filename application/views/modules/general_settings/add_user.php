@@ -51,7 +51,7 @@
 
                                 <div class="card-header">
                                     <div class="card-title">
-                                        <h2>Add User</h2>
+                                        <h2>Add Staff</h2>
                                     </div>
                                 </div>
 
