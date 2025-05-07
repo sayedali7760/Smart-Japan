@@ -129,7 +129,7 @@ class Client_crm extends CI_Controller
             $insert_doc = $this->CModel->doc_upload($data);
         }
         if ($this->CModel->activate_client($client_id, $data)) {
-            $subject = "Account Activated - '$client_id'";
+            $subject = "Account Activated";
             $mailto = $email;
             $data['email'] = $email;
             $mailcontent =  $this->load->view('mail_templates/account_activate_template', $data, true);
@@ -141,6 +141,28 @@ class Client_crm extends CI_Controller
             return false;
         }
     }
+
+    public function deactivate_client()
+    {
+
+        $client_id = $this->input->post('client_id');
+        $email = $this->input->post('email');
+        $data['account_verify'] = 0;
+
+        if ($this->CModel->activate_client($client_id, $data)) {
+            $subject = "Account DeActivation";
+            $mailto = $email;
+            $data['email'] = $email;
+            $mailcontent =  $this->load->view('mail_templates/account_deactivate_template', $data, true);
+
+            send_smtp_mailer($subject, $mailto, $mailcontent);
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            return false;
+        }
+    }
+
     public function client_verification()
     {
         $data['title'] = 'Client';
@@ -179,7 +201,7 @@ class Client_crm extends CI_Controller
     }
     public function upload_doc()
     {
-        $id = $this->session->userdata['id'];
+        $id = $this->input->post('client_id');
         $data['client_id'] = $id;
         $uploadPath = 'uploads';
 

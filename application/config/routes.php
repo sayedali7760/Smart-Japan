@@ -113,6 +113,7 @@ $route['client-crm/view-product'] = 'settings/Client_crm/view_product';
 $route['client-crm/client-verify'] = 'settings/Client_crm/client_verification';
 $route['client-crm/update-doc-status'] = 'settings/Client_crm/update_doc_status';
 $route['client-crm/activate-client'] = 'settings/Client_crm/activate_client';
+$route['client-crm/deactivate-client'] = 'settings/Client_crm/deactivate_client';
 
 $route['mt-account/live-account'] = 'settings/Mt_Accounts/show_live_account';
 $route['mt-account/demo-account'] = 'settings/Mt_Accounts/show_demo_account';
@@ -155,7 +156,7 @@ $route['transaction/process-withdraw'] = 'Transaction/process_withdraw';
 
 // API
 
-$route['api/(:any)'] = 'api/$1';  
+$route['api/(:any)'] = 'api/$1';
 
 
 
