@@ -332,7 +332,7 @@
                 $("#loader_submit").hide();
                 return false;
             }
-            if (acc_no == "") {
+            if (acc_no == "" || !/^\d+$/.test(acc_no)) {
                 Swal.fire({
                     icon: 'info',
                     title: '',
@@ -342,7 +342,7 @@
                 $("#loader_submit").hide();
                 return false;
             }
-            if (iban == "" || !/^\d+$/.test(swift)) {
+            if (iban == "") {
                 Swal.fire({
                     icon: 'info',
                     title: '',
