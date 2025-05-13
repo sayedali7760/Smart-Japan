@@ -156,71 +156,135 @@
                     <!--begin::Row-->
                     <div class="row g-5 g-xl-8">
                         <?php foreach ($bank_data as $bank) { ?>
-                            <div class="col-xl-4">
-                                <!--begin::Statistics Widget 5-->
-                                <a href="#" class="card bg-body-white hoverable card-xl-stretch mb-xl-8">
+                            <div class="col-xl-6 mb-5 mb-xl-10">
+                                <!--begin::Slider Widget 2-->
+                                <div id="kt_sliders_widget_2_slider" class="card card-flush carousel carousel-custom carousel-stretch slide h-xl-100" data-bs-ride="carousel" data-bs-interval="5500">
+                                    <!--begin::Header-->
+                                    <div class="card-header pt-5">
+                                        <!--begin::Title-->
+                                        <h4 class="card-title d-flex align-items-start flex-column">
+                                            <span class="card-label fw-bolder text-gray-800">Added Bank's</span>
+                                            <span class="text-gray-400 mt-1 fw-bolder fs-7">The added bank details are provided below.</span>
+                                        </h4>
+                                        <!--end::Title-->
+                                        <!--begin::Toolbar-->
+                                        <div class="card-toolbar">
+                                            <!--begin::Carousel Indicators-->
+                                            <ol class="p-0 m-0 carousel-indicators carousel-indicators-bullet carousel-indicators-active-success">
+                                                <li data-bs-target="#kt_sliders_widget_2_slider" data-bs-slide-to="0" class="ms-1"></li>
+                                                <li data-bs-target="#kt_sliders_widget_2_slider" data-bs-slide-to="1" class="ms-1 active" aria-current="true"></li>
+                                                <li data-bs-target="#kt_sliders_widget_2_slider" data-bs-slide-to="2" class="ms-1"></li>
+                                            </ol>
+                                            <!--end::Carousel Indicators-->
+                                        </div>
+                                        <!--end::Toolbar-->
+                                    </div>
+                                    <!--end::Header-->
                                     <!--begin::Body-->
-                                    <div class="card-body">
-                                        <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                                        <div class="d-flex  position-relative my-1 align-items-center mb-2">
-                                            <span class="svg-icon svg-icon-primary svg-icon-3x ms-n1">
-                                                <svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
-                                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                                    <g id="SVGRepo_iconCarrier">
-                                                        <title>bank_fill</title>
-                                                        <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                            <g id="Building" transform="translate(-192.000000, -48.000000)">
-                                                                <g id="bank_fill" transform="translate(192.000000, 48.000000)">
-                                                                    <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"> </path>
-                                                                    <path d="M12.6708,2.21744 L21.1708,6.96744 C21.679,7.22153 22,7.74092 22,8.30908 L22,9.75006 C22,10.4404 21.4404,11.0001 20.75,11.0001 L20,11.0001 L20,19.0001 L21,19.0001 C21.5523,19.0001 22,19.4478 22,20.0001 C22,20.5524 21.5523,21.0001 21,21.0001 L3,21.0001 C2.44772,21.0001 2,20.5524 2,20.0001 C2,19.4478 2.44772,19.0001 3,19.0001 L4,19.0001 L4,11.0001 L3.25,11.0001 C2.55964,11.0001 2,10.4404 2,9.75006 L2,8.30908 C2,7.78826667 2.26973757,7.30843368 2.70611413,7.03636428 L11.3292,2.21744 C11.7515,2.0063 12.2485,2.0063 12.6708,2.21744 Z M17,11.0001 L7,11.0001 L7,19.0001 L9,19.0001 L9,13.0001 L11,13.0001 L11,19.0001 L13,19.0001 L13,13.0001 L15,13.0001 L15,19.0001 L17,19.0001 L17,11.0001 Z M12,6.00012 C11.4477,6.00012 11,6.44784 11,7.00012 C11,7.55241 11.4477,8.00012 12,8.00012 C12.5523,8.00012 13,7.55241 13,7.00012 C13,6.44784 12.5523,6.00012 12,6.00012 Z" id="形状" fill="#09244B"> </path>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </svg>
-                                            </span>
-                                            <div class="d-flex" style="width: 100%; justify-content: end">
+                                    <div class="card-body pt-6">
+                                        <!--begin::Carousel-->
+                                        <div class="carousel-inner">
+                                            <!--begin::Item-->
 
-                                                <div style="margin-left: auto;">
-                                                    <label class="form-label" style="color: <?= $bank['status'] == 1 ? 'green' : 'red' ?>;">
-                                                        <?php if ($bank['status'] == 0) {
-                                                            echo 'Pending';
-                                                        } else if ($bank['status'] == 1) {
-                                                            echo 'Verified';
-                                                        } else {
-                                                            echo 'Rejected';
-                                                        }
-                                                        ?>
-                                                    </label>
+                                            <!--end::Item-->
+                                            <!--begin::Item-->
+                                            <div class="carousel-item active">
+                                                <!--begin::Wrapper-->
+                                                <div class="d-flex align-items-center mb-9">
+                                                    <!--begin::Symbol-->
+                                                    <div class="symbol symbol-70px symbol-circle me-5">
+                                                        <span class="symbol-label bg-light-danger">
+                                                            <!--begin::Svg Icon | path: icons/duotune/abstract/abs026.svg-->
+                                                            <span class="svg-icon svg-icon-3x svg-icon-danger">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                    <path opacity="0.3" d="M7 20.5L2 17.6V11.8L7 8.90002L12 11.8V17.6L7 20.5ZM21 20.8V18.5L19 17.3L17 18.5V20.8L19 22L21 20.8Z" fill="currentColor"></path>
+                                                                    <path d="M22 14.1V6L15 2L8 6V14.1L15 18.2L22 14.1Z" fill="currentColor"></path>
+                                                                </svg>
+                                                            </span>
+                                                            <!--end::Svg Icon-->
+                                                        </span>
+                                                    </div>
+                                                    <!--end::Symbol-->
+                                                    <!--begin::Info-->
+                                                    <div class="m-0">
+                                                        <!--begin::Subtitle-->
+                                                        <h4 class="fw-bolder text-gray-800 mb-3"><?= isset($bank['bank_name']) ? htmlspecialchars($bank['bank_name']) : 'N/A' ?></h4>
+                                                        <!--end::Subtitle-->
+                                                        <!--begin::Items-->
+                                                        <div class="d-flex d-grid gap-5">
+                                                            <!--begin::Item-->
+                                                            <div class="d-flex flex-column flex-shrink-0 me-4">
+                                                                <!--begin::Section-->
+                                                                <span class="d-flex align-items-center fs-7 fw-bolder text-gray-400 mb-2">
+                                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen057.svg-->
+                                                                    <span class="svg-icon svg-icon-6 svg-icon-gray-600 me-2">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                                                            <path d="M11.9343 12.5657L9.53696 14.963C9.22669 15.2733 9.18488 15.7619 9.43792 16.1204C9.7616 16.5789 10.4211 16.6334 10.8156 16.2342L14.3054 12.7029C14.6903 12.3134 14.6903 11.6866 14.3054 11.2971L10.8156 7.76582C10.4211 7.3666 9.7616 7.42107 9.43792 7.87962C9.18488 8.23809 9.22669 8.72669 9.53696 9.03696L11.9343 11.4343C12.2467 11.7467 12.2467 12.2533 11.9343 12.5657Z" fill="currentColor"></path>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <!--end::Svg Icon-->Account No</span>
+                                                                <!--end::Section-->
+                                                                <!--begin::Section-->
+                                                                <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7">
+                                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen057.svg-->
+                                                                    <span class="svg-icon svg-icon-6 svg-icon-gray-600 me-2">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                                                            <path d="M11.9343 12.5657L9.53696 14.963C9.22669 15.2733 9.18488 15.7619 9.43792 16.1204C9.7616 16.5789 10.4211 16.6334 10.8156 16.2342L14.3054 12.7029C14.6903 12.3134 14.6903 11.6866 14.3054 11.2971L10.8156 7.76582C10.4211 7.3666 9.7616 7.42107 9.43792 7.87962C9.18488 8.23809 9.22669 8.72669 9.53696 9.03696L11.9343 11.4343C12.2467 11.7467 12.2467 12.2533 11.9343 12.5657Z" fill="currentColor"></path>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <!--end::Svg Icon-->IBan</span>
+                                                                <!--end::Section-->
+                                                            </div>
+                                                            <!--end::Item-->
+                                                            <!--begin::Item-->
+                                                            <div class="d-flex flex-column flex-shrink-0">
+                                                                <!--begin::Section-->
+                                                                <span class="d-flex align-items-center fs-7 fw-bolder text-gray-400 mb-2">
+                                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen057.svg-->
+
+                                                                    <!--end::Svg Icon--><?= isset($bank['account_no']) ? htmlspecialchars($bank['account_no']) : 'N/A' ?></span>
+                                                                <!--end::Section-->
+                                                                <!--begin::Section-->
+                                                                <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7">
+                                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen057.svg-->
+
+                                                                    <!--end::Svg Icon--><?= isset($bank['iban']) ? htmlspecialchars($bank['iban']) : 'N/A' ?></span>
+                                                                <!--end::Section-->
+                                                            </div>
+                                                            <!--end::Item-->
+                                                        </div>
+                                                        <!--end::Items-->
+                                                    </div>
+                                                    <!--end::Info-->
                                                 </div>
-
+                                                <!--end::Wrapper-->
+                                                <!--begin::Action-->
+                                                <div class="mb-1">
+                                                    <?php
+                                                    if ($bank['status'] == 0) {
+                                                        echo '<span class="badge badge-warning">Pending</span>';
+                                                    } else if ($bank['status'] == 1) {
+                                                        echo '<span class="badge badge-success">Verified</span>';
+                                                    } else if ($bank['status'] == 2) {
+                                                        echo '<span class="badge badge-danger">Rejected</span>';
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <!--end::Action-->
                                             </div>
+                                            <!--end::Item-->
+                                            <!--begin::Item-->
+
+                                            <!--end::Item-->
                                         </div>
-                                        <!--end::Svg Icon-->
-                                        <div class="bank_div">
-                                            <table class="table table-bordered">
-                                                <tr>
-                                                    <th class="text-gray-400">Bank Name</th>
-                                                    <td><?= isset($bank['bank_name']) ? htmlspecialchars($bank['bank_name']) : 'N/A' ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-gray-400">Account No</th>
-                                                    <td><?= isset($bank['account_no']) ? htmlspecialchars($bank['account_no']) : 'N/A' ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-gray-400">IBAN</th>
-                                                    <td><?= isset($bank['iban']) ? htmlspecialchars($bank['iban']) : 'N/A' ?></td>
-                                                </tr>
-
-                                            </table>
-                                        </div>
-
-
+                                        <!--end::Carousel-->
                                     </div>
                                     <!--end::Body-->
-                                </a>
-                                <!--end::Statistics Widget 5-->
+                                </div>
+                                <!--end::Slider Widget 2-->
+                                          
                             </div>
                         <?php } ?>
                     </div>
@@ -268,7 +332,7 @@
                 $("#loader_submit").hide();
                 return false;
             }
-            if (acc_no == "") {
+            if (acc_no == "" || !/^\d+$/.test(acc_no)) {
                 Swal.fire({
                     icon: 'info',
                     title: '',
@@ -278,7 +342,7 @@
                 $("#loader_submit").hide();
                 return false;
             }
-            if (iban == "" || !/^\d+$/.test(swift)) {
+            if (iban == "") {
                 Swal.fire({
                     icon: 'info',
                     title: '',

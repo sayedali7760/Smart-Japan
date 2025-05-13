@@ -195,7 +195,7 @@
             var name = $('#name').val();
             var phno = $('#phno').val();
             var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            var regex = /^[0-9]{12}$/;
+            var regex = /^[0-9]{8}$/;
 
             if (name == '') {
                 $(".actual_submit").show();

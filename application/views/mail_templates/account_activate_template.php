@@ -309,9 +309,9 @@
 
                                     <td class="content-block">
                                         <br />
-                                        Dear User,
+                                        Dear <?php echo $email; ?>,
                                         <br /><br />
-                                        Account Activated Successfully for the client: <?php echo $email; ?>. </br>Your account is now ready to use.
+                                        Your Account Activated Successfully.</br>Your account is now ready to use.
                                         Please log in to your account using the credentials you provided during registration. <br />
 
 

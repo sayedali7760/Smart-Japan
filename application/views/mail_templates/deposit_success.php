@@ -312,8 +312,8 @@
                                         Dear <?php echo $name; ?>,
                                         <br /><br />
                                         We are pleased to inform you that your deposit has been successfully processed,<br />
-                                        <b>Login: </b><?= $login ?><br>
-                                        <b>Amount: </b><?= number_format($amount, 2); ?><br />
+                                        <b>Login - </b><?= $login ?><br>
+                                        <b>Amount - </b><?= number_format($amount, 2); ?> <br />
                                         <br /><br />
                                         Please Feel Free to Revert to me on this email ID "support@smartfx.com" If Any
                                         Clarification

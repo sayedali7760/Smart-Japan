@@ -309,16 +309,11 @@
 
                                     <td class="content-block">
                                         <br />
-                                        Hello,
+                                        Dear <?php echo $email; ?>,
                                         <br /><br />
-                                        We are pleased to inform you that deposit has been successfully processed,<br />
-                                        <b>Login - </b><?= $login ?><br>
-                                        <b>Amount - </b><?= number_format($amount, 2) ?> <br />
-                                        <br /><br />
-                                        Please Feel Free to Revert to me on this email ID "support@smartfx.com" If Any
-                                        Clarification
-                                        on<br />
-                                        the Account.
+                                        Your Account Activation has been Rejected. </br>Contact Administrator for more information.
+                                        Please log in to your account using the credentials you provided during registration. <br />
+
 
                                         <br />
                                         <br />
@@ -334,7 +329,7 @@
                                         <br />
                                         <br />
                                         Regards,<br />
-                                        SSC-Smart-FX
+                                        SmartFX
                                     </td>
                                 </tr>
 
