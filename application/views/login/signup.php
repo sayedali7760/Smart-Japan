@@ -85,10 +85,10 @@
 
                     <div class="fv-row mb-10">
                         <label class="form-label fs-6 fw-bolder text-dark">Phone No</label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
-                            onPaste="return false" placeholder="Enter Phone No" id="phno" name="phno" maxlength="8" value="<?php if (isset($_COOKIE["ecomm_phno"])) {
-                                                                                                                                echo $_COOKIE["green_username"];
-                                                                                                                            } ?>">
+                        <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off" onpaste="return false" placeholder="Enter Phone No" id="phno" name="phno" minlength="6" maxlength="13" pattern="^\d{6,13}$" value="<?php if (isset($_COOKIE['ecomm_phno'])) {
+                                                                                                                                                                                                                                                                echo htmlspecialchars($_COOKIE['green_username']);
+                                                                                                                                                                                                                                                            } ?>">
+
                     </div>
 
 
@@ -237,7 +237,7 @@
                 });
                 return false;
             }
-            if (phno == '' || !regex.test(phno)) {
+            if (phno == '') {
                 $(".actual_submit").show();
                 $(".loader_submit").hide();
                 Swal.fire({
