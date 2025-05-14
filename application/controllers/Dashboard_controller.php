@@ -28,8 +28,8 @@ class Dashboard_controller extends CI_Controller
         }
         if ($type == 2) {
             $id = $this->session->userdata['id'];
-            $data['client_document_data'] = $this->CModel->get_documents_details($id);
-
+            // $data['client_document_data'] = $this->CModel->get_documents_details($id);
+            $data['client_document_data'] = $this->CModel->get_details($id);
             require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
             try {
                 $instance = new MTWebAPI();

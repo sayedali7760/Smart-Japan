@@ -45,95 +45,67 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Root-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-in -->
-        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
-            style="background-image: url(<?php echo base_url(); ?>assets/media/bg/login.png">
+        <div class="d-flex flex-column flex-column-fluid"
+            style="
+         min-height: 100vh;
+         background-image: url('<?php echo base_url(); ?>assets/media/bg/login.png');
+         background-repeat: no-repeat;
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+     ">
+
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
-                <!--begin::Logo-->
 
-                <!--end::Logo-->
                 <!--begin::Wrapper-->
                 <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-                    <!--begin::Form-->
 
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
-                        <!--begin::Title-->
                         <a href="<?php echo base_url(); ?>../../demo8/dist/index.html" class="mb-12">
                             <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/Logo.png" class="h-40px" />
                         </a>
-                        <!--end::Title-->
-                        <!--begin::Link-->
-                        <div class="text-gray-400 fw-bold fs-4">
-                        </div>
-                        <!--end::Link-->
+                        <div class="text-gray-400 fw-bold fs-4"></div>
                     </div>
-                    <!--begin::Heading-->
-                    <!--begin::Input group-->
+
+                    <!--begin::Input group: Email-->
                     <div class="fv-row mb-10">
-                        <!--begin::Label-->
                         <label class="form-label fs-6 fw-bolder text-dark">Email</label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
                         <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
-                            placeholder="Enter Email" id="username" name="username" value="<?php if (isset($_COOKIE["ecomm_username"])) {
-                                                                                                echo $_COOKIE["green_username"];
-                                                                                            } ?>">
-                        <!--end::Input-->
+                            placeholder="Enter Email" id="username" name="username"
+                            value="<?php if (isset($_COOKIE['ecomm_username'])) echo $_COOKIE['green_username']; ?>">
                     </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
+
+                    <!--begin::Input group: Password-->
                     <div class="fv-row mb-10">
-                        <!--begin::Wrapper-->
                         <div class="d-flex flex-stack mb-2">
-                            <!--begin::Label-->
                             <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
-                            <!--end::Label-->
-                            <!--begin::Link-->
-                            <!--end::Link-->
                         </div>
-                        <!--end::Wrapper-->
-                        <!--begin::Input-->
                         <input type="password" autocomplete="off" placeholder="Enter Password"
-                            id="password" class="form-control form-control-lg form-control-solid" name="password" value="<?php if (isset($_COOKIE["ecomm_password"])) {
-                                                                                                                                echo $_COOKIE["green_password"];
-                                                                                                                            } ?>">
-                        <!--end::Input-->
+                            id="password" class="form-control form-control-lg form-control-solid" name="password"
+                            value="<?php if (isset($_COOKIE['ecomm_password'])) echo $_COOKIE['green_password']; ?>">
                     </div>
 
-
-
-                    <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
-                        <!--begin::Submit button-->
-
                         <a href="javascript:void(0);" onclick="submit()" class="btn btn-lg btn-primary w-100 mb-5"
                             title="Login"><i class="icon-unlock2"></i> Login</a>
-                        <!--end::Submit button-->
-                        <!--begin::Separator-->
+
                         <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
-                        <!--end::Separator-->
-                        <!--begin::Google link-->
+
                         <a href="javascript:void(0);" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
                             <img alt="Logo" src="<?php echo base_url(); ?>assets/media/svg/brand-logos/google-icon.svg"
-                                class="h-20px me-3" />Continue with Google</a>
-                        <!--end::Google link-->
-                        <!--begin::Google link-->
-
-                        <!--end::Google link-->
+                                class="h-20px me-3" />Continue with Google
+                        </a>
                     </div>
-                    <!--end::Actions-->
-
-                    <!--end::Form-->
                 </div>
                 <!--end::Wrapper-->
             </div>
             <!--end::Content-->
-            <!--begin::Footer-->
 
-            <!--end::Footer-->
         </div>
+
         <!--end::Authentication - Sign-in-->
     </div>
     <!--end::Root-->

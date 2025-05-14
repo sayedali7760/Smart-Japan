@@ -96,33 +96,60 @@ class User_management extends CI_Controller
     }
     public function edit_client()
     {
-        // if ($this->input->is_ajax_request() == 1) {
         $onload =  $this->input->post('load');
         $client_id = $this->input->post('client_id');
 
         if ($onload == 1) {
             $client_data_raw = $this->CModel->get_client_details($client_id);
-            $doc_details = $this->CModel->get_client_document_details($client_id);
-            if ($doc_details == '') {
-                $data['verify_status'] = 0;
+            $data['documents_data'] = $this->CModel->get_client_document_details($client_id);
+            if (empty($data['documents_data'])) {
+                $data['document_upload_status'] = 0;
             } else {
-                $data['verify_status'] = $doc_details['account_verify'];
+                $data['document_upload_status'] = 1;
             }
-            $data['document_details'] = $doc_details;
+            $data['id_front'] = 0;
+            $data['id_front_status'] = 0;
+            $data['id_back'] = 0;
+            $data['id_back_status']  = 0;
+            $data['sample_bill'] = 0;
+            $data['sample_bill_status'] = 0;
+            $data['other_doc'] = 0;
+            $data['other_doc_status'] = 0;
+            if (!empty($data['documents_data'])) {
+                foreach ($data['documents_data'] as $document_stat) {
+                    if ($document_stat->doc_type == 'id') {
+                        $data['id_front'] = $document_stat->name;
+                        $data['id_id_front'] = $document_stat->id;
+                        $data['id_front_status'] = $document_stat->status;
+                    }
+                    if ($document_stat->doc_type == 'address') {
+                        $data['id_back'] = $document_stat->name;
+                        $data['id_id_back'] = $document_stat->id;
+                        $data['id_back_status'] = $document_stat->status;
+                    }
+                    if ($document_stat->doc_type == 'card') {
+                        $data['sample_bill'] = $document_stat->name;
+                        $data['id_bill'] = $document_stat->id;
+                        $data['sample_bill_status'] = $document_stat->status;
+                    }
+                    if ($document_stat->doc_type == 'other') {
+                        $data['other_doc'] = $document_stat->name;
+                        $data['id_other'] = $document_stat->id;
+                        $data['other_doc_status'] = $document_stat->status;
+                    }
+                }
+            }
             $data['staff_details'] = $this->CModel->get_client_staff_details();
             $data['client_id'] = $client_id;
+            $data['client_status'] = $client_data_raw['status'];
             $data['client_data'] = $client_data_raw;
             $data['countries'] = $this->CModel->get_countries();
             $data['subtitle'] = 'Update - ' . $client_data_raw['name'];
             $resultArray = json_decode(json_encode($data['client_data']), true);
-
             $view = $this->load->view('modules/general_settings/edit_client', $data, TRUE);
             echo json_encode(array('status' => 1, 'message' => 'Data Loaded', 'view' => $view));
             return;
         }
-        // } else {
-        //     $this->load->view(ERROR_500);
-        // }
     }
 
     public function user_list()
