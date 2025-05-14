@@ -38,7 +38,7 @@ class Api extends CI_Controller
             $login = $qr['account_id'];
             $email = $client_details['email'];
             $result = $instance->TradeBalance($login, MTEnDealAction::DEAL_BALANCE,  $mtAmount, 'Nexus', $ticket);
-            $data_array = array('amount' => $mtAmount, 'amount_processed' => $mtAmount, 'amount_finished' => $mtAmount, 'status' => 'success', 'status_finished' => 'closed');
+            $data_array = array('amount' => $mtAmount, 'amount_processed' => $mtAmount, 'amount_finished' => $mtAmount, 'status' => 'success', 'status_finished' => 'approved');
             $this->db->update('transactions', $data_array, 'id=' . $transaction_id . '');
 
             $subject = "Deposit Completed";

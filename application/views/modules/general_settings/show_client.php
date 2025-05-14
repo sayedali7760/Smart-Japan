@@ -125,7 +125,7 @@
                                     <td class="text-start pe-0"><?php echo $client->manager; ?></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($client->created)); ?>
                                     <td class="text-start pe-0">
-                                        <?php if ($client->account_verify == 1) { ?>
+                                        <?php if ($client->status == 90) { ?>
                                             <span class="badge badge-light-success">Verified</span>
                                         <?php } else { ?>
                                             <span class="badge badge-light-danger">Not Verified</span>

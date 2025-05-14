@@ -76,7 +76,8 @@ class Client_crm_model extends CI_Model
     public function get_notverified_clients()
     {
         $this->db->from('clients');
-        $this->db->order_by('id', "desc");
+        $this->db->where('clients.status !=', 90);
+        $this->db->order_by('id', 'desc');
         $query = $this->db->get()->result();
         return $query;
     }
