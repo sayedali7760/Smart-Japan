@@ -33,6 +33,7 @@ class Client_model extends CI_Model
         $this->db->from('clients AS c');
         $this->db->join('documents AS d', 'd.client_id = c.id', 'left');
         $this->db->join('user_details AS u', 'c.manager = u.id', 'left');
+        $this->db->where('c.status', 90);
         $this->db->order_by('c.id', "desc");
 
         $query = $this->db->get()->result();
