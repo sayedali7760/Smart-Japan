@@ -1,5 +1,6 @@
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 	<div class="container-xxl" id="kt_content_container">
+
 		<?php if ($client_document_data['status'] != 90) { ?>
 			<div class="alert alert-primary d-flex align-items-center p-5 mb-10">
 				<span class="svg-icon svg-icon-2hx svg-icon-primary me-4">
@@ -28,6 +29,7 @@
 									</span>
 									<span class="fs-4 fw-bolder">Live</span>
 								</a>
+
 							</div>
 						</div>
 						<div class="col-6">
@@ -152,6 +154,7 @@
 							</a>
 						</div>
 					<?php } ?>
+
 				<?php } else { ?>
 					<div class="col-xl-3 live-class">
 						<a href="#" class="card bg-dark hoverable card-xl-stretch mb-xl-8">
@@ -170,6 +173,7 @@
 					</div>
 				<?php } ?>
 			</div>
+
 		<?php } ?>
 
 
