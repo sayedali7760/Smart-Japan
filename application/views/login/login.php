@@ -59,7 +59,7 @@ License: For each use you must have a valid license purchased only from above li
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
-                        <a href="<?php echo base_url(); ?>../../demo8/dist/index.html" class="mb-12">
+                        <a href="<?php echo base_url(); ?>login" class="mb-12">
                             <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/Logo.png" class="h-40px" />
                         </a>
                         <!--end::Title-->

@@ -356,7 +356,7 @@
                 Swal.fire({
                     icon: 'info',
                     title: '',
-                    text: 'Swift code is required.'
+                    text: 'Provide a valid Swift code.'
                 });
                 $("#actual_submit").show();
                 $("#loader_submit").hide();
