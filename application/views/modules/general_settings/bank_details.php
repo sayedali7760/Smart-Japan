@@ -1,137 +1,141 @@
-<?php if (isset($bank_data) && $bank_data != null) {    ?>
-
-    <!--begin::Container-->
+<?php
+if (!empty($bank_data)) {
+?>
     <div id="kt_content_container" class="container-xxl">
-        <!--begin::Row-->
         <div class="row g-5 g-xl-8">
             <?php foreach ($bank_data as $bank) { ?>
-                <div class="col-xl-4">
-                    <!--begin::Statistics Widget 5-->
-                    <a href="#" class="card bg-body-white hoverable card-xl-stretch mb-xl-8">
-                        <!--begin::Body-->
-                        <div class="card-body">
-                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                            <div class="d-flex  position-relative my-1">
-                                <span class="svg-icon svg-icon-primary svg-icon-3x ms-n1">
-                                    <svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" style="margin-bottom:20px;">
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <title>bank_fill</title>
-                                            <g id="" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <g id="Building" transform="translate(-192.000000, -48.000000)">
-                                                    <g id="bank_fill" transform="translate(192.000000, 48.000000)">
-                                                        <path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero"> </path>
-                                                        <path d="M12.6708,2.21744 L21.1708,6.96744 C21.679,7.22153 22,7.74092 22,8.30908 L22,9.75006 C22,10.4404 21.4404,11.0001 20.75,11.0001 L20,11.0001 L20,19.0001 L21,19.0001 C21.5523,19.0001 22,19.4478 22,20.0001 C22,20.5524 21.5523,21.0001 21,21.0001 L3,21.0001 C2.44772,21.0001 2,20.5524 2,20.0001 C2,19.4478 2.44772,19.0001 3,19.0001 L4,19.0001 L4,11.0001 L3.25,11.0001 C2.55964,11.0001 2,10.4404 2,9.75006 L2,8.30908 C2,7.78826667 2.26973757,7.30843368 2.70611413,7.03636428 L11.3292,2.21744 C11.7515,2.0063 12.2485,2.0063 12.6708,2.21744 Z M17,11.0001 L7,11.0001 L7,19.0001 L9,19.0001 L9,13.0001 L11,13.0001 L11,19.0001 L13,19.0001 L13,13.0001 L15,13.0001 L15,19.0001 L17,19.0001 L17,11.0001 Z M12,6.00012 C11.4477,6.00012 11,6.44784 11,7.00012 C11,7.55241 11.4477,8.00012 12,8.00012 C12.5523,8.00012 13,7.55241 13,7.00012 C13,6.44784 12.5523,6.00012 12,6.00012 Z" id="形状" fill="#09244B"> </path>
-                                                    </g>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                </span>
-                                <?php if ($bank['status'] == 0) { ?>
-                                    <div class="d-flex" style="width: 100%; justify-content: end">
-                                        <button title="Reject" type="button"
-                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-4"
-                                            onclick="reject_data(<?= $bank['id'] ?>)">
-                                            <span class="svg-icon svg-icon-danger svg-icon-2hx">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2"
-                                                        rx="1" transform="rotate(-45 7.05025 15.5356)"
-                                                        fill="currentColor" />
-                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1"
-                                                        transform="rotate(45 8.46447 7.05029)" fill="currentColor" />
-                                                </svg>
+                <div class="col-xl-6 mb-5 mb-xl-10">
+                    <div id="kt_sliders_widget_2_slider" class="card card-flush carousel carousel-custom carousel-stretch slide h-xl-100" data-bs-ride="carousel" data-bs-interval="5500">
+                        <div class="card-header pt-5">
+                            <h4 class="card-title d-flex align-items-start flex-column">
+                                <span class="card-label fw-bolder text-gray-800">Added Bank's</span>
+                                <span class="text-gray-400 mt-1 fw-bolder fs-7">The added bank details are provided below.</span>
+                            </h4>
+                            <div class="card-toolbar">
+                                <ol class="p-0 m-0 carousel-indicators carousel-indicators-bullet carousel-indicators-active-success">
+                                    <li data-bs-target="#kt_sliders_widget_2_slider" data-bs-slide-to="0" class="ms-1"></li>
+                                    <li data-bs-target="#kt_sliders_widget_2_slider" data-bs-slide-to="1" class="ms-1 active" aria-current="true"></li>
+                                    <li data-bs-target="#kt_sliders_widget_2_slider" data-bs-slide-to="2" class="ms-1"></li>
+                                </ol>
+                            </div>
+                        </div>
+                        <div class="card-body pt-6">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="d-flex align-items-center mb-9">
+                                        <div class="symbol symbol-70px symbol-circle me-5">
+                                            <span class="symbol-label bg-light-danger">
+                                                <span class="svg-icon svg-icon-3x svg-icon-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path opacity="0.3" d="M7 20.5L2 17.6V11.8L7 8.90002L12 11.8V17.6L7 20.5ZM21 20.8V18.5L19 17.3L17 18.5V20.8L19 22L21 20.8Z" fill="currentColor"></path>
+                                                        <path d="M22 14.1V6L15 2L8 6V14.1L15 18.2L22 14.1Z" fill="currentColor"></path>
+                                                    </svg>
+                                                </span>
                                             </span>
-                                        </button>
-
-                                        <button title="Approve" type="button"
-                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                                            onclick="approve_data(<?= $bank['id'] ?>)">
-                                            <span class="svg-icon svg-icon-primary svg-icon-2hx">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path opacity="0.5"
-                                                        d="M12.8956 13.4982L10.7949 11.2651C10.2697 10.7068 9.38251 10.7068 8.85731 11.2651C8.37559 11.7772 8.37559 12.5757 8.85731 13.0878L12.7499 17.2257C13.1448 17.6455 13.8118 17.6455 14.2066 17.2257L21.1427 9.85252C21.6244 9.34044 21.6244 8.54191 21.1427 8.02984C20.6175 7.47154 19.7303 7.47154 19.2051 8.02984L14.061 13.4982C13.7451 13.834 13.2115 13.834 12.8956 13.4982Z"
-                                                        fill="currentColor" />
-                                                    <path
-                                                        d="M7.89557 13.4982L5.79487 11.2651C5.26967 10.7068 4.38251 10.7068 3.85731 11.2651C3.37559 11.7772 3.37559 12.5757 3.85731 13.0878L7.74989 17.2257C8.14476 17.6455 8.81176 17.6455 9.20663 17.2257L16.1427 9.85252C16.6244 9.34044 16.6244 8.54191 16.1427 8.02984C15.6175 7.47154 14.7303 7.47154 14.2051 8.02984L9.06096 13.4982C8.74506 13.834 8.21146 13.834 7.89557 13.4982Z"
-                                                        fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                        </button>
+                                        </div>
+                                        <div class="m-0">
+                                            <h4 class="fw-bolder text-gray-800 mb-3"><?= isset($bank['bank_name']) ? htmlspecialchars($bank['bank_name']) : 'N/A' ?></h4>
+                                            <div class="d-flex d-grid gap-5">
+                                                <div class="d-flex flex-column flex-shrink-0 me-4">
+                                                    <span class="d-flex align-items-center fs-7 fw-bolder text-gray-400 mb-2">
+                                                        <span class="svg-icon svg-icon-6 svg-icon-gray-600 me-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                                                <path d="M11.9343 12.5657L9.53696 14.963C9.22669 15.2733 9.18488 15.7619 9.43792 16.1204C9.7616 16.5789 10.4211 16.6334 10.8156 16.2342L14.3054 12.7029C14.6903 12.3134 14.6903 11.6866 14.3054 11.2971L10.8156 7.76582C10.4211 7.3666 9.7616 7.42107 9.43792 7.87962C9.18488 8.23809 9.22669 8.72669 9.53696 9.03696L11.9343 11.4343C12.2467 11.7467 12.2467 12.2533 11.9343 12.5657Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>Account No</span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <span class="svg-icon svg-icon-6 svg-icon-gray-600 me-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                                                <path d="M11.9343 12.5657L9.53696 14.963C9.22669 15.2733 9.18488 15.7619 9.43792 16.1204C9.7616 16.5789 10.4211 16.6334 10.8156 16.2342L14.3054 12.7029C14.6903 12.3134 14.6903 11.6866 14.3054 11.2971L10.8156 7.76582C10.4211 7.3666 9.7616 7.42107 9.43792 7.87962C9.18488 8.23809 9.22669 8.72669 9.53696 9.03696L11.9343 11.4343C12.2467 11.7467 12.2467 12.2533 11.9343 12.5657Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>IBan</span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <span class="svg-icon svg-icon-6 svg-icon-gray-600 me-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                                                <path d="M11.9343 12.5657L9.53696 14.963C9.22669 15.2733 9.18488 15.7619 9.43792 16.1204C9.7616 16.5789 10.4211 16.6334 10.8156 16.2342L14.3054 12.7029C14.6903 12.3134 14.6903 11.6866 14.3054 11.2971L10.8156 7.76582C10.4211 7.3666 9.7616 7.42107 9.43792 7.87962C9.18488 8.23809 9.22669 8.72669 9.53696 9.03696L11.9343 11.4343C12.2467 11.7467 12.2467 12.2533 11.9343 12.5657Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>Beneficiary Name</span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <span class="svg-icon svg-icon-6 svg-icon-gray-600 me-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                                                <path d="M11.9343 12.5657L9.53696 14.963C9.22669 15.2733 9.18488 15.7619 9.43792 16.1204C9.7616 16.5789 10.4211 16.6334 10.8156 16.2342L14.3054 12.7029C14.6903 12.3134 14.6903 11.6866 14.3054 11.2971L10.8156 7.76582C10.4211 7.3666 9.7616 7.42107 9.43792 7.87962C9.18488 8.23809 9.22669 8.72669 9.53696 9.03696L11.9343 11.4343C12.2467 11.7467 12.2467 12.2533 11.9343 12.5657Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>Swift Code</span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <span class="svg-icon svg-icon-6 svg-icon-gray-600 me-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                                                <path d="M11.9343 12.5657L9.53696 14.963C9.22669 15.2733 9.18488 15.7619 9.43792 16.1204C9.7616 16.5789 10.4211 16.6334 10.8156 16.2342L14.3054 12.7029C14.6903 12.3134 14.6903 11.6866 14.3054 11.2971L10.8156 7.76582C10.4211 7.3666 9.7616 7.42107 9.43792 7.87962C9.18488 8.23809 9.22669 8.72669 9.53696 9.03696L11.9343 11.4343C12.2467 11.7467 12.2467 12.2533 11.9343 12.5657Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>Branch</span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <span class="svg-icon svg-icon-6 svg-icon-gray-600 me-2">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor"></rect>
+                                                                <path d="M11.9343 12.5657L9.53696 14.963C9.22669 15.2733 9.18488 15.7619 9.43792 16.1204C9.7616 16.5789 10.4211 16.6334 10.8156 16.2342L14.3054 12.7029C14.6903 12.3134 14.6903 11.6866 14.3054 11.2971L10.8156 7.76582C10.4211 7.3666 9.7616 7.42107 9.43792 7.87962C9.18488 8.23809 9.22669 8.72669 9.53696 9.03696L11.9343 11.4343C12.2467 11.7467 12.2467 12.2533 11.9343 12.5657Z" fill="currentColor"></path>
+                                                            </svg>
+                                                        </span>Bank Address</span>
+                                                </div>
+                                                <div class="d-flex flex-column flex-shrink-0">
+                                                    <span class="d-flex align-items-center fs-7 fw-bolder text-gray-400 mb-2">
+                                                        <?= isset($bank['account_no']) ? htmlspecialchars($bank['account_no']) : 'N/A' ?></span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <?= isset($bank['iban']) ? htmlspecialchars($bank['iban']) : 'N/A' ?></span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <?= isset($bank['beneficiary_name']) ? htmlspecialchars($bank['beneficiary_name']) : 'N/A' ?></span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <?= isset($bank['swift']) ? htmlspecialchars($bank['swift']) : 'N/A' ?></span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <?= isset($bank['branch']) ? htmlspecialchars($bank['branch']) : 'N/A' ?></span>
+                                                    <span class="d-flex align-items-center text-gray-400 fw-bolder fs-7 mb-2">
+                                                        <?= isset($bank['bank_addr']) ? htmlspecialchars($bank['bank_addr']) : 'N/A' ?></span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                <?php } else { ?>
-                                    <div class="d-flex" style="width: 100%; justify-content: end"></div>
-                                <?php } ?>
-                            </div>
-
-                            <!--end::Svg Icon-->
-                            <div class="bank_div">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th class="text-gray-400">Beneficiary Name</th>
-                                        <td><?= isset($bank['beneficiary_name']) ? htmlspecialchars($bank['beneficiary_name']) : 'N/A' ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-400">Bank Name</th>
-                                        <td><?= isset($bank['bank_name']) ? htmlspecialchars($bank['bank_name']) : 'N/A' ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-400">Account No</th>
-                                        <td><?= isset($bank['account_no']) ? htmlspecialchars($bank['account_no']) : 'N/A' ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-400">IBAN</th>
-                                        <td><?= isset($bank['iban']) ? htmlspecialchars($bank['iban']) : 'N/A' ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-400">SWIFT code</th>
-                                        <td><?= isset($bank['swift']) ? htmlspecialchars($bank['swift']) : 'N/A' ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-400">Bank Address</th>
-                                        <td><?= isset($bank['bank_addr']) ? htmlspecialchars($bank['bank_addr']) : 'N/A' ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-400">Branch</th>
-                                        <td><?= isset($bank['branch']) ? htmlspecialchars($bank['branch']) : 'N/A' ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-400">Statement</th>
-                                        <td><?php
-                                            if (isset($bank['statement'])) { ?>
-                                                <a href="<?php echo base_url() ?>uploads/<?= htmlspecialchars($bank['statement']) ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                            <?php } else {
-                                                echo 'N/A';
-                                            }
-                                            ?>
+                                    <div class="mb-1 text-end">
+                                        <?php
+                                        if ($bank['status'] == 0) {
+                                            echo '<span class="badge badge-warning">Pending</span>';
+                                        } else if ($bank['status'] == 1) {
+                                            echo '<span class="badge badge-success">Verified</span>';
+                                        } else if ($bank['status'] == 2) {
+                                            echo '<span class="badge badge-danger">Rejected</span>';
+                                        }
+                                        ?>
+                                        <td>
+                                            <?php
+                                            if ($bank['status'] == 0) { ?>
+                                                <a title="Approve" href="javascript:void(0);" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" onclick="approve_bank_data(<?php echo $bank['client_id']; ?>,<?php echo $bank['id']; ?>)">
+                                                    <span class="svg-icon svg-icon-success svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M9.89557 13.4982L7.79487 11.2651C7.26967 10.7068 6.38251 10.7068 5.85731 11.2651C5.37559 11.7772 5.37559 12.5757 5.85731 13.0878L9.74989 17.2257C10.1448 17.6455 10.8118 17.6455 11.2066 17.2257L18.1427 9.85252C18.6244 9.34044 18.6244 8.54191 18.1427 8.02984C17.6175 7.47154 16.7303 7.47154 16.2051 8.02984L11.061 13.4982C10.7451 13.834 10.2115 13.834 9.89557 13.4982Z" fill="currentColor"></path>
+                                                        </svg></span>
+                                                </a>
+                                                <a title="Reject" href="javascript:void(0);" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" onclick="reject_bank_data(<?php echo $bank['client_id']; ?>,<?php echo $bank['id']; ?>)">
+                                                    <span class="svg-icon svg-icon-danger svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor"></rect>
+                                                            <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor"></rect>
+                                                        </svg></span>
+                                                </a>
+                                            <?php } ?>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-400">Status</th>
-                                        <td style="color: <?= $bank['status'] == 1 ? 'green' : 'red' ?>;">
-                                            <?php if ($bank['status'] == 0) {
-                                                echo 'Pending';
-                                            } else if ($bank['status'] == 1) {
-                                                echo 'Verified';
-                                            } else {
-                                                echo 'Rejected';
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>
+                                    </div>
+                                    <!--end::Action-->
+                                </div>
+                                <!--end::Item-->
+                                <!--begin::Item-->
 
-
-                                </table>
+                                <!--end::Item-->
                             </div>
-
-
+                            <!--end::Carousel-->
                         </div>
                         <!--end::Body-->
-                    </a>
-                    <!--end::Statistics Widget 5-->
+                    </div>
+                    <!--end::Slider Widget 2-->
                 </div>
             <?php } ?>
         </div>
@@ -139,9 +143,9 @@
         <!--begin::Row-->
 
         <!--end::Row-->
-    </div>
-    <!--end::Container-->
 
+        <!--end::Post-->
+    </div>
 <?php  } else { ?>
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - 404 Page-->
@@ -158,103 +162,85 @@
         <!--end::Authentication - 404 Page-->
     </div>
 <?php } ?>
-
-
 <script>
-    function reject_data(id) {
-        var client_id = <?php echo $bank['client_id']; ?>;
-        var ops_url = baseurl + 'client/reject_data/';
-        var id = id;
+    function approve_bank_data(client_id, id) {
         Swal.fire({
-            title: 'Reject?',
-            text: 'Are you sure to Reject the Data?.',
-            icon: 'info',
-            confirmButtonText: 'OK'
-        }).then((result) => {
-            if (result.isConfirmed) {
-
+            text: "Are you sure you want to Approve this bank?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Approve it!",
+            cancelButtonText: "No, Cancel",
+        }).then(function(result) {
+            if (result.value) {
                 $.ajax({
-                    type: "POST",
-                    cache: false,
-                    async: false,
-                    url: ops_url,
+                    url: baseurl + 'client/approve-bank-data',
+                    type: 'POST',
                     data: {
-                        "load": 1,
-                        "client_id": client_id,
-                        "id": id,
+                        id: id,
+                        client_id: client_id
                     },
                     success: function(result) {
                         var data = $.parseJSON(result);
-
                         if (data.status == 1) {
-
                             Swal.fire({
-                                title: 'Success',
-                                text: 'Bank data Rejected.',
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    bank_data(client_id);
-                                }
+                                text: "Bank Approved successfully.",
+                                icon: "success",
+                                confirmButtonText: "OK",
+                            }).then(function() {
+                                view_client_bank(client_id);
                             });
-
+                        } else {
+                            Swal.fire({
+                                text: "Failed to reject refund.",
+                                icon: "error",
+                            });
                         }
                     }
                 });
             }
         });
-
     }
 
-    function approve_data(id) {
-        var client_id = <?php echo $bank['client_id']; ?>;
-        var ops_url = baseurl + 'client/approve_data/';
-        var id = id;
+    function reject_bank_data(client_id, id) {
         Swal.fire({
-            title: 'Approve?',
-            text: 'Are you sure to Approve the Data?.',
-            icon: 'info',
-            confirmButtonText: 'OK'
-        }).then((result) => {
-            if (result.isConfirmed) {
-
+            text: "Are you sure you want to Reject this bank?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Reject it!",
+            cancelButtonText: "No, Cancel",
+        }).then(function(result) {
+            if (result.value) {
                 $.ajax({
-                    type: "POST",
-                    cache: false,
-                    async: false,
-                    url: ops_url,
+                    url: baseurl + 'client/reject-bank-data',
+                    type: 'POST',
                     data: {
-                        "load": 1,
-                        "client_id": client_id,
-                        "id": id,
+                        id: id,
+                        client_id: client_id
                     },
                     success: function(result) {
                         var data = $.parseJSON(result);
-
                         if (data.status == 1) {
-
                             Swal.fire({
-                                title: 'Success',
-                                text: 'Bank data is Verified.',
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    bank_data(client_id);
-                                }
+                                text: "Bank Rejected successfully.",
+                                icon: "success",
+                                confirmButtonText: "OK",
+                            }).then(function() {
+                                view_client_bank(client_id);
                             });
-
+                        } else {
+                            Swal.fire({
+                                text: "Failed to reject refund.",
+                                icon: "error",
+                            });
                         }
                     }
                 });
             }
         });
-
     }
 
-    function bank_data(id) {
-        var ops_url = baseurl + 'client/show-bank-details';
+    function view_client_bank(id) {
+        var ops_url = baseurl + 'client/show-bank-details-client';
         $.ajax({
             type: "POST",
             cache: false,

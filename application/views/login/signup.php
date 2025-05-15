@@ -38,8 +38,15 @@
     <!--begin::Root-->
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-in -->
-        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed"
-            style="background-image: url(assets/media/bg/login.png">
+        <div class="d-flex flex-column flex-column-fluid"
+            style="
+         min-height: 100vh;
+         background-image: url('<?php echo base_url(); ?>assets/media/bg/login.png');
+         background-repeat: no-repeat;
+         background-size: cover;
+         background-position: center;
+         background-attachment: fixed;
+     ">
             <!--begin::Content-->
             <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
                 <!--begin::Logo-->
@@ -53,7 +60,7 @@
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
-                        <a href="<?php echo base_url(); ?>../../demo8/dist/index.html" class="mb-12">
+                        <a href="<?php echo base_url(); ?>signup" class="mb-12">
                             <img alt="Logo" src="<?php echo base_url(); ?>assets/media/logos/Logo.png" class="h-40px" />
                         </a>
                         <!--end::Title-->
@@ -85,10 +92,10 @@
 
                     <div class="fv-row mb-10">
                         <label class="form-label fs-6 fw-bolder text-dark">Phone No</label>
-                        <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off"
-                            onPaste="return false" placeholder="Enter Phone No" id="phno" name="phno" value="<?php if (isset($_COOKIE["ecomm_phno"])) {
-                                                                                                                    echo $_COOKIE["green_username"];
-                                                                                                                } ?>">
+                        <input type="text" class="form-control form-control-lg form-control-solid" autocomplete="off" onpaste="return false" placeholder="Enter Phone No" id="phno" name="phno" minlength="6" maxlength="13" pattern="^\d{6,13}$" value="<?php if (isset($_COOKIE['ecomm_phno'])) {
+                                                                                                                                                                                                                                                                echo htmlspecialchars($_COOKIE['green_username']);
+                                                                                                                                                                                                                                                            } ?>">
+
                     </div>
 
 
@@ -195,7 +202,7 @@
             var name = $('#name').val();
             var phno = $('#phno').val();
             var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            var regex = /^[0-9]{12}$/;
+            var regex = /^[0-9]{8}$/;
 
             if (name == '') {
                 $(".actual_submit").show();
@@ -237,7 +244,7 @@
                 });
                 return false;
             }
-            if (phno == '' || !regex.test(phno)) {
+            if (phno == '') {
                 $(".actual_submit").show();
                 $(".loader_submit").hide();
                 Swal.fire({

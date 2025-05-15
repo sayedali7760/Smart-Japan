@@ -103,6 +103,7 @@
                                 <th class="text-strat min-w-75px">Phone</th>
                                 <th class="text-strat min-w-75px">Manager</th>
                                 <th class="text-start min-w-75px">Created</th>
+                                <th class="text-start min-w-75px">Bank Data</th>
                                 <th class="text-start min-w-75px">Verification</th>
                                 <th class="text-start min-w-75px">Status</th>
                                 <th class="text-start min-w-100px">Action</th>
@@ -124,8 +125,9 @@
                                     <td class="text-start pe-0"><?php echo $client->phone; ?></td>
                                     <td class="text-start pe-0"><?php echo $client->manager; ?></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($client->created)); ?>
+                                    <td class="text-start pe-0"><a href="javascript:void(0);" onclick="bank_data('<?php echo $client->id; ?>')"><span class="badge badge-light-info">Bank Data</span></a></td>
                                     <td class="text-start pe-0">
-                                        <?php if ($client->account_verify == 1) { ?>
+                                        <?php if ($client->status == 90) { ?>
                                             <span class="badge badge-light-success">Verified</span>
                                         <?php } else { ?>
                                             <span class="badge badge-light-danger">Not Verified</span>
@@ -227,6 +229,29 @@
                         });
                     }
                 }
+            }
+        });
+    }
+
+    function bank_data(id) {
+        var ops_url = baseurl + 'client/show-bank-details';
+        $.ajax({
+            type: "POST",
+            cache: false,
+            async: false,
+            url: ops_url,
+            data: {
+                "load": 1,
+                "client_id": id,
+            },
+            success: function(result) {
+                console.log(result);
+                var data = $.parseJSON(result);
+                $("#kt_post").html(data.view);
+                $('#kt_post').addClass('in-down');
+                $("html, body").animate({
+                    scrollTop: 0
+                }, "slow");
             }
         });
     }

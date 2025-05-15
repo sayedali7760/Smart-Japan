@@ -103,7 +103,7 @@
                                 <th class="text-strat min-w-75px">Phone</th>
                                 <th class="text-start min-w-75px">Created</th>
                                 <th class="text-start min-w-75px">Verification</th>
-                                <th class="text-start min-w-75px">Bank Data Verification</th>
+                                <th class="text-start min-w-75px">Bank Data</th>
                             </tr>
                             <!--end::Table row-->
                         </thead>
@@ -122,7 +122,7 @@
                                     <td class="text-start pe-0"><?php echo $client->phone; ?></td>
                                     <td class="text-start pe-0"><?php echo date('d/m/Y', strtotime($client->created)); ?>
                                     <td class="text-start pe-0"><a href="javascript:void(0);" onclick="edit_client('<?php echo $client->id; ?>')"><span class="badge badge-light-primary">View Documents</span></a></td>
-                                    <td class="text-start pe-0"><a href="javascript:void(0);" onclick="bank_data('<?php echo $client->id; ?>')"><span class="badge badge-light-success">View Account Details</span></a></td>
+                                    <td class="text-start pe-0"><a href="javascript:void(0);" onclick="bank_data('<?php echo $client->id; ?>')"><span class="badge badge-light-success">Bank Data</span></a></td>
                                 </tr>
 
                             <?php
