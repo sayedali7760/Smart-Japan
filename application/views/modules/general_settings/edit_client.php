@@ -137,7 +137,7 @@
                                 </a>
 
                             </div>
-                            <?php if (isset($document_details)) { ?>
+                            <?php if ($document_upload_status == 1) { ?>
                                 <div id="kt_billing_payment_tab_content" class="card-body tab-content">
                                     <div id="kt_billing_creditcard" class="tab-pane fade show active" role="tabpanel">
                                         <h3 class="mb-5">Uploaded Documents</h3>
@@ -146,29 +146,29 @@
                                             <div class="col-xl-6">
                                                 <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
                                                     <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity Front
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center py-2">
-                                                        <?php if ($document_details['eid_status'] == 0) { ?>
+                                                        <?php if ($id_front == 0) { ?>
                                                             <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-warning">Not Uploaded</h4>
                                                                 </div>
                                                             </div>
-                                                        <?php } else if ($document_details['eid_status'] == 1) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['eid']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                            <a href="javascript:void(0);" onclick="update_doc_status(1,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                            <a href="javascript:void(0);" onclick="update_doc_status(1,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                        <?php } else if ($document_details['eid_status'] == 3) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['eid']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                        <?php } else if ($id_front_status == 'new') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $id_front; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(<?php echo $id_id_front; ?>,5)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(<?php echo $id_id_front; ?>,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        <?php } else if ($id_front_status == 'rejected') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $id_front; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
                                                             <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-danger">Rejected</h4>
                                                                 </div>
                                                             </div>
-                                                        <?php } else if ($document_details['eid_status'] == 2) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['eid']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                        <?php } else if ($id_front_status == 'approved') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $id_front; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
                                                             <div class="alert alert-success d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-success">Verified</h4>
@@ -181,29 +181,29 @@
                                             <div class="col-xl-6">
                                                 <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
                                                     <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Passport
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity Bank
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center py-2">
-                                                        <?php if ($document_details['pass_status'] == 0) { ?>
+                                                        <?php if ($id_back == 0) { ?>
                                                             <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-warning">Not Uploaded</h4>
                                                                 </div>
                                                             </div>
-                                                        <?php } else if ($document_details['pass_status'] == 1) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['passport']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                            <a href="javascript:void(0);" onclick="update_doc_status(2,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                            <a href="javascript:void(0);" onclick="update_doc_status(2,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                        <?php } else if ($document_details['pass_status'] == 3) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['passport']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                        <?php } else if ($id_back_status == 'new') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $id_front; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(<?php echo $id_id_back; ?>,5)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(<?php echo $id_id_back; ?>,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        <?php } else if ($id_back_status == 'rejected') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $id_front; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
                                                             <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-danger">Rejected</h4>
                                                                 </div>
                                                             </div>
-                                                        <?php } else if ($document_details['pass_status'] == 2) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['passport']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                        <?php } else if ($id_back_status = 'approved') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $id_front; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
                                                             <div class="alert alert-success d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-success">Verified</h4>
@@ -216,29 +216,29 @@
                                             <div class="col-xl-6">
                                                 <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
                                                     <div class="d-flex flex-column py-2">
-                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Bank
+                                                        <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Sample Bill
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center py-2">
-                                                        <?php if ($document_details['bank_status'] == 0) { ?>
+                                                        <?php if ($sample_bill == 0) { ?>
                                                             <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-warning">Not Uploaded</h4>
                                                                 </div>
                                                             </div>
-                                                        <?php } else if ($document_details['bank_status'] == 1) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['bank']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                            <a href="javascript:void(0);" onclick="update_doc_status(3,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                            <a href="javascript:void(0);" onclick="update_doc_status(3,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                        <?php } else if ($document_details['bank_status'] == 3) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['bank']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                        <?php } else if ($sample_bill_status == 'new') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $sample_bill; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(<?php echo $id_bill; ?>,5)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(<?php echo $id_bill; ?>,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        <?php } else if ($sample_bill_status == 'rejected') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $sample_bill; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
                                                             <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-danger">Rejected</h4>
                                                                 </div>
                                                             </div>
-                                                        <?php } else if ($document_details['bank_status'] == 2) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['bank']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                        <?php } else if ($sample_bill_status == 'approved') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $sample_bill; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
                                                             <div class="alert alert-success d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-success">Verified</h4>
@@ -255,25 +255,25 @@
                                                         </div>
                                                     </div>
                                                     <div class="d-flex align-items-center py-2">
-                                                        <?php if ($document_details['others_status'] == 0) { ?>
+                                                        <?php if ($other_doc == 0) { ?>
                                                             <div class="alert alert-warning d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-warning">Not Uploaded</h4>
                                                                 </div>
                                                             </div>
-                                                        <?php } else if ($document_details['others_status'] == 1) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['others']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                            <a href="javascript:void(0);" onclick="update_doc_status(4,2)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                                            <a href="javascript:void(0);" onclick="update_doc_status(4,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                                        <?php } else if ($document_details['others_status'] == 3) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['others']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                        <?php } else if ($other_doc_status == 'new') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $other_doc; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(<?php echo $id_other; ?>,5)" class="btn btn-sm btn-success btn-active-light-primary me-3" title="Approve"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            <a href="javascript:void(0);" onclick="update_doc_status(<?php echo $id_other; ?>,3)" class="btn btn-sm btn-danger btn-active-light-primary" title="Reject"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                                        <?php } else if ($other_doc_status == 'rejected') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $other_doc; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
                                                             <div class="alert alert-danger d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-danger">Rejected</h4>
                                                                 </div>
                                                             </div>
-                                                        <?php } else if ($document_details['others_status'] == 2) { ?>
-                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $document_details['others']; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                        <?php } else if ($other_doc_status == 'approved') { ?>
+                                                            <a href="<?php echo base_url() ?>uploads/<?php echo $other_doc; ?>" target="_blank" class="btn btn-sm btn-primary btn-active-light-primary me-3" title="View"><i class="fa fa-download" aria-hidden="true"></i></a>
                                                             <div class="alert alert-success d-flex align-items-center p-5 mb-4">
                                                                 <div class="d-flex flex-column">
                                                                     <h4 class="mb-1 text-success">Verified</h4>
@@ -298,7 +298,7 @@
                                 <div class="col-xl-6">
                                     <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
                                         <div class="d-flex flex-column py-2">
-                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity Front
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center py-2">
@@ -313,7 +313,7 @@
                                 <div class="col-xl-6">
                                     <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
                                         <div class="d-flex flex-column py-2">
-                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Passport
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Identity Back
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center py-2">
@@ -328,7 +328,7 @@
                                 <div class="col-xl-6">
                                     <div class="card card-dashed h-xl-100 flex-row flex-stack flex-wrap p-6">
                                         <div class="d-flex flex-column py-2">
-                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Bank
+                                            <div class="d-flex align-items-center fs-4 fw-bolder mb-5">Sample Bill
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center py-2">
@@ -359,10 +359,10 @@
                         </div>
                     </div>
                 <?php } ?>
-                <?php if ($verify_status == 1) { ?>
+                <?php if ($client_status == 90) { ?>
                     <div class="d-flex justify-content-end">
                         <button type="button" id="actual_submit" onclick="deactivate_account()" class="btn btn-lg btn-danger mb-5 me-2 actual_submit" title="Submit">
-                            De-activate Account
+                            Deactivate Account
                         </button>
                         <button type="button" id="loader_submit" class="btn btn-lg btn-primary mb-5 loader_submit" data-kt-indicator="on" style="display: none;">
                             <span class="indicator-label">Submit</span>

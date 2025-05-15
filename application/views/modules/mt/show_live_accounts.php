@@ -98,9 +98,9 @@
                             <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                                 <th class="min-w-100px">Sl.no</th>
                                 <th class="text-strat min-w-75px">Login</th>
+                                <th class="text-start min-w-75px">Name</th>
                                 <th class="text-start min-w-75px">Group</th>
                                 <th class="min-w-100px">User Id</th>
-                                <th class="text-start min-w-75px">Name</th>
                                 <th class="text-strat min-w-75px">Platform</th>
                                 <th class="text-strat min-w-75px">Server</th>
                                 <th class="text-start min-w-75px">Currency</th>
@@ -118,13 +118,13 @@
                                 <tr>
                                     <td><?php echo $i; ?></td>
                                     <td class="text-start pe-0 login"><?php echo $data->login; ?></td>
+                                    <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_client('<?php echo $data->user_id; ?>')"><?php echo $data->name; ?></a></b></td>
                                     <td class="text-start pe-0">
                                         <a href="javascript:void(0);" style="color: inherit;" onclick='edit_group(this,<?php echo json_encode($data->group); ?>)'>
                                             <?php echo htmlspecialchars($data->group); ?>
                                         </a>
                                     </td>
                                     <td class="user_id"><?php echo $data->user_id; ?></td>
-                                    <td class="text-start pe-0"><b><a href="javascript:void(0);" style="color: inherit;" onclick="edit_client('<?php echo $data->user_id; ?>')"><?php echo $data->name; ?></a></b></td>
                                     <td class="text-start pe-0"><?php echo $data->platform; ?></td>
                                     <td class="text-start pe-0"><?php echo $data->server; ?></td>
                                     <td class="text-start pe-0"><?php echo $data->currency; ?></td>

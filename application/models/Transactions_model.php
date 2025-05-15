@@ -45,7 +45,7 @@ class Transactions_model extends CI_Model
         $this->db->join('clients AS c', 'c.id = t.user_id', 'left');
         $this->db->where('t.type', 'deposit');
         $this->db->where('t.status', 'success');
-        $this->db->where('t.status_finished', 'closed');
+        $this->db->where('t.status_finished', 'approved');
         $this->db->order_by('t.id', "desc");
         $query = $this->db->get()->result();
         return $query;
@@ -66,7 +66,8 @@ class Transactions_model extends CI_Model
         $this->db->from('transactions AS t');
         $this->db->join('clients AS c', 'c.id = t.user_id', 'left');
         $this->db->where('t.type', 'withdraw');
-        $this->db->where('t.status_finished', 'closed');
+        $this->db->where('t.status', 'new');
+        $this->db->where('t.status_finished', 'approved');
         $this->db->order_by('t.id', "desc");
         $query = $this->db->get()->result();
         return $query;
@@ -87,8 +88,8 @@ class Transactions_model extends CI_Model
         $this->db->from('transactions AS t');
         $this->db->join('clients AS c', 'c.id = t.user_id', 'left');
         $this->db->where('t.type', 'deposit');
-        $this->db->where_in('t.status', ['pending', 'success']);
-        $this->db->where_not_in('t.status_finished', ['closed', 'declined']);
+        $this->db->where('t.status', 'pending');
+        $this->db->where('t.status_finished', null);
         $this->db->order_by('t.id', "desc");
         $query = $this->db->get()->result();
         return $query;
@@ -99,8 +100,8 @@ class Transactions_model extends CI_Model
         $this->db->from('transactions AS t');
         $this->db->join('clients AS c', 'c.id = t.user_id', 'left');
         $this->db->where('t.type', 'withdraw');
-        $this->db->where_in('t.status', ['new']);
-        $this->db->where_not_in('t.status_finished', ['closed', 'declined']);
+        $this->db->where('t.status', 'new');
+        $this->db->where('t.status_finished', null);
         $this->db->order_by('t.id', "desc");
         $query = $this->db->get()->result();
         return $query;
@@ -111,7 +112,7 @@ class Transactions_model extends CI_Model
         $this->db->from('transactions AS t');
         $this->db->join('clients AS c', 'c.id = t.user_id', 'left');
         //$this->db->where('t.type', 'withdraw');
-        //$this->db->where_in('t.status', ['new']);
+        $this->db->where('t.status', 'success');
         $this->db->where('t.status_finished', 'declined');
         $this->db->order_by('t.id', "desc");
         $query = $this->db->get()->result();

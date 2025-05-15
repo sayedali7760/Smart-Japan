@@ -29,10 +29,11 @@ class Client_model extends CI_Model
 
     public function get_details()
     {
-        $this->db->select('c.*, d.account_verify,u.fname as manager');
+        $this->db->select('c.*,u.fname as manager');
         $this->db->from('clients AS c');
-        $this->db->join('documents AS d', 'd.client_id = c.id', 'left');
+        //$this->db->join('documents AS d', 'd.client_id = c.id', 'left');
         $this->db->join('user_details AS u', 'c.manager = u.id', 'left');
+        $this->db->where('c.status', 90);
         $this->db->order_by('c.id', "desc");
 
         $query = $this->db->get()->result();
@@ -73,8 +74,8 @@ class Client_model extends CI_Model
     public function get_client_document_details($client_id)
     {
         $this->db->from('documents');
-        $this->db->where('client_id', $client_id);
-        $query = $this->db->get()->row_array();
+        $this->db->where('user_id', $client_id);
+        $query = $this->db->get()->result();
         return $query;
     }
 }

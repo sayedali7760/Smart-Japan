@@ -115,7 +115,7 @@
                                 <div class="row g-3">
                                     <?php if ($count_qry > 0) { ?>
 
-                                        <?php if ($documents_data['account_verify'] == 0) { ?>
+                                        <?php if ($user_data['status'] != 90) { ?>
                                             <div class="alert alert-primary d-flex align-items-center p-5 mb-10">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                                 <span class="svg-icon svg-icon-2hx svg-icon-primary me-4">
@@ -131,13 +131,13 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <?php if ($documents_data['eid_status'] == 0 || $documents_data['eid_status'] == 3) { ?>
-                                                    <label class="required form-label">ID</label>
+                                                <?php if ($id_front == 0) { ?>
+                                                    <label class="required form-label">Identity Front</label>
                                                     <input type="hidden" name="client_id" id="client_id" value="<?php echo $user_data['id']; ?>">
                                                     <input type="file" class="form-control files" name="files_id[]" id="files_id">
                                                     <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
-                                                <?php } else if ($documents_data['eid_status'] == 1) { ?>
-                                                    <label class="required form-label">ID</label>
+                                                <?php } else if ($id_front_status == 'new') { ?>
+                                                    <label class="required form-label">Identity Front</label>
                                                     <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                                         <span class="svg-icon svg-icon-2hx svg-icon-danger me-4">
@@ -151,8 +151,8 @@
                                                             <h4 class="mb-1 text-danger">Pending</h4>
                                                         </div>
                                                     </div>
-                                                <?php } else if ($documents_data['eid_status'] == 2) { ?>
-                                                    <label class="required form-label">ID</label>
+                                                <?php } else if ($id_front_status == 'approved') { ?>
+                                                    <label class="required form-label">Identity Front</label>
                                                     <div class="alert alert-success d-flex align-items-center p-5 mb-10">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                                         <span class="svg-icon svg-icon-2hx svg-icon-success me-4">
@@ -172,12 +172,12 @@
                                             </div>
 
                                             <div class="col-md-4">
-                                                <?php if ($documents_data['pass_status'] == 0 || $documents_data['pass_status'] == 3) { ?>
-                                                    <label class="required form-label">Passport</label>
+                                                <?php if ($id_back == 0) { ?>
+                                                    <label class="required form-label">Identity Back</label>
                                                     <input type="file" class="form-control files" name="files_pass[]" id="files_pass">
                                                     <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
-                                                <?php } else if ($documents_data['pass_status'] == 1) { ?>
-                                                    <label class="required form-label">Passport</label>
+                                                <?php } else if ($id_back_status == 'new') { ?>
+                                                    <label class="required form-label">Identity Back</label>
                                                     <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                                         <span class="svg-icon svg-icon-2hx svg-icon-danger me-4">
@@ -191,8 +191,8 @@
                                                             <h4 class="mb-1 text-danger">Pending</h4>
                                                         </div>
                                                     </div>
-                                                <?php } else if ($documents_data['pass_status'] == 2) { ?>
-                                                    <label class="required form-label">Passport</label>
+                                                <?php } else if ($id_back_status == 'approved') { ?>
+                                                    <label class="required form-label">Identity Back</label>
                                                     <div class="alert alert-success d-flex align-items-center p-5 mb-10">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                                         <span class="svg-icon svg-icon-2hx svg-icon-success me-4">
@@ -210,12 +210,12 @@
 
                                             </div>
                                             <div class="col-md-4">
-                                                <?php if ($documents_data['bank_status'] == 0 || $documents_data['bank_status'] == 3) { ?>
-                                                    <label class="required form-label">Bank Statement</label>
+                                                <?php if ($sample_bill == 0) { ?>
+                                                    <label class="required form-label">Sample Bill</label>
                                                     <input type="file" class="form-control files" name="files_bank[]" id="files_bank">
                                                     <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
-                                                <?php } else if ($documents_data['bank_status'] == 1) { ?>
-                                                    <label class="required form-label">Bank Statement</label>
+                                                <?php } else if ($sample_bill_status == 'new') { ?>
+                                                    <label class="required form-label">Sample Bill</label>
                                                     <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                                         <span class="svg-icon svg-icon-2hx svg-icon-danger me-4">
@@ -229,8 +229,8 @@
                                                             <h4 class="mb-1 text-danger">Pending</h4>
                                                         </div>
                                                     </div>
-                                                <?php } else if ($documents_data['bank_status'] == 2) { ?>
-                                                    <label class="required form-label">Bank Statement</label>
+                                                <?php } else if ($sample_bill_status == 'approved') { ?>
+                                                    <label class="required form-label">Sample Bill</label>
                                                     <div class="alert alert-success d-flex align-items-center p-5 mb-10">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                                         <span class="svg-icon svg-icon-2hx svg-icon-success me-4">
@@ -248,11 +248,11 @@
 
                                             </div>
                                             <div class="col-md-4">
-                                                <?php if ($documents_data['others_status'] == 0 || $documents_data['others_status'] == 3) { ?>
+                                                <?php if ($other_doc == 0) { ?>
                                                     <label class="required form-label">Other doc.</label>
                                                     <input type="file" class="form-control files" name="files_other[]" id="files_other">
                                                     <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
-                                                <?php } else if ($documents_data['others_status'] == 1) { ?>
+                                                <?php } else if ($other_doc_status == 'new') { ?>
                                                     <label class="required form-label">Other doc.</label>
                                                     <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
@@ -267,7 +267,7 @@
                                                             <h4 class="mb-1 text-danger">Pending</h4>
                                                         </div>
                                                     </div>
-                                                <?php } else if ($documents_data['others_status'] == 2) { ?>
+                                                <?php } else if ($other_doc_status == 'approved') { ?>
                                                     <label class="required form-label">Other doc.</label>
                                                     <div class="alert alert-success d-flex align-items-center p-5 mb-10">
                                                         <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
@@ -317,17 +317,17 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <label class=" form-label">ID</label>
+                                            <label class=" form-label">Identity Front</label>
                                             <input type="file" class="form-control files" name="files_id[]" id="files_id">
                                             <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                         </div>
                                         <div class="col-md-4">
-                                            <label class=" form-label">Passport</label>
+                                            <label class=" form-label">Identity Back</label>
                                             <input type="file" class="form-control files" name="files_pass[]" id="files_pass">
                                             <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                         </div>
                                         <div class="col-md-4">
-                                            <label class=" form-label">Bank Statement</label>
+                                            <label class=" form-label">Sample Bill</label>
                                             <input type="file" class="form-control files" name="files_bank[]" id="files_bank">
                                             <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                         </div>
@@ -337,22 +337,8 @@
                                             <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                         </div>
                                     <?php } ?>
-
-                                    <div class="col-md-8">
-                                        <?php if (isset($documents_data)) { ?>
-                                            <?php if ($documents_data['account_verify'] == 0) { ?>
-                                                <label class="form-label">&nbsp;</label>
-                                                <div class="d-flex justify-content-end">
-                                                    <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
-                                                        onclick="upload_doc()">Upload</a>
-                                                    <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
-                                                        <span class="indicator-label">Submit</span>
-                                                        <span class="indicator-progress">Please wait...
-                                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                    </a>
-                                                </div>
-                                            <?php } ?>
-                                        <?php } else { ?>
+                                    <?php if ($user_data['status'] != 90) { ?>
+                                        <div class="col-md-8">
                                             <label class="form-label">&nbsp;</label>
                                             <div class="d-flex justify-content-end">
                                                 <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
@@ -363,8 +349,9 @@
                                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                 </a>
                                             </div>
-                                        <?php } ?>
-                                    </div>
+
+                                        </div>
+                                    <?php } ?>
                                 </div>
                                 </form>
                             </div>
