@@ -152,6 +152,9 @@ $route['transaction/process-deposit'] = 'Transaction/process_deposit';
 $route['transaction/reject-withdraw'] = 'Transaction/reject_withdraw';
 $route['transaction/process-withdraw'] = 'Transaction/process_withdraw';
 
+$route['transaction/manual-deposit'] = 'Transaction/manual_deposit';
+$route['transaction/manual-save'] = 'Transaction/manual_save';
+
 
 
 // API
