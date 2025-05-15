@@ -46,8 +46,9 @@ class Transaction extends CI_Controller
     public function check_wallet_address()
     {
         $client_id = $this->session->userdata('id');
-        if ($this->TModel->check_wallet_address($client_id)) {
-            echo json_encode(array('status' => 1));
+        $wallet_address = $this->TModel->check_wallet_address($client_id);
+        if (!empty($wallet_address)) {
+            echo json_encode(array('status' => 1, 'wallet_address' => $wallet_address['wallet_address']));
             return;
         } else {
             echo json_encode(array('status' => 0));
