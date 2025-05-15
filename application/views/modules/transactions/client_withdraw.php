@@ -111,9 +111,22 @@
                                         <div class="fv-row w-100 flex-md-root">
                                         </div>
                                     </div>
+                                    <div class="gap-5 trc_wallet_address" style="display: none;">
+                                        <div class="alert alert-success d-flex align-items-center p-5 mb-10 trc-wallet-div">
+                                            <span class="svg-icon svg-icon-2hx svg-icon-success me-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path opacity="0.3" d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z" fill="currentColor"></path>
+                                                    <path d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z" fill="currentColor"></path>
+                                                </svg>
+                                            </span>
+                                            <div class="d-flex flex-column">
+                                                <h4 class="mb-1 text-success">Verified Wallet Address(TRC-20 ) : <span id="wallet_id_span"></span></h4>
+                                                <span>We've confirmed your wallet address! All withdrawal amounts will be sent directly to this address. If you need to update it, please do so before requesting a withdrawal.</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="gap-5 wallet_div" style="display: none;">
                                         <div class="alert alert-primary d-flex align-items-center p-5 mb-10">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
                                             <span class="svg-icon svg-icon-2hx svg-icon-primary me-4">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                     <path opacity="0.3" d="M3.20001 5.91897L16.9 3.01895C17.4 2.91895 18 3.219 18.1 3.819L19.2 9.01895L3.20001 5.91897Z" fill="currentColor" />
@@ -121,7 +134,6 @@
                                                     <path d="M13 13.9189C13 12.2189 14.3 10.9189 16 10.9189H21V7.91895C21 6.81895 20.1 5.91895 19 5.91895H3C2.4 5.91895 2 6.31895 2 6.91895V20.9189C2 21.5189 2.4 21.9189 3 21.9189H19C20.1 21.9189 21 21.0189 21 19.9189V16.9189H16C14.3 16.9189 13 15.6189 13 13.9189Z" fill="currentColor" />
                                                 </svg>
                                             </span>
-                                            <!--end::Svg Icon-->
                                             <div class="d-flex flex-column">
                                                 <h4 class="mb-1 text-primary">Account Details (<span id="account_span"></span>)</h4>
                                                 <table>
@@ -232,6 +244,7 @@
         var method = $('#method').val();
         if (method == 3) {
             $('#bank_transfer_div').show();
+            $('.trc_wallet_address').hide();
         } else if (method == 1) {
             $('#bank_transfer_div').hide();
             var ops_url = baseurl + 'transaction/check-wallet-address';
@@ -251,14 +264,26 @@
                             icon: 'info',
                             title: 'Warning',
                             text: 'To complete your withdrawal, please ensure that your TRC wallet address is added and verified in your profile. This step is required to securely process your transaction and prevent any delays.',
+                            showCancelButton: true,
                             confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'OK'
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Verify',
+                            cancelButtonText: 'Cancel'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "<?php echo base_url(); ?>client/my-data";
+                            }
                         });
+                    }
+                    if (data.status == 1) {
+                        $('.trc_wallet_address').show();
+                        $('#wallet_id_span').html(data.wallet_address);
                     }
                 },
             });
         } else {
             $('#bank_transfer_div').hide();
+            $('.trc_wallet_address').hide();
         }
     }
 

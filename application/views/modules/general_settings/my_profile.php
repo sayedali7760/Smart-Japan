@@ -337,20 +337,21 @@
                                             <p style="font-size: 11px;">(file format-pdf, jpg, jpeg, png, doc, docx)</p>
                                         </div>
                                     <?php } ?>
+                                    <?php if ($user_data['status'] != 90) { ?>
+                                        <div class="col-md-8">
+                                            <label class="form-label">&nbsp;</label>
+                                            <div class="d-flex justify-content-end">
+                                                <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
+                                                    onclick="upload_doc()">Upload</a>
+                                                <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
+                                                    <span class="indicator-label">Submit</span>
+                                                    <span class="indicator-progress">Please wait...
+                                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                                </a>
+                                            </div>
 
-                                    <div class="col-md-8">
-                                        <label class="form-label">&nbsp;</label>
-                                        <div class="d-flex justify-content-end">
-                                            <a id="actual_submit" href="javascript:void(0);" class="btn btn-primary submit_butt" title="Save Changes"
-                                                onclick="upload_doc()">Upload</a>
-                                            <a id="loader_submit" style="display:none;" href="javascript:void(0);" class="btn btn-primary" data-kt-indicator="on">
-                                                <span class="indicator-label">Submit</span>
-                                                <span class="indicator-progress">Please wait...
-                                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                            </a>
                                         </div>
-
-                                    </div>
+                                    <?php } ?>
                                 </div>
                                 </form>
                             </div>
