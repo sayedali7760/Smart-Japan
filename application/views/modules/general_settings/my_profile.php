@@ -72,6 +72,16 @@
                             </div>
 
                             <div class="card-body pt-0">
+                                <div class="d-flex flex-wrap gap-5">
+                                    <div class="fv-row w-100 flex-md-root">
+                                        <label class="required form-label">Date of Birth</label>
+                                        <input type="hidden" name="client_id" id="client_id" value="<?php echo $user_data['id']; ?>">
+                                        <input type="text" id="dob" name="dob"
+                                            class="mb-5 form-control make-star" placeholder="Select your DOB" value="<?= ($user_data['dob']) ? $user_data['dob'] : '' ?>" autocomplete="off">
+                                    </div>
+                                    <div class="fv-row w-100 flex-md-root"></div>
+                                    <div class="fv-row w-100 flex-md-root"></div>
+                                </div>
 
                                 <div class="d-flex flex-wrap gap-5">
 
@@ -372,6 +382,68 @@
         });
     });
     KTImageInput.init();
+</script>
+<script>
+    $(function() {
+        var ops_url = baseurl + 'client-crm/update-dob';
+        var client_id = $('#client_id').val();
+        var dob = $('#dob').val();
+        $('#dob').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+            maxDate: moment(), // Optional: prevent future dates
+            minYear: 1900,
+            maxYear: parseInt(moment().format('YYYY'), 10)
+        });
+
+        $('#dob').on('apply.daterangepicker', function(ev, picker) {
+            var selectedDate = picker.startDate.format('YYYY-MM-DD');
+
+            $.ajax({
+                url: ops_url,
+                type: 'POST',
+                data: {
+                    dob: selectedDate,
+                    client_id: client_id
+                },
+                success: function(result) {
+                    $("#loader").hide();
+                    var data = $.parseJSON(result);
+                    if (data.status == 1) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'DOB updated.'
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Failed',
+                            text: 'Failed to update!'
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $("#loader").hide();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred while processing your request.'
+                    });
+                }
+            });
+        });
+        $('#dob').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+
+    });
 </script>
 <script>
     function update_thumbnail() {

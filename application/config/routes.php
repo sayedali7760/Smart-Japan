@@ -175,6 +175,7 @@ $route['mt/group_update'] = 'settings/Mt_Accounts/group_update';
 $route['mt/group_change'] = 'settings/Mt_Accounts/group_change';
 $route['login/forgot-password'] = 'Login/forgot_pwd';
 $route['login/reset-password'] = 'Login/reset_pwd';
+$route['client-crm/update-dob'] = 'settings/Client_crm/update_dob';
 
 
 $route['default_controller'] = 'Login';
