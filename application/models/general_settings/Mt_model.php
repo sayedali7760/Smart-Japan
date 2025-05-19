@@ -161,4 +161,14 @@ class Mt_model extends CI_Model
         $query = $this->db->get()->result();
         return $query;
     }
+
+    public function view_mt_accounts()
+    {
+        $this->db->select('a.*, c.name');
+        $this->db->from('accounts AS a');
+        $this->db->join('clients AS c', 'c.id = a.user_id', 'left');
+        $this->db->where('a.server', 'Live');
+        $query = $this->db->get()->result();
+        return $query;
+    }
 }

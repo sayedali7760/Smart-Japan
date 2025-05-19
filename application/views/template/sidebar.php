@@ -156,6 +156,17 @@
                                 <span class="menu-title">Rejected Transactions</span>
                             </a>
                         </div>
+                        <div class="menu-item">
+                            <a class="menu-link <?php if ($subtitle == 'Manual Deposit') {
+                                                    echo "active";
+                                                } ?>"
+                                href="<?php echo base_url(); ?>transaction/manual-deposit">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Manual Deposit</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 

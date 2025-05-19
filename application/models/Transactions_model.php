@@ -161,4 +161,12 @@ class Transactions_model extends CI_Model
         $query = $this->db->get()->row_array();
         return $query;
     }
+    public function get_client($login)
+    {
+        $this->db->select('a.user_id');
+        $this->db->from('accounts AS a');
+        $this->db->where('a.login', $login);
+        $query = $this->db->get()->row();
+        return $query ? (int) $query->user_id : null;
+    }
 }

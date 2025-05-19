@@ -152,6 +152,9 @@ $route['transaction/process-deposit'] = 'Transaction/process_deposit';
 $route['transaction/reject-withdraw'] = 'Transaction/reject_withdraw';
 $route['transaction/process-withdraw'] = 'Transaction/process_withdraw';
 
+$route['transaction/manual-deposit'] = 'Transaction/manual_deposit';
+$route['transaction/manual-save'] = 'Transaction/manual_save';
+
 
 
 // API
@@ -172,6 +175,7 @@ $route['mt/group_update'] = 'settings/Mt_Accounts/group_update';
 $route['mt/group_change'] = 'settings/Mt_Accounts/group_change';
 $route['login/forgot-password'] = 'Login/forgot_pwd';
 $route['login/reset-password'] = 'Login/reset_pwd';
+$route['client-crm/update-dob'] = 'settings/Client_crm/update_dob';
 
 
 $route['default_controller'] = 'Login';

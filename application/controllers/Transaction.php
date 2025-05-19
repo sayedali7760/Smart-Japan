@@ -476,4 +476,61 @@ class Transaction extends CI_Controller
             return;
         }
     }
+
+    public function manual_deposit()
+    {
+        if ($this->session->userdata['template_type'] != 1) {
+            redirect('error');
+        }
+        $data['title'] = 'Transactions';
+        $data['subtitle'] = 'Manual Deposit';
+        $data['template'] = 'modules/transactions/manual_deposit';
+        $data['account_details'] = $this->Mt_model->view_mt_accounts();
+        $this->load->view('template/dashboard_template', $data);
+    }
+    public function manual_save()
+    {
+        $account = $this->input->post('account');
+        $method = $this->input->post('method');
+        $currency = $this->input->post('currency');
+        $amount = $this->input->post('amount');
+        $client_id = $this->TModel->get_client($account);
+        // Nexus Pay
+        if ($method == 1) {
+
+            $data_array = array(
+                'user_id' => $client_id,
+                'type' =>  'deposit',
+                'method' => 'nexus',
+                'account_id' => $account,
+                'currency' => 'USD',
+                'amount' => $amount,
+                'status' => 'pending',
+                'status_finished' => 'approved',
+                'comment' => 'Deposit [nexus]',
+                'wallet_address' => '',
+                'nexus_status' => '',
+            );
+
+            if ($this->TModel->insert_transaction($data_array)) {
+                require_once(APPPATH . 'MT/mt5_api/mt5_api.php');
+                $instance = new MTWebAPI();
+
+                $response = $instance->Connect(LIVE_IP, LIVE_PORT, LIVE_TIMEOUT, LIVE_LOGIN, LIVE_PASSWORD);
+                if ($response !== MTRetCode::MT_RET_OK) {
+                    echo json_encode(array('status' => 2));
+                    return;
+                } else {
+                    $mtAmount = $amount;
+                    $login = $account;
+                    $result = $instance->TradeBalance($login, MTEnDealAction::DEAL_BALANCE,  $mtAmount, 'Nexus', $ticket);
+                    echo json_encode(array('status' => 1));
+                    return;
+                }
+            } else {
+                echo json_encode(array('status' => 0));
+                return;
+            }
+        }
+    }
 }
