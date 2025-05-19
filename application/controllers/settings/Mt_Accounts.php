@@ -387,7 +387,7 @@ class Mt_Accounts extends CI_Controller
     public function send_mail()
     {
 
-        $mailto = 'seyad@smartfx.com';
+        $mailto = MANAGER_MAIL;
         $subject = 'MT5 Demo Accont Details';
         $data_user_array['name'] = 'Seyad Ali';
         $mailcontent =  $this->load->view('mail_templates/authentication_mt5_email', $data_user_array, true);
