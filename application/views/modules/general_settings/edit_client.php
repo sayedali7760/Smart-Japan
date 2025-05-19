@@ -68,15 +68,26 @@
                                     <input type="text" class="form-control mb-5" id="email" name="email"
                                         placeholder="Email" maxlength="50" value="<?php echo $client_data['email']; ?>">
                                 </div>
+
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="required form-label">Date of Birth</label>
+
+                                    <input type="text" id="dob" name="dob"
+                                        class="mb-5 form-control make-star" placeholder="Select your DOB" value="<?= ($client_data['dob']) ? $client_data['dob'] : '' ?>" autocomplete="off">
+                                </div>
+                                <!-- <div class="fv-row w-100 flex-md-root"></div> -->
+                                <!-- <div class="fv-row w-100 flex-md-root"></div> -->
+
+
+
+                            </div>
+                            <div class="d-flex flex-wrap gap-5">
+
                                 <div class="fv-row w-100 flex-md-root">
                                     <label class="required form-label">Password</label>
                                     <input type="text" id="password" maxlength="15" name="password"
                                         class="mb-5 form-control make-star" id="" placeholder="Password">
                                 </div>
-
-                            </div>
-                            <div class="d-flex flex-wrap gap-5">
-
 
                                 <div class="fv-row w-100 flex-md-root">
                                     <label class="required form-label">Confirm Password</label>
@@ -84,6 +95,17 @@
                                         class="form-control make-star mb-5"
                                         placeholder="Confirm Password">
                                 </div>
+
+                                <div class="fv-row w-100 flex-md-root">
+                                    <label class="form-label">Phone No</label>
+                                    <input type="text" id="phone" name="phone"
+                                        class="form-control numeric mb-5"
+                                        placeholder="Phone No" maxlength="12" value="<?php echo $client_data['phone']; ?>">
+                                </div>
+
+
+                            </div>
+                            <div class="d-flex flex-wrap gap-5">
                                 <div class="fv-row w-100 flex-md-root">
                                     <label class="form-label">Country</label>
                                     <select class="form-select" data-placeholder="Select an option" id="kt_ecommerce_edit_order_billing_country" name="country">
@@ -97,16 +119,6 @@
                                     </select>
                                 </div>
                                 <div class="fv-row w-100 flex-md-root">
-                                    <label class="form-label">Phone No</label>
-                                    <input type="text" id="phone" name="phone"
-                                        class="form-control numeric mb-5"
-                                        placeholder="Phone No" maxlength="12" value="<?php echo $client_data['phone']; ?>">
-                                </div>
-
-
-                            </div>
-                            <div class="d-flex flex-wrap gap-5">
-                                <div class="fv-row w-100 flex-md-root">
                                     <label class="form-label">Manager</label>
                                     <select class="form-select" data-placeholder="Select an option" id="manager" name="manager">
                                         <?php foreach ($staff_details as $staff) { ?>
@@ -117,9 +129,9 @@
                                 <div class="fv-row w-100 flex-md-root">
 
                                 </div>
-                                <div class="fv-row w-100 flex-md-root">
+                                <!-- <div class="fv-row w-100 flex-md-root">
 
-                                </div>
+                                </div> -->
 
 
                             </div>
@@ -406,6 +418,28 @@
     KTImageInput.init();
 </script>
 <script>
+    $(function() {
+        $('#dob').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+            maxDate: moment(), // Optional: prevent future dates
+            minYear: 1900,
+            maxYear: parseInt(moment().format('YYYY'), 10)
+        });
+
+        $('#dob').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY-MM-DD'));
+        });
+        $('#dob').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+    })
+</script>
+<script>
     function update_doc_status(doc_id, status) {
         var client_id = $('#client_id').val();
         var ops_url = baseurl + 'client-crm/update-doc-status';
@@ -547,6 +581,7 @@
         var con_password = $('#con_password').val();
         var email = $('#email').val();
         var phone = $('#phone').val();
+        var dob = $('#dob').val();
         var manager = $('#manager').val();
         var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -555,6 +590,16 @@
                 icon: 'info',
                 title: '',
                 text: 'Name is required.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+        if (dob == "") {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'DOB is required.'
             });
             $("#actual_submit").show();
             $("#loader_submit").hide();

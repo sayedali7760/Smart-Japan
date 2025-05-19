@@ -87,13 +87,23 @@
                                                 placeholder="Email" maxlength="50">
                                         </div>
 
+
+                                        <div class="fv-row w-100 flex-md-root">
+                                            <label class="required form-label">Date of Birth</label>
+                                            <input type="text" id="dob" name="dob"
+                                                class="mb-5 form-control make-star" placeholder="Select your DOB" autocomplete="off">
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-5">
+
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Password</label>
                                             <input type="text" id="password" maxlength="15" name="password"
                                                 class="mb-5 form-control make-star" id="" placeholder="Password">
                                         </div>
-                                    </div>
-                                    <div class="d-flex flex-wrap gap-5">
 
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="required form-label">Confirm Password</label>
@@ -112,6 +122,9 @@
                                             </select>
                                         </div>
 
+                                    </div>
+                                    <div class="d-flex flex-wrap gap-5">
+
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Phone No</label>
                                             <input type="text" id="phone" name="phone"
@@ -119,8 +132,6 @@
                                                 placeholder="Phone No" maxlength="12">
                                         </div>
 
-                                    </div>
-                                    <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
                                             <label class="form-label">Manager</label>
                                             <select class="form-select mb-5" data-control="select2" data-placeholder="Select an option" id="manager" name="manager">
@@ -132,8 +143,7 @@
                                         </div>
                                         <div class="fv-row w-100 flex-md-root">
                                         </div>
-                                        <div class="fv-row w-100 flex-md-root">
-                                        </div>
+
                                     </div>
                                     <div class="d-flex flex-wrap gap-5">
                                         <div class="fv-row w-100 flex-md-root">
@@ -170,6 +180,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(function() {
+        $('#dob').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+            maxDate: moment(), // Optional: prevent future dates
+            minYear: 1900,
+            maxYear: parseInt(moment().format('YYYY'), 10)
+        });
+
+        $('#dob').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('YYYY-MM-DD'));
+        });
+        $('#dob').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+    })
+</script>
+
 <script>
     function submit_data() {
         $("#actual_submit").hide();
@@ -181,6 +215,7 @@
         var phone = $('#phone').val();
         var confirm_password = $('#con_password').val();
         var manager = $('#manager').val();
+        var dob = $('#dob').val();
         var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (name == "") {
@@ -208,6 +243,16 @@
                 icon: 'info',
                 title: '',
                 text: 'Email is required.'
+            });
+            $("#actual_submit").show();
+            $("#loader_submit").hide();
+            return false;
+        }
+        if (dob == "") {
+            Swal.fire({
+                icon: 'info',
+                title: '',
+                text: 'Date of birth is required.'
             });
             $("#actual_submit").show();
             $("#loader_submit").hide();

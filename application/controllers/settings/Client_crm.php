@@ -343,6 +343,20 @@ class Client_crm extends CI_Controller
     }
     // end
 
+    public function update_dob()
+    {
+        $client_id = $this->input->post('client_id');
+        $dob = $this->input->post('dob');
+        if ($this->CModel->update_dob($client_id, $dob)) {
+            echo json_encode(array('status' => 1));
+            return;
+        } else {
+            echo json_encode(array('status' => 0));
+            return;
+        }
+    }
+
+
     public function fileUpload($uploadPath, $uploadfile = '')
     {
         $uploadData = array(); // Store uploaded file names

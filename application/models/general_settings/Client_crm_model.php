@@ -131,4 +131,10 @@ class Client_crm_model extends CI_Model
         $this->db->update('bank_data', ['status' => '1'], ['client_id' => $client_id, 'id' => $id]);
         return true;
     }
+
+    public function update_dob($id, $dob)
+    {
+        $this->db->update('clients', ['dob' => $dob], ['id' => $id]);
+        return true;
+    }
 }
