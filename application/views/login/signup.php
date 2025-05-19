@@ -98,6 +98,12 @@
 
                     </div>
 
+                    <div class="fv-row mb-10">
+                        <label class="form-label fs-6 fw-bolder text-dark">Date of Birth</label>
+                        <input type="text" id="dob" name="dob"
+                            class="form-control form-control-lg form-control-solid" placeholder="Select your DOB" autocomplete="off">
+                    </div>
+
 
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
@@ -191,6 +197,31 @@
     <script src="<?php echo base_url(); ?>assets/js/custom/authentication/sign-in/general.js"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
+
+
+    <script>
+        $(function() {
+            $('#dob').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                autoUpdateInput: false,
+                locale: {
+                    format: 'YYYY-MM-DD'
+                },
+                maxDate: moment(), // Optional: prevent future dates
+                minYear: 1900,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            });
+
+            $('#dob').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD'));
+            });
+            $('#dob').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
+        })
+    </script>
+
     <script type="text/javascript">
         function submit() {
             $(".actual_submit").hide();
@@ -201,6 +232,7 @@
             var password = $('#password').val();
             var name = $('#name').val();
             var phno = $('#phno').val();
+            var dob = $('#dob').val();
             var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             var regex = /^[0-9]{8}$/;
 
@@ -254,6 +286,16 @@
                 });
                 return false;
             }
+            if (dob == '') {
+                $(".actual_submit").show();
+                $(".loader_submit").hide();
+                Swal.fire({
+                    title: 'Login failed',
+                    text: 'Select your Date of Birth.',
+                    icon: 'error'
+                });
+                return false;
+            }
 
 
             $.ajax({
@@ -266,6 +308,7 @@
                     "password": password,
                     "name": name,
                     "phno": phno,
+                    "dob": dob,
                 },
                 success: function(result) {
                     var data = $.parseJSON(result);

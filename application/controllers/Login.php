@@ -264,6 +264,7 @@ class Login extends CI_Controller
         $password = md5($this->input->post('password'));
         $pwd = $this->input->post('password');
         $phno = $this->input->post('phno');
+        $dob = $this->input->post('dob');
 
         $uuid_data = random_bytes(16);
         $uuid_data[6] = chr(ord($uuid_data[6]) & 0x0f | 0x40);
@@ -274,7 +275,7 @@ class Login extends CI_Controller
             echo json_encode(array('status' => 2));
             return;
         } else {
-            $user_data = array('uid' => $uuid, 'name' => $name, 'email' => $email, 'file' => 'abc.jpg', 'brand' =>  'smartfxcfd.com', 'password' => $password, 'phone' => $phno);
+            $user_data = array('uid' => $uuid, 'name' => $name, 'email' => $email, 'dob' => $dob, 'file' => 'abc.jpg', 'brand' =>  'smartfxcfd.com', 'password' => $password, 'phone' => $phno);
             if ($this->CModel->add_client($user_data)) {
                 $mailto = $email;
                 $subject = 'Account Created Successfully';
