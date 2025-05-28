@@ -47,6 +47,7 @@
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
+
     <style>
         @keyframes fadeInUp {
             0% {
@@ -63,11 +64,70 @@
         .card {
             animation: fadeInUp 0.8s ease-out forwards;
         }
+
+
+        /* new */
+
+        #custom_translate_wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            padding: 5px 10px;
+            z-index: 9999;
+        }
+
+        /* Hide unwanted Google UI elements but keep the dropdown visible */
+        .goog-logo-link,
+        #goog-gt-tt,
+        iframe.goog-te-banner-frame,
+        .goog-te-balloon-frame,
+        .VIpgJd-ZVi9od-ORHb-OEVmcd {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            border: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Allow dropdown to be visible */
+        .goog-te-gadget {
+            font-family: inherit !important;
+            font-size: inherit !important;
+            color: inherit !important;
+            display: inline-block !important;
+        }
+
+        /* Prevent body from shifting */
+        body {
+            top: 0px !important;
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            position: static !important;
+        }
+
+        /* Optional: Make sure header stays in place */
+        header,
+        nav,
+        .navbar,
+        .top-nav {
+            position: relative !important;
+            top: 0 !important;
+            z-index: 999 !important;
+            transform: none !important;
+        }
+
+
+        /* end */
     </style>
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->
 <!--begin::Body-->
+
 
 <body id="kt_body" class="header-tablet-and-mobile-fixed aside-enabled">
     <!--begin::Main-->
@@ -440,18 +500,10 @@
                                 <!--begin::Action wrapper-->
                                 <div class="d-flex align-items-center">
                                     <!--begin::Label-->
-                                    <span class="fs-7 fw-bolder text-gray-700 pe-4 text-nowrap d-none d-xxl-block">Sort
-                                        By:</span>
-                                    <!--end::Label-->
-                                    <!--begin::Select-->
-                                    <select onchange="uder_construction()" class="form-select form-select-sm form-select-solid w-100px w-xxl-125px"
-                                        data-control="select2" data-placeholder="Latest" data-hide-search="true">
-                                        <option value=""></option>
-                                        <option value="1" selected="selected">Latest</option>
-                                        <option value="2">In Progress</option>
-                                        <option value="3">Done</option>
-                                    </select>
-                                    <!--end::Select-->
+                                    <div id="custom_translate_wrapper">
+                                        <label for="google_translate_element"> 🌐 Translate:</label>
+                                        <div id="google_translate_element"></div>
+                                    </div>
                                 </div>
                                 <!--end::Action wrapper-->
                                 <!--begin::Action wrapper-->
@@ -4116,6 +4168,48 @@
     <script src="<?php echo base_url(); ?>assets/plugins/custom/cookiealert/cookiealert.bundle.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/custom/apps/ecommerce/sales/save-order.js"></script>
 
+    <!-- new 28/05 -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=ja"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,ja',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+
+
+        (function() {
+            function tryReInitGoogleTranslate() {
+                if (typeof googleTranslateElementInit === 'function') {
+                    const container = document.getElementById('google_translate_element');
+                    if (container) {
+                        container.innerHTML = '';
+                        googleTranslateElementInit();
+                    }
+                }
+            }
+
+            // Reinit on browser navigation
+            window.addEventListener('hashchange', tryReInitGoogleTranslate);
+            window.addEventListener('popstate', tryReInitGoogleTranslate);
+
+            // jQuery AJAX handling
+            if (window.jQuery) {
+                $(document).ajaxComplete(function() {
+                    tryReInitGoogleTranslate();
+                });
+            }
+
+            // Fallback reinit every 3 seconds
+            setInterval(tryReInitGoogleTranslate, 3000);
+        })();
+    </script>
+    <!-- end -->
 
     <script>
         window.addEventListener("cookieAlertAccept", function() {
